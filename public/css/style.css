@@ -1,0 +1,234 @@
+/* reset browser styles */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.2;
+}
+ol {
+	padding-left: 1.4em;
+	list-style: decimal;
+}
+ul {
+	padding-left: 1.4em;
+	list-style: square;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+html {
+	background-color: #f0ffc3;
+	margin: 0;
+	padding: 0;
+}
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* reset styles */
+html {
+	font-family: PTSans, Arial, sans-serif;
+	font-size: 5em;
+	background: #e3c88f;
+}
+body {
+	min-width: 900px;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: white;
+	border: 1px black solid;
+	padding: 10px;
+}
+
+.no-page{
+	width: 40%;
+	margin: 0 auto;
+}
+.no-page p{
+	width: 100%;
+	margin: 0 auto;
+	font-size: 1.4em;
+}
+
+.no-page p{
+	text-align: center;
+}
+
+
+.clear{
+	clear: both;
+}
+
+.wrapper{
+	width: 100%;
+	min-height: 80%;
+}
+.resume article h1{
+	margin-bottom: 50px;
+	font-size: .5em;
+}
+
+.registration h1{
+	font-weight: normal;
+	text-align: center;
+	font-size: 0.7em;
+	margin-bottom: 20px;
+}
+.registration input[type=submit]{
+	font-weight: bold;
+	border: none;
+	background-color: red;
+	text-transform: uppercase;
+	color: white;
+	padding: 10px 5px 10px 5px;
+	margin-left: 40%;
+}
+
+.registration{
+	width: 100%;
+}
+.registration .label{
+	float: left;
+	width: 40%;
+}
+.registration .input{
+	float: left;
+	width: 60%;
+}
+
+
+.registration .label label{
+	display: block;
+	height: 50px;
+	text-align: right;
+	font-size: .5em;
+}
+
+.registration .input input{
+	display: block;
+	padding: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 300px;
+	height: 40px;
+}
+
+
+
+.end_resume a{
+	background-color: red;
+	font-weight: bold;
+	color: white;
+	padding: 10px;
+	border: none;
+	text-decoration: none;
+	font-size: .3em;
+}
+
+
+a.addFoto{
+	display: block;
+	float: left;
+	border: 1px #bbbbbb dashed;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	line-height: 40px;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: .4em;
+	width: 18%;
+	height: 200px;
+	padding-top: 40px;
+	padding-left: 50px;
+}
+
+.addFio{
+	margin-left: 2%;
+	width: 80%;
+	float: left;
+}
+
+.addFio a, aside.side a{
+	display: block;
+	height: 90px;
+	font-weight: bold;
+	font-size: .4em;
+	text-decoration: none;
+	border: 1px #bbbbbb dashed;
+	padding-top: 20px;
+	padding-left: 20px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+
+aside.side a:first-child{
+	margin-top: 60px;
+}
+
+aside.side a{
+	margin-top: 20px;
+}
+
+a.addFoto:hover, .addFio a:hover, aside.side a:hover{
+	cursor: pointer;
+	background-color: rgba(186, 186, 186, 0.3);
+	border: 1px #bbbbbb dashed;
+}
+
+a.addFoto span:first-child{
+	font-size: 1.4em;
+	color: #bbbbbb;
+}
+
+a.addFoto span:last-child{
+	color: deepskyblue;
+	font-size: 0.7em;
+}
+
+
+.addFio a:last-child{
+	margin-top: 20px;
+}
+
+.addFio a span:first-child, aside.side a span:first-child{
+	font-size: 1.1em;
+	color: #bbbbbb;
+}
+
+.addFio a span:last-child, aside.side a span:last-child{
+	padding-left: 40px;
+	color: deepskyblue;
+	font-size: 0.7em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
