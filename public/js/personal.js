@@ -5,6 +5,7 @@
         this.year = false;
 
         this.$wrapper = $('.personal');
+        this.$submitPersonal = $('#submitPersonal',this.$wrapper);
         this.$error_data = $('.data', this.$wrapper);
         this.$nationality = $('#nationality',this.$wrapper);
         this.$work_permit = $('#work_permit',this.$wrapper);
@@ -20,6 +21,10 @@
 
                 first_name:{
                     required: true
+                },
+
+                city:{
+                    required: true
                 }
             },
             messages:{
@@ -30,6 +35,10 @@
 
                 first_name:{
                     required: "Это поле обязательно для заполнения"
+                },
+
+                city:{
+                    required: "Это поле обязательно для заполнения"
                 }
             }
         });
@@ -39,9 +48,15 @@
         var d = new Date();
         if( this.day && this.month && this.year){
             this.$error_data.text("года("+ (d.getFullYear()-this.year - 1)+" лет)").css({visibility: 'visible', color: 'black'});
+            $('.data_f').css({visibility: 'hidden'});
+            this.$submitPersonal.attr('disabled', false);
         }else if(!this.day && !this.month && !this.year){
+            $('.data_f').css({visibility: 'hidden'});
+            this.$submitPersonal.attr('disabled', false);
             this.$error_data.css({visibility: 'hidden'});
         }else if(!this.day || !this.month || !this.year){
+            $('.data_f').css({visibility: 'visible'});
+            this.$submitPersonal.attr('disabled', 'disabled');
             this.$error_data.text('Некорректная дата').css({visibility: 'visible', color: 'red'});
         }
     };
@@ -89,7 +104,6 @@
                 event.data.self.$work_permit.append('<input type="text" class="work_permit_other" name="work_permit_other">');
             }else if(event.target.tagName.toLowerCase() === 'input'
                 && $(event.target).data('work_permit') === 'bel' ){
-
                 if($other_work_permit_other.length === 1){
                     $other_work_permit_other.remove();
                 }
@@ -106,7 +120,6 @@
                 $other_country.length === 0){
                 event.data.self.$nationality.append('<input type="text" class="other_country" name="nationality_other">');
             }else if(event.target.tagName.toLowerCase() === 'input' && $(event.target).data('nationality') === 'bel'){
-
                 if($other_country.length === 1){
                     $other_country.remove();
                 }
