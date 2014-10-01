@@ -23,37 +23,40 @@
 						</tr>
 						<tr>
 							<td>Дата рождения</td>
-							<td id="birth">
-								<select name="day_birth">
-									<option></option>
-									<?php for($i=1; $i <= 31; $i++): ?>
-										<option value="<?=$i?>"><?=$i?></option>
-									<?php endfor; ?>
-								</select>
-								<select name="month_birth">
-									<option></option>
-									<?php
-										foreach(array("январь",
-											        "февраль",
-											        "март",
-											        "апрель",
-											        "май",
-											        "июнь",
-											        "июль",
-											        "август",
-											        "сентябрь",
-											        "октябрь",
-											        "ноябрь",
-											        "декабрь") as $key => $month):?>
-											<option value="<?=$key?>"><?=$month?></option>
-										<?php endforeach; ?>
-								</select>
-								<select name="year_birth">
-									<option></option>
-									<?php for($i=(date('Y')-14); $i >= 1900; --$i): ?>
-										<option value="<?=$i?>"><?=$i?></option>
-									<?php endfor; ?>
-								</select>
+							<td>
+								<span id="birth">
+									<select name="day_birth">
+										<option></option>
+										<?php for($i=1; $i <= 31; $i++): ?>
+											<option value="<?=$i?>"><?=$i?></option>
+										<?php endfor; ?>
+									</select>
+									<select name="month_birth">
+										<option></option>
+										<?php
+											foreach(array("январь",
+												        "февраль",
+												        "март",
+												        "апрель",
+												        "май",
+												        "июнь",
+												        "июль",
+												        "август",
+												        "сентябрь",
+												        "октябрь",
+												        "ноябрь",
+												        "декабрь") as $key => $month):?>
+												<option value="<?=$key?>"><?=$month?></option>
+											<?php endforeach; ?>
+									</select>
+									<select name="year_birth">
+										<option></option>
+										<?php for($i=(date('Y')-14); $i >= 1900; --$i): ?>
+											<option value="<?=$i?>"><?=$i?></option>
+										<?php endfor; ?>
+									</select>
+								</span>
+								<div class="data"></div>
 							</td>
 						</tr>
 						<tr>

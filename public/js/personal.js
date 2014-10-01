@@ -1,8 +1,14 @@
 (function($, window){
     function Personal(){
+        this.day = false;
+        this.month = false;
+        this.year = false;
+
         this.$wrapper = $('.personal');
+        this.$error_data = $('.data', this.$wrapper);
         this.$nationality = $('#nationality',this.$wrapper);
         this.$work_permit = $('#work_permit',this.$wrapper);
+        this.$birth = $('#birth', this.$wrapper);
     }
 
     Personal.prototype.validateForm = function(){
@@ -24,6 +30,52 @@
 
                 first_name:{
                     required: "Это поле обязательно для заполнения"
+                }
+            }
+        });
+    };
+
+    Personal.prototype.birth = function(){
+        var d = new Date();
+        if( this.day && this.month && this.year){
+            this.$error_data.text("года("+ (d.getFullYear()-this.year - 1)+" лет)").css({visibility: 'visible', color: 'black'});
+        }else if(!this.day && !this.month && !this.year){
+            this.$error_data.css({visibility: 'hidden'});
+        }else if(!this.day || !this.month || !this.year){
+            this.$error_data.text('Некорректная дата').css({visibility: 'visible', color: 'red'});
+        }
+    };
+
+    Personal.prototype.birthDay = function(day){
+        this.day = day;
+        this.birth();
+    };
+    Personal.prototype.birthMonth = function(month){
+        this.month = month;
+        this.birth();
+    };
+    Personal.prototype.birthYear = function(year){
+        this.year = year;
+        this.birth();
+    };
+
+    Personal.prototype.addEventListenerBirth = function(){
+        this.$birth.on('click',{self:this}, function(event){
+            if(event.target.tagName.toLowerCase()==='select'){
+                switch (event.target.name){
+                    case 'day_birth':{
+                        event.data.self.birthDay(event.target.value);
+                        break;
+                    }
+                    case 'month_birth':{
+                        event.data.self.birthMonth(event.target.value);
+                        break;
+                    }
+                    case 'year_birth':{
+                        event.data.self.birthYear(event.target.value);
+                        break;
+                    }
+
                 }
             }
         });
@@ -66,6 +118,7 @@
         this.validateForm();
         this.addEventListenerNationality();
         this.addEventListenerWorkPermit();
+        this.addEventListenerBirth();
     };
 
 
