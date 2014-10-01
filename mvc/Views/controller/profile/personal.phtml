@@ -1,0 +1,125 @@
+<main class="personal">
+	<article>
+		<div class="arrow-right"></div>
+		<a class='no-save' href="<?=BASE_URL?>">Вернуться к резюме без сохранения</a>
+		<div class="clear"></div>
+		<section>
+			<h1>Персональная информация</h1>
+			<div class="form">
+				<form  action="" id="personal_form" method="post">
+					<table>
+						<tbody>
+						<tr>
+							<td><label for="surname">Фамилия</label></td>
+							<td><input type="text"  id="surname" name="surname"  value=""></td>
+						</tr>
+						<tr>
+							<td><label for="first_name">Имя</label></td>
+							<td><input type="text" name="first_name"  value=""></td>
+						</tr>
+						<tr>
+							<td><label for="patronymic">Отчество</label></td>
+							<td><input type="text" id="patronymic" name="patronymic"  value=""></td>
+						</tr>
+						<tr>
+							<td>Дата рождения</td>
+							<td id="birth">
+								<select name="day_birth">
+									<option></option>
+									<?php for($i=1; $i <= 31; $i++): ?>
+										<option value="<?=$i?>"><?=$i?></option>
+									<?php endfor; ?>
+								</select>
+								<select name="month_birth">
+									<option></option>
+									<?php
+										foreach(array("январь",
+											        "февраль",
+											        "март",
+											        "апрель",
+											        "май",
+											        "июнь",
+											        "июль",
+											        "август",
+											        "сентябрь",
+											        "октябрь",
+											        "ноябрь",
+											        "декабрь") as $key => $month):?>
+											<option value="<?=$key?>"><?=$month?></option>
+										<?php endforeach; ?>
+								</select>
+								<select name="year_birth">
+									<option></option>
+									<?php for($i=(date('Y')-14); $i >= 1900; --$i): ?>
+										<option value="<?=$i?>"><?=$i?></option>
+									<?php endfor; ?>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Пол</td>
+							<td>
+								<input type="radio" name="sex" value="Мужской" checked>Мужской<br>
+								<input type="radio" name="sex" value="Женский">Женский
+							</td>
+						</tr>
+						<tr>
+							<td><label for="city">Город проживания</label></td>
+							<td><input name="city" id="city" type="text"></td>
+						</tr>
+						<tr>
+							<td>Переезд</td>
+							<td>
+								<input type="radio" name="move" value="no" checked>Невозможен<br>
+								<input type="radio" name="move" value="yes">Возможен<br>
+								<input type="radio" name="move" value="desirable">Желателен
+							</td>
+						</tr>
+						<tr>
+							<td>Готовность к командировкам</td>
+							<td>
+								<input type="radio" name="trip" value="never" checked>Никогда<br>
+								<input type="radio" name="trip" value="ready">Готов<br>
+								<input type="radio" name="trip" value="sometimes">Иногда
+							</td>
+						</tr>
+						<tr>
+							<td>Гражданство</td>
+							<td id="nationality">
+								<input type="radio" data-nationality = 'bel' name="nationality" value="Беларусь" checked>Беларусь<br>
+								<input type="radio" data-nationality = 'other' name="nationality" value="">Другие страны
+							</td>
+						</tr>
+						<tr>
+							<td><label for="work_permit">Разрешение на работу</label></td>
+							<td id="work_permit">
+								<input type="radio" data-work_permit = 'bel' name="work_permit" value="Беларусь" checked>Беларусь<br>
+								<input type="radio" data-work_permit = 'other' name="work_permit" value="">Другие страны
+
+							</td>
+						</tr>
+						<tr>
+							<td>Желательное время в пути до работы</td>
+							<td>
+								<input type="radio" name="travel_time_work" value="Не имеет значения" checked>Не
+								имеет значения<br>
+								<input type="radio" name="travel_time_work" value="Не более часа">Не более часа<br>
+								<input type="radio" name="travel_time_work" value="Не более полутора часов">Не более полутора часов
+							</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="2">
+								<input type="submit"  value="Сохранить">
+								<a class="back" href="<?=BASE_URL?>">Отмена</a>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+
+				</form>
+			</div>
+		</section>
+	</article>
+</main>

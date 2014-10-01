@@ -30,7 +30,6 @@ table {
 
 
 html {
-	background-color: #f0ffc3;
 	margin: 0;
 	padding: 0;
 }
@@ -43,7 +42,7 @@ html {
 html {
 	font-family: PTSans, Arial, sans-serif;
 	font-size: 5em;
-	background: #e3c88f;
+
 }
 body {
 	min-width: 900px;
@@ -85,10 +84,11 @@ body {
 .registration h1{
 	font-weight: normal;
 	text-align: center;
-	font-size: 0.7em;
+	font-size: 0.5em;
 	margin-bottom: 20px;
 }
 .registration input[type=submit]{
+	cursor: pointer;
 	font-weight: bold;
 	border: none;
 	background-color: red;
@@ -97,12 +97,18 @@ body {
 	padding: 10px 5px 10px 5px;
 	margin-left: 40%;
 }
+.required{
+	color: red;
+}
+
 
 .registration{
 	width: 100%;
 }
 .registration .label{
+	margin-top: 10px;
 	float: left;
+	font-size: 0.7em;
 	width: 40%;
 }
 .registration .input{
@@ -214,6 +220,206 @@ a.addFoto span:last-child{
 	color: deepskyblue;
 	font-size: 0.7em;
 }
+
+/*download photo*/
+
+.photo, .personal{
+	padding: 30px;
+}
+
+.photo .no-save, .personal .no-save{
+	display: block;
+	float: left;
+	height: 40px;
+	text-align: center;
+	padding-top: 10px;
+	width: 300px;
+	font-size: .20em;
+	text-decoration: none;
+	color: #bbbbbb;
+	background-color: rgba(186, 186, 186, 0.3);
+}
+.photo section, .personal section{
+	padding-left: 100px;
+}
+
+
+.photo .arrow-right, .personal .arrow-right{
+	float: left;
+	margin-left: 50px;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: rgba(186, 186, 186, 0.3);
+	border-left: 0;
+}
+.photo .no-save:hover, .personal .no-save:hover{
+	cursor: pointer;
+	background-color: rgba(186, 186, 186, 0.3);
+	color: red;
+}
+
+.photo section h1, .personal  section h1{
+	margin-top: 40px;
+	font-size: 0.5em;
+}
+
+.photo .user_photo, .personal .user_photo{
+	margin-top: 30px;
+	padding-top: 50px;
+	text-align: center;
+	font-size: .4em;
+	width: 150px;
+	height: 150px;
+	border: 1px black solid;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+
+.photo_form{
+	margin-top: 40px;
+}
+
+.photo_form label{
+	display: block;
+	float: left;
+	width: 30%;
+	font-size: .2em;
+}
+#file{
+	font-size: 0.25em;
+	display: block;
+	float: left;
+	margin-left: -20px;
+}
+#submit_download, .save input[type=submit]{
+	cursor: pointer;
+	font-size: 0.25em;
+	width: 150px;
+	border: none;
+	padding: 5px;
+	background-color: red;
+	color: white;
+	text-transform: uppercase;
+
+}
+#submit_download{
+	display: block;
+	margin-left: 30px;
+	float: left;
+}
+
+.save{
+	margin-top: 30px;
+	clear: both;
+	height: 150px;
+	background-color: rgba(253, 240, 164, 0.3);
+}
+
+.save input[type=submit]{
+	margin-left: 35%;
+}
+
+.back{
+	font-size: .25em;
+	color: #bbbbbb;
+}
+
+.center{
+	margin: 0 auto;
+}
+
+/*personal*/
+
+.personal table{
+	margin-top: 50px;
+	width: 800px;
+	font-size: .2em;
+}
+
+.personal table td{
+	height: 50px;
+}
+
+.personal table td label{
+	cursor: pointer;
+	font-size: 1em;
+}
+
+.error{
+	width: 100%;
+	color: red;
+}
+
+.personal table td input[type=text]{
+	width: 100%;
+	padding: 5px;
+}
+.personal table td input[type=radio]{
+	margin-bottom: 20px;
+}
+.personal table td input[type=radio]:first-child{
+	margin-top: 20px;
+}
+
+
+.personal table td select{
+	width: 100px;
+	padding: 3px;
+}
+
+.personal tfoot tr{
+	height: 50px;
+	text-align: center;
+	background-color: rgba(186, 186, 186, 0.3);
+}
+.personal tfoot tr input[type=submit]{
+	cursor: pointer;
+	font-size: 1.2em;
+	width: 300px;
+	border: none;
+	padding: 5px;
+	background-color: red;
+	color: white;
+	text-transform: uppercase;
+}
+
+.personal tfoot tr input[type=submit]:disabled{
+	cursor: auto;
+	font-size: 1.2em;
+	width: 300px;
+	border: none;
+	padding: 5px;
+	background-color: rgba(255, 31, 23, 0.3);
+	color: white;
+	text-transform: uppercase;
+}
+
+.personal tfoot tr .back {
+	font-size: 1.5em;
+	margin-left: 50px;
+}
+
+.personal tfoot tr td{
+	padding: 10px;
+}
+.other_country{
+	width: 100%;
+}
+
+.work_permit_other{
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

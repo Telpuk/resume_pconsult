@@ -1,7 +1,7 @@
 <?php
 	return [
 		'user'=>array('controllers'=>array(
-			'ProfileController'
+
 		)),
 		'admin'=>array('controllers'=>array(
 

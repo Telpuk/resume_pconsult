@@ -18,11 +18,10 @@
 								$src .= "<script type='text/javascript' src='{$value}'></script>\n";
 							}
 						}elseif($key === "js_c"){
-							$js_c .= "$js";
+							$js_c .= "\n<script type='text/javascript'>{$js_c}</script>\n";
 						}
 					}
-					$js_c = "<script type='text/javascript'>{$js_c}</script>";
-					$this->_javascript = "\n".$js_c."\n".$src."\n";
+					$this->_javascript = $js_c.$src."\n";
 				}
 
 				if(isset($arguments['cache_headers'])){

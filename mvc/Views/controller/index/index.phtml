@@ -1,15 +1,22 @@
-<main class="registration">
-	<h1>Регистрация</h1>
-	<form action="index/sending" method="post">
-		<div class="label">
-			<label for="name">Ваше имя</label>
-			<label for="email">email</label>
-		</div>
-		<div class="input">
-			<input type="name" id="name" value="" placeholder="ваше имя">
-			<input type="email" id="email" value="" placeholder="email">
-			<input type="submit" name="sendingSubmit" value="Отправить сообщение">
-		</div>
-		<div class="clear"></div>
-	</form>
+<main class="resume">
+	<article>
+		<h1>Создать резюме за несколько минут</h1>
+		<section class="foto_fio">
+			<a class="addFoto" href="<?=BASE_URL.'/profile/photo'?>"><span>Фото</span><br><span>Добавить...</span></a>
+			<div class="addFio">
+				<a href="<?=BASE_URL.'/profile/personal'?>"><span>Имя, возвраст, город</span><span>Добавить..
+						.</span></a>
+				<a href="#3"><span>Контакты</span><span>Добавить...</span></a>
+			</div>
+			<div class="clear"></div>
+			<aside class="side">
+				<a href="#4"><span>Желаемая должность и зарплата</span><span>Добавить...</span></a>
+				<a href="#5"><span>Образование</span><span>Добавить...</span></a>
+				<a href="#6"><span>Опыт работы</span><span>Добавить...</span></a>
+			</aside>
+<!--			<aside class="end_resume">-->
+<!--				<a href="" >Закончить заполение анкеты</a>-->
+<!--			</aside>-->
+		</section>
+	</article>
 </main>
