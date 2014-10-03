@@ -18,7 +18,7 @@
 						<input type="file" name="photo" max="1" id="file">
 						<input type="submit" id="submit_download" name="submit_download" value="Загрузить">
 					<?php else: ?>
-						<a class="delete_photo" href='<?=BASE_URL."/profile/delete"?>'>удалить</a>
+						<a class="delete_photo" href='<?=BASE_URL."/profile/delete/id{$this->data['data']['src']}"?>'>удалить</a>
 					<?php endif ?>
 					<div class="clear"></div>
 				</div>

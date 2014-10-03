@@ -19,7 +19,7 @@
 		}
 
 		public function getParams(){
-			return $this->_params;
+			return $this->_paramsGET;
 		}
 
 	}

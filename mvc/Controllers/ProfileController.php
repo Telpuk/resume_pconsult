@@ -30,6 +30,7 @@ class ProfileController extends IController
 
 	public function deleteAction(){
 		$this->_dbuser->updatePhotoId('no-photo.png', $this->getSessionUserID('user'));
+		unlink($this->_getDownloadDirPhoto()."/".$this->getParams()['photo']);
 		$this->headerLocation('profile/photo');
 	}
 
