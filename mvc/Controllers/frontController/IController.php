@@ -1,6 +1,6 @@
 <?php
 
-	abstract class IController{
+	abstract class IController extends SessionController{
 		protected $_paramsGET = [];
 		protected $_body;
 
@@ -22,20 +22,4 @@
 			return $this->_params;
 		}
 
-		public function getSessionElements($element){
-			return $_SESSION[$element];
-		}
-
-		public function getSession(){
-			return $_SESSION;
-		}
-
-		public function setSession($session_var = []){
-			$_SESSION = $session_var;
-		}
-
-		public function sessionClear(){
-			session_destroy();
-			$this->headerLocation();
-		}
 	}

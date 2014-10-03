@@ -60,7 +60,7 @@ body {
 .no-page p{
 	width: 100%;
 	margin: 0 auto;
-	font-size: 1.4em;
+	font-size: .3em;
 }
 
 .no-page p{
@@ -298,7 +298,7 @@ a.addFoto span:last-child{
 	width: 150px;
 	border: none;
 	padding: 5px;
-	background-color: red;
+	background-color: rgba(255, 31, 23, 0.5);
 	color: white;
 	text-transform: uppercase;
 
@@ -379,7 +379,7 @@ a.addFoto span:last-child{
 	width: 300px;
 	border: none;
 	padding: 5px;
-	background-color: rgba(255, 31, 23, 0.7);
+	background-color: rgba(255, 31, 23, 0.5);
 	color: white;
 	text-transform: uppercase;
 }

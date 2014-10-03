@@ -5,10 +5,12 @@
 		<div class="clear"></div>
 		<section>
 			<h1>Фотография</h1>
+			<div class="message_error_uploads_photo"></div>
 			<div class="user_photo">Без фото</div>
 			<div class="photo_form">
-				<form  action="" method="post">
+				<form  action='<?=BASE_URL."/profile/uploads"?>' method="post" enctype="multipart/form-data">
 					<label for="file">Загрузить фотографию<br>jpg, gif, png, bmp, не более 6Mб</label>
+					<input type="hidden" name="MAX_FILE_SIZE" value="6000" />
 					<input type="file" id="file">
 					<input type="submit" id="submit_download" value="Загрузить">
 					<div class="clear"></div>

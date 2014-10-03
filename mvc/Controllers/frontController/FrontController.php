@@ -53,10 +53,10 @@
 
 		private  function _checkSession($controller){
 			$sessionControllers = new SessionController();
-			$sess_user = $sessionControllers->getSessionUser();
+			$sess_user = $sessionControllers->getSessionUsers();
 			$sessionContr = $sessionControllers->getControllers();
 			foreach($sessionContr as $key => $cntrls){
-				if(in_array($controller, $cntrls['controllers']) && $key !== $sess_user){
+				if(in_array($controller, $cntrls['controllers']) && !array_key_exists($key, (array)$sess_user)){
 					header ("Location: " . BASE_URL);
 					exit;
 				}

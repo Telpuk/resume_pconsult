@@ -14,13 +14,23 @@
 			return $this->_controllers;
 		}
 
-		public function setSessionUser($session=array()){
-			$_SESSION['session_user'] = $session;
+		public function setSessionUsers($session=array()){
+			$_SESSION['session_users']['users'] = $session;
 		}
 
-		public function getSessionUser(){
-			return isset($_SESSION['session_user']['user']) ? $_SESSION['session_user']['user']: false;
+		public function getSessionUsers(){
+			return isset($_SESSION['session_users']['users']) ? $_SESSION['session_users']['users']: false;
 		}
+
+		public function getSessionUserID($user){
+			return isset($_SESSION['session_users']['users'][$user]) ? $_SESSION['session_users']['users'][$user]: false;
+		}
+
+		public function sessionClear(){
+			session_destroy();
+			$this->headerLocation();
+		}
+
 
 
 	}
