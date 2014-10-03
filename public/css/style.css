@@ -269,7 +269,21 @@ a.addFoto span:last-child{
 	margin-bottom: 20px;
 }
 
+.helpers_message_photo{
+	display: block;
+	float: left;
+	font-size: .25em;
+	text-align: center;
+	margin-left: 5%;
+	width: 70%;
+	color: red;
+	border: 1px red dashed;
+	padding: 10px;
+}
+
+
 .user_photo img{
+	float: left;
 	width: 200px;
 	height: 180px;
 	border: 1px black dotted;

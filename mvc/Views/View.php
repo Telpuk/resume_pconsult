@@ -2,7 +2,7 @@
 	class View{
 		private $_helpers_menu = '';
 		private $_content = '';
-	    private $_javascript = '';
+		private $_javascript = '';
 
 		private $data;
 
@@ -27,17 +27,21 @@
 				if(isset($arguments['cache_headers'])){
 					$this->cacheHeaders($arguments['cache_headers']);
 				}
+				if(isset($arguments['data']['helpers'])){
+					foreach($arguments['data']['helpers'] as $key=>$helper) {
+						ob_start ();
+						if (!@include_once dirname(__FILE__)."/controller/".$helper.".phtml")
+							throw new Exception();
+
+						$this->data['helpers'][$key] = ob_get_clean ();
+					}
+					unset($arguments['data']['helpers']);
+				}
 
 				if(isset($arguments['data'])){
-					$this->data = $arguments['data'];
+					$this->data['data'] = $arguments['data'];
 				}
-				if(isset($arguments['helpers'])){
-					ob_start();
-					if(!@include_once dirname(__FILE__)."/layout/helpers/".$arguments['helpers'].".phtml")
-						throw new Exception();
 
-					$this->_helpers_menu = ob_get_clean();
-				}
 				if(isset($arguments['ajax']) && $arguments['ajax'] === true){
 					ob_start();
 					if(!@include_once dirname(__FILE__)."/controller/{$arguments['view']}.phtml")
