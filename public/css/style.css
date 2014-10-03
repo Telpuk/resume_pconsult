@@ -264,18 +264,16 @@ a.addFoto span:last-child{
 	font-size: 0.5em;
 }
 
-.photo .user_photo, .personal .user_photo{
-	margin-top: 30px;
-	padding-top: 50px;
-	text-align: center;
-	font-size: .4em;
-	width: 150px;
-	height: 150px;
-	border: 1px black solid;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
+.user_photo{
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
+.user_photo img{
+	width: 200px;
+	height: 180px;
+	border: 1px black dotted;
+}
 .photo_form{
 	margin-top: 40px;
 }
