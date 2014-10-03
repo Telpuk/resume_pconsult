@@ -22,16 +22,17 @@ class ProfileController extends IController
 		return $this->_view->render(array(
 			'view' => 'profile/photo',
 			'data'=> array_merge( array(
-				'src'=>"/files/photo/{$photo_name}",
-				'submit'=>($photo_name === 'no-photo.png') ? true: false),
+					'src'=>"/files/photo/{$photo_name}",
+					'submit'=>($photo_name === 'no-photo.png') ? true: false),
 				$this->_uploadsAction())
 		));
 	}
 
 	public function deleteAction(){
 		$this->_dbuser->updatePhotoId('no-photo.png', $this->getSessionUserID('user'));
-		unlink($this->_getDownloadDirPhoto()."/".$this->getParams()['photo']);
+		@unlink($this->_getDownloadDirPhoto()."/".$this->getParams()['photo']);
 		$this->headerLocation('profile/photo');
+
 	}
 
 	public function personalAction(){
