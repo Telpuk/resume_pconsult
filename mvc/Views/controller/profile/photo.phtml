@@ -6,15 +6,20 @@
 		<section>
 			<form  action='<?=BASE_URL."/profile/photo"?>' method="post" enctype="multipart/form-data">
 				<h1>Фотография</h1>
-				<div class="user_photo"><img src=<?php if(isset($this->data['data']['src']))
-						echo "{$this->data['data']['src']}"; else echo BASE_URL."/public/img/no-photo.png"?>></div>
+				<div class="user_photo">
+					<img src='<?=BASE_URL.$this->data['data']['src']?>'>
+				</div>
 				<?php foreach($this->data['helpers'] as $helper)echo $helper?>
 				<div class="clear"></div>
 				<div class="photo_form">
-					<label for="file">Загрузить фотографию<br>jpg, gif, png, bmp, не более 6Mб</label>
-					<input type="hidden" name="MAX_FILE_SIZE" value="6291456" />
-					<input type="file" name="photo" max="1" id="file">
-					<input type="submit" id="submit_download" name="submit_download" value="Загрузить">
+					<?php if($this->data['data']['submit']): ?>
+						<label for="file">Загрузить фотографию<br>jpg, gif, png, bmp, не более 6Mб</label>
+						<input type="hidden" name="MAX_FILE_SIZE" value="6291456" />
+						<input type="file" name="photo" max="1" id="file">
+						<input type="submit" id="submit_download" name="submit_download" value="Загрузить">
+					<?php else: ?>
+						<a class="delete_photo" href='<?=BASE_URL."/profile/delete"?>'>удалить</a>
+					<?php endif ?>
 					<div class="clear"></div>
 				</div>
 			</form>

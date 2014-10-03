@@ -224,7 +224,26 @@ a.addFoto span:last-child{
 /*download photo*/
 
 .photo, .personal{
+    position: relative;
 	padding: 30px;
+}
+
+a.delete_photo{
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    width: 70%;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    font-size: 0.25em;
+    width: 250px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(255, 31, 23, 0.5);
+    color: white;
+    text-transform: uppercase;
 }
 
 .photo .no-save, .personal .no-save{
@@ -289,7 +308,7 @@ a.addFoto span:last-child{
 	border: 1px black dotted;
 }
 .photo_form{
-	margin-top: 40px;
+	margin-top: 50px;
 }
 
 .photo_form label{

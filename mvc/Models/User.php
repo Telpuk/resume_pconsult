@@ -28,16 +28,16 @@
 			}
 		}
 
+
 		public function selectPhotoID($id_user){
 			try {
 				$stmt = $this->_dbc->prepare ("SELECT photo FROM profile WHERE id = :id_user");
 				$stmt->execute(array(':id_user'=>$id_user));
-				$photo = $stmt->fetch(PDO::FETCH_ASSOC);
+				$photo_name = $stmt->fetch(PDO::FETCH_ASSOC);
 			}catch (PDOException $e){
 				exit(print_r($e->errorInfo).$e->getFile());
 			}
-
-			return $photo;
+			return $photo_name['photo'];
 		}
 
 		public function getIdUser(){
