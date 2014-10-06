@@ -6,12 +6,17 @@
 		<section>
 			<h1>Персональная информация</h1>
 			<div class="form">
-				<form  action="" id="personal_form" method="post">
+				<form  action='<?=BASE_URL.'/profile/personal'?>' id="personal_form" method="post">
 					<table>
 						<tbody>
 						<tr>
 							<td><label for="surname">Фамилия</label></td>
-							<td><input type="text"  id="surname" name="surname"  value=""></td>
+							<td><input type="text"  id="surname" name="surname"
+							           value='<?=$this->data['data']['inputs']['name']['value']?>'>
+								<?php if(!$this->data['data']['inputs']['name']['val']): ?>
+									<span class="required">Обязаетльно для заполнения!</span>
+								<?php endif; ?>
+							</td>
 						</tr>
 						<tr>
 							<td><label for="first_name">Имя</label></td>
