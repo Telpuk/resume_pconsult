@@ -15,6 +15,12 @@
 			return DIR_PROJECT.'/files/photo';
 		}
 
+		public function contactsAction(){
+			return $this->_view->render(array(
+				'view' => 'profile/contacts'
+			));
+		}
+
 		public function photoAction(){
 			$photo_name = $this->_dbuser->selectPhotoID($this->getSessionUserID('user'));
 
@@ -33,6 +39,7 @@
 			$this->headerLocation('profile/photo');
 
 		}
+
 
 		public function personalAction(){
 

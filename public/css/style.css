@@ -474,7 +474,15 @@ a.delete_photo{
 }
 
 
+/*contacts*/
+.contacts{
+	position: relative;
+	padding: 30px;
+}
 
+.contacts table{
+	width: 100%;
+}
 
 
 
