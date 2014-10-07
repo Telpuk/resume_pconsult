@@ -11,7 +11,7 @@
 					<table>
 						<tbody>
 						<tr>
-							<td><label for="surname">Фамилия</label></td>
+							<td><label for="surname">Фамилия<span class="required">*</span></label></td>
 							<td><input type="text"  id="surname" name="surname"
 							           value='<?=$this->data['data']['inputs']['surname']['value']?>'>
 								<?php if(isset($this->data['data']['inputs']['surname']['val']) &&
@@ -21,7 +21,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="first_name">Имя</label></td>
+							<td><label for="first_name">Имя<span class="required">*</span></label></td>
 							<td>
 								<input type="text" name="first_name"
 								       value='<?=$this->data['data']['inputs']['first_name']['value']?>'>
@@ -46,94 +46,104 @@
 							<td>Дата рождения</td>
 							<td>
 								<span id="birth">
-									<select name="day_birth">
+									<select id="day_birth" name="day_birth">
 										<option value=''></option>
 										<?php for($i=1; $i <= 31; $i++): ?>
 											<option value='<?=$i?>'<?php if($this->data['data']['inputs']['birth']['day_birth']==$i)echo'selected'?>><?=$i?></option>
 										<?php endfor; ?>
 									</select>
-									<select name="month_birth">
+									<select id="month_birth" name="month_birth">
 										<option value=""></option>
 										<?php
-										foreach(array(1=>"январь",
-											        2=>"февраль",
-											        3=>"март",
-											        4=>"апрель",
-											        5=>"май",
-											        6=>"июнь",
-											        7=>"июль",
-											        8=>"август",
-											        9=>"сентябрь",
-											        10=>"октябрь",
-											        11=>"ноябрь",
-											        12=>"декабрь") as $key => $month):?>
-											<option value='<?=$key?>'<?php if($this->data['data']['inputs']['birth']['month_birth']==$key)
-											echo'selected'?>><?=$month?></option>
-										<?php endforeach; ?>
+											foreach(array(1=>"январь",
+											              2=>"февраль",
+											              3=>"март",
+											              4=>"апрель",
+											              5=>"май",
+											              6=>"июнь",
+											              7=>"июль",
+											              8=>"август",
+											              9=>"сентябрь",
+											              10=>"октябрь",
+											              11=>"ноябрь",
+											              12=>"декабрь") as $key => $month):?>
+												<option value='<?=$key?>'<?php if($this->data['data']['inputs']['birth']['month_birth']==$key)
+													echo'selected'?>><?=$month?></option>
+											<?php endforeach; ?>
 									</select>
-									<select name="year_birth">
+									<select id="year_birth" name="year_birth">
 										<option value=""></option>
 										<?php for($i=(date('Y')-14); $i >= 1900; --$i): ?>
 											<option value='<?=$i?>'<?php if($this->data['data']['inputs']['birth']['year_birth']==$i)echo'selected'?>><?=$i?></option>
 										<?php endfor; ?>
 									</select>
 								</span>
-								<?php if(isset($this->data['data']['inputs']['birth']['val']) &&
-									!$this->data['data']['inputs']['birth']['val']): ?>
-									<span class="data" style="visibility: visible; color:red">Не коректная дата!</span>
-								<?php endif; ?>
-								<div class="data"></div>
+								<div class="data">
+									<?php if(isset($this->data['data']['inputs']['birth']['val']) &&
+										!$this->data['data']['inputs']['birth']['val']): ?>
+										Не коректная дата!
+									<?php endif; ?>
+								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>Пол</td>
 							<td>
-								<input type="radio" name="sex" value="Мужской" checked>Мужской<br>
-								<input type="radio" name="sex" value="Женский">Женский
+								<input type="radio" name="sex" value="Мужской" <?php if($this->data['data']['inputs']['sex']['value'] === 'Мужской' ||
+									!$this->data['data']['inputs']['sex']['value']) echo 'checked'?>>Мужской<br>
+								<input type="radio" name="sex" value="Женский" <?php if($this->data['data']['inputs']['sex']['value'] === 'Женский') echo 'checked' ?>>Женский
 							</td>
 						</tr>
 						<tr>
-							<td><label for="city">Город проживания</label></td>
-							<td><input name="city" id="city" type="text"></td>
+							<td><label for="city">Город проживания<span class="required">*</span></label></td>
+							<td>
+								<p class="example">Например: <span id="city_example">Минск</span></p>
+								<input name="city" id="city" type="text" value='<?=$this->data['data']['inputs']['city']['value']?>'>
+								<?php if(isset($this->data['data']['inputs']['city']['val']) &&
+									!$this->data['data']['inputs']['city']['val']): ?>
+									<span class="data_f" style="visibility: visible; color:red">Обязаетльно для
+										заполнения!</span>
+								<?php endif; ?>
+							</td>
 						</tr>
 						<tr>
 							<td>Переезд</td>
 							<td>
-								<input type="radio" name="move" value="no" checked>Невозможен<br>
-								<input type="radio" name="move" value="yes">Возможен<br>
-								<input type="radio" name="move" value="desirable">Желателен
+								<input type="radio" name="move" value="no" <?php if($this->data['data']['inputs']['move']['value'] === 'no' ||
+									!$this->data['data']['inputs']['move']['value']) echo 'checked'?>>Невозможен<br>
+								<input type="radio" name="move" value="yes" <?php if($this->data['data']['inputs']['move']['value'] === 'yes') echo 'checked' ?>>Возможен<br>
+								<input type="radio" name="move" value="desirable"  <?php if($this->data['data']['inputs']['move']['value'] === 'desirable') echo 'checked' ?>>Желателен
 							</td>
 						</tr>
 						<tr>
 							<td>Готовность к командировкам</td>
 							<td>
-								<input type="radio" name="trip" value="never" checked>Никогда<br>
-								<input type="radio" name="trip" value="ready">Готов<br>
-								<input type="radio" name="trip" value="sometimes">Иногда
+								<input type="radio" name="trip" value="never" <?php if ($this->data['data']['inputs']['trip']['value'] === 'never' ||
+									!$this->data['data']['inputs']['trip']['value']) echo 'checked'?>>Никогда<br>
+								<input type="radio" name="trip" value="ready" <?php if($this->data['data']['inputs']['trip']['value'] === 'ready') echo 'checked' ?>>Готов<br>
+								<input type="radio" name="trip" value="sometimes" <?php if($this->data['data']['inputs']['trip']['value'] === 'sometimes') echo 'checked' ?>>Иногда
 							</td>
 						</tr>
 						<tr>
 							<td>Гражданство</td>
-							<td id="nationality">
-								<input type="radio" data-nationality = 'bel' name="nationality" value="Беларусь" checked>Беларусь<br>
-								<input type="radio" data-nationality = 'other' name="nationality" value="">Другие страны
+							<td>
+								<p  class="example">Например: <span id="nationality_example">Беларусь</span></p>
+								<input type="text" name="nationality" value='<?=$this->data['data']['inputs']['nationality']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="work_permit">Разрешение на работу</label></td>
-							<td id="work_permit">
-								<input type="radio" data-work_permit = 'bel' name="work_permit" value="Беларусь" checked>Беларусь<br>
-								<input type="radio" data-work_permit = 'other' name="work_permit" value="">Другие страны
-
+							<td>
+								<p  class="example">Например: <span id="work_permit_example">Беларусь</span></p>
+								<input type="text" name="work_permit" value='<?=$this->data['data']['inputs']['work_permit']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td>Желательное время в пути до работы</td>
 							<td>
-								<input type="radio" name="travel_time_work" value="Не имеет значения" checked>Не
-								имеет значения<br>
-								<input type="radio" name="travel_time_work" value="Не более часа">Не более часа<br>
-								<input type="radio" name="travel_time_work" value="Не более полутора часов">Не более полутора часов
+								<input type="radio" name="travel_time_work" value="Не имеет значения" <?php if($this->data['data']['inputs']['travel_time_work']['value'] === 'Не имеет значения'|| !$this->data['data']['inputs']['travel_time_work']['value']) echo 'checked'?>>Неимеет значения<br>
+								<input type="radio" name="travel_time_work" value="Не более часа"  <?php if($this->data['data']['inputs']['travel_time_work']['value'] === 'Не более часа') echo 'checked' ?>>Не более часа<br>
+								<input type="radio" name="travel_time_work" value="Не более полутора часов"  <?php if($this->data['data']['inputs']['travel_time_work']['value'] === 'Не более полутора часов') echo 'checked' ?>>Не более полутора часов
 							</td>
 						</tr>
 						</tbody>
