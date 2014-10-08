@@ -62,31 +62,21 @@
 				$stmt = $this->_dbc->prepare ("UPDATE
 													profile
 												SET
-													surname = :surname,
-													first_name = :first_name,
-													patronymic = :patronymic,
-													birth = :birth,
-													sex = :sex,
-													city = :city,
-													move = :move,
-													trip = :trip,
-													nationality = :nationality,
-													work_permit = :work_permit,
-													travel_time_work = :travel_time_work
+													desired_position = :desired_position,
+													professional_area = :professional_area,
+													employment = :employment,
+													schedule = :schedule,
+													salary = :salary,
+													currency = :currency
 												WHERE
 													id = :id_user");
 				$stmt->execute(array(
-						':surname'=>$inputs['surname']['value'],
-						':first_name'=>$inputs['first_name']['value'],
-						':patronymic'=>$inputs['patronymic']['value'],
-						':birth'=>"{$inputs['birth']['day_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['year_birth']}",
-						':sex'=>$inputs['sex']['value'],
-						':city'=>$inputs['city']['value'],
-						':move'=>$inputs['move']['value'],
-						':trip'=>$inputs['trip']['value'],
-						':nationality'=>$inputs['nationality']['value'],
-						':work_permit'=>$inputs['work_permit']['value'],
-						':travel_time_work'=>$inputs['travel_time_work']['value'],
+						':desired_position'=>$inputs['desired_position']['value'],
+						':professional_area'=>$inputs['professional_area']['value'],
+						':employment'=>implode('%',$inputs['employment']['value']),
+						':schedule'=>implode('%',$inputs['schedule']['value']),
+						':salary'=>$inputs['salary']['value'],
+						':currency'=>$inputs['currency']['value'],
 						':id_user'=>$id_user)
 				);
 			}catch (PDOException $e){
