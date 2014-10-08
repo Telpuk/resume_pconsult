@@ -7,7 +7,7 @@
 		<section>
 			<h1>Контакты</h1>
 			<div class="form">
-				<form  action='<?=BASE_URL.'/profile/contacts'?>' id="personal_form" method="post">
+				<form  action='<?=BASE_URL.'/profile/contacts'?>' id="personal_form" method="post" novalidate="novalidate">
 					<table>
 						<tbody>
 						<tr>
@@ -21,39 +21,42 @@
 						<tr>
 							<td></td>
 							<td  class="comment" colspan="3">
-								Комментарий<br><input type="text" name="comment_mobile_phone">
+								Комментарий<br><input type="text" name="comment_mobile_phone" value='<?=$this->data['data']['inputs']['comment_mobile_phone']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="home_phone">Домашний телефон</label></td>
 							<td><input type="tel"  id="home_phone"  name="home_phone" value='<?=$this->data['data']['inputs']['home_phone']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication" value='2'>Желаемый вид связи</td>
+							<td><input type="radio" name="preferred_communication"
+									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи</td>
 							<td class="message"><span class="required hidden"><span class="required"><?=$this->data['data']['inputs']['home_phone']['val']['message']?></span></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td class="comment" colspan="3">
 								Комментарий<br>
-								<input type="text" name="comment_home_phone">
+								<input type="text" name="comment_home_phone" value='<?=$this->data['data']['inputs']['comment_home_phone']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="work_phone">Рабочий телефон</label></td>
 							<td><input type="tel"  id="work_phone" name="work_phone" value='<?=$this->data['data']['inputs']['work_phone']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication" value='3'>Желаемый вид связи</td>
+							<td><input type="radio" name="preferred_communication"
+							           <?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 3)echo'checked'?> value='3'>Желаемый вид связи</td>
 							<td class="message"><span class="required"><span
 										class="required"><?=$this->data['data']['inputs']['work_phone']['val']['message']?></span></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td  class="comment" colspan="3">
-								Комментарий<br><input type="text" name="comment_work_phone">
+								Комментарий<br><input type="text" name="comment_work_phone" value='<?=$this->data['data']['inputs']['comment_work_phone']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="email">Эл. почта<span class="required">*</span></label></td>
 							<td><input type="email"  id="email" name="email" value='<?=$this->data['data']['inputs']['email']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication" value='4'>Желаемый вид связи</td>
+							<td><input type="radio" name="preferred_communication"
+							           <?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 4)echo'checked'?> value='4'>Желаемый вид связи</td>
 							<td class="message"><span class="required"><?=$this->data['data']['inputs']['email']['val']['message']?></span></td>
 						</tr>
 						<tr>
@@ -78,7 +81,8 @@
 						</tr>
 						<tr>
 							<td><label for="linkedln">Linkedln</label></td>
-							<td colspan="3"><input type="text" id="linkedln" name="Linkedln" value='<?=$this->data['data']['inputs']['linkedln']['value']?>'>
+							<td colspan="3"><input type="text" id="linkedln" name="linkedln"
+							                       value='<?=$this->data['data']['inputs']['linkedln']['value']?>'>
 							</td>
 						</tr>
 						<tr>
@@ -88,7 +92,7 @@
 						</tr>
 						<tr>
 							<td><label for="live_journal">LiveJournal</label></td>
-							<td colspan="3"><input type="text" id="livejournal" name="live_journal" value='<?=$this->data['data']['inputs']['livejournal']['value']?>'>
+							<td colspan="3"><input type="text" id="live_journal" name="live_journal" value='<?=$this->data['data']['inputs']['live_journal']['value']?>'>
 							</td>
 						</tr>
 						<tr>

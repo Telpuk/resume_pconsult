@@ -128,6 +128,7 @@
 													skype,
 													free_lance,
 													my_circle,
+													linkedln,
 													facebook,
 													live_journal,
 													other_site

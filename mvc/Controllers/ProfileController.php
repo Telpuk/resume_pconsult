@@ -19,7 +19,7 @@
 			if(isset($_POST['saveContacts'])){
 				$checkForm = $this->_checkFormContacts($_POST);
 				foreach($checkForm as $input){
-					if(isset($input['val']['message']) || !$input['val']){
+					if(isset($input['val']['message']) || $input['val']===false){
 						return $this->_view->render(array(
 							'view' => 'profile/contacts',
 							'data'=>array('inputs'=>$checkForm),
@@ -191,41 +191,52 @@
 
 
 			$mobile_phone_val = call_user_func(function($phone){
-				if(empty($phone['phone']) && $phone['preferred_communication'] != 1){
-					return  true;
-				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i', $phone['phone'])
-					&& $phone['preferred_communication'] == 1){
+				if(empty($phone['phone']) && $phone['preferred_communication'] == 1){
+					return  array('message'=>'Необходимо заполнить');
+				}elseif(!empty($phone['phone']) &&
+					!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+						$phone['phone'])){
 					return  array('message'=>'Номер указан некорректно');
+				}else{
+					return true;
 				}
 			}, array('phone'=>$mobile_phone, 'preferred_communication'=>$preferred_communication));
 
 			$home_phone_val = call_user_func(function($phone){
-				if(empty($phone['phone']) && $phone['preferred_communication'] != 2){
-					return  true;
-				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i', $phone['phone'])
-					&& $phone['preferred_communication'] == 2){
+				if(empty($phone['phone']) && $phone['preferred_communication'] == 2){
+					return  array('message'=>'Необходимо заполнить');
+				}elseif(!empty($phone['phone']) &&
+					!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+						$phone['phone'])){
 					return  array('message'=>'Номер указан некорректно');
+				}else{
+					return true;
 				}
+
 			}, array('phone'=>$home_phone, 'preferred_communication'=>$preferred_communication));
 
 			$work_phone_val = call_user_func(function($phone){
-				if(empty($phone['phone']) && $phone['preferred_communication'] != 3){
-					return  true;
-				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i',
-						$phone['phone']) && $phone['preferred_communication'] == 3){
+				if(empty($phone['phone']) && $phone['preferred_communication'] == 3){
+					return  array('message'=>'Необходимо заполнить');
+				}elseif(!empty($phone['phone']) &&
+					!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+						$phone['phone'])){
 					return  array('message'=>'Номер указан некорректно');
+				}else{
+					return true;
 				}
 			}, array('phone'=>$work_phone, 'preferred_communication'=>$preferred_communication));
 
 
 			$email_val = call_user_func(function($email){
 				if(empty($email)){
-					return   array('message'=>'Необходимо заполнить');
-				}elseif(filter_var($email, FILTER_VALIDATE_EMAIL)){
+					return  array('message'=>'Необходимо заполнить');
+				}elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 					return  array('message'=>'Не корректно указан email');
+				}else{
+					return true;
 				}
-				return true;
-			}, array($email));
+			}, $email);
 
 
 
@@ -323,7 +334,7 @@
 				'src'=>array(
 					BASE_URL."/public/js/jquery-2.1.1.min.js",
 					BASE_URL."/public/js/jquery.validate.min.js",
-					BASE_URL."/public/js/personal.js"
+					BASE_URL."/public/js/contacts.js"
 				),
 			);
 		}
