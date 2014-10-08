@@ -65,6 +65,111 @@
 			}
 		}
 
+
+		public function updateContacts($inputs, $id_user){
+			try {
+				$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													mobile_phone = :mobile_phone,
+													home_phone = :home_phone,
+													work_phone = :work_phone,
+													comment_mobile_phone = :comment_mobile_phone,
+													comment_home_phone = :comment_home_phone,
+													comment_work_phone = :comment_work_phone,
+													preferred_communication = :preferred_communication,
+													email = :email,
+													icq = :icq,
+													skype = :skype,
+													free_lance = :free_lance,
+													my_circle = :my_circle,
+													linkedln = :linkedln,
+													facebook = :facebook,
+													live_journal = :live_journal,
+													other_site = :other_site
+												WHERE
+													id = :id_user");
+				$stmt->execute(array(
+						':mobile_phone'=>$inputs['mobile_phone']['value'],
+						':home_phone'=>$inputs['home_phone']['value'],
+						':work_phone'=>$inputs['work_phone']['value'],
+						':comment_mobile_phone'=>$inputs['comment_mobile_phone']['value'],
+						':comment_home_phone'=>$inputs['comment_home_phone']['value'],
+						':comment_work_phone'=>$inputs['comment_work_phone']['value'],
+						':preferred_communication'=>$inputs['preferred_communication']['value'],
+						':email'=>$inputs['email']['value'],
+						':icq'=>$inputs['icq']['value'],
+						':skype'=>$inputs['skype']['value'],
+						':free_lance'=>$inputs['free_lance']['value'],
+						':my_circle'=>$inputs['my_circle']['value'],
+						':linkedln'=>$inputs['linkedln']['value'],
+						':facebook'=>$inputs['facebook']['value'],
+						':live_journal'=>$inputs['live_journal']['value'],
+						':other_site'=>$inputs['other_site']['value'],
+						':id_user'=>$id_user)
+				);
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile().$e->getMessage());
+			}
+		}
+
+		public function selectContacts($id_user){
+			try {
+				$stmt = $this->_dbc->prepare ("SELECT
+													mobile_phone,
+													home_phone,
+													work_phone,
+													email,
+													preferred_communication,
+													comment_mobile_phone,
+													comment_home_phone,
+													comment_work_phone,
+													icq,
+													skype,
+													free_lance,
+													my_circle,
+													facebook,
+													live_journal,
+													other_site
+												FROM
+													profile
+												WHERE
+													id = :id_user");
+				$stmt->execute(array(':id_user'=>$id_user));
+				$contacts_data = $stmt->fetch(PDO::FETCH_ASSOC);
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile());
+			}
+			return array(
+				'mobile_phone'=>array(
+					'val'=>true,
+					'value'=>$contacts_data['mobile_phone'] ),
+				'home_phone'=>array(
+					'val'=>true,
+					'value'=>$contacts_data['home_phone']
+				),
+				'work_phone'=>array(
+					'val'=>true,
+					'value'=>$contacts_data['work_phone']),
+				'email'=>array(
+					'val'=>true,
+					'value'=>$contacts_data['email']
+				),
+				'preferred_communication'=>array('value'=>$contacts_data['preferred_communication']),
+				'comment_mobile_phone'=>array('value'=>$contacts_data['comment_mobile_phone']),
+				'comment_home_phone'=>array('value'=>$contacts_data['comment_home_phone']),
+				'comment_work_phone'=>array('value'=>$contacts_data['comment_work_phone']),
+				'icq'=>array('value'=>$contacts_data['icq']),
+				'skype'=>array('value'=>$contacts_data['skype']),
+				'free_lance'=>array('value'=>$contacts_data['free_lance']),
+				'my_circle'=>array('value'=>$contacts_data['my_circle']),
+				'linkedln'=>array('value'=>$contacts_data['linkedln']),
+				'facebook'=>array('value'=>$contacts_data['facebook']),
+				'live_journal'=>array('value'=>$contacts_data['live_journal']),
+				'other_site'=>array('value'=>$contacts_data['other_site']),
+			);
+		}
+
 		public function selectPersonal($id_user){
 			try {
 				$stmt = $this->_dbc->prepare ("SELECT

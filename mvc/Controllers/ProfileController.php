@@ -16,9 +16,27 @@
 		}
 
 		public function contactsAction(){
-			return $this->_view->render(array(
-				'view' => 'profile/contacts'
-			));
+			if(isset($_POST['saveContacts'])){
+				$checkForm = $this->_checkFormContacts($_POST);
+				foreach($checkForm as $input){
+					if(isset($input['val']['message']) || !$input['val']){
+						return $this->_view->render(array(
+							'view' => 'profile/contacts',
+							'data'=>array('inputs'=>$checkForm),
+							'js'=>$this->_jsContacts(),
+						));
+					}
+				}
+				$this->_dbuser->updateContacts($checkForm, $this->getSessionUserID('user'));
+				$this->headerLocation('index');
+			}else{
+				$checkForm = $this->_dbuser->selectContacts($this->getSessionUserID('user'));
+				return $this->_view->render(array(
+					'view' => 'profile/contacts',
+					'data'=>array('inputs'=>$checkForm),
+					'js'=>$this->_jsContacts(),
+				));
+			}
 		}
 
 		public function photoAction(){
@@ -68,7 +86,7 @@
 
 		}
 
-		protected function _checkFormPersonal($post){
+		private function _checkFormPersonal($post){
 			$surname = isset($post['surname'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['surname']))):'';
 			$first_name = isset($post['first_name'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['first_name']))):'';
 			$patronymic = isset($post['patronymic'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['patronymic']))):'';
@@ -148,7 +166,102 @@
 
 		}
 
-		protected function _uploadsAction(){
+		private function _checkFormContacts($post){
+			$mobile_phone = isset($post['mobile_phone'])?trim(strip_tags($post['mobile_phone'])):'';
+			$home_phone = isset($post['home_phone'])?trim(strip_tags($post['home_phone'])):'';
+			$work_phone = isset($post['work_phone'])?trim(strip_tags($post['work_phone'])):'';
+
+			$comment_mobile_phone = isset($post['comment_mobile_phone'])?trim(strip_tags($post['comment_mobile_phone'])):'';
+			$comment_home_phone = isset($post['comment_home_phone'])?trim(strip_tags($post['comment_home_phone'])):'';
+			$comment_work_phone = isset($post['comment_work_phone'])?trim(strip_tags($post['comment_work_phone'])):'';
+
+			$preferred_communication = isset($post['preferred_communication'])?trim(strip_tags ($post['preferred_communication'])):1;
+
+			$email =  isset($post['email'])?trim(strip_tags($post['email'])):'';
+
+			$icq =  isset($post['icq'])?trim(strip_tags($post['icq'])):'';
+			$skype =  isset($post['skype'])?trim(strip_tags($post['skype'])):'';
+			$free_lance =  isset($post['free_lance'])?trim(strip_tags($post['free_lance'])):'';
+			$my_circle =  isset($post['my_circle'])?trim(strip_tags($post['my_circle'])):'';
+			$linkedln =  isset($post['linkedln'])?trim(strip_tags($post['linkedln'])):'';
+			$facebook =  isset($post['facebook'])?trim(strip_tags($post['facebook'])):'';
+			$live_journal =  isset($post['live_journal'])?trim(strip_tags($post['live_journal'])):'';
+			$other_site =  isset($post['other_site'])?trim(strip_tags($post['other_site'])):'';
+
+
+
+			$mobile_phone_val = call_user_func(function($phone){
+				if(empty($phone['phone']) && $phone['preferred_communication'] != 1){
+					return  true;
+				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i', $phone['phone'])
+					&& $phone['preferred_communication'] == 1){
+					return  array('message'=>'Номер указан некорректно');
+				}
+			}, array('phone'=>$mobile_phone, 'preferred_communication'=>$preferred_communication));
+
+			$home_phone_val = call_user_func(function($phone){
+				if(empty($phone['phone']) && $phone['preferred_communication'] != 2){
+					return  true;
+				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i', $phone['phone'])
+					&& $phone['preferred_communication'] == 2){
+					return  array('message'=>'Номер указан некорректно');
+				}
+			}, array('phone'=>$home_phone, 'preferred_communication'=>$preferred_communication));
+
+			$work_phone_val = call_user_func(function($phone){
+				if(empty($phone['phone']) && $phone['preferred_communication'] != 3){
+					return  true;
+				}elseif(!preg_match('/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i',
+						$phone['phone']) && $phone['preferred_communication'] == 3){
+					return  array('message'=>'Номер указан некорректно');
+				}
+			}, array('phone'=>$work_phone, 'preferred_communication'=>$preferred_communication));
+
+
+			$email_val = call_user_func(function($email){
+				if(empty($email)){
+					return   array('message'=>'Необходимо заполнить');
+				}elseif(filter_var($email, FILTER_VALIDATE_EMAIL)){
+					return  array('message'=>'Не корректно указан email');
+				}
+				return true;
+			}, array($email));
+
+
+
+			return array(
+				'mobile_phone'=>array(
+					'val'=>$mobile_phone_val,
+					'value'=>$mobile_phone ),
+				'home_phone'=>array(
+					'val'=>$home_phone_val,
+					'value'=>$home_phone
+				),
+				'work_phone'=>array(
+					'val'=>$work_phone_val,
+					'value'=>$work_phone),
+				'email'=>array(
+					'val'=>$email_val,
+					'value'=>$email
+				),
+				'preferred_communication'=>array('value'=>$preferred_communication),
+				'comment_mobile_phone'=>array('value'=>$comment_mobile_phone),
+				'comment_home_phone'=>array('value'=>$comment_home_phone),
+				'comment_work_phone'=>array('value'=>$comment_work_phone),
+				'icq'=>array('value'=>$icq),
+				'skype'=>array('value'=>$skype),
+				'free_lance'=>array('value'=>$free_lance),
+				'my_circle'=>array('value'=>$my_circle),
+				'linkedln'=>array('value'=>$linkedln),
+				'facebook'=>array('value'=>$facebook),
+				'live_journal'=>array('value'=>$live_journal),
+				'other_site'=>array('value'=>$other_site),
+			);
+
+		}
+
+
+		private function _uploadsAction(){
 			if(isset($_POST['submit_download'])){
 				if(isset($_FILES['photo']) && is_uploaded_file($_FILES['photo']['tmp_name']) && !$_FILES['photo']['error']){
 					$photo = $this->_checkFilesFormatAndSize($_FILES['photo']);
@@ -205,7 +318,15 @@
 
 		}
 
-
+		private function _jsContacts(){
+			return array(
+				'src'=>array(
+					BASE_URL."/public/js/jquery-2.1.1.min.js",
+					BASE_URL."/public/js/jquery.validate.min.js",
+					BASE_URL."/public/js/personal.js"
+				),
+			);
+		}
 
 	}
 
