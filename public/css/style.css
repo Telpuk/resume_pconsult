@@ -475,10 +475,22 @@ a.delete_photo{
 
 
 /*contacts*/
-.contacts{
+.personal.contacts{
 	position: relative;
+	width: 90%;
 	padding: 30px;
 }
+
+.contacts table tfoot tr{
+	height: 50px;
+}
+
+.contacts table tfoot td div{
+	margin: 0 auto;
+	padding: 10px;
+	width: 60%;
+}
+
 
 .contacts table td input[type=radio]{
 	margin-right: 10px;
@@ -489,9 +501,18 @@ a.delete_photo{
 	width: 100%;
 }
 
-.contacts table td:nth-child(3n) {
+.contacts table td:nth-child(1) {
+	text-align: right;
+	padding-right: 30px;
+}
+
+.contacts table td:nth-child(4) {
 	font-size: .85em;
 	width: 20%;
+}
+.contacts table td:nth-child(2) {
+	padding: 4px;
+	width: 10px;
 }
 
 .comment{
@@ -514,8 +535,47 @@ input[type=email]{
 .message{
 	text-align: left;
 	width: 30%;
+}
+/*personal position*/
+.personal.position table td{
 
 }
+
+#salary{
+	width: 100px;
+}
+
+#currency{
+	margin-left: 5px;
+	width: 100px;
+}
+.container{
+	width: 100%;
+}
+.container input[type=checkbox]{
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.position table tfoot tr{
+	height: 50px;
+}
+
+.position table tfoot td div{
+	margin: 0 auto;
+	padding: 10px;
+	width: 60%;
+}
+.position .message{
+	width: 100%;
+	font-size: .85em;
+	color: red;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+
+
+
 
 
 

@@ -6,7 +6,6 @@
 
 		private function __construct(){
 			$this->getConfig();
-
 			$request = $_SERVER["REQUEST_URI"];
 
 			$router  = explode("/", trim($request, '/'));

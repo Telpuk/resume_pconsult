@@ -1,0 +1,84 @@
+<main class="personal position">
+	<article>
+		<div class="arrow-right"></div>
+		<a class='no-save' href="<?=BASE_URL?>">Вернуться к резюме без сохранения</a>
+		<div class="clear"></div>
+		<section>
+			<h1>Желаемая должность и зарплата</h1>
+			<div class="form">
+				<form  action='<?=BASE_URL.'/side/position'?>' id="position" method="post" novalidate="novalidate">
+					<table>
+						<tbody>
+						<tr>
+							<td><label for="desired_position">Желаемая должность</label></td>
+							<td>
+								<input type="text"  id="desired_position"  name="desired_position" value='<?=$this->data['data']['inputs']['desired_position']['value']?>'>
+								<div class="message"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="professional_area">Профессиональная область</label></td>
+							<td>
+								<input type="text"  id="professional_area"  name="professional_area" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
+								<div class="message"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="salary">Зарплата</label></td>
+							<td>
+								<input type="text"  id="salary"  name="salary" value='<?=$this->data['data']['inputs']['salary']['value']?>'>
+								<select id="currency" name="currency">
+									<option value="бел. руб.">бел. руб.</option>
+									<option value="рос. руб">рос. руб</option>
+									<option value="EUR">EUR</option>
+									<option value="USD">USD</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="employment">Занятость</label></td>
+							<td>
+								<div class="container">
+									<input type="checkbox" name='employment[]' value="Полная занятость">Полная
+									занятость <br>
+									<input type="checkbox" name='employment[]' value="Частичная занятость">Частичная
+									занятость <br>
+									<input type="checkbox" name='employment[]' value="Проектная/Временная
+									работа">Проектная/Временная работа <br>
+									<input type="checkbox" name='employment[]' value="Волонтерство">Волонтерство <br>
+									<input type="checkbox" name='employment[]' value="Стажировка">Стажировка
+								</div>
+								<div class="message"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="schedule">График работы</label></td>
+							<td>
+								<div class="container">
+									<input type="checkbox" name='schedule[]' value="Полный день">Полный день<br>
+									<input type="checkbox" name='schedule[]' value="Сменный график">Сменный график<br>
+									<input type="checkbox" name='schedule[]' value="Гибкий график">Гибкий график<br>
+									<input type="checkbox" name='schedule[]' value="Удаленная работа">Удаленная
+									работа<br>
+									<input type="checkbox" name='schedule[]' value="Вахтовый метод">Вахтовый метод
+								</div>
+								<div class="message"></div>
+							</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="2">
+								<div>
+									<input type="submit" id="submitContacts"  name="saveContacts" value="Сохранить">
+									<a class="back" href="<?=BASE_URL?>">Отмена</a>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</form>
+			</div>
+		</section>
+	</article>
+</main>

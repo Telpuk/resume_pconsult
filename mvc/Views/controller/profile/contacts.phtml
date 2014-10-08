@@ -1,4 +1,3 @@
-<?php //print_r($this->data) ?>
 <main class="personal contacts">
 	<article>
 		<div class="arrow-right"></div>
@@ -12,6 +11,7 @@
 						<tbody>
 						<tr>
 							<td><label for="mobile_phone">Мобильный телефон</label></td>
+							<td>+</td>
 							<td><input type="tel"  id="mobile_phone"  name="mobile_phone"
 							           value='<?=$this->data['data']['inputs']['mobile_phone']['value']?>'></td>
 							<td><input type="radio" name="preferred_communication"
@@ -20,18 +20,21 @@
 						</tr>
 						<tr>
 							<td></td>
+							<td></td>
 							<td  class="comment" colspan="3">
 								Комментарий<br><input type="text" name="comment_mobile_phone" value='<?=$this->data['data']['inputs']['comment_mobile_phone']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="home_phone">Домашний телефон</label></td>
+							<td>+</td>
 							<td><input type="tel"  id="home_phone"  name="home_phone" value='<?=$this->data['data']['inputs']['home_phone']['value']?>'></td>
 							<td><input type="radio" name="preferred_communication"
 									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи</td>
 							<td class="message"><span class="required hidden"><span class="required"><?=$this->data['data']['inputs']['home_phone']['val']['message']?></span></td>
 						</tr>
 						<tr>
+							<td></td>
 							<td></td>
 							<td class="comment" colspan="3">
 								Комментарий<br>
@@ -40,6 +43,7 @@
 						</tr>
 						<tr>
 							<td><label for="work_phone">Рабочий телефон</label></td>
+							<td>+</td>
 							<td><input type="tel"  id="work_phone" name="work_phone" value='<?=$this->data['data']['inputs']['work_phone']['value']?>'></td>
 							<td><input type="radio" name="preferred_communication"
 							           <?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 3)echo'checked'?> value='3'>Желаемый вид связи</td>
@@ -48,62 +52,79 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td  class="comment" colspan="3">
+							<td></td>
+							<td  class="comment" colspan="4">
 								Комментарий<br><input type="text" name="comment_work_phone" value='<?=$this->data['data']['inputs']['comment_work_phone']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="email">Эл. почта<span class="required">*</span></label></td>
-							<td><input type="email"  id="email" name="email" value='<?=$this->data['data']['inputs']['email']['value']?>'></td>
+							<td></td>
+							<td><input type="email"  id="email" name="email"
+							            value='<?=$this->data['data']['inputs']['email']['value']?>'></td>
 							<td><input type="radio" name="preferred_communication"
 							           <?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 4)echo'checked'?> value='4'>Желаемый вид связи</td>
 							<td class="message"><span class="required"><?=$this->data['data']['inputs']['email']['val']['message']?></span></td>
 						</tr>
 						<tr>
 							<td><label for="icq">ICQ</label></td>
-							<td colspan="3"><input type="text" id="icq" name="icq" value='<?=$this->data['data']['inputs']['icq']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/icq.png"></td>
+							<td colspan="3"><input type="text" id="icq" name="icq"
+							                       value='<?=$this->data['data']['inputs']['icq']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="skype">Skype</label></td>
-							<td colspan="3"><input type="text" name="skype" value='<?=$this->data['data']['inputs']['skype']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/skype.png"></td>
+							<td colspan="3"><input type="text" id="skype" name="skype"
+							                       value='<?=$this->data['data']['inputs']['skype']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="free_lance">Free-lance</label></td>
-							<td colspan="3"><input type="text" name="free_lance" value='<?=$this->data['data']['inputs']['free_lance']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/freelance.png"></td>
+							<td colspan="3"><input type="text" id="free_lance" name="free_lance"
+							                       value='<?=$this->data['data']['inputs']['free_lance']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="my_circle">Мой круг</label></td>
-							<td colspan="3"><input type="text" id="my_circle" name="my_circle" value='<?=$this->data['data']['inputs']['my_circle']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/moykrug.png"></td>
+							<td colspan="3"><input type="text" id="my_circle" name="my_circle"
+							                       value='<?=$this->data['data']['inputs']['my_circle']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="linkedln">Linkedln</label></td>
+							<td><img src="<?=BASE_URL?>/public/img/linkedin.png"></td>
 							<td colspan="3"><input type="text" id="linkedln" name="linkedln"
 							                       value='<?=$this->data['data']['inputs']['linkedln']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="facebook">Facebook</label></td>
-							<td colspan="3"><input type="text" id="facebook" name="facebook" value='<?=$this->data['data']['inputs']['facebook']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/facebook.png"></td>
+							<td colspan="3"><input type="text" id="facebook" name="facebook"
+							                       value='<?=$this->data['data']['inputs']['facebook']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="live_journal">LiveJournal</label></td>
-							<td colspan="3"><input type="text" id="live_journal" name="live_journal" value='<?=$this->data['data']['inputs']['live_journal']['value']?>'>
+							<td><img src="<?=BASE_URL?>/public/img/livejournal.png"></td>
+							<td colspan="3"><input type="text" id="live_journal" name="live_journal"
+							                       value='<?=$this->data['data']['inputs']['live_journal']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="other_site">Другой сайт</label></td>
-							<td colspan="3"><input type="text"  id="other_site" name="other_site" value='<?=$this->data['data']['inputs']['other_site']['value']?>'></td>
+							<td></td>
+							<td colspan="3"><input type="text"  id="other_site" name="other_site"
+							                       value='<?=$this->data['data']['inputs']['other_site']['value']?>'></td>
 						</tr>
 						</tbody>
 						<tfoot>
 						<tr>
-							<td colspan="4">
-								<div class="data_f">Проверьте поле: Дата рождения</div>
+							<td colspan="5">
 								<div>
 									<input type="submit" id="submitContacts"  name="saveContacts" value="Сохранить">
 									<a class="back" href="<?=BASE_URL?>">Отмена</a>
