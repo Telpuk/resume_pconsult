@@ -18,6 +18,82 @@
 			$this->_id = $id;
 		}
 
+		public function selectPosition($id_user){
+			try {
+				$stmt = $this->_dbc->prepare ("SELECT
+													desired_position,
+													professional_area,
+													employment,
+													schedule,
+													salary,
+													currency
+												FROM
+													profile
+												WHERE
+													id = :id_user");
+				$stmt->execute(array(':id_user'=>$id_user));
+				$position_data = $stmt->fetch(PDO::FETCH_ASSOC);
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile());
+			}
+			return array(
+				'desired_position'=>array(
+					'val'=>true,
+					'value'=>$position_data['desired_position']),
+				'professional_area'=>array(
+					'val'=>true,
+					'value'=>$position_data['professional_area']
+				),
+				'employment'=>array(
+					'val'=>true,
+					'value'=>explode('%',$position_data['employment'])
+				),
+				'schedule'=>array(
+					'val'=>true,
+					'value'=>explode('%',$position_data['schedule'])
+				),
+				'salary'=>array('value'=>$position_data['salary']),
+				'currency'=>array('value'=>$position_data['currency'])
+			);
+		}
+
+		public function updatePosition($inputs, $id_user){
+			try {
+				$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													surname = :surname,
+													first_name = :first_name,
+													patronymic = :patronymic,
+													birth = :birth,
+													sex = :sex,
+													city = :city,
+													move = :move,
+													trip = :trip,
+													nationality = :nationality,
+													work_permit = :work_permit,
+													travel_time_work = :travel_time_work
+												WHERE
+													id = :id_user");
+				$stmt->execute(array(
+						':surname'=>$inputs['surname']['value'],
+						':first_name'=>$inputs['first_name']['value'],
+						':patronymic'=>$inputs['patronymic']['value'],
+						':birth'=>"{$inputs['birth']['day_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['year_birth']}",
+						':sex'=>$inputs['sex']['value'],
+						':city'=>$inputs['city']['value'],
+						':move'=>$inputs['move']['value'],
+						':trip'=>$inputs['trip']['value'],
+						':nationality'=>$inputs['nationality']['value'],
+						':work_permit'=>$inputs['work_permit']['value'],
+						':travel_time_work'=>$inputs['travel_time_work']['value'],
+						':id_user'=>$id_user)
+				);
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile());
+			}
+		}
+
 
 		public function updatePhotoId($photo, $id_user){
 			try {

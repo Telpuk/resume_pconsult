@@ -1,3 +1,5 @@
+<?php //echo "<pre>";
+	//print_r($this->data)?>
 <main class="personal position">
 	<article>
 		<div class="arrow-right"></div>
@@ -13,14 +15,14 @@
 							<td><label for="desired_position">Желаемая должность</label></td>
 							<td>
 								<input type="text"  id="desired_position"  name="desired_position" value='<?=$this->data['data']['inputs']['desired_position']['value']?>'>
-								<div class="message"></div>
+								<div class="message"><?=$this->data['data']['inputs']['desired_position']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="professional_area">Профессиональная область</label></td>
 							<td>
 								<input type="text"  id="professional_area"  name="professional_area" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
-								<div class="message"></div>
+								<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
@@ -48,7 +50,7 @@
 									<input type="checkbox" name='employment[]' value="Волонтерство">Волонтерство <br>
 									<input type="checkbox" name='employment[]' value="Стажировка">Стажировка
 								</div>
-								<div class="message"></div>
+								<div class="message"><?=$this->data['data']['inputs']['employment']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
@@ -62,7 +64,7 @@
 									работа<br>
 									<input type="checkbox" name='schedule[]' value="Вахтовый метод">Вахтовый метод
 								</div>
-								<div class="message"></div>
+								<div class="message"><?=$this->data['data']['inputs']['schedule']['val']['message']?></div>
 							</td>
 						</tr>
 						</tbody>
@@ -70,7 +72,7 @@
 						<tr>
 							<td colspan="2">
 								<div>
-									<input type="submit" id="submitContacts"  name="saveContacts" value="Сохранить">
+									<input type="submit" id="submitPosition"  name="savePosition" value="Сохранить">
 									<a class="back" href="<?=BASE_URL?>">Отмена</a>
 								</div>
 							</td>
