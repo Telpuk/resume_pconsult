@@ -1,15 +1,18 @@
 (function($, window){
     function Personal(){
-        this.day = $('#day_birth').val();
-        this.month =  $('#month_birth').val();
-        this.year =  $('#year_birth').val();
+
+        this.$day_birth = $('#day_birth');
+        this.$month_birth = $('#month_birth');
+        this.$year_birth = $('#year_birth');
+
+        this.day = this.$day_birth.val();
+        this.month =  this.$month_birth.val();
+        this.year =  this.$year_birth.val();
 
         this.$wrapper = $('.personal');
         this.$submitPersonal = $('#submitPersonal',this.$wrapper);
         this.$error_data = $('.data', this.$wrapper);
 
-
-        this.$birth = $('#birth', this.$wrapper);
     }
 
     Personal.prototype.validateForm = function(){
@@ -75,7 +78,7 @@
     };
 
     Personal.prototype.addEventListenerBirth = function(){
-        this.$birth.on('click',{self:this}, function(event){
+        $('#day_birth,#month_birth,#year_birth').on('click',{self:this}, function(event){
             if(event.target.tagName.toLowerCase()==='select'){
                 switch (event.target.name){
                     case 'day_birth':{

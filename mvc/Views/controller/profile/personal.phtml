@@ -11,34 +11,24 @@
 						<tbody>
 						<tr>
 							<td><label for="surname">Фамилия<span class="required">*</span></label></td>
-							<td><input type="text"  id="surname" name="surname"
-							           value='<?=$this->data['data']['inputs']['surname']['value']?>'>
-								<?php if(isset($this->data['data']['inputs']['surname']['val']) &&
-									!$this->data['data']['inputs']['surname']['val']): ?>
-									<span class="required">Обязаетльно для заполнения!</span>
-								<?php endif; ?>
+							<td>
+								<input type="text"  id="surname" name="surname" value='<?=$this->data['data']['inputs']['surname']['value']?>'>
+								<div class="message"><span class="required"><?=$this->data['data']['inputs']['surname']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="first_name">Имя<span class="required">*</span></label></td>
 							<td>
-								<input type="text" name="first_name"
-								       value='<?=$this->data['data']['inputs']['first_name']['value']?>'>
-								<?php if(isset($this->data['data']['inputs']['first_name']['val']) &&
-									!$this->data['data']['inputs']['first_name']['val']): ?>
-									<span class="required">Обязаетльно для заполнения!</span>
-								<?php endif; ?>
+								<input type="text" name="first_name" value='<?=$this->data['data']['inputs']['first_name']['value']?>'>
+								<div class="message"><span class="required"><?=$this->data['data']['inputs']['first_name']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="patronymic">Отчество</label></td>
 							<td>
-								<input type="text" id="patronymic" name="patronymic"
-								       value='<?=$this->data['data']['inputs']['patronymic']['value']?>'>
-								<?php if(isset($this->data['data']['inputs']['patronymic']['val']) &&
-									!$this->data['data']['inputs']['patronymic']['val']): ?>
-									<span class="required">Обязаетльно для заполнения!</span>
-								<?php endif; ?>
+								<input type="text" id="patronymic" name="patronymic" value='<?=$this->data['data']['inputs']['patronymic']['value']?>'>
+								<div class="message"><span
+										class="required"><?=$this->data['data']['inputs']['patronymic']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
@@ -78,10 +68,7 @@
 									</select>
 								</span>
 								<div class="data">
-									<?php if(isset($this->data['data']['inputs']['birth']['val']) &&
-										!$this->data['data']['inputs']['birth']['val']): ?>
-										Не коректная дата!
-									<?php endif; ?>
+									<div class="message"><span class="required"><?=$this->data['data']['inputs']['birth']['val']['message']?></span></div>
 								</div>
 							</td>
 						</tr>
@@ -98,11 +85,7 @@
 							<td>
 								<p class="example">Например: <span id="city_example">Минск</span></p>
 								<input name="city" id="city" type="text" value='<?=$this->data['data']['inputs']['city']['value']?>'>
-								<?php if(isset($this->data['data']['inputs']['city']['val']) &&
-									!$this->data['data']['inputs']['city']['val']): ?>
-									<span class="data_f" style="visibility: visible; color:red">Обязаетльно для
-										заполнения!</span>
-								<?php endif; ?>
+								<div class="message"><span class="required"><?=$this->data['data']['inputs']['city']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>

@@ -64,7 +64,7 @@
 			if(isset($_POST['savePersonal'])){
 				$checkForm = $this->_checkFormPersonal($_POST);
 				foreach($checkForm as $input){
-					if(isset($input['val']) && !$input['val']){
+					if(isset($input['val']['message']) || $input['val']===false){
 						return $this->_view->render(array(
 							'view' => 'profile/personal',
 							'data'=>array('inputs'=>$checkForm),
@@ -108,29 +108,42 @@
 			$travel_time_work = isset($post['travel_time_work'])?trim(strip_tags($post['travel_time_work'])):'';
 
 			$surname_val = call_user_func(function($surname){
-				return preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$surname)&&!empty($surname) ? true:
-					false;
+				if(empty($surname)){
+					return array('message'=>'Необходимо заполнить');
+				}elseif(!preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$surname)){
+					return  array('message'=>'Указано некорректно');
+				}else{
+					return true;
+				}
 			}, $surname);
 
 			$first_name_val = call_user_func(function($first_name){
-				return preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$first_name)&&!empty($first_name) ?
-					true: false;
+				if(empty($first_name)){
+					return array('message'=>'Необходимо заполнить');
+				}elseif(!preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$first_name)){
+					return  array('message'=>'Указано некорректно');
+				}else{
+					return true;
+				}
 			}, $first_name);
 
 			$patronymic_val = call_user_func(function($patronymic){
-				return preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$patronymic)||empty($patronymic)
-					? true: false;
+				if(empty($patronymic)){
+					return true;
+				}elseif(!preg_match('/^[a-zA-Zа-яА-ЯёЁ]+$/ui',$patronymic)){
+					return  array('message'=>'Указано некорректно');
+				}
 			}, $patronymic);
 
 			$birth_val = call_user_func(function($date){
 				return (is_numeric($date['day_birth'])&&
 					is_numeric($date['month_birth'])&&
 					is_numeric($date['year_birth'])) ||
-				(empty($date['day_birth'])&& empty($date['month_birth'])&& empty($date['year_birth']))? true: false;
+				(empty($date['day_birth'])&& empty($date['month_birth'])&& empty($date['year_birth']))? true: array('message'=>'Некорректная дата');
 			}, array('day_birth'=>$day_birth, 'month_birth'=>$month_birth, 'year_birth'=>$year_birth));
 
 			$city_val = call_user_func(function($city){
-				return !empty($city) ? true : false;
+				return !empty($city) ? true : array('message'=>'Необходимо заполнить');
 			},$city);
 
 
