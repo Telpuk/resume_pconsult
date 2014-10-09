@@ -78,7 +78,7 @@
     };
 
     Personal.prototype.addEventListenerBirth = function(){
-        $('#day_birth,#month_birth,#year_birth').on('click',{self:this}, function(event){
+        $('#day_birth,#month_birth,#year_birth').on('change',{self:this}, function(event){
             if(event.target.tagName.toLowerCase()==='select'){
                 switch (event.target.name){
                     case 'day_birth':{
