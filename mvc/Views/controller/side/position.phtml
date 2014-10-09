@@ -35,20 +35,18 @@
 									<option value="EUR">EUR</option>
 									<option value="USD">USD</option>
 								</select>
+								<div class="message"><?=$this->data['data']['inputs']['salary']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="employment">Занятость</label></td>
 							<td>
 								<div class="container">
-									<input type="checkbox" name='employment[]' value="Полная занятость">Полная
-									занятость <br>
-									<input type="checkbox" name='employment[]' value="Частичная занятость">Частичная
-									занятость <br>
-									<input type="checkbox" name='employment[]'
-									       value="Проектная/Временная работа">Проектная/Временная работа <br>
-									<input type="checkbox" name='employment[]' value="Волонтерство">Волонтерство <br>
-									<input type="checkbox" name='employment[]' value="Стажировка">Стажировка
+									<input type="checkbox" name='employment[]'<?php if(in_array('Полная занятость',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Полная занятость">Полная занятость<br>
+									<input type="checkbox" name='employment[]'<?php if(in_array('Частичная занятость',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Частичная занятость">Частичная занятость <br>
+									<input type="checkbox" name='employment[]'<?php if(in_array('Проектная/Временная работа',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Проектная/Временная работа">Проектная/Временная работа <br>
+									<input type="checkbox" name='employment[]'<?php if(in_array('Волонтерство' , $this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Волонтерство">Волонтерство <br>
+									<input type="checkbox" name='employment[]'<?php if(in_array('Стажировка',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Стажировка">Стажировка
 								</div>
 								<div class="message"><?=$this->data['data']['inputs']['employment']['val']['message']?></div>
 							</td>
@@ -57,12 +55,11 @@
 							<td><label for="schedule">График работы</label></td>
 							<td>
 								<div class="container">
-									<input type="checkbox" name='schedule[]' value="Полный день">Полный день<br>
-									<input type="checkbox" name='schedule[]' value="Сменный график">Сменный график<br>
-									<input type="checkbox" name='schedule[]' value="Гибкий график">Гибкий график<br>
-									<input type="checkbox" name='schedule[]' value="Удаленная работа">Удаленная
-									работа<br>
-									<input type="checkbox" name='schedule[]' value="Вахтовый метод">Вахтовый метод
+									<input type="checkbox" name='schedule[]'<?php if(in_array('Полный день',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Полный день">Полный день<br>
+									<input type="checkbox" name='schedule[]'<?php if(in_array('Сменный график',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Сменный график">Сменный график<br>
+									<input type="checkbox" name='schedule[]'<?php if(in_array('Гибкий график',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Гибкий график">Гибкий график<br>
+									<input type="checkbox" name='schedule[]'<?php if(in_array('Удаленная работа',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Удаленная работа">Удаленная работа<br>
+									<input type="checkbox" name='schedule[]'<?php if(in_array('Вахтовый метод',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Вахтовый метод">Вахтовый метод
 								</div>
 								<div class="message"><?=$this->data['data']['inputs']['schedule']['val']['message']?></div>
 							</td>

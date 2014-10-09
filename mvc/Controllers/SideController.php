@@ -37,7 +37,7 @@
 		private function _checkFormPosition($post){
 			$desired_position = isset($post['desired_position'])?trim(strip_tags($post['desired_position'])):'';
 			$professional_area = isset($post['professional_area'])?trim(strip_tags($post['professional_area'])):'';
-			$salary = isset($post['salary'])?trim(strip_tags($post['salary'])):'';
+			$salary = isset($post['salary'])?trim(strip_tags(mb_eregi_replace('[A-Za-zА-Яа-яёЁ]','',$post['salary']))):'';
 			$currency = isset($post['currency'])?trim(strip_tags($post['currency'])):'';
 
 
@@ -61,6 +61,10 @@
 				return count($schedule)!==0?true: array('message'=>'Необходимо заполнить');
 			}, $schedule);
 
+			$salary_val = call_user_func(function($salary){
+				return (is_numeric($salary) || empty($salary))?true: array('message'=>'Некорректные данные');
+			}, $salary);
+
 			return array(
 				'desired_position'=>array(
 					'val'=>$desired_position_val,
@@ -76,7 +80,10 @@
 					'val'=>$schedule_val,
 					'value'=>$schedule
 				),
-				'salary'=>array('value'=>$salary),
+				'salary'=>array(
+					'val'=>$salary_val,
+					'value'=>$salary
+				),
 				'currency'=>array('value'=>$currency),
 			);
 		}
