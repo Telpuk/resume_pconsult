@@ -543,9 +543,6 @@ input[type=email]{
 	width: 30%;
 }
 /*personal position*/
-.personal.position table td{
-
-}
 
 .personal .message{
 	text-align: left;
@@ -584,6 +581,33 @@ input[type=email]{
 	margin-top: 5px;
 	margin-bottom: 20px;
 }
+
+/*experience*/
+.personal.experience{
+	position: relative;
+	width: 90%;
+	padding: 30px;
+}
+
+.personal.experience table td{
+	border: 1px black solid;
+}
+
+.add, .delete{
+	width: 100%;
+	text-decoration: underline;
+	text-align: center;
+	font-size: .2em;
+	margin-top: 10px;
+	margin-bottom: -30px;
+}
+
+.personal.experience .message{
+	color: red;
+}
+
+
+
 
 
 

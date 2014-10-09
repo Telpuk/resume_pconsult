@@ -1,5 +1,5 @@
 <?php //echo "<pre>";
-	//print_r($this->data)?>
+//print_r($this->data['data']['inputs']['currency']['value'])?>
 <main class="personal position">
 	<article>
 		<div class="arrow-right"></div>
@@ -30,10 +30,10 @@
 							<td>
 								<input type="text"  id="salary"  name="salary" value='<?=$this->data['data']['inputs']['salary']['value']?>'>
 								<select id="currency" name="currency">
-									<option value="бел. руб.">бел. руб.</option>
-									<option value="рос. руб">рос. руб</option>
-									<option value="EUR">EUR</option>
-									<option value="USD">USD</option>
+									<option value="бел. руб."<?php if('бел. руб.'===$this->data['data']['inputs']['currency']['value'])echo'selected'?>>бел. руб.</option>
+									<option value="рос. руб."<?php if('рос. руб.'===$this->data['data']['inputs']['currency']['value'])echo'selected'?>>рос. руб.</option>
+									<option value="EUR"<?php if('EUR'===$this->data['data']['inputs']['currency']['value'])echo'selected'?>>EUR</option>
+									<option value="USD"<?php if('USD'===$this->data['data']['inputs']['currency']['value'])echo'selected'?>>USD</option>
 								</select>
 								<div class="message"><?=$this->data['data']['inputs']['salary']['val']['message']?></div>
 							</td>

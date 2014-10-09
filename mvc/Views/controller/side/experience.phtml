@@ -1,0 +1,144 @@
+<?php //echo "<pre>";
+//		print_r($this->data['data'])?>
+<main class="personal experience">
+	<article>
+		<div class="arrow-right"></div>
+		<a class='no-save' href="<?=BASE_URL?>">Вернуться к резюме без сохранения</a>
+		<div class="clear"></div>
+		<section>
+			<h1>Опыт работы</h1>
+			<div class="form">
+				<form action='<?=BASE_URL.'/side/experience'?>' id="position" method="post" novalidate="novalidate">
+
+					<?php for( $i=1; $i <= $this->data['data']['table_count']; ++$i): ?>
+						<?php if($i>=2): ?>
+							<div class="delete" data-table-id='<?=$i?>'>Удалить</div>
+						<?php endif; ?>
+						<table data-table-id='<?=$i?>'>
+							<tbody>
+							<tr>
+								<td><label for="organization">Организация</label></td>
+								<td>
+									<input type="text"  id="organization"  name="organizations[<?=$i?>]" value='<?=$this->data['data']['inputs']['organizations']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['organizations']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="region">Регион</label></td>
+								<td>
+									<input type="text" id="region" name="regions[<?=$i?>]" value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['regions']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="site">Сайт</label></td>
+								<td>
+									<input type="text"  id="site"  name="sites[<?=$i?>]"
+									       value='<?=$this->data['data']['inputs']['sites']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['sites']['val']['message'][$i]?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="field_activity">Сфера деятельности компании</label></td>
+								<td>
+									<input type="text"  id="field_activity"  name="field_activities[<?=$i?>]"
+									       value='<?=$this->data['data']['inputs']['field_activities']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['field_activities']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="positions">Должность</label></td>
+								<td>
+									<input type="text" id="positions" name="positions[<?=$i?>]"
+									       value='<?=$this->data['data']['inputs']['positions']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['positions']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Начало работы</label></td>
+								<td>
+									<select name="getting_starteds[<?=$i?>][month]">
+										<?php
+											foreach(array(1=>"январь",
+											              2=>"февраль",
+											              3=>"март",
+											              4=>"апрель",
+											              5=>"май",
+											              6=>"июнь",
+											              7=>"июль",
+											              8=>"август",
+											              9=>"сентябрь",
+											              10=>"октябрь",
+											              11=>"ноябрь",
+											              12=>"декабрь") as $key => $month):?>
+												<option value='<?=$key?>' <?php if($this->data['data']['inputs']['getting_starteds']['value'][$i]['month']==$key)echo'selected'?>><?=$month?></option>
+											<?php endforeach; ?>
+									</select>
+									<select name="getting_starteds[<?=$i?>][year]">
+										<option value="0"></option>
+										<?php for($d=(date('Y')); $d >= 1950; --$d): ?>
+											<option value='<?=$d?>'<?php if($this->data['data']['inputs']['getting_starteds']['value'][$i]['year']==$d) echo'selected'?>><?=$d?></option>
+										<?php endfor; ?>
+									</select>
+									<input type="checkbox" name="at_the_moments[<?=$i?>]" <?php if($this->data['data']['inputs']['at_the_moments']['value'][$i]==='true') echo'checked'?> value="true">Понастоящее время
+									<div class="message"><?=$this->data['data']['inputs']['getting_starteds']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Окончание работы</label></td>
+								<td>
+									<select name="closing_works[<?=$i?>][month]">
+										<?php
+											foreach(array(1=>"январь",
+											              2=>"февраль",
+											              3=>"март",
+											              4=>"апрель",
+											              5=>"май",
+											              6=>"июнь",
+											              7=>"июль",
+											              8=>"август",
+											              9=>"сентябрь",
+											              10=>"октябрь",
+											              11=>"ноябрь",
+											              12=>"декабрь") as $key => $month):?>
+												<option value='<?=$key?>' <?php if ($this->data['data']['inputs']['closing_works']['value'][$i]['month']==$key) echo'selected'?>><?=$month?></option>
+											<?php endforeach; ?>
+									</select>
+									<select name="closing_works[<?=$i?>][year]">
+										<option value="0"></option>
+										<?php for($d=date('Y'), $len=(date('Y'))+20; $d <= $len; ++$d): ?>
+											<option value='<?=$d?>' <?php if ($this->data['data']['inputs']['closing_works']['value'][$i]['year']==$d) echo'selected'?>><?=$d?></option>
+										<?php endfor; ?>
+									</select>
+									<div class="message"><?=$this->data['data']['inputs']['closing_works']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="functions">Обязанности, функции, достижения</label></td>
+								<td class="function_td">
+									<input type="text"  id="functions"  name="functions[<?=$i?>]" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
+									<p>Не ограничивайтесь одним-двумя словами, а подробно опишите ваши обязанности и результаты</p>
+									<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					<?php endfor; ?>
+					<div class="add">Добавить</div>
+					<table>
+						<tfoot>
+						<tr>
+							<td colspan="2">
+								<div>
+									<input type="submit" id="submitExperience"  name="saveExperience" value="Сохранить">
+									<a class="back" href="<?=BASE_URL?>">Отмена</a>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</form>
+			</div>
+		</section>
+	</article>
+</main>
