@@ -8,7 +8,7 @@
 			parent::__construct();
 			$this->_view = new View();
 
-			//$this->sessionClear();
+//			$this->sessionClear();
 
 			$this->_iduser = $this->getSessionUserID('user');
 

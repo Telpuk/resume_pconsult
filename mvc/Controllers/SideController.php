@@ -35,31 +35,34 @@
 		}
 
 		public function experienceAction(){
-//			echo "<pre>";
-//			print_r($_POST);
-//			if(isset($_POST['savePosition'])){
-			$checkForm = $this->_checkFormExperience($_POST);
-//				foreach($checkForm as $input){
-//					if(isset($input['val']['message']) || $input['val']===false){
-//						return $this->_view->render(array(
-//							'view' => 'side/position',
-//							'data'=>array('inputs'=>$checkForm),
-//							'js'=>$this->_jsPosition(),
-//						));
-//					}
-//				}
-//				$this->_dbuser->updatePosition($checkForm, $this->getSessionUserID('user'));
-//				$this->headerLocation('index');
-//			}else{
-			//$checkForm = $this->_dbuser->selectPosition($this->getSessionUserID('user'));
-			return $this->_view->render(array(
-				'view' => 'side/experience',
-				'data'=>array(
-					'table_count'=>2,
-					'inputs'=>$checkForm),
-				'js'=>$this->_jsExperience(),
-			));
-//			}
+			if(isset($_POST['saveExperience'])){
+				$checkForm = $this->_checkFormExperience($_POST);
+				foreach($checkForm as $inputs){
+					foreach($inputs as $key=>$input) {
+						foreach($input as $value)
+						if (array_key_exists('message',(array)$value)) {
+							return $this->_view->render (array (
+								'view' => 'side/experience',
+								'data' => array (
+									'table_count' => 2,
+									'inputs'      => $checkForm),
+								'js'   => $this->_jsExperience ()
+							));
+						}
+					}
+				}
+				$this->_dbuser->updateExperience($checkForm, $this->getSessionUserID('user'));
+				$this->headerLocation('index');
+			}else{
+				$checkForm = $this->_dbuser->selectExperience($this->getSessionUserID('user'));
+				return $this->_view->render(array(
+					'view' => 'side/experience',
+					'data'=>array(
+						'table_count'=>2,
+						'inputs'=>$checkForm),
+					'js'=>$this->_jsExperience()
+				));
+			}
 		}
 
 		private function _checkFormExperience($post){
@@ -83,9 +86,15 @@
 
 				$positions[$i] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]','', $post['positions'][$i])));
 
+				$functions[$i] = trim(strip_tags($post['functions'][$i]));
+
+				$functions_val[$i]=call_user_func(function($position){
+					return !empty($position)?true: array('message'=>'Необходимо заполнить');
+				}, $functions[$i]);
+
 				$positions_val[$i] = call_user_func(function($position){
 					return !empty($position)?true: array('message'=>'Необходимо заполнить');
-				}, $post['positions'][$i]);
+				}, $positions);
 
 
 				$getting_starteds[$i]=$post['getting_starteds'][$i];
@@ -104,16 +113,15 @@
 
 
 				$closing_works_val[$i] = call_user_func(function($closing_work, $getting_started, $at_the_moments){
-					if($at_the_moments === 'false' && $closing_work['year']===0){
+					if($at_the_moments === 'false' && $closing_work['year']==0){
 						return array('message'=>'Необходимо заполнить');
 					}elseif(($closing_work['year'] < $getting_started['year'] && $at_the_moments === 'false')||
 						($closing_work['year'] === $getting_started['year'] && $closing_work['month']<$getting_started['month'])){
 						return array('message'=>'Дата окончания ранее даты начала');
-					}elseif(isset($closing_work['year'])&&$closing_work['year'] > date('Y')){
-						return array('message'=>'Слишком поздно');
 					}
 
 				}, $closing_works[$i], $getting_starteds[$i], $at_the_moments[$i]);
+
 
 			}
 
@@ -139,6 +147,10 @@
 				'regions'=>array('value'=>$regions),
 				'sites'=>array('value'=>$sites),
 				'field_activities'=>array('value'=>$field_activities),
+				'functions'=>array(
+					'val'=>$functions_val,
+					'value'=>$functions
+				)
 			);
 
 

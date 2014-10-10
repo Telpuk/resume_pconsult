@@ -76,7 +76,7 @@
 									</select>
 									<select name="getting_starteds[<?=$i?>][year]">
 										<option value="0"></option>
-										<?php for($d=(date('Y')); $d >= 1950; --$d): ?>
+										<?php for($d=1950, $len=(date('Y')); $d <= $len; ++$d): ?>
 											<option value='<?=$d?>'<?php if($this->data['data']['inputs']['getting_starteds']['value'][$i]['year']==$d) echo'selected'?>><?=$d?></option>
 										<?php endfor; ?>
 									</select>
@@ -106,7 +106,7 @@
 									</select>
 									<select name="closing_works[<?=$i?>][year]">
 										<option value="0"></option>
-										<?php for($d=date('Y'), $len=(date('Y'))+20; $d <= $len; ++$d): ?>
+										<?php for($d=1950, $len=(date('Y'))+50; $d <= $len; ++$d): ?>
 											<option value='<?=$d?>' <?php if ($this->data['data']['inputs']['closing_works']['value'][$i]['year']==$d) echo'selected'?>><?=$d?></option>
 										<?php endfor; ?>
 									</select>
@@ -116,9 +116,9 @@
 							<tr>
 								<td><label for="functions">Обязанности, функции, достижения</label></td>
 								<td class="function_td">
-									<input type="text"  id="functions"  name="functions[<?=$i?>]" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
+									<input type="text"  id="functions"  name="functions[<?=$i?>]" value='<?=$this->data['data']['inputs']['functions']['value'][$i]?>'>
 									<p>Не ограничивайтесь одним-двумя словами, а подробно опишите ваши обязанности и результаты</p>
-									<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
+									<div class="message"><?=$this->data['data']['inputs']['functions']['val'][$i]['message']?></div>
 								</td>
 							</tr>
 							</tbody>
