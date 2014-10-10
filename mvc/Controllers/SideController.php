@@ -129,6 +129,14 @@
 
 			}
 
+			$key_skills = $post['key_skills'];
+
+			$key_skills_val = call_user_func(function($key_skills){
+				return !empty($key_skills)?true: array('message'=>'Необходимо заполнить');
+			}, $key_skills);
+
+			$about_self = $post['about_self'];
+
 			return array(
 				'organizations'=>array(
 					'val'=>$organizations_val,
@@ -157,7 +165,13 @@
 				'functions'=>array(
 					'val'=>$functions_val,
 					'value'=>$functions
-				)
+				),
+				'key_skills'=>array(
+					'val'=>$key_skills_val,
+					'value'=>$key_skills
+				),
+				'about_self'=>array('value'=>$about_self)
+
 			);
 
 		}

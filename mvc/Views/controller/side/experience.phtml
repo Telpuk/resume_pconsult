@@ -1,5 +1,5 @@
 <?php //echo "<pre>";
-//			print_r($this->data['data'])?>
+	//			print_r($this->data['data'])?>
 <main class="personal experience">
 	<article>
 		<div class="arrow-right"></div>
@@ -123,10 +123,65 @@
 							</tbody>
 						</table>
 					<?php endfor; ?>
-					<div class="add">
+					<div class="add_position">
 						<img src='<?=BASE_URL."/public/img/add.png"?>' alt="">
 						Добавить место работы
 					</div>
+					<hr>
+					<table class="key_skills">
+						<tbody>
+						<tr>
+							<td><label for="key_skill">Ключевые навыки</label></td>
+							<td>
+								<input type="text" id="key_skill" name="key_skills" value='<?=$this->data['data']['inputs']['key_skills']['value']?>'>
+								<div class="message"><?=$this->data['data']['inputs']['key_skills']['val']['message']?></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="about_s">Обо мне</label><br>
+								<p class="about_self">
+									Ваше хобби,
+									<br>личные качества,
+									<br>любая дополнительная<br>информация
+								</p>
+							</td>
+							<td class="about_me">
+								<textarea id="about_s" name="about_self"><?=$this->data['data']['inputs']['about_self']['value']?></textarea>
+								<div class="message"><?=$this->data['data']['inputs']['about_self']['val']['message']?></div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<hr>
+					<table class="recommendations">
+						<tbody>
+						<tr>
+							<td colspan="2">Рекомендации</td>
+						</tr>
+						<tr>
+							<td>Имя</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>Должность</td>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<td>Организация</td>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<td>Телефон</td>
+							<td><input type="text" name=""></td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="add_recommendations">
+						<img src='<?=BASE_URL."/public/img/add.png"?>' alt="">
+						Добавить рекомендацию
+					</div>
+					<hr>
 					<table>
 						<tfoot>
 						<tr>

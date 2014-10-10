@@ -224,26 +224,26 @@ a.addFoto span:last-child{
 /*download photo*/
 
 .photo, .personal{
-    position: relative;
+	position: relative;
 	padding: 30px;
 }
 
 a.delete_photo{
-    position: absolute;
-    top: 45%;
-    left: 35%;
-    width: 70%;
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    cursor: pointer;
-    font-size: 0.25em;
-    width: 250px;
-    border: none;
-    padding: 5px;
-    background-color: rgba(255, 31, 23, 0.5);
-    color: white;
-    text-transform: uppercase;
+	position: absolute;
+	top: 45%;
+	left: 35%;
+	width: 70%;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+	font-size: 0.25em;
+	width: 250px;
+	border: none;
+	padding: 5px;
+	background-color: rgba(255, 31, 23, 0.5);
+	color: white;
+	text-transform: uppercase;
 }
 
 .photo .no-save, .personal .no-save{
@@ -594,7 +594,7 @@ input[type=email]{
 	padding-left: 10px;
 }
 
-.add, .delete{
+.add_position,.add_recommendations,.delete{
 	width: 100%;
 	color: #6dc626;
 	text-align: center;
@@ -610,7 +610,7 @@ input[type=email]{
 }
 
 
-.add img{
+.add_position img{
 	padding-right: 10px;
 	padding-left: 10px;
 }
@@ -621,20 +621,22 @@ input[type=email]{
 }
 
 
-.add, .delete:hover{
+.add_position, .delete:hover,.add_recommendations:hover {
 	cursor: pointer;
 }
 
-.functions{
+.functions, .about_me{
 	vertical-align: top;
 }
 
-.function_td textarea{
+.function_td textarea, .key_skills textarea{
 	width: 100%;
 	resize: none;
 	height: 100px;
 	margin-bottom: 5px;
 }
+
+
 .function_td p{
 	font-size: .8em;
 }
@@ -643,6 +645,27 @@ input[type=email]{
 .personal.experience .message{
 	color: red;
 }
+
+.personal.experience hr{
+	border-top:1px  dotted #bababa;
+}
+table.key_skills tr:first-child{
+	font-size: .9em;
+	color: black;
+	font-weight: bold;
+}
+
+
+table.recommendations tr:first-child{
+	color: black;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+.about_self{
+	font-size: .7em;
+}
+
+
 
 
 

@@ -63,7 +63,7 @@
 
     Personal.prototype.addEventListenerFORM = function() {
         this.$form.on('click', {self:this}, function(event){
-            if(event.target.className === 'add'){
+            if(event.target.className === 'add_position'){
                 var html = event.data.self.tableTamplate();
                 $(event.target).before(html);
             }else if(event.target.className === 'delete'){
