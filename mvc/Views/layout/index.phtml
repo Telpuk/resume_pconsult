@@ -15,4 +15,87 @@
 </div>
 </body>
 <?=$this->_javascript?>
+<script id="table-template" type="text/x-handlebars-template">
+	<div class="delete" data-delete-table-id="{{i}}">Удалить</div>
+	<table data-table-id="{{i}}">
+		<tbody>
+		<tr>
+			<td><label for="organization">Организация<span class="required">*</span></label></td>
+			<td>
+				<input type="text" id="organization"  name="organizations[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="region">Регион<span class="required">*</span></label></td>
+			<td>
+				<input type="text" id="region" name="regions[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="site">Сайт</label></td>
+			<td>
+				<input type="text"  id="site"  name="sites[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="field_activity">Сфера деятельности компании</label></td>
+			<td>
+				<input type="text" id="field_activity"  name="field_activities[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="positions">Должность<span class="required">*</span></label></td>
+			<td>
+				<input type="text" id="positions" name="positions[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Начало работы<span class="required">*</span></label></td>
+			<td>
+				<select name="getting_starteds[{{i}}][month]">
+					{{#month 12}}
+						{{this}}
+					{{/month}}
+				</select>
+				<select name="getting_starteds[{{i}}][year]">
+					{{#year_start 1950}}
+						{{this}}
+					{{/year_start}}
+				</select>
+				<input type="checkbox" name="at_the_moments[{{i}}]" value="true">Понастоящее время
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Окончание работы</label></td>
+			<td>
+				<select name="closing_works[{{i}}][month]">
+					{{#month 12}}
+						{{this}}
+					{{/month}}
+				</select>
+				<select name="closing_works[{{i}}][year]">
+					{{#year_finish 1950}}
+						{{this}}
+					{{/year_finish}}
+				</select>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="functions" ><label for="functions">Обязанности, функции, достижения<span class="required">*</span></label></td>
+			<td class="function_td">
+				<textarea id="functions"  name="functions[{{i}}]"></textarea>
+				<p>Не ограничивайтесь одним-двумя словами, а подробно опишите ваши обязанности и результаты</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
 </html>

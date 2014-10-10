@@ -44,7 +44,7 @@
 								return $this->_view->render (array (
 									'view' => 'side/experience',
 									'data' => array (
-										'table_count' =>count($checkForm['organizations']),
+										'table_count' =>count($checkForm['organizations']['value']),
 										'inputs'      =>$checkForm),
 									'js'   => $this->_jsExperience ()
 								));
@@ -58,7 +58,7 @@
 				return $this->_view->render(array(
 					'view' => 'side/experience',
 					'data'=>array(
-						'table_count'=>count($checkForm['organizations']),
+						'table_count'=>count($checkForm['organizations']['value']),
 						'inputs'=>$checkForm),
 					'js'=>$this->_jsExperience()
 				));
@@ -226,6 +226,7 @@
 				'src'=>array(
 					BASE_URL."/public/js/jquery-2.1.1.min.js",
 					BASE_URL."/public/js/jquery.validate.min.js",
+					BASE_URL."/public/js/handlebars-v2.0.0.js",
 					BASE_URL."/public/js/experience.js"
 				),
 			);

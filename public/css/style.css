@@ -590,17 +590,41 @@ input[type=email]{
 }
 
 .personal.experience table td{
-	border: 1px black solid;
+	padding-top: 10px;
+	padding-left: 10px;
 }
 
 .add, .delete{
 	width: 100%;
-	text-decoration: underline;
+	color: #6dc626;
 	text-align: center;
+	text-decoration: underline;
+	padding-bottom: 5px;
+	text-align: left;
 	font-size: .2em;
-	margin-top: 10px;
-	margin-bottom: -30px;
+	margin-top: 20px;
+
 }
+
+
+.add, .delete:hover{
+	cursor: pointer;
+}
+
+.functions{
+	vertical-align: top;
+}
+
+.function_td textarea{
+	width: 100%;
+	resize: none;
+	height: 100px;
+	margin-bottom: 5px;
+}
+.function_td p{
+	font-size: .8em;
+}
+
 
 .personal.experience .message{
 	color: red;

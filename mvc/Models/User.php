@@ -365,6 +365,7 @@
 				exit(print_r($e->errorInfo).$e->getFile());
 			}
 
+
 			$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
 			$closing_work = explode('[@!-#-!@]',$experience_data['closing_work']);
 
@@ -379,6 +380,7 @@
 				$closing_works[$key]['month'] = $month_year[0];
 				$closing_works[$key]['year'] = $month_year[1];
 			}
+
 
 			return array(
 				'organizations'=>array(
