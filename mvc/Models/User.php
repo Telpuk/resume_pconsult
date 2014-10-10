@@ -304,9 +304,9 @@
 
 		public function updateExperience($inputs, $id_user){
 
-			 foreach($inputs['getting_starteds']['value'] as $key=>$value){
-				 $getting_starteds[$key] = $value['month'].'-'.$value['year'];
-			 }
+			foreach($inputs['getting_starteds']['value'] as $key=>$value){
+				$getting_starteds[$key] = $value['month'].'-'.$value['year'];
+			}
 			foreach($inputs['closing_works']['value'] as $key=>$value){
 				$closing_works[$key] = $value['month'].'-'.$value['year'];
 			}
@@ -317,6 +317,7 @@
 												SET
 													organizations = :organizations,
 													positions = :positions,
+													regions = :regions,
 													sites = :sites,
 													field_activities = :field_activities,
 													getting_starteds = :getting_starteds,
@@ -328,6 +329,7 @@
 				$stmt->execute(array(
 						':organizations'=>implode('[@!-#-!@]',$inputs['organizations']['value']),
 						':positions'=>implode('[@!-#-!@]',$inputs['positions']['value']),
+						':regions'=>implode('[@!-#-!@]',$inputs['regions']['value']),
 						':sites'=>implode('[@!-#-!@]',$inputs['sites']['value']),
 						':field_activities'=>implode('[@!-#-!@]',$inputs['field_activities']['value']),
 						':getting_starteds'=>implode('[@!-#-!@]',$getting_starteds),
@@ -343,57 +345,75 @@
 
 		public function selectExperience($id_user){
 			try {
-				$stmt = $this->_dbc->prepare ("SELECT
-													surname,
-													first_name,
-													patronymic,
-													birth,
-													sex,
-													city,
-													move,
-													trip,
-													nationality,
-													work_permit,
-													travel_time_work
+				$stmt = $this->_dbc->prepare("SELECT
+													organizations,
+													regions,
+													positions,
+													sites,
+													field_activities,
+													getting_starteds,
+													closing_works,
+													at_the_moments,
+													functions
 												FROM
-													profile
+													experience
 												WHERE
 													id = :id_user");
 				$stmt->execute(array(':id_user'=>$id_user));
-				$personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
+				$experience_data = $stmt->fetch(PDO::FETCH_ASSOC);
 			}catch (PDOException $e){
 				exit(print_r($e->errorInfo).$e->getFile());
 			}
-			$birth  = explode('-',$personal_data['birth']);
+
+			$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
+			$closing_work = explode('[@!-#-!@]',$experience_data['closing_work']);
+
+			foreach($getting_start as $key=>$value){
+				$month_year= explode('-',$value);
+				$getting_starteds[$key]['month'] = $month_year[0];
+				$getting_starteds[$key]['year'] = $month_year[1];
+			}
+
+			foreach($closing_work as $key=>$value){
+				$month_year= explode('-',$value);
+				$closing_works[$key]['month'] = $month_year[0];
+				$closing_works[$key]['year'] = $month_year[1];
+			}
+
 			return array(
-				'surname'=>array(
+				'organizations'=>array(
 					'val'=>true,
-					'value'=>$personal_data['surname']),
-				'first_name'=>array(
-					'val'=>true,
-					'value'=>$personal_data['first_name']
+					'value'=>explode('[@!-#-!@]',$experience_data['organizations'])
 				),
-				'patronymic'=>array(
+				'positions'=>array(
 					'val'=>true,
-					'value'=>$personal_data['patronymic']),
-				'birth'=>array(
-					'val'=>true,
-					'day_birth'=>$birth[0],
-					'month_birth'=>$birth[1],
-					'year_birth'=>$birth[2]
+					'value'=>explode('[@!-#-!@]',$experience_data['positions'])
 				),
-				'city'=>array(
+				'getting_starteds'=>array(
 					'val'=>true,
-					'value'=>$personal_data['city']
+					'value'=>$getting_starteds
 				),
-				'sex'=>array('value'=>$personal_data['sex']),
-				'move'=>array('value'=>$personal_data['move']),
-				'trip'=>array('value'=>$personal_data['trip']),
-				'work_permit'=>array('value'=>$personal_data['work_permit']),
-				'nationality'=>array('value'=>$personal_data['nationality']),
-				'nationality_other'=>array('value'=>$personal_data['nationality_other']),
-				'work_permit_other'=>array('value'=>$personal_data['work_permit_other']),
-				'travel_time_work'=>array('value'=>$personal_data['travel_time_work'])
+
+				'closing_works'=>array(
+					'val'=>true,
+					'value'=>$closing_works
+				),
+				'at_the_moments'=>array(
+					'value'=>explode('[@!-#-!@]',$experience_data['at_the_moments'])
+				),
+				'regions'=>array(
+					'value'=>explode('[@!-#-!@]',$experience_data['regions'])
+				),
+				'sites'=>array(
+					'value'=>explode('[@!-#-!@]',$experience_data['sites'])
+				),
+				'field_activities'=>array(
+					'value'=>explode('[@!-#-!@]',$experience_data['field_activities'])
+				),
+				'functions'=>array(
+					'val'=>true,
+					'value'=>explode('[@!-#-!@]',$experience_data['functions'])
+				)
 			);
 		}
 

@@ -10,8 +10,8 @@
 			<div class="form">
 				<form action='<?=BASE_URL.'/side/experience'?>' id="position" method="post" novalidate="novalidate">
 
-					<?php for( $i=1; $i <= $this->data['data']['table_count']; ++$i): ?>
-						<?php if($i>=2): ?>
+					<?php for( $i=0; $i <= $this->data['data']['table_count']-1; ++$i): ?>
+						<?php if($i>=1): ?>
 							<div class="delete" data-table-id='<?=$i?>'>Удалить</div>
 						<?php endif; ?>
 						<table data-table-id='<?=$i?>'>

@@ -40,15 +40,15 @@
 				foreach($checkForm as $inputs){
 					foreach($inputs as $key=>$input) {
 						foreach($input as $value)
-						if (array_key_exists('message',(array)$value)) {
-							return $this->_view->render (array (
-								'view' => 'side/experience',
-								'data' => array (
-									'table_count' => 2,
-									'inputs'      => $checkForm),
-								'js'   => $this->_jsExperience ()
-							));
-						}
+							if (array_key_exists('message',(array)$value)) {
+								return $this->_view->render (array (
+									'view' => 'side/experience',
+									'data' => array (
+										'table_count' =>count($checkForm['organizations']),
+										'inputs'      =>$checkForm),
+									'js'   => $this->_jsExperience ()
+								));
+							}
 					}
 				}
 				$this->_dbuser->updateExperience($checkForm, $this->getSessionUserID('user'));
@@ -58,7 +58,7 @@
 				return $this->_view->render(array(
 					'view' => 'side/experience',
 					'data'=>array(
-						'table_count'=>2,
+						'table_count'=>count($checkForm['organizations']),
 						'inputs'=>$checkForm),
 					'js'=>$this->_jsExperience()
 				));
@@ -69,7 +69,7 @@
 //			echo "<pre>";
 //			print_r($post);
 
-			for($i=1, $len=count($post['organizations']); $i<= $len; ++$i) {
+			for($i=0, $len=count($post['organizations']); $i< $len; ++$i) {
 
 				$organizations[$i] = trim(strip_tags($post['organizations'][$i]));
 
@@ -152,8 +152,6 @@
 					'value'=>$functions
 				)
 			);
-
-
 
 		}
 
