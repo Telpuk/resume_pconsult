@@ -1,15 +1,19 @@
 (function($, Handlebars ,window){
     function Personal(){
-        this.$add = $('.add');
+        this.$form = $('.personal.experience .form');
         this.count = 0;
     }
+
+    Personal.prototype.getCountTable = function(){
+        return  --$('table').length;
+    };
 
     Personal.prototype.tableTamplate = function(){
 
         var source   = $("#table-template").html();
 
         Handlebars.registerHelper('month', function(n) {
-            var out;
+            var out='';
             var month ={
                 1:"январь",
                 2:"февраль",
@@ -53,24 +57,28 @@
             return out;
         });
         var template = Handlebars.compile(source);
-        return template({'i':++this.count});
+
+        return template({'i':this.count++});
     }
 
-    Personal.prototype.addEventListenerADD = function(){
-        this.$add.on('click', {self:this}, function(event){
-            var html = event.data.self.tableTamplate();
-            $(event.target).before(html);
+    Personal.prototype.addEventListenerFORM = function() {
+        this.$form.on('click', {self:this}, function(event){
+            if(event.target.className === 'add'){
+                var html = event.data.self.tableTamplate();
+                $(event.target).before(html);
+            }else if(event.target.className === 'delete'){
+                $('*[data-table-id="'+$(event.target).
+                    data().tableId+'"]').
+                    remove()
+
+            }
         });
-
     };
-
 
     Personal.prototype.init = function(){
-        this.addEventListenerADD();
+        this.count = this.getCountTable();
+        this.addEventListenerFORM();
     };
-
-
-
 
     var personal = new Personal();
     personal.init();

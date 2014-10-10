@@ -80,6 +80,10 @@
 
 				$regions[$i] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['regions'][$i])));
 
+				$regions_val[$i]=call_user_func(function($regions){
+					return !empty($regions)?true: array('message'=>'Необходимо заполнить');
+				}, $regions[$i]);
+
 				$sites[$i] = trim(strip_tags($post['sites'][$i]));
 
 				$field_activities[$i] = trim(strip_tags($post['field_activities'][$i]));
@@ -144,7 +148,10 @@
 					'value'=>$closing_works
 				),
 				'at_the_moments'=>array('value'=>$at_the_moments),
-				'regions'=>array('value'=>$regions),
+				'regions'=>array(
+					'val'=>$regions_val,
+					'value'=>$regions
+				),
 				'sites'=>array('value'=>$sites),
 				'field_activities'=>array('value'=>$field_activities),
 				'functions'=>array(

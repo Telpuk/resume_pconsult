@@ -367,7 +367,7 @@
 
 
 			$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
-			$closing_work = explode('[@!-#-!@]',$experience_data['closing_work']);
+			$closing_work = explode('[@!-#-!@]',$experience_data['closing_works']);
 
 			foreach($getting_start as $key=>$value){
 				$month_year= explode('-',$value);

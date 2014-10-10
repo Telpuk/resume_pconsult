@@ -1,5 +1,5 @@
 <?php //echo "<pre>";
-	//		print_r($this->data['data']['table_count'])?>
+//			print_r($this->data['data'])?>
 <main class="personal experience">
 	<article>
 		<div class="arrow-right"></div>
@@ -11,7 +11,7 @@
 				<form action='<?=BASE_URL.'/side/experience'?>' id="experience" method="post" novalidate="novalidate">
 					<?php for( $i=0; $i <= $this->data['data']['table_count']-1; ++$i): ?>
 						<?php if($i>=1): ?>
-							<div class="delete" data-table-id='<?=$i?>'>Удалить</div>
+							<div class="delete" data-table-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 						<?php endif; ?>
 						<table data-table-id='<?=$i?>'>
 							<tbody>
@@ -123,7 +123,10 @@
 							</tbody>
 						</table>
 					<?php endfor; ?>
-					<div class="add">Добавить место работы</div>
+					<div class="add">
+						<img src='<?=BASE_URL."/public/img/add.png"?>' alt="">
+						Добавить место работы
+					</div>
 					<table>
 						<tfoot>
 						<tr>
