@@ -323,7 +323,13 @@
 													getting_starteds = :getting_starteds,
 													closing_works = :closing_works,
 													at_the_moments = :at_the_moments,
-													functions = :functions
+													functions = :functions,
+													key_skills = :key_skills,
+													about_self = :about_self,
+													recommend_name = :recommend_name,
+													recommend_position = :recommend_position,
+													recommend_organization = :recommend_organization,
+													recommend_phone = :recommend_phone
 												WHERE
 													id = :id_user");
 				$stmt->execute(array(
@@ -336,6 +342,12 @@
 						':closing_works'=>implode('[@!-#-!@]',$closing_works),
 						':at_the_moments'=>implode('[@!-#-!@]',$inputs['at_the_moments']['value']),
 						':functions'=>implode('[@!-#-!@]',$inputs['functions']['value']),
+						':key_skills'=>$inputs['key_skills']['value'],
+						':about_self'=>$inputs['about_self']['value'],
+						':recommend_name'=>implode('[@!-#-!@]',$inputs['recommend_name']['value']),
+						':recommend_position'=>implode('[@!-#-!@]',$inputs['recommend_position']['value']),
+						':recommend_organization'=>implode('[@!-#-!@]',$inputs['recommend_organization']['value']),
+						':recommend_phone'=>implode('[@!-#-!@]',$inputs['recommend_phone']['value']),
 						':id_user'=>$id_user)
 				);
 			}catch (PDOException $e){
@@ -354,7 +366,13 @@
 													getting_starteds,
 													closing_works,
 													at_the_moments,
-													functions
+													functions,
+													key_skills,
+													about_self,
+													recommend_name,
+													recommend_position,
+													recommend_organization,
+													recommend_phone
 												FROM
 													experience
 												WHERE
@@ -415,7 +433,32 @@
 				'functions'=>array(
 					'val'=>true,
 					'value'=>explode('[@!-#-!@]',$experience_data['functions'])
-				)
+				),
+				'key_skills'=>array(
+					'val'=>true,
+					'value'=>$experience_data['key_skills']
+				),
+				'about_self'=>array(
+					'val'=>true,
+					'value'=>$experience_data['about_self']
+				),
+				'recommend_name'=>array(
+					'val'=>true,
+					'value'=>explode('[@!-#-!@]',$experience_data['recommend_name'])
+				),
+				'recommend_position'=>array(
+					'val'=>true,
+					'value'=>explode('[@!-#-!@]',$experience_data['recommend_position'])
+				),
+				'recommend_organization'=>array(
+					'val'=>true,
+					'value'=>explode('[@!-#-!@]',$experience_data['recommend_organization'])
+				),
+
+				'recommend_phone'=>array(
+					'val'=>true,
+					'value'=>explode('[@!-#-!@]',$experience_data['recommend_phone'])
+				),
 			);
 		}
 
