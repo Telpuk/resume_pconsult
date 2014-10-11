@@ -98,4 +98,43 @@
 		</tbody>
 	</table>
 </script>
+
+<script id="table-template" type="text/x-handlebars-template">
+	<div class="delete" data-table-id='{{i}}'>Удалить</div>
+	<table class="recommendations">
+		<tbody>
+		<tr>
+			<td colspan="2">Рекомендации</td>
+		</tr>
+		<tr>
+			<td>Имя</td>
+			<td>
+				<input type="text" name="recommend_name[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Должность</td>
+			<td>
+				<input type="text" name="recommend_position[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>Организация</td>
+			<td>
+				<input type="text" name="recommend_organization[{{i}}]" value="">
+				<div class="message"</div>
+			</td>
+		</tr>
+		<tr>
+			<td>Телефон</td>
+			<td>
+				<input type="text" name="recommend_phone[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
 </html>
