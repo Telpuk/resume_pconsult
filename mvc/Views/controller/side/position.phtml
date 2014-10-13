@@ -12,14 +12,14 @@
 					<table>
 						<tbody>
 						<tr>
-							<td><label for="desired_position">Желаемая должность</label></td>
+							<td><label for="desired_position">Желаемая должность<span class="required">*</span></label></td>
 							<td>
 								<input type="text"  id="desired_position"  name="desired_position" value='<?=$this->data['data']['inputs']['desired_position']['value']?>'>
 								<div class="message"><?=$this->data['data']['inputs']['desired_position']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
-							<td><label for="professional_area">Профессиональная область</label></td>
+							<td><label for="professional_area">Профессиональная область<span class="required">*</span></label></td>
 							<td>
 								<input type="text"  id="professional_area"  name="professional_area" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
 								<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
@@ -39,7 +39,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="employment">Занятость</label></td>
+							<td><label for="employment">Занятость<span class="required">*</span></label></td>
 							<td>
 								<div class="container">
 									<input type="checkbox" name='employment[]'<?php if(in_array('Полная занятость',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Полная занятость">Полная занятость<br>
@@ -52,7 +52,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="schedule">График работы</label></td>
+							<td><label for="schedule">График работы<span class="required">*</span></label></td>
 							<td>
 								<div class="container">
 									<input type="checkbox" name='schedule[]'<?php if(in_array('Полный день',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Полный день">Полный день<br>

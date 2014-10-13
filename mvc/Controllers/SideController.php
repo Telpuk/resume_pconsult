@@ -34,6 +34,39 @@ class SideController extends IController{
 		}
 	}
 
+	public function educationAction(){
+		if(isset($_POST['saveEducation'])){
+			$checkForm = $this->_checkFormEducation($_POST);
+			foreach($checkForm as $inputs){
+				$vals = (array)$inputs['val'];
+				foreach($vals as $key=>$val) {
+					if (array_key_exists ('message', (array)$val) || $key==='message') {
+						return $this->_view->render (array (
+							'view' => 'side/education',
+							'data' => array (
+								'table_base_education_count' => count($checkForm['names_institutions']['value']),
+								'table_training_courses_count' =>count($checkForm['courses_names']['value']),
+								'inputs'      => $checkForm),
+							'js'   => $this->_jsEducation()
+						));
+					}
+				}
+			}
+			$this->_dbuser->updateEducation($checkForm, $this->getSessionUserID('user'));
+			$this->headerLocation('index');
+		}else{
+			$checkForm = $this->_dbuser->selectEducation($this->getSessionUserID('user'));
+			return $this->_view->render(array(
+				'view' => 'side/education',
+				'data'=>array(
+					'table_base_education_count'=>count($checkForm['names_institutions']['value']),
+					'table_training_courses_count' =>count($checkForm['courses_names']['value']),
+					'inputs'=>$checkForm),
+				'js'=>$this->_jsEducation()
+			));
+		}
+	}
+
 	public function experienceAction(){
 		if(isset($_POST['saveExperience'])){
 			$checkForm = $this->_checkFormExperience($_POST);
@@ -65,6 +98,118 @@ class SideController extends IController{
 				'js'=>$this->_jsExperience()
 			));
 		}
+	}
+
+	private function _checkFormEducation($post){
+		$education_base_key = 0;
+
+		$level = trim(strip_tags($post['level']));
+
+		$level_val = call_user_func(function ($level) {
+			return !empty($level) ? true : array('message' => 'Необходимо заполнить');
+		}, $level);
+
+		foreach($post['names_institutions'] as $key=>$name_institution) {
+
+			$names_institutions[$education_base_key] = trim(strip_tags($name_institution));
+			$faculties[$education_base_key] = trim(strip_tags($post['faculties'][$key]));
+			$specialties_specialties[$education_base_key] = trim(strip_tags($post['specialties_specialties'][$key]));
+			$years_graduations[$education_base_key] = trim(strip_tags($post['years_graduations'][$key]));
+
+
+			$faculties_val[$education_base_key] = call_user_func(function ($faculty) {
+				return !empty($faculty) ? true : array('message' => 'Необходимо заполнить');
+			}, $faculties[$education_base_key]);
+
+			$names_institutions_val[$education_base_key] = call_user_func(function ($name_institution) {
+				return !empty($name_institution) ? true : array('message' => 'Необходимо заполнить');
+			}, $names_institutions[$education_base_key]);
+
+			$specialties_specialties_val[$education_base_key] = call_user_func(function ($specialty_specialty) {
+				return !empty($specialty_specialty) ? true : array('message' => 'Необходимо заполнить');
+			}, $specialties_specialties[$education_base_key]);
+
+			$years_graduations_val[$education_base_key] = call_user_func(function ($year_graduation) {
+				return !empty($year_graduation) ? true : array('message' => 'Необходимо заполнить');
+			}, $years_graduations[$education_base_key]);
+
+			++$education_base_key;
+		}
+
+		$education_course_key = 0;
+
+		foreach($post['courses_names'] as $key=>$course_name) {
+
+			if((!empty($course_name)||!empty($post['follow_organizations'][$key])||
+				!empty($post['courses_specialties'][$key])||
+				!empty($post['course_years_graduations'][$key]))){
+
+				$courses_names[$education_course_key] = trim(strip_tags($course_name));
+				$follow_organizations[$education_course_key] = trim(strip_tags($post['follow_organizations'][$key]));
+				$courses_specialties[$education_course_key] = trim(strip_tags($post['courses_specialties'][$key]));
+				$course_years_graduations[$education_course_key] = trim(strip_tags($post['course_years_graduations'][$key]));
+
+				$courses_names_val[$education_course_key] = call_user_func(function($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $courses_names[$education_course_key]);
+
+				$follow_organizations_val[$education_course_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $follow_organizations[$education_course_key]);
+
+				$courses_specialties_val[$education_course_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $courses_specialties[$education_course_key]);
+
+				$course_years_graduations_val[$education_course_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $course_years_graduations[$education_course_key]);
+
+
+				++$education_course_key;
+
+			}
+		}
+
+		return array(
+			'level'=>array(
+				'val'=>$level_val,
+				'value'=>$level
+			),
+			'names_institutions'=>array(
+				'val'=>$names_institutions_val,
+				'value'=>$names_institutions
+			),
+			'faculties'=>array(
+				'val'=>$faculties_val,
+				'value'=>$faculties
+			),
+			'specialties_specialties'=>array(
+				'val'=>$specialties_specialties_val,
+				'value'=>$specialties_specialties
+			),
+			'years_graduations'=>array(
+				'val'=>$years_graduations_val,
+				'value'=>$years_graduations
+			),
+			'courses_names'=>array(
+				'val'=>(array)$courses_names_val,
+				'value'=>(array)$courses_names
+			),
+			'follow_organizations'=>array(
+				'val'=>(array)$follow_organizations_val,
+				'value'=>(array)$follow_organizations
+			),
+			'courses_specialties'=>array(
+				'val'=>(array)$courses_specialties_val,
+				'value'=>(array)$courses_specialties
+			),
+			'course_years_graduations'=>array(
+				'val'=>(array)$course_years_graduations_val,
+				'value'=>(array)$course_years_graduations
+			)
+		);
+
 	}
 
 	private function _checkFormExperience($post){
@@ -133,37 +278,38 @@ class SideController extends IController{
 		}
 
 
-
 		$recommend_name_key = 0;
-		foreach($post['recommend_names'] as $key=>$recommend_name){
-			$recommend_names[$recommend_name_key] = trim(strip_tags($recommend_name));
-			$recommend_position[$recommend_name_key] = trim(strip_tags($post['recommend_position'][$key]));
-			$recommend_organization[$recommend_name_key] = trim(strip_tags($post['recommend_organization'][$key]));
-			$recommend_phone[$recommend_name_key] = trim(strip_tags($post['recommend_phone'][$key]));
 
-			if(empty($recommend_names[$recommend_name_key])&&empty($recommend_position[$recommend_name_key])&&
-				empty($recommend_organization[$recommend_name_key])&&empty($recommend_phone[$recommend_name_key])){
-				$recommend_names_val[$recommend_name_key]=true;
-				$recommend_position_val[$recommend_name_key]=true;
-				$recommend_organization_val[$recommend_name_key]=true;
-				$recommend_phone_val[$recommend_name_key]=true;
-			}else{
+		foreach($post['recommend_names'] as $key=>$recommend_name){
+			if(!empty($recommend_name)||!empty($post['recommend_position'][$key])||
+				!empty($post['recommend_organization'][$key])||!empty($post['recommend_phone'][$key])){
+
+				$recommend_names[$recommend_name_key] = trim(strip_tags($recommend_name));
+				$recommend_position[$recommend_name_key] = trim(strip_tags($post['recommend_position'][$key]));
+				$recommend_organization[$recommend_name_key] = trim(strip_tags($post['recommend_organization'][$key]));
+				$recommend_phone[$recommend_name_key] = trim(strip_tags($post['recommend_phone'][$key]));
+
 				$recommend_names_val[$recommend_name_key] = call_user_func(function($recommend_name){
 					return !empty($recommend_name)?true: array('message'=>'Необходимо заполнить');
 				},$recommend_names[$recommend_name_key]);
+
 				$recommend_position_val[$recommend_name_key] = call_user_func(function($recommend_position){
 					return !empty($recommend_position)?true: array('message'=>'Необходимо заполнить');
 				},$recommend_position[$recommend_name_key]);
+
 				$recommend_organization_val[$recommend_name_key] = call_user_func(function($recommend_organization){
 					return !empty($recommend_organization)?true: array('message'=>'Необходимо заполнить');
 				},$recommend_organization[$recommend_name_key]);
+
 				$recommend_phone_val[$recommend_name_key] = call_user_func(function($recommend_phone){
 					return !empty($recommend_phone)?true: array('message'=>'Необходимо заполнить');
 				},$recommend_phone[$recommend_name_key]);
 
+				++$recommend_name_key;
 			}
-			++$recommend_name_key;
 		}
+
+
 
 		$key_skills = $post['key_skills'];
 
@@ -209,20 +355,20 @@ class SideController extends IController{
 			'about_self'=>array('value'=>$about_self),
 
 			'recommend_names'=>array(
-				'val'=>$recommend_names_val,
-				'value'=>$recommend_names,
+				'val'=>(array)$recommend_names_val,
+				'value'=>(array)$recommend_names,
 			),
 			'recommend_position'=>array(
-				'val'=>$recommend_position_val,
-				'value'=>$recommend_position,
+				'val'=>(array)$recommend_position_val,
+				'value'=>(array)$recommend_position,
 			),
 			'recommend_organization'=>array(
-				'val'=>$recommend_organization_val,
-				'value'=>$recommend_organization,
+				'val'=>(array)$recommend_organization_val,
+				'value'=>(array)$recommend_organization,
 			),
 			'recommend_phone'=>array(
-				'val'=>$recommend_phone_val,
-				'value'=>$recommend_phone,
+				'val'=>(array)$recommend_phone_val,
+				'value'=>(array)$recommend_phone,
 			)
 
 		);
@@ -258,7 +404,7 @@ class SideController extends IController{
 		}, $schedule);
 
 		$salary_val = call_user_func(function($salary){
-			return (preg_match('/^[0-9]$/',$salary) || empty($salary))?true: array('message'=>'Некорректные
+			return (preg_match('/\d/',$salary) || empty($salary))?true: array('message'=>'Некорректные
 				данные');
 		}, $salary);
 
@@ -291,6 +437,17 @@ class SideController extends IController{
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
 				BASE_URL."/public/js/position.js"
+			),
+		);
+	}
+
+	private function _jsEducation(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/handlebars-v2.0.0.js",
+				BASE_URL."/public/js/education.js"
 			),
 		);
 	}

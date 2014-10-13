@@ -3,667 +3,694 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1.2;
+    line-height: 1.2;
 }
 ol {
-	padding-left: 1.4em;
-	list-style: decimal;
+    padding-left: 1.4em;
+    list-style: decimal;
 }
 ul {
-	padding-left: 1.4em;
-	list-style: square;
+    padding-left: 1.4em;
+    list-style: square;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 
 html {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 * {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 /* reset styles */
 html {
-	font-family: PTSans, Arial, sans-serif;
-	font-size: 5em;
+    font-family: PTSans, Arial, sans-serif;
+    font-size: 5em;
 
 }
 body {
-	min-width: 900px;
-	max-width: 1200px;
-	margin: 0 auto;
-	background-color: white;
-	border: 1px black solid;
-	padding: 10px;
+    min-width: 900px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px black solid;
+    padding: 10px;
 }
 
 .no-page{
-	width: 40%;
-	margin: 0 auto;
+    width: 40%;
+    margin: 0 auto;
 }
 .no-page p{
-	width: 100%;
-	margin: 0 auto;
-	font-size: .3em;
+    width: 100%;
+    margin: 0 auto;
+    font-size: .3em;
 }
 
 .no-page p{
-	text-align: center;
+    text-align: center;
 }
 
 
 .clear{
-	clear: both;
+    clear: both;
 }
 
 .wrapper{
-	width: 100%;
-	min-height: 80%;
+    width: 100%;
+    min-height: 80%;
 }
 .resume article h1{
-	margin-bottom: 50px;
-	font-size: .5em;
+    margin-bottom: 50px;
+    font-size: .5em;
 }
 
 .registration h1{
-	font-weight: normal;
-	text-align: center;
-	font-size: 0.5em;
-	margin-bottom: 20px;
+    font-weight: normal;
+    text-align: center;
+    font-size: 0.5em;
+    margin-bottom: 20px;
 }
 .registration input[type=submit]{
-	cursor: pointer;
-	font-weight: bold;
-	border: none;
-	background-color: red;
-	text-transform: uppercase;
-	color: white;
-	padding: 10px 5px 10px 5px;
-	margin-left: 40%;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background-color: red;
+    text-transform: uppercase;
+    color: white;
+    padding: 10px 5px 10px 5px;
+    margin-left: 40%;
 }
 .required{
-	color: red;
+    color: red;
 }
 
 
 .registration{
-	width: 100%;
+    width: 100%;
 }
 .registration .label{
-	margin-top: 10px;
-	float: left;
-	font-size: 0.7em;
-	width: 40%;
+    margin-top: 10px;
+    float: left;
+    font-size: 0.7em;
+    width: 40%;
 }
 .registration .input{
-	float: left;
-	width: 60%;
+    float: left;
+    width: 60%;
 }
 
 
 .registration .label label{
-	display: block;
-	height: 50px;
-	text-align: right;
-	font-size: .5em;
+    display: block;
+    height: 50px;
+    text-align: right;
+    font-size: .5em;
 }
 
 .registration .input input{
-	display: block;
-	padding: 10px;
-	margin-top: 10px;
-	margin-left: 10px;
-	width: 300px;
-	height: 40px;
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 300px;
+    height: 40px;
 }
 
 
 
 .end_resume a{
-	background-color: red;
-	font-weight: bold;
-	color: white;
-	padding: 10px;
-	border: none;
-	text-decoration: none;
-	font-size: .3em;
+    background-color: red;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border: none;
+    text-decoration: none;
+    font-size: .3em;
 }
 
 
 a.addFoto{
-	display: block;
-	float: left;
-	border: 1px #bbbbbb dashed;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-	line-height: 40px;
-	font-weight: bold;
-	text-decoration: none;
-	font-size: .4em;
-	width: 18%;
-	height: 200px;
-	padding-top: 40px;
-	padding-left: 50px;
+    display: block;
+    float: left;
+    border: 1px #bbbbbb dashed;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    line-height: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: .4em;
+    width: 18%;
+    height: 200px;
+    padding-top: 40px;
+    padding-left: 50px;
 }
 
 .addFio{
-	margin-left: 2%;
-	width: 80%;
-	float: left;
+    margin-left: 2%;
+    width: 80%;
+    float: left;
 }
 
 .addFio a, aside.side a{
-	display: block;
-	height: 90px;
-	font-weight: bold;
-	font-size: .4em;
-	text-decoration: none;
-	border: 1px #bbbbbb dashed;
-	padding-top: 20px;
-	padding-left: 20px;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
+    display: block;
+    height: 90px;
+    font-weight: bold;
+    font-size: .4em;
+    text-decoration: none;
+    border: 1px #bbbbbb dashed;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
 }
 
 aside.side a:first-child{
-	margin-top: 60px;
+    margin-top: 60px;
 }
 
 aside.side a{
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 a.addFoto:hover, .addFio a:hover, aside.side a:hover{
-	cursor: pointer;
-	background-color: rgba(186, 186, 186, 0.3);
-	border: 1px #bbbbbb dashed;
+    cursor: pointer;
+    background-color: rgba(186, 186, 186, 0.3);
+    border: 1px #bbbbbb dashed;
 }
 
 a.addFoto span:first-child{
-	font-size: 1.4em;
-	color: #bbbbbb;
+    font-size: 1.4em;
+    color: #bbbbbb;
 }
 
 a.addFoto span:last-child{
-	color: deepskyblue;
-	font-size: 0.7em;
+    color: deepskyblue;
+    font-size: 0.7em;
 }
 
 
 .addFio a:last-child{
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .addFio a span:first-child, aside.side a span:first-child{
-	font-size: 1.1em;
-	color: #bbbbbb;
+    font-size: 1.1em;
+    color: #bbbbbb;
 }
 
 .addFio a span:last-child, aside.side a span:last-child{
-	padding-left: 40px;
-	color: deepskyblue;
-	font-size: 0.7em;
+    padding-left: 40px;
+    color: deepskyblue;
+    font-size: 0.7em;
 }
 
 /*download photo*/
 
 .photo, .personal{
-	position: relative;
-	padding: 30px;
+    position: relative;
+    padding: 30px;
 }
 
 a.delete_photo{
-	position: absolute;
-	top: 45%;
-	left: 35%;
-	width: 70%;
-	text-decoration: none;
-	text-align: center;
-	display: block;
-	cursor: pointer;
-	font-size: 0.25em;
-	width: 250px;
-	border: none;
-	padding: 5px;
-	background-color: rgba(255, 31, 23, 0.5);
-	color: white;
-	text-transform: uppercase;
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    width: 70%;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    font-size: 0.25em;
+    width: 250px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(255, 31, 23, 0.5);
+    color: white;
+    text-transform: uppercase;
 }
 
 .photo .no-save, .personal .no-save{
-	display: block;
-	float: left;
-	height: 40px;
-	text-align: center;
-	padding-top: 10px;
-	width: 300px;
-	font-size: .20em;
-	text-decoration: none;
-	color: #bbbbbb;
-	background-color: rgba(186, 186, 186, 0.3);
+    display: block;
+    float: left;
+    height: 40px;
+    text-align: center;
+    padding-top: 10px;
+    width: 300px;
+    font-size: .20em;
+    text-decoration: none;
+    color: #bbbbbb;
+    background-color: rgba(186, 186, 186, 0.3);
 }
 .photo section, .personal section{
-	padding-left: 100px;
+    padding-left: 100px;
 }
 
 
 .photo .arrow-right, .personal .arrow-right{
-	float: left;
-	margin-left: 50px;
-	width: 0;
-	height: 0;
-	border: 20px solid transparent;
-	border-right-color: rgba(186, 186, 186, 0.3);
-	border-left: 0;
+    float: left;
+    margin-left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right-color: rgba(186, 186, 186, 0.3);
+    border-left: 0;
 }
 .photo .no-save:hover, .personal .no-save:hover{
-	cursor: pointer;
-	background-color: rgba(186, 186, 186, 0.3);
-	color: red;
+    cursor: pointer;
+    background-color: rgba(186, 186, 186, 0.3);
+    color: red;
 }
 
 .photo section h1, .personal  section h1{
-	margin-top: 40px;
-	font-size: 0.5em;
+    margin-top: 40px;
+    font-size: 0.5em;
 }
 
 .user_photo{
-	margin-top: 20px;
-	margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .helpers_message_photo{
-	display: block;
-	float: left;
-	font-size: .25em;
-	text-align: center;
-	margin-left: 5%;
-	width: 70%;
-	color: red;
-	border: 1px red dashed;
-	padding: 10px;
+    display: block;
+    float: left;
+    font-size: .25em;
+    text-align: center;
+    margin-left: 5%;
+    width: 70%;
+    color: red;
+    border: 1px red dashed;
+    padding: 10px;
 }
 
 
 .user_photo img{
-	float: left;
-	width: 200px;
-	height: 180px;
-	border: 1px black dotted;
+    float: left;
+    width: 200px;
+    height: 180px;
+    border: 1px black dotted;
 }
 .photo_form{
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 .photo_form label{
-	display: block;
-	float: left;
-	width: 30%;
-	font-size: .2em;
+    display: block;
+    float: left;
+    width: 30%;
+    font-size: .2em;
 }
 #file{
-	font-size: 0.25em;
-	display: block;
-	float: left;
-	margin-left: -20px;
+    font-size: 0.25em;
+    display: block;
+    float: left;
+    margin-left: -20px;
 }
 #submit_download, .save input[type=submit]{
-	cursor: pointer;
-	font-size: 0.25em;
-	width: 150px;
-	border: none;
-	padding: 5px;
-	background-color: rgba(255, 31, 23, 0.5);
-	color: white;
-	text-transform: uppercase;
+    cursor: pointer;
+    font-size: 0.25em;
+    width: 150px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(255, 31, 23, 0.5);
+    color: white;
+    text-transform: uppercase;
 
 }
 #submit_download{
-	display: block;
-	margin-left: 30px;
-	float: left;
+    display: block;
+    margin-left: 30px;
+    float: left;
 }
 
 .save{
-	margin-top: 30px;
-	clear: both;
-	height: 150px;
-	background-color: rgba(253, 240, 164, 0.3);
+    margin-top: 30px;
+    clear: both;
+    height: 150px;
+    background-color: rgba(253, 240, 164, 0.3);
 }
 
 .save input[type=submit]{
-	margin-left: 35%;
+    margin-left: 35%;
 }
 
 .back{
-	font-size: .25em;
-	color: #bbbbbb;
+    font-size: .25em;
+    color: #bbbbbb;
 }
 
 .center{
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 /*personal*/
 
 .personal table{
-	margin-top: 50px;
-	width: 800px;
-	font-size: .2em;
+    margin-top: 50px;
+    width: 800px;
+    font-size: .2em;
 }
 
 .personal table td{
-	height: 50px;
+    height: 50px;
 }
 
 .personal table td label{
-	cursor: pointer;
-	font-size: 1em;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 .error{
-	width: 100%;
-	color: red;
+    width: 100%;
+    color: red;
 }
 
 .personal table td input[type=text]{
-	width: 100%;
-	padding: 5px;
+    width: 100%;
+    padding: 5px;
 }
 .personal table td input[type=radio]{
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .personal table td input[type=radio]:first-child{
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 
 .personal table td select{
-	width: 80px;
-	padding: 3px;
+    width: 80px;
+    padding: 3px;
 }
 
 .personal tfoot tr{
-	height: 100px;
-	text-align: center;
-	background-color: rgba(186, 186, 186, 0.3);
+    height: 100px;
+    text-align: center;
+    background-color: rgba(186, 186, 186, 0.3);
 }
 .personal tfoot tr input[type=submit]{
-	cursor: pointer;
-	font-size: 1.2em;
-	width: 300px;
-	border: none;
-	padding: 5px;
-	background-color: rgba(255, 31, 23, 0.5);
-	color: white;
-	text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 300px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(255, 31, 23, 0.5);
+    color: white;
+    text-transform: uppercase;
 }
 
 .personal tfoot tr input[type=submit]:disabled{
-	cursor: auto;
-	font-size: 1.2em;
-	width: 300px;
-	border: none;
-	padding: 5px;
-	background-color: rgba(255, 31, 23, 0.3);
-	color: white;
-	text-transform: uppercase;
+    cursor: auto;
+    font-size: 1.2em;
+    width: 300px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(255, 31, 23, 0.3);
+    color: white;
+    text-transform: uppercase;
 }
 
 .personal tfoot tr .back {
-	font-size: 1.5em;
-	margin-left: 50px;
+    font-size: 1.5em;
+    margin-left: 50px;
 }
 
 .personal tfoot tr td{
-	padding: 10px;
+    padding: 10px;
 }
 .other_country{
-	width: 100%;
+    width: 100%;
 }
 
 .work_permit_other{
-	width: 100%;
+    width: 100%;
 }
 
 .data{
-	display: inline-block;
-	width: 190px;
-	margin-left: 10px;
+    display: inline-block;
+    width: 190px;
+    margin-left: 10px;
 }
 
 #city_example, #nationality_example, #work_permit_example{
-	color: rgba(175, 175, 175, .8);
-	font-weight: bold;
-	border-bottom: 1px rgba(175, 175, 175, .8) dashed;
+    color: rgba(175, 175, 175, .8);
+    font-weight: bold;
+    border-bottom: 1px rgba(175, 175, 175, .8) dashed;
 }
 
 #city_example:hover, #nationality_example:hover, #work_permit_example:hover{
-	cursor: pointer;
-	font-size: 1.05em;
+    cursor: pointer;
+    font-size: 1.05em;
 }
 .example{
-	color: rgba(175, 175, 175, .8);
-	font-size: .8em;
-	margin-bottom: 3px;
-	margin-top: 5px;
+    color: rgba(175, 175, 175, .8);
+    font-size: .8em;
+    margin-bottom: 3px;
+    margin-top: 5px;
 }
 
 .data_f{
-	text-align: center;
-	margin-bottom: 10px;
-	color: red;
-	visibility: hidden;
+    text-align: center;
+    margin-bottom: 10px;
+    color: red;
+    visibility: hidden;
 }
 
 
 /*contacts*/
 .personal.contacts{
-	position: relative;
-	width: 90%;
-	padding: 30px;
+    position: relative;
+    width: 90%;
+    padding: 30px;
 }
 
 .personal.contacts .message{
-	padding: 10px;
-	width: 20%;
-	font-size: .7em;
+    padding: 10px;
+    width: 20%;
+    font-size: .7em;
 }
 
 .contacts table tfoot tr{
-	height: 50px;
+    height: 50px;
 }
 
 .contacts table tfoot td div{
-	margin: 0 auto;
-	padding: 10px;
-	width: 60%;
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
 }
 
 
 .contacts table td input[type=radio]{
-	margin-right: 10px;
-	margin-left: 20px;
+    margin-right: 10px;
+    margin-left: 20px;
 }
 
 .contacts table{
-	width: 100%;
+    width: 100%;
 }
 
 .contacts table td:nth-child(1) {
-	text-align: right;
-	padding-right: 20px;
+    text-align: right;
+    padding-right: 20px;
 }
 
 .contacts table td:nth-child(4) {
-	padding-left: 5px;
-	font-size: .7em;
-	text-align: left;
-	width: 25%;
+    padding-left: 5px;
+    font-size: .7em;
+    text-align: left;
+    width: 25%;
 }
 .contacts table td:nth-child(2) {
-	padding: 4px;
-	width: 10px;
+    padding: 4px;
+    width: 10px;
 }
 
 .comment{
-	font-size: .8em;
-	color: rgba(175, 175, 175, .8);
+    font-size: .8em;
+    color: rgba(175, 175, 175, .8);
 }
 
 input[type=tel]{
-	width: 100%;
-	height: 30px;
-	padding: 5px;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
 }
 
 input[type=email]{
-	width: 100%;
-	height: 30px;
-	padding: 5px;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
 }
 
 .message{
-	width: 30%;
+    width: 30%;
 }
 /*personal position*/
 
 .personal .message{
-	text-align: left;
-	width: 100%;
-	font-size: .8em;
+    text-align: left;
+    width: 100%;
+    font-size: .8em;
 }
 
 #salary{
-	width: 100px;
+    width: 100px;
 }
 
 #currency{
-	margin-left: 5px;
-	width: 100px;
+    margin-left: 5px;
+    width: 100px;
 }
 .container{
-	width: 100%;
+    width: 100%;
 }
 .container input[type=checkbox]{
-	margin-right: 10px;
-	margin-top: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 .position table tfoot tr{
-	height: 50px;
+    height: 50px;
 }
 
 .position table tfoot td div{
-	margin: 0 auto;
-	padding: 10px;
-	width: 60%;
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
 }
-.position .message{
-	width: 100%;
-	font-size: .85em;
-	color: red;
-	margin-top: 5px;
-	margin-bottom: 20px;
+.position .message, .education .message{
+    width: 100%;
+    font-size: .85em;
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 /*experience*/
 .personal.experience{
-	position: relative;
-	width: 90%;
-	padding: 30px;
+    position: relative;
+    width: 90%;
+    padding: 30px;
 }
+.base_education  th{
+    padding-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 
 .personal.experience table td{
-	padding-top: 10px;
-	padding-left: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
-.add_position,.add_recommendations,.delete{
-	width: 100%;
-	color: #6dc626;
-	text-align: center;
-	text-decoration: underline;
-	padding-bottom: 5px;
-	text-align: left;
-	font-size: .2em;
-	margin-top: 20px;
+.add_position,.add_recommendations,.delete, .add_education, .add_training_courses{
+    width: 100%;
+    color: #6dc626;
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 5px;
+    text-align: left;
+    font-size: .2em;
+    margin-top: 20px;
 
 }
 .delete{
-	color: red;
+    color: red;
 }
 
 
-.add_position img{
-	padding-right: 10px;
-	padding-left: 10px;
+.add_position img, .add_education img, .add_training_courses img{
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .delete img{
-	padding-right: 10px;
-	padding-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 
-.add_position:hover, .delete:hover,.add_recommendations:hover {
-	cursor: pointer;
+.add_position:hover, .delete:hover,.add_recommendations:hover, .add_education:hover, .add_training_courses:hover {
+    cursor: pointer;
 }
 
 .functions, .about_me{
-	vertical-align: top;
+    vertical-align: top;
 }
 
 .function_td textarea, .key_skills textarea{
-	width: 100%;
-	resize: none;
-	height: 100px;
-	margin-bottom: 5px;
+    width: 100%;
+    resize: none;
+    height: 100px;
+    margin-bottom: 5px;
 }
 
 
 .function_td p{
-	font-size: .8em;
+    font-size: .8em;
 }
 
 
 .personal.experience .message{
-	color: red;
+    color: red;
 }
 
-.personal.experience hr{
-	border-top:1px  dotted #bababa;
+.personal.experience hr, .personal.education hr{
+    border-top:1px  dotted #bababa;
 }
 table.key_skills tr:first-child{
-	font-size: .9em;
-	color: black;
-	font-weight: bold;
+    font-size: .9em;
+    color: black;
+    font-weight: bold;
 }
 
 
 table.recommendations tr:first-child{
-	color: black;
-	font-weight: bold;
-	font-size: 1.3em;
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
 }
 .about_self{
-	font-size: .7em;
+    font-size: .7em;
 }
+/**/
+.personal.education .level{
+    width: 100%;
+}
+.personal.education table th, .training_courses table th{
+    text-align: left;
+}
+.base_education td, .training_courses td{
+    font-size: .9em;
+}
+.base_education p, .training_courses p{
+    margin-top: 5px;
+    font-size: .9em;
+    color: rgb(175, 175, 175);
+}
+
+table.training_courses th{
+    padding-bottom: 50px;
+}
+
+
 
 
 

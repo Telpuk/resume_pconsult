@@ -59,12 +59,12 @@
 			<td>
 				<select name="getting_starteds[{{i}}][month]">
 					{{#month 12}}
-						{{this}}
+					{{this}}
 					{{/month}}
 				</select>
 				<select name="getting_starteds[{{i}}][year]">
 					{{#year_start 1950}}
-						{{this}}
+					{{this}}
 					{{/year_start}}
 				</select>
 				<input type="checkbox" name="at_the_moments[{{i}}]" value="true">Понастоящее время
@@ -76,12 +76,12 @@
 			<td>
 				<select name="closing_works[{{i}}][month]">
 					{{#month 12}}
-						{{this}}
+					{{this}}
 					{{/month}}
 				</select>
 				<select name="closing_works[{{i}}][year]">
 					{{#year_finish 1950}}
-						{{this}}
+					{{this}}
 					{{/year_finish}}
 				</select>
 				<div class="message"></div>
@@ -100,7 +100,8 @@
 </script>
 
 <script id="table-template-recommendations" type="text/x-handlebars-template">
-	<div class="delete recommendations" data-table-recommendations-id='{{i}}'><img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<div class="delete recommendations" data-table-recommendations-id='{{i}}'>
+		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table data-table-recommendations-id='{{i}}' class="recommendations">
 		<tbody>
 		<tr>
@@ -131,6 +132,97 @@
 			<td>Телефон</td>
 			<td>
 				<input type="text" name="recommend_phone[{{i}}]" value="">
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
+
+<script id="table-base-education" type="text/x-handlebars-template">
+	<div class="delete education base" data-table-base-education-id='{{i}}'>
+		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table class="base_education" data-table-base-education-id='{{i}}'>
+		<tbody>
+		<tr>
+			<td><label for="names_institutions">Название учебного заведения<span class="required">*</span></label></td>
+			<td>
+				<input type="text" id="names_institutions" name="names_institutions[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="faculties">Факультет<span class="required">*</span></label></td>
+			<td>
+				<input type="text"  id="faculties"  name="faculties[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="specialty_specialty">Cпециализация / специальность<span class="required">*</span></label></td>
+			<td>
+				<input type="text"  id="specialty_specialty"  name="specialties_specialties[{{i}}]" value=''>
+				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="year_graduation">Год окончания<span class="required">*</span></label></td>
+			<td>
+				<select name="years_graduations[{{i}}]">
+					{{#years}}
+					{{this}}
+					{{/years}}
+				</select>
+				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
+
+<script id="table_training_courses" type="text/x-handlebars-template">
+	<div class="delete training courses" data-table-training-courses-id='{{i}}'>
+		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table class="training_courses" data-table-training-courses-id='{{i}}'>
+		<thead>
+		<tr>
+			<th>Повышение квалификации, курсы</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><label for="courses_name">Название учебного заведения</label></td>
+			<td>
+				<input type="text" id="courses_name" name="courses_names[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="follow_organizations">Проводившая организация</label></td>
+			<td>
+				<input type="text"  id="follow_organizations"  name="follow_organizations[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="courses_specialty">Cпециализация / специальность</label></td>
+			<td>
+				<input type="text"  id="courses_specialty"  name="courses_specialties[{{i}}]" value=''>
+				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="course_year_graduation">Год окончания</label></td>
+			<td>
+				<select name="course_years_graduations[{{i}}]">
+					{{#years}}
+					{{this}}
+					{{/years}}
+				</select>
+				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
 				<div class="message"></div>
 			</td>
 		</tr>
