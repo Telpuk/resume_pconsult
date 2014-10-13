@@ -114,6 +114,7 @@ class SideController extends IController{
 
 			}, $getting_starteds[$organizations_key]);
 
+
 			$at_the_moments[$organizations_key] = isset($post['at_the_moments'][$key])?$post['at_the_moments'][$key]:'false';
 
 			$closing_works[$organizations_key] = $at_the_moments[$organizations_key]==='false'?$post['closing_works'][$key]:array('month' => 1, 'year' => 0);
