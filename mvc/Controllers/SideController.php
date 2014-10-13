@@ -228,8 +228,8 @@ class SideController extends IController{
 				'value'=>$years_graduations
 			),
 			'courses_names'=>array(
-				'val'=>(array)$courses_names_val,
-				'value'=>(array)$courses_names
+				'val'=>$courses_names_val,
+				'value'=>is_array($courses_names)?$courses_names: $courses_names[0]=''
 			),
 			'follow_organizations'=>array(
 				'val'=>(array)$follow_organizations_val,
@@ -246,7 +246,7 @@ class SideController extends IController{
 
 			'tests_exams_names'=>array(
 				'val'=>(array)$tests_exams_names_val,
-				'value'=>(array)$tests_exams_names
+				'value'=>is_array($tests_exams_names)?$tests_exams_names:$tests_exams_names[0]=''
 			),
 			'tests_exams_follow_organizations'=>array(
 				'val'=>(array)$tests_exams_follow_organizations_val,
@@ -265,8 +265,6 @@ class SideController extends IController{
 	}
 
 	private function _checkFormExperience($post){
-		//			echo "<pre>";
-		//			print_r($post);
 		$organizations_key=0;
 
 		foreach($post['organizations'] as $key=>$organization){
@@ -408,7 +406,7 @@ class SideController extends IController{
 
 			'recommend_names'=>array(
 				'val'=>(array)$recommend_names_val,
-				'value'=>(array)$recommend_names,
+				'value'=>is_array($recommend_names)?$recommend_names:$recommend_names[0]='',
 			),
 			'recommend_position'=>array(
 				'val'=>(array)$recommend_position_val,
