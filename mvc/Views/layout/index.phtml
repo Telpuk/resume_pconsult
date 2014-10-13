@@ -229,4 +229,53 @@
 		</tbody>
 	</table>
 </script>
+
+<script id="table_tests_exams" type="text/x-handlebars-template">
+	<div class="delete test_exam" data-table-tests-exams-id='{{i}}'>
+		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table class="tests_exams" data-table-tests-exams-id='{{i}}'>
+		<thead>
+		<tr>
+			<th>Тесты, экзамены</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><label for="tests_exams_names">Название учебного заведения</label></td>
+			<td>
+				<input type="text" id="tests_exams_names" name="tests_exams_names[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="tests_exams_follow_organizations">Проводившая организация</label></td>
+			<td>
+				<input type="text"  id="tests_exams_follow_organizations"  name="tests_exams_follow_organizations[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="tests_exams_specialty">Cпециализация / специальность</label></td>
+			<td>
+				<input type="text"  id="tests_exams_specialty"  name="tests_exams_specialty[{{i}}]" value=''>
+				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="tests_exams_years_graduations">Год сдачи</label></td>
+			<td>
+				<select name="tests_exams_years_graduations[{{i}}]">
+					{{#years}}
+					{{this}}
+					{{/years}}
+				</select>
+				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
+
 </html>

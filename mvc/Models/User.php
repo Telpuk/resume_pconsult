@@ -110,7 +110,11 @@ class User{
 													courses_names = :courses_names,
 													follow_organizations = :follow_organizations,
 													courses_specialties = :courses_specialties,
-													course_years_graduations = :course_years_graduations
+													course_years_graduations = :course_years_graduations,
+													tests_exams_names =:tests_exams_names,
+													tests_exams_follow_organizations =:tests_exams_follow_organizations,
+													tests_exams_specialty = :tests_exams_specialty,
+													tests_exams_years_graduations =:tests_exams_years_graduations
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
@@ -123,6 +127,12 @@ class User{
 				':follow_organizations'=>implode('[@!-#-!@]',$inputs['follow_organizations']['value']),
 				':courses_specialties'=>implode('[@!-#-!@]',$inputs['courses_specialties']['value']),
 				':course_years_graduations'=>implode('[@!-#-!@]',$inputs['course_years_graduations']['value']),
+
+				':tests_exams_names'=>implode('[@!-#-!@]',$inputs['tests_exams_names']['value']),
+				':tests_exams_follow_organizations'=>implode('[@!-#-!@]',$inputs['tests_exams_follow_organizations']['value']),
+				':tests_exams_specialty'=>implode('[@!-#-!@]',$inputs['tests_exams_specialty']['value']),
+				':tests_exams_years_graduations'=>implode('[@!-#-!@]',$inputs['tests_exams_years_graduations']['value']),
+
 				':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
@@ -236,7 +246,11 @@ class User{
 													courses_names,
 													follow_organizations,
 													courses_specialties,
-													course_years_graduations
+													course_years_graduations,
+													tests_exams_names,
+													tests_exams_follow_organizations,
+													tests_exams_specialty,
+													tests_exams_years_graduations
 												FROM
 													education
 												WHERE
@@ -282,6 +296,22 @@ class User{
 			'course_years_graduations'=>array(
 				'val'=>true,
 				'value'=>explode('[@!-#-!@]',$education_data['course_years_graduations'])
+			),
+			'tests_exams_names'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['tests_exams_names'])
+			),
+			'tests_exams_follow_organizations'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['tests_exams_follow_organizations'])
+			),
+			'tests_exams_specialty'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['tests_exams_specialty'])
+			),
+			'tests_exams_years_graduations'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['tests_exams_years_graduations'])
 			),
 
 		);

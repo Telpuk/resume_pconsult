@@ -600,7 +600,11 @@ input[type=email]{
     padding-left: 10px;
 }
 
-.add_position,.add_recommendations,.delete, .add_education, .add_training_courses{
+.add_position,
+.add_recommendations,
+.delete, .add_education,
+.add_training_courses,
+.add_tests_exams{
     width: 100%;
     color: #6dc626;
     text-align: center;
@@ -616,7 +620,10 @@ input[type=email]{
 }
 
 
-.add_position img, .add_education img, .add_training_courses img{
+.add_position img,
+.add_education img,
+.add_training_courses img,
+.add_tests_exams img{
     padding-right: 10px;
     padding-left: 10px;
 }
@@ -627,7 +634,12 @@ input[type=email]{
 }
 
 
-.add_position:hover, .delete:hover,.add_recommendations:hover, .add_education:hover, .add_training_courses:hover {
+.add_position:hover,
+.delete:hover,
+.add_recommendations:hover,
+.add_education:hover,
+.add_training_courses:hover,
+.add_tests_exams:hover{
     cursor: pointer;
 }
 
@@ -674,19 +686,23 @@ table.recommendations tr:first-child{
 .personal.education .level{
     width: 100%;
 }
-.personal.education table th, .training_courses table th{
+.personal.education table th, .training_courses table th, .tests_exams table th{
     text-align: left;
 }
-.base_education td, .training_courses td{
+.base_education td, .training_courses td, .tests_exams td{
     font-size: .9em;
 }
-.base_education p, .training_courses p{
+.base_education p, .training_courses p, .tests_exams p{
     margin-top: 5px;
     font-size: .9em;
     color: rgb(175, 175, 175);
 }
 
 table.training_courses th{
+    padding-bottom: 50px;
+}
+
+table.tests_exams th{
     padding-bottom: 50px;
 }
 

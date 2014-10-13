@@ -128,6 +128,61 @@
 						</table>
 					<?php endfor; ?>
 					<div class="add_training_courses"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно повышение квалификации или курсы</div>
+
+					<?php for( $i=0; $i <= $this->data['data']['table_count_tests_exams']-1; ++$i): ?>
+						<?php if($i>=1): ?>
+							<div class="delete test_exam" data-table-tests-exams-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
+						<?php endif; ?>
+						<table class="tests_exams" data-table-tests-exams-id='<?=$i?>'>
+							<thead>
+							<tr>
+								<th>Тесты, экзамены</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td><label for="tests_exams_names">Название</label></td>
+								<td>
+									<input type="text" id="tests_exams_names" name="tests_exams_names[<?=$i?>]"
+									       value='<?=$this->data['data']['inputs']['tests_exams_names']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['tests_exams_names']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="tests_exams_follow_organizations">Проводившая организация</label></td>
+								<td>
+									<input type="text"  id="tests_exams_follow_organizations"
+									       name="tests_exams_follow_organizations[<?=$i?>]" value='<?=$this->data['data']['inputs']['tests_exams_follow_organizations']['value'][$i]?>'>
+									<div class="message"><?=$this->data['data']['inputs']['tests_exams_follow_organizations']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="tests_exams_specialty">Cпециализация /
+										специальность</label></td>
+								<td>
+									<input type="text"  id="tests_exams_specialty"  name="tests_exams_specialty[<?=$i?>]" value='<?=$this->data['data']['inputs']['tests_exams_specialty']['value'][$i]?>'>
+									<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+									<div class="message"><?=$this->data['data']['inputs']['tests_exams_specialty']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="tests_exams_years_graduations">Год сдачи</label></td>
+								<td>
+									<select name="tests_exams_years_graduations[<?=$i?>]">
+										<option value="0"></option>
+										<?php for($year = date("Y")+10 ; $year >= 1950; --$year): ?>
+											<option value="<?=$year?>" <?php if($this->data['data']['inputs']['tests_exams_years_graduations']['value'][$i]==$year)echo'selected' ?>><?=$year?></option>
+										<?php endfor; ?>
+									</select>
+									<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+									<div class="message"><?=$this->data['data']['inputs']['tests_exams_years_graduations']['val'][$i]['message']?></div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					<?php endfor; ?>
+					<div class="add_tests_exams"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
+						один тест или экзамен</div>
 					<table>
 						<tfoot>
 						<tr>

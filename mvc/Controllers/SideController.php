@@ -46,6 +46,7 @@ class SideController extends IController{
 							'data' => array (
 								'table_base_education_count' => count($checkForm['names_institutions']['value']),
 								'table_training_courses_count' =>count($checkForm['courses_names']['value']),
+								'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
 								'inputs'      => $checkForm),
 							'js'   => $this->_jsEducation()
 						));
@@ -61,6 +62,7 @@ class SideController extends IController{
 				'data'=>array(
 					'table_base_education_count'=>count($checkForm['names_institutions']['value']),
 					'table_training_courses_count' =>count($checkForm['courses_names']['value']),
+					'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
 					'inputs'=>$checkForm),
 				'js'=>$this->_jsEducation()
 			));
@@ -140,16 +142,14 @@ class SideController extends IController{
 
 		foreach($post['courses_names'] as $key=>$course_name) {
 
-			if((!empty($course_name)||!empty($post['follow_organizations'][$key])||
-				!empty($post['courses_specialties'][$key])||
-				!empty($post['course_years_graduations'][$key]))){
+			if ((!empty($course_name) || !empty($post['follow_organizations'][$key]) || !empty($post['courses_specialties'][$key]) || !empty($post['course_years_graduations'][$key]))) {
 
 				$courses_names[$education_course_key] = trim(strip_tags($course_name));
 				$follow_organizations[$education_course_key] = trim(strip_tags($post['follow_organizations'][$key]));
 				$courses_specialties[$education_course_key] = trim(strip_tags($post['courses_specialties'][$key]));
 				$course_years_graduations[$education_course_key] = trim(strip_tags($post['course_years_graduations'][$key]));
 
-				$courses_names_val[$education_course_key] = call_user_func(function($var) {
+				$courses_names_val[$education_course_key] = call_user_func(function ($var) {
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 				}, $courses_names[$education_course_key]);
 
@@ -167,6 +167,41 @@ class SideController extends IController{
 
 
 				++$education_course_key;
+
+			}
+		}
+
+		$test_exam_education_key = 0;
+
+		foreach($post['tests_exams_names'] as $key=>$test_exam_course_name) {
+
+			if((!empty($test_exam_course_name)||!empty($post['tests_exams_follow_organizations'][$key])||
+				!empty($post['tests_exams_courses_specialty'][$key])||
+				!empty($post['tests_exams_course_years_graduations'][$key]))){
+
+				$tests_exams_names[$test_exam_education_key] = trim(strip_tags($test_exam_course_name));
+				$tests_exams_follow_organizations[$test_exam_education_key] = trim(strip_tags($post['tests_exams_follow_organizations'][$key]));
+				$tests_exams_specialty[$test_exam_education_key] = trim(strip_tags($post['tests_exams_specialty'][$key]));
+				$tests_exams_years_graduations[$test_exam_education_key] = trim(strip_tags($post['tests_exams_years_graduations'][$key]));
+
+				$tests_exams_names_val[$test_exam_education_key] = call_user_func(function($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $tests_exams_names[$test_exam_education_key]);
+
+				$tests_exams_follow_organizations_val[$test_exam_education_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $tests_exams_follow_organizations[$test_exam_education_key]);
+
+				$tests_exams_specialty_val[$test_exam_education_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $tests_exams_specialty[$test_exam_education_key]);
+
+				$tests_exams_years_graduations_val[$test_exam_education_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $tests_exams_years_graduations[$test_exam_education_key]);
+
+
+				++$test_exam_education_key;
 
 			}
 		}
@@ -207,6 +242,23 @@ class SideController extends IController{
 			'course_years_graduations'=>array(
 				'val'=>(array)$course_years_graduations_val,
 				'value'=>(array)$course_years_graduations
+			),
+
+			'tests_exams_names'=>array(
+				'val'=>(array)$tests_exams_names_val,
+				'value'=>(array)$tests_exams_names
+			),
+			'tests_exams_follow_organizations'=>array(
+				'val'=>(array)$tests_exams_follow_organizations_val,
+				'value'=>(array)$tests_exams_follow_organizations
+			),
+			'tests_exams_specialty'=>array(
+				'val'=>(array)$tests_exams_specialty_val,
+				'value'=>(array)$tests_exams_specialty
+			),
+			'tests_exams_years_graduations'=>array(
+				'val'=>(array)$tests_exams_years_graduations_val,
+				'value'=>(array)$tests_exams_years_graduations
 			)
 		);
 
