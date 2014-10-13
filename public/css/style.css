@@ -621,7 +621,7 @@ input[type=email]{
 }
 
 
-.add_position, .delete:hover,.add_recommendations:hover {
+.add_position:hover, .delete:hover,.add_recommendations:hover {
 	cursor: pointer;
 }
 

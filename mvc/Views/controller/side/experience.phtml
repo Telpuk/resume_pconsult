@@ -11,9 +11,10 @@
 <form action='<?=BASE_URL.'/side/experience'?>' id="experience" method="post" novalidate="novalidate">
 <?php for( $i=0; $i <= $this->data['data']['table_count_work']-1; ++$i): ?>
 	<?php if($i>=1): ?>
-		<div class="delete" data-table-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
+		<div class="delete experience" data-table-experience-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete
+		.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<table data-table-id='<?=$i?>'>
+	<table data-table-experience-id='<?=$i?>'>
 		<tbody>
 		<tr>
 			<td><label for="organization">Организация<span class="required">*</span></label></td>
@@ -123,10 +124,7 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_position">
-	<img src='<?=BASE_URL."/public/img/add.png"?>' alt="">
-	Добавить место работы
-</div>
+<div class="add_position"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить место работы</div>
 <hr>
 <table class="key_skills">
 	<tbody>
@@ -156,9 +154,10 @@
 <hr>
 <?php for( $i=0; $i <= $this->data['data']['table_count_recommendations']-1; ++$i): ?>
 	<?php if($i>=1): ?>
-		<div class="delete" data-table-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
+		<div class="delete recommendations" data-table-recommendations-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete
+		.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<table class="recommendations">
+	<table data-table-recommendations-id="<?=$i?>" class="recommendations">
 		<tbody>
 		<tr>
 			<td colspan="2">Рекомендации</td>
@@ -166,8 +165,8 @@
 		<tr>
 			<td>Имя</td>
 			<td>
-				<input type="text" name="recommend_name[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_name']['value'][$i]?>">
-				<div class="message"><?=$this->data['data']['inputs']['recommend_name']['val'][$i]['message']?></div>
+				<input type="text" name="recommend_names[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_names']['value'][$i]?>">
+				<div class="message"><?=$this->data['data']['inputs']['recommend_names']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
@@ -194,10 +193,7 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_recommendations">
-	<img src='<?=BASE_URL."/public/img/add.png"?>' alt="">
-	Добавить рекомендацию
-</div>
+<div class="add_recommendations"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить рекомендацию</div>
 <hr>
 <table>
 	<tfoot>

@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
 	<meta charset="utf-8">
-	<title>Файловый менеджер</title>
+	<title>proconsult</title>
 	<link rel="stylesheet" href="<?=BASE_URL?>/public/css/style.css">
 	<!--скрипт для старых браузеров IE-->
 	<!--[if lt IE 9]>
@@ -15,9 +15,9 @@
 </div>
 </body>
 <?=$this->_javascript?>
-<script id="table-template" type="text/x-handlebars-template">
-	<div class="delete" data-table-id="{{i}}"><img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
-	<table data-table-id="{{i}}">
+<script id="table-template-experience" type="text/x-handlebars-template">
+	<div class="delete experience" data-table-experience-id="{{i}}"><img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table data-table-experience-id="{{i}}">
 		<tbody>
 		<tr>
 			<td><label for="organization">Организация<span class="required">*</span></label></td>
@@ -99,9 +99,9 @@
 	</table>
 </script>
 
-<script id="table-template" type="text/x-handlebars-template">
-	<div class="delete" data-table-id='{{i}}'>Удалить</div>
-	<table class="recommendations">
+<script id="table-template-recommendations" type="text/x-handlebars-template">
+	<div class="delete recommendations" data-table-recommendations-id='{{i}}'><img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table data-table-recommendations-id='{{i}}' class="recommendations">
 		<tbody>
 		<tr>
 			<td colspan="2">Рекомендации</td>
@@ -109,7 +109,7 @@
 		<tr>
 			<td>Имя</td>
 			<td>
-				<input type="text" name="recommend_name[{{i}}]" value="">
+				<input type="text" name="recommend_names[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>

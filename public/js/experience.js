@@ -1,16 +1,14 @@
 (function($, Handlebars ,window){
     function Personal(){
         this.$form = $('.personal.experience .form');
-        this.count = 0;
+        this.count_table_experience = $('*[data-table-experience-id]:last').data()['tableExperienceId'];
+        this.count_table_recommendations = $('*[data-table-recommendations-id]:last').data()['tableRecommendationsId'];
     }
 
-    Personal.prototype.getCountTable = function(){
-        return  --$('table').length;
-    };
 
-    Personal.prototype.tableTamplate = function(){
+    Personal.prototype.tableTemplatePosition = function(){
 
-        var source   = $("#table-template").html();
+        var source = $("#table-template-experience").html();
 
         Handlebars.registerHelper('month', function(n) {
             var out='';
@@ -42,7 +40,6 @@
             for(var i=n; i < date.getFullYear(); ++i) {
                 out += "<option value='"+i+"'>"+i+"</option>";
             }
-
             return out;
         });
 
@@ -57,26 +54,47 @@
             return out;
         });
         var template = Handlebars.compile(source);
+        return template({'i':++this.count_table_experience});
+    };
 
-        return template({'i':this.count++});
-    }
+    Personal.prototype.tableTemplateRecommendations = function(){
+        var source = $("#table-template-recommendations").html();
+        var template = Handlebars.compile(source);
+        return template({'i':++this.count_table_recommendations});
+
+    };
 
     Personal.prototype.addEventListenerFORM = function() {
         this.$form.on('click', {self:this}, function(event){
-            if(event.target.className === 'add_position'){
-                var html = event.data.self.tableTamplate();
-                $(event.target).before(html);
-            }else if(event.target.className === 'delete'){
-                $('*[data-table-id="'+$(event.target).
-                    data().tableId+'"]').
-                    remove()
-
+            switch (event.target.className){
+                case 'add_position':{
+                    var html = event.data.self.tableTemplatePosition();
+                    $(event.target).before(html);
+                    break;
+                }
+                case 'add_recommendations':{
+                    var html = event.data.self.tableTemplateRecommendations();
+                    $(event.target).before(html);
+                    break;
+                }
+                case 'delete experience':{
+                    $('*[data-table-experience-id="'+$(event.target).
+                        data()['tableExperienceId']+'"]').
+                        remove();
+                    break;
+                }
+                case 'delete recommendations':{
+                    $('*[data-table-recommendations-id="'+$(event.target).
+                        data()['tableRecommendationsId']+'"]').
+                        remove();
+                    break;
+                }
             }
+
         });
     };
 
     Personal.prototype.init = function(){
-        this.count = this.getCountTable();
         this.addEventListenerFORM();
     };
 

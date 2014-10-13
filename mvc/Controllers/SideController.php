@@ -45,7 +45,7 @@ class SideController extends IController{
 							'view' => 'side/experience',
 							'data' => array (
 								'table_count_work' => count($checkForm['organizations']['value']),
-								'table_count_recommendations' =>count($checkForm['recommend_name']['value']),
+								'table_count_recommendations' =>count($checkForm['recommend_names']['value']),
 								'inputs'      => $checkForm),
 							'js'   => $this->_jsExperience ()
 						));
@@ -60,7 +60,7 @@ class SideController extends IController{
 				'view' => 'side/experience',
 				'data'=>array(
 					'table_count_work'=>count($checkForm['organizations']['value']),
-					'table_count_recommendations' =>count($checkForm['recommend_name']['value']),
+					'table_count_recommendations' =>count($checkForm['recommend_names']['value']),
 					'inputs'=>$checkForm),
 				'js'=>$this->_jsExperience()
 			));
@@ -70,55 +70,56 @@ class SideController extends IController{
 	private function _checkFormExperience($post){
 		//			echo "<pre>";
 		//			print_r($post);
+		$organizations_key=0;
 
-		for($i=0, $len=count($post['organizations']); $i< $len; ++$i) {
+		foreach($post['organizations'] as $key=>$organization){
 
-			$organizations[$i] = trim(strip_tags($post['organizations'][$i]));
+			$organizations[$organizations_key] = trim(strip_tags($organization));
 
-			$organizations_val[$i] = call_user_func(function($organization){
+			$organizations_val[$organizations_key] = call_user_func(function($organization){
 				return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-			}, $organizations[$i]);
+			}, $organizations[$organizations_key]);
 
 
-			$regions[$i] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['regions'][$i])));
+			$regions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['regions'][$key])));
 
-			$regions_val[$i]=call_user_func(function($regions){
+			$regions_val[$organizations_key]=call_user_func(function($regions){
 				return !empty($regions)?true: array('message'=>'Необходимо заполнить');
-			}, $regions[$i]);
+			}, $regions[$organizations_key]);
 
-			$sites[$i] = trim(strip_tags($post['sites'][$i]));
+			$sites[$organizations_key] = trim(strip_tags($post['sites'][$key]));
 
-			$field_activities[$i] = trim(strip_tags($post['field_activities'][$i]));
+			$field_activities[$organizations_key] = trim(strip_tags($post['field_activities'][$key]));
 
-			$positions[$i] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]','', $post['positions'][$i])));
+			$positions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]','', $post['positions'][$key])));
 
-			$functions[$i] = trim(strip_tags($post['functions'][$i]));
+			$functions[$organizations_key] = trim(strip_tags($post['functions'][$key]));
 
-			$functions_val[$i]=call_user_func(function($position){
+			$functions_val[$organizations_key]=call_user_func(function($position){
 				return !empty($position)?true: array('message'=>'Необходимо заполнить');
-			}, $functions[$i]);
+			}, $functions[$organizations_key]);
 
-			$positions_val[$i] = call_user_func(function($position){
+			$positions_val[$organizations_key] = call_user_func(function($position){
 				return !empty($position)?true: array('message'=>'Необходимо заполнить');
 			}, $positions);
 
 
-			$getting_starteds[$i]=$post['getting_starteds'][$i];
-			$getting_starteds_val[$i] = call_user_func(function($getting_started){
+			$getting_starteds[$organizations_key]=$post['getting_starteds'][$key];
+			$getting_starteds_val[$organizations_key] = call_user_func(function($getting_started){
 				if($getting_started['year'] == 0){
 					return array('message'=>'Необходимо заполнить');
 				}elseif($getting_started['year'] > date('Y')){
 					return array('message'=>'Слишком поздно');
 				}
 
-			}, $getting_starteds[$i]);
+			}, $getting_starteds[$organizations_key]);
 
-			$at_the_moments[$i] = isset($post['at_the_moments'][$i])?$post['at_the_moments'][$i]:'false';
+			$at_the_moments[$organizations_key] = isset($post['at_the_moments'][$key])?$post['at_the_moments'][$key]:'false';
 
-			$closing_works[$i] = $at_the_moments[$i]==='false'?$post['closing_works'][$i]:array('month' => 1, 'year' => 0);
+			$closing_works[$organizations_key] = $at_the_moments[$organizations_key]==='false'?$post['closing_works'][$key]:array('month' => 1, 'year' => 0);
 
 
-			$closing_works_val[$i] = call_user_func(function($closing_work, $getting_started, $at_the_moments){
+			$closing_works_val[$organizations_key] = call_user_func(function($closing_work, $getting_started, $at_the_moments){
 				if($at_the_moments === 'false' && $closing_work['year']==0){
 					return array('message'=>'Необходимо заполнить');
 				}elseif(($closing_work['year'] < $getting_started['year'] && $at_the_moments === 'false')||
@@ -126,42 +127,41 @@ class SideController extends IController{
 					return array('message'=>'Дата окончания ранее даты начала');
 				}
 
-			}, $closing_works[$i], $getting_starteds[$i], $at_the_moments[$i]);
-
-
+			}, $closing_works[$organizations_key], $getting_starteds[$organizations_key], $at_the_moments[$organizations_key]);
+			++$organizations_key;
 		}
 
 
 
+		$recommend_name_key = 0;
+		foreach($post['recommend_names'] as $key=>$recommend_name){
+			$recommend_names[$recommend_name_key] = trim(strip_tags($recommend_name));
+			$recommend_position[$recommend_name_key] = trim(strip_tags($post['recommend_position'][$key]));
+			$recommend_organization[$recommend_name_key] = trim(strip_tags($post['recommend_organization'][$key]));
+			$recommend_phone[$recommend_name_key] = trim(strip_tags($post['recommend_phone'][$key]));
 
-		for($i=0, $len=count($post['recommend_name']); $i< $len; ++$i) {
-
-			$recommend_name[$i] = trim(strip_tags($post['recommend_name'][$i]));
-			$recommend_position[$i] = trim(strip_tags($post['recommend_position'][$i]));
-			$recommend_organization[$i] = trim(strip_tags($post['recommend_organization'][$i]));
-			$recommend_phone[$i] = trim(strip_tags($post['recommend_phone'][$i]));
-
-			if(empty($recommend_name[$i])&&empty($recommend_position[$i])&&
-				empty($recommend_organization[$i])&&empty($recommend_phone[$i])){
-				$recommend_name_val[$i]=true;
-				$recommend_position_val[$i]=true;
-				$recommend_organization_val[$i]=true;
-				$recommend_phone_val[$i]=true;
+			if(empty($recommend_names[$recommend_name_key])&&empty($recommend_position[$recommend_name_key])&&
+				empty($recommend_organization[$recommend_name_key])&&empty($recommend_phone[$recommend_name_key])){
+				$recommend_names_val[$recommend_name_key]=true;
+				$recommend_position_val[$recommend_name_key]=true;
+				$recommend_organization_val[$recommend_name_key]=true;
+				$recommend_phone_val[$recommend_name_key]=true;
 			}else{
-				$recommend_name_val[$i] = call_user_func(function($organization){
-					return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_name[$i]);
-				$recommend_position_val[$i] = call_user_func(function($organization){
-					return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_position[$i]);
-				$recommend_organization_val[$i] = call_user_func(function($organization){
-					return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_organization[$i]);
-				$recommend_phone_val[$i] = call_user_func(function($organization){
-					return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_phone[$i]);
+				$recommend_names_val[$recommend_name_key] = call_user_func(function($recommend_name){
+					return !empty($recommend_name)?true: array('message'=>'Необходимо заполнить');
+				},$recommend_names[$recommend_name_key]);
+				$recommend_position_val[$recommend_name_key] = call_user_func(function($recommend_position){
+					return !empty($recommend_position)?true: array('message'=>'Необходимо заполнить');
+				},$recommend_position[$recommend_name_key]);
+				$recommend_organization_val[$recommend_name_key] = call_user_func(function($recommend_organization){
+					return !empty($recommend_organization)?true: array('message'=>'Необходимо заполнить');
+				},$recommend_organization[$recommend_name_key]);
+				$recommend_phone_val[$recommend_name_key] = call_user_func(function($recommend_phone){
+					return !empty($recommend_phone)?true: array('message'=>'Необходимо заполнить');
+				},$recommend_phone[$recommend_name_key]);
 
 			}
+			++$recommend_name_key;
 		}
 
 		$key_skills = $post['key_skills'];
@@ -207,9 +207,9 @@ class SideController extends IController{
 			),
 			'about_self'=>array('value'=>$about_self),
 
-			'recommend_name'=>array(
-				'val'=>$recommend_name_val,
-				'value'=>$recommend_name,
+			'recommend_names'=>array(
+				'val'=>$recommend_names_val,
+				'value'=>$recommend_names,
 			),
 			'recommend_position'=>array(
 				'val'=>$recommend_position_val,

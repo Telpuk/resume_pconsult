@@ -326,7 +326,7 @@
 													functions = :functions,
 													key_skills = :key_skills,
 													about_self = :about_self,
-													recommend_name = :recommend_name,
+													recommend_names = :recommend_names,
 													recommend_position = :recommend_position,
 													recommend_organization = :recommend_organization,
 													recommend_phone = :recommend_phone
@@ -344,7 +344,7 @@
 						':functions'=>implode('[@!-#-!@]',$inputs['functions']['value']),
 						':key_skills'=>$inputs['key_skills']['value'],
 						':about_self'=>$inputs['about_self']['value'],
-						':recommend_name'=>implode('[@!-#-!@]',$inputs['recommend_name']['value']),
+						':recommend_names'=>implode('[@!-#-!@]',$inputs['recommend_names']['value']),
 						':recommend_position'=>implode('[@!-#-!@]',$inputs['recommend_position']['value']),
 						':recommend_organization'=>implode('[@!-#-!@]',$inputs['recommend_organization']['value']),
 						':recommend_phone'=>implode('[@!-#-!@]',$inputs['recommend_phone']['value']),
@@ -369,7 +369,7 @@
 													functions,
 													key_skills,
 													about_self,
-													recommend_name,
+													recommend_names,
 													recommend_position,
 													recommend_organization,
 													recommend_phone
@@ -442,9 +442,9 @@
 					'val'=>true,
 					'value'=>$experience_data['about_self']
 				),
-				'recommend_name'=>array(
+				'recommend_names'=>array(
 					'val'=>true,
-					'value'=>explode('[@!-#-!@]',$experience_data['recommend_name'])
+					'value'=>explode('[@!-#-!@]',$experience_data['recommend_names'])
 				),
 				'recommend_position'=>array(
 					'val'=>true,
