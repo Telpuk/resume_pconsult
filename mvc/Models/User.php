@@ -31,6 +31,51 @@ class User{
 		$this->_id = $id;
 	}
 
+	public function selectPersonalData($id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("SELECT
+													CONCAT_WS(' ',surname, first_name, patronymic)AS'name',
+													  birth,
+													  sex,
+													  city,
+													  move,
+													  trip,
+													  mobile_phone,
+													  home_phone,
+													  work_phone,
+													  email,
+													  preferred_communication,
+
+													  icq,
+													  skype,
+													  free_lance,
+													  my_circle,
+													  linkedln,
+													  facebook,
+													  live_journal,
+													  other_site,
+
+													  desired_position,
+													  professional_area,
+
+													  salary,
+													  currency,
+
+													  REPLACE(schedule, '[@!-#-!@]', ', ') AS 'schedule',
+													  REPLACE(employment, '[@!-#-!@]', ', ') AS 'employment'
+												FROM
+													profile
+												WHERE
+													id = :id_user");
+			$stmt->execute(array(':id_user'=>$id_user));
+			$persona_data = $stmt->fetch(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+
+
+	}
+
 	public function selectPosition($id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("SELECT

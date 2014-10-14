@@ -81,12 +81,12 @@ body {
     font-size: .5em;
 }
 
-.registration h1{
-    font-weight: normal;
-    text-align: center;
-    font-size: 0.5em;
-    margin-bottom: 20px;
-}
+/*.registration h1{*/
+    /*font-weight: normal;*/
+    /*text-align: center;*/
+    /*font-size: 0.5em;*/
+    /*margin-bottom: 20px;*/
+/*}*/
 .registration input[type=submit]{
     cursor: pointer;
     font-weight: bold;
@@ -168,32 +168,34 @@ a.addFoto{
     float: left;
 }
 
-.addFio a, aside.side a{
-    display: block;
-    height: 90px;
-    font-weight: bold;
-    font-size: .4em;
-    text-decoration: none;
-    border: 1px #bbbbbb dashed;
-    padding-top: 20px;
-    padding-left: 20px;
-    border-radius: 15px;
-    -moz-border-radius: 15px;
-}
+/*.addFio ., aside.side a{*/
+    /*display: block;*/
+    /*height: 90px;*/
+    /*font-weight: bold;*/
+    /*font-size: .4em;*/
+    /*text-decoration: none;*/
+    /*border: 1px #bbbbbb dashed;*/
+    /*padding-top: 20px;*/
+    /*padding-left: 20px;*/
+    /*border-radius: 15px;*/
+    /*-moz-border-radius: 15px;*/
+/*}*/
 
-aside.side a:first-child{
-    margin-top: 60px;
-}
+/*aside.side a:first-child{*/
+    /*margin-top: 60px;*/
+/*}*/
 
-aside.side a{
-    margin-top: 20px;
-}
+/*aside.side a{*/
+    /*margin-top: 20px;*/
+/*}*/
 
-a.addFoto:hover, .addFio a:hover, aside.side a:hover{
-    cursor: pointer;
-    background-color: rgba(186, 186, 186, 0.3);
-    border: 1px #bbbbbb dashed;
-}
+/*a.addFoto:hover, */
+/*.addFio a:hover,*/
+/*aside.side a:hover{*/
+    /*cursor: pointer;*/
+    /*background-color: rgba(186, 186, 186, 0.3);*/
+    /*border: 1px #bbbbbb dashed;*/
+/*}*/
 
 a.addFoto span:first-child{
     font-size: 1.4em;
@@ -206,20 +208,20 @@ a.addFoto span:last-child{
 }
 
 
-.addFio a:last-child{
-    margin-top: 20px;
-}
+/*.addFio a:last-child{*/
+    /*margin-top: 20px;*/
+/*}*/
 
-.addFio a span:first-child, aside.side a span:first-child{
-    font-size: 1.1em;
-    color: #bbbbbb;
-}
+/*.addFio a span:first-child, aside.side a span:first-child{*/
+    /*font-size: 1.1em;*/
+    /*color: #bbbbbb;*/
+/*}*/
 
-.addFio a span:last-child, aside.side a span:last-child{
-    padding-left: 40px;
-    color: deepskyblue;
-    font-size: 0.7em;
-}
+/*.addFio a span:last-child, aside.side a span:last-child{*/
+    /*padding-left: 40px;*/
+    /*color: deepskyblue;*/
+    /*font-size: 0.7em;*/
+/*}*/
 
 /*download photo*/
 
@@ -246,7 +248,8 @@ a.delete_photo{
     text-transform: uppercase;
 }
 
-.photo .no-save, .personal .no-save{
+.photo .no-save,
+.personal .no-save{
     display: block;
     float: left;
     height: 40px;
@@ -258,7 +261,8 @@ a.delete_photo{
     color: #bbbbbb;
     background-color: rgba(186, 186, 186, 0.3);
 }
-.photo section, .personal section{
+.photo section,
+.personal section{
     padding-left: 100px;
 }
 
@@ -272,13 +276,15 @@ a.delete_photo{
     border-right-color: rgba(186, 186, 186, 0.3);
     border-left: 0;
 }
-.photo .no-save:hover, .personal .no-save:hover{
+.photo .no-save:hover,
+.personal .no-save:hover{
     cursor: pointer;
     background-color: rgba(186, 186, 186, 0.3);
     color: red;
 }
 
-.photo section h1, .personal  section h1{
+.photo section h1,
+.personal  section h1{
     margin-top: 40px;
     font-size: 0.5em;
 }
@@ -323,7 +329,8 @@ a.delete_photo{
     float: left;
     margin-left: -20px;
 }
-#submit_download, .save input[type=submit]{
+#submit_download,
+.save input[type=submit]{
     cursor: pointer;
     font-size: 0.25em;
     width: 150px;
@@ -734,6 +741,79 @@ table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
     padding-right: 20px;
     width: 210px;
 }
+
+/*index.php*/
+
+.foto_fio figure{
+    float: left;
+    width: 18%;
+}
+
+.foto_fio figure img{
+    width: 150px;
+    height: 150px;
+}
+
+.addFio header h1,
+.contacts_personal h1 {
+    margin-bottom: 5px;
+}
+.addFio header h1 img,
+.contacts_per h1 img,
+.salary_and_position span img{
+    margin-right: 10px;
+}
+
+.addFio header h1 a,
+.contacts_per h1 a,
+.salary_and_position span a{
+    font-size: .4em;
+    font-weight: normal;
+    text-decoration: none;
+    color: #c67b37;
+    border: none;
+    margin-right: 10px;
+}
+.addFio header h2{
+    font-size: .4em;
+}
+.personals{
+    margin-bottom: -30px;
+}
+
+.contacts_per{
+    margin-top: -45px;
+}
+.personals_co{
+    margin-top: -45px;
+}
+.personals p, .personals_co p{
+    margin-bottom: 5px;
+    font-size: .15em;
+}
+.salary_and_position{
+    width: 100%;
+}
+.salary_and_position span a{
+    margin-left: 10px;
+}
+
+.salary_and_position span{
+    display: block;
+    width: 100%;
+    font-size: .4em;
+    color: #bababa;
+    border-bottom: 1px #bababa dashed;
+    font-weight: normal;
+}
+.salary_and_position section{
+    padding-top: 10px;
+    margin-left: 3%;
+    font-size: .3em;
+}
+
+
+
 
 
 

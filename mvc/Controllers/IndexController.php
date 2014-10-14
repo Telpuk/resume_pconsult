@@ -1,26 +1,29 @@
 <?php
 	class IndexController extends IController{
 		private $_view;
-		private $_dbuser;
-		private $_iduser;
+		private $_db_user;
+		private $_id_user;
 
 		public function __construct(){
 			parent::__construct();
 			$this->_view = new View();
+			$this->_db_user = new User();
 
 //			$this->sessionClear();
 
-			$this->_iduser = $this->getSessionUserID('user');
+			$this->_id_user = $this->getSessionUserID('user');
 
-			if(!$this->_iduser){
-				$this->_dbuser = new User();
-				$this->_dbuser->setIdUser();
-				$this->_iduser = $this->_dbuser->getIdUser();
-				$this->setSessionUsers(array('user' => $this->_iduser));
+			if(!$this->_id_user){
+				$this->_db_user->setIdUser();
+				$this->_id_user = $this->_db_user->getIdUser();
+				$this->setSessionUsers(array('user' => $this->_id_user));
 			}
 		}
 
 		public  function indexAction(){
+
+			$this->_db_user->selectPersonalData($this->_id_user);
+
 
 			return $this->_view->render([
 				'view'=>'index/index',

@@ -2,20 +2,69 @@
 	<article>
 		<h1>Создать резюме за несколько минут</h1>
 		<section class="foto_fio">
-			<a class="addFoto" href='<?=BASE_URL.'/profile/photo'?>'><span>Фото</span><br><span>Добавить...</span></a>
+			<!--			<a class="addFoto" href='--><?//=BASE_URL.'/profile/photo'?><!--'><span>Фото</span><br><span>Добавить...</span></a>-->
+			<figure>
+				<p><img src="<?=BASE_URL.'/files/photo/no-photo.png'?>" alt="" ></p>
+			</figure>
 			<div class="addFio">
-				<a href='<?=BASE_URL.'/profile/personal'?>'><span>Имя, возвраст, город</span><span>Добавить...</span></a>
-				<a href='<?=BASE_URL.'/profile/contacts'?>'><span>Контакты</span><span>Добавить...</span></a>
+				<div class="personal_data">
+					<header>
+						<h1><a href='<?=BASE_URL.'/profile/personal'?>'><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать персональную информацию</a></h1>
+						<h2>Ваше имя</h2>
+					</header>
+					<section class="personals">
+						<p>22 года (18 декабря 1991)Мужской полМинск, не готов к переездуГотов к командировкам</p>
+					</section>
+				</div>
+				<hr>
+				<div class="contacts_per">
+					<h1><a href='<?=BASE_URL.'/profile/contacts'?>'><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать контакты</a></h1>
+					<section class="personals_co">
+						<p>sdgfdgdfgdfgfd</p>
+						<p>sdgfdgdfgdfgfd</p>
+						<p>sdgfdgdfgdfgfd</p>
+						<p>sdgfdgdfgdfgfd</p>
+						<p>sdgfdgdfgdfgfd</p>
+						<p>sdgfdgdfgdfgfd</p>
+					</section>
+				</div>
+				<!--				<a class='w' href='--><?//=BASE_URL.'/profile/personal'?><!--'><span>Имя, возвраст,
+				город</span><span>Добавить...</span></a>-->
+<!--				<a href='--><?//=BASE_URL.'/profile/contacts'?><!--'><span>Контакты</span><span>Добавить...</span></a>-->
 			</div>
 			<div class="clear"></div>
+			<div class="salary_and_position">
+				<span>Желаемая должность и зарплата<a href='<?=BASE_URL.'/profile/contacts'?>'><img src="<?=BASE_URL
+						.'/public/img/edit.png'?>">редактировать контакты</a></span>
+				<section>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+				</section>
+			</div>
+			<div class="salary_and_position">
+				<span>Желаемая должность и зарплата<a href='<?=BASE_URL.'/profile/contacts'?>'><img src="<?=BASE_URL
+						.'/public/img/edit.png'?>">редактировать контакты</a></span>
+				<section>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+					<p>sdgfdgdfgdfgfd</p>
+				</section>
+			</div>
 			<aside class="side">
 				<a href='<?=BASE_URL.'/side/position'?>'><span>Желаемая должность и зарплата</span><span>Добавить...</span></a>
 				<a href='<?=BASE_URL.'/side/education'?>'><span>Образование</span><span>Добавить...</span></a>
 				<a href='<?=BASE_URL.'/side/experience'?>'><span>Опыт работы</span><span>Добавить...</span></a>
 			</aside>
-<!--			<aside class="end_resume">-->
-<!--				<a href="" >Закончить заполение анкеты</a>-->
-<!--			</aside>-->
+			<!--			<aside class="end_resume">-->
+			<!--				<a href="" >Закончить заполение анкеты</a>-->
+			<!--			</aside>-->
 		</section>
 	</article>
 </main>
