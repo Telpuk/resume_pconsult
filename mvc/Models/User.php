@@ -107,14 +107,21 @@ class User{
 													faculties = :faculties,
 													specialties_specialties = :specialties_specialties,
 													years_graduations = :years_graduations,
+
 													courses_names = :courses_names,
 													follow_organizations = :follow_organizations,
 													courses_specialties = :courses_specialties,
 													course_years_graduations = :course_years_graduations,
+
 													tests_exams_names =:tests_exams_names,
 													tests_exams_follow_organizations =:tests_exams_follow_organizations,
 													tests_exams_specialty = :tests_exams_specialty,
-													tests_exams_years_graduations =:tests_exams_years_graduations
+													tests_exams_years_graduations =:tests_exams_years_graduations,
+
+													electronic_certificates_names =:electronic_certificates_names,
+													electronic_certificates_years_graduations = :electronic_certificates_years_graduations,
+													electronic_certificates_links =:electronic_certificates_links
+
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
@@ -123,6 +130,7 @@ class User{
 				':faculties'=>implode('[@!-#-!@]',$inputs['faculties']['value']),
 				':specialties_specialties'=>implode('[@!-#-!@]',$inputs['specialties_specialties']['value']),
 				':years_graduations'=>implode('[@!-#-!@]',$inputs['years_graduations']['value']),
+
 				':courses_names'=>implode('[@!-#-!@]',$inputs['courses_names']['value']),
 				':follow_organizations'=>implode('[@!-#-!@]',$inputs['follow_organizations']['value']),
 				':courses_specialties'=>implode('[@!-#-!@]',$inputs['courses_specialties']['value']),
@@ -132,6 +140,10 @@ class User{
 				':tests_exams_follow_organizations'=>implode('[@!-#-!@]',$inputs['tests_exams_follow_organizations']['value']),
 				':tests_exams_specialty'=>implode('[@!-#-!@]',$inputs['tests_exams_specialty']['value']),
 				':tests_exams_years_graduations'=>implode('[@!-#-!@]',$inputs['tests_exams_years_graduations']['value']),
+
+				':electronic_certificates_names'=>implode('[@!-#-!@]',$inputs['electronic_certificates_names']['value']),
+				':electronic_certificates_years_graduations'=>implode('[@!-#-!@]',$inputs['electronic_certificates_years_graduations']['value']),
+				':electronic_certificates_links'=>implode('[@!-#-!@]',$inputs['electronic_certificates_links']['value']),
 
 				':id_user'=>$id_user)
 			);
@@ -250,7 +262,10 @@ class User{
 													tests_exams_names,
 													tests_exams_follow_organizations,
 													tests_exams_specialty,
-													tests_exams_years_graduations
+													tests_exams_years_graduations,
+													electronic_certificates_names,
+													electronic_certificates_years_graduations,
+													electronic_certificates_links
 												FROM
 													education
 												WHERE
@@ -313,6 +328,20 @@ class User{
 				'val'=>true,
 				'value'=>explode('[@!-#-!@]',$education_data['tests_exams_years_graduations'])
 			),
+
+			'electronic_certificates_names'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['electronic_certificates_names'])
+			),
+			'electronic_certificates_years_graduations'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['electronic_certificates_years_graduations'])
+			),
+			'electronic_certificates_links'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['electronic_certificates_links'])
+			),
+
 
 		);
 	}

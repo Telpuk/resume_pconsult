@@ -16,7 +16,7 @@
 </body>
 <?=$this->_javascript?>
 <script id="table-template-experience" type="text/x-handlebars-template">
-	<div class="delete experience" data-table-experience-id="{{i}}"><img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<div class="delete experience" data-table-experience-id="{{i}}"><img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table data-table-experience-id="{{i}}">
 		<tbody>
 		<tr>
@@ -101,7 +101,7 @@
 
 <script id="table-template-recommendations" type="text/x-handlebars-template">
 	<div class="delete recommendations" data-table-recommendations-id='{{i}}'>
-		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table data-table-recommendations-id='{{i}}' class="recommendations">
 		<tbody>
 		<tr>
@@ -141,7 +141,7 @@
 
 <script id="table-base-education" type="text/x-handlebars-template">
 	<div class="delete education base" data-table-base-education-id='{{i}}'>
-		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table class="base_education" data-table-base-education-id='{{i}}'>
 		<tbody>
 		<tr>
@@ -184,7 +184,7 @@
 
 <script id="table_training_courses" type="text/x-handlebars-template">
 	<div class="delete training courses" data-table-training-courses-id='{{i}}'>
-		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table class="training_courses" data-table-training-courses-id='{{i}}'>
 		<thead>
 		<tr>
@@ -232,7 +232,7 @@
 
 <script id="table_tests_exams" type="text/x-handlebars-template">
 	<div class="delete test_exam" data-table-tests-exams-id='{{i}}'>
-		<img src='http://localhost/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table class="tests_exams" data-table-tests-exams-id='{{i}}'>
 		<thead>
 		<tr>
@@ -271,6 +271,45 @@
 					{{/years}}
 				</select>
 				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<div class="message"></div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</script>
+
+<script id="table_electronic_certificates" type="text/x-handlebars-template">
+	<div class="delete electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
+		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<table class="electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
+		<thead>
+		<tr>
+			<th>Электронные сертификаты</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><label for="electronic_certificates_names">Название</label></td>
+			<td>
+				<input type="text" id="electronic_certificates_names" name="electronic_certificates_names[{{i}}]" value=''>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="electronic_certificates_years_graduations">Год получения</label></td>
+			<td>
+				<select name="electronic_certificates_years_graduations[{{i}}]">
+					{{#years}}
+					{{this}}
+					{{/years}}
+				</select>
+				<div class="message"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="electronic_certificates_links">Ссылка на сертификат</label></td>
+			<td>
+				<input type="text"  id="electronic_certificates_links" name="electronic_certificates_links[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>

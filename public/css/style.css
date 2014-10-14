@@ -604,7 +604,9 @@ input[type=email]{
 .add_recommendations,
 .delete, .add_education,
 .add_training_courses,
-.add_tests_exams{
+.add_tests_exams,
+.add_electronic_certificates,
+.add_language{
     width: 100%;
     color: #6dc626;
     text-align: center;
@@ -623,7 +625,9 @@ input[type=email]{
 .add_position img,
 .add_education img,
 .add_training_courses img,
-.add_tests_exams img{
+.add_tests_exams img,
+.add_electronic_certificates img,
+.add_language img{
     padding-right: 10px;
     padding-left: 10px;
 }
@@ -633,13 +637,19 @@ input[type=email]{
     padding-left: 10px;
 }
 
+table.electronic_certificates  tbody td:nth-child(2) {
+    width: 65%;
+}
+
 
 .add_position:hover,
 .delete:hover,
 .add_recommendations:hover,
 .add_education:hover,
 .add_training_courses:hover,
-.add_tests_exams:hover{
+.add_tests_exams:hover,
+.add_electronic_certificates:hover,
+.add_language:hover{
     cursor: pointer;
 }
 
@@ -647,7 +657,8 @@ input[type=email]{
     vertical-align: top;
 }
 
-.function_td textarea, .key_skills textarea{
+.function_td textarea,
+.key_skills textarea{
     width: 100%;
     resize: none;
     height: 100px;
@@ -664,7 +675,8 @@ input[type=email]{
     color: red;
 }
 
-.personal.experience hr, .personal.education hr{
+.personal.experience hr,
+.personal.education hr{
     border-top:1px  dotted #bababa;
 }
 table.key_skills tr:first-child{
@@ -686,25 +698,39 @@ table.recommendations tr:first-child{
 .personal.education .level{
     width: 100%;
 }
-.personal.education table th, .training_courses table th, .tests_exams table th{
+.personal.education table th,
+.training_courses table th,
+.tests_exams table th{
     text-align: left;
 }
-.base_education td, .training_courses td, .tests_exams td{
+.base_education td,
+.training_courses td,
+.tests_exams td{
     font-size: .9em;
 }
-.base_education p, .training_courses p, .tests_exams p{
+.base_education p,
+.training_courses p,
+.tests_exams p{
     margin-top: 5px;
     font-size: .9em;
     color: rgb(175, 175, 175);
 }
 
-table.training_courses th{
-    padding-bottom: 50px;
+table.training_courses th,
+table.tests_exams th,
+table.electronic_certificates th,
+table.possessions_language th{
+    padding-bottom: 20px;
 }
 
-table.tests_exams th{
-    padding-bottom: 50px;
+table.possessions_language td select{
+    width: 100%;
 }
+.delete.language{
+    font-size: 1em;
+}
+
+
 
 
 

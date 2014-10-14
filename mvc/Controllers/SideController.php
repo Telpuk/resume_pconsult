@@ -34,6 +34,113 @@ class SideController extends IController{
 		}
 	}
 
+	private function _getLanguages(){
+		return array(
+			'Абхазский',
+			'Аварский',
+			'Азербайджанский',
+			'Албанский',
+			'Амхарский',
+			'Английский',
+			'Арабский',
+			'Армянский',
+			'Африкаанс',
+			'Баскский',
+			'Башкирский',
+			'Белорусский',
+			'Бенгальский',
+			'Болгарский',
+			'Боснийский',
+			'Бурятский',
+			'Венгерский',
+			'Вьетнамский',
+			'Голландский',
+			'Греческий',
+			'Грузинский',
+			'Дагестанский',
+			'Даргинский',
+			'Дари',
+			'Датский',
+			'Езидский',
+			'Иврит',
+			'Ингушский',
+			'Индонезийский',
+			'Ирландский',
+			'Исландский',
+			'Испанский',
+			'Итальянский',
+			'Кабардино-черкесский',
+			'Казахский',
+			'Карачаево-балкарский',
+			'Карельский',
+			'Каталанский',
+			'Кашмирский',
+			'Китайский',
+			'Коми',
+			'Корейский',
+			'Креольский (Сейшельские острова)',
+			'Кумыкский',
+			'Курдский',
+			'Кхмерский (Камбоджийский)',
+			'Кыргызский',
+			'Лакский',
+			'Лаосский',
+			'Латинский',
+			'Латышский',
+			'Лезгинский',
+			'Литовский',
+			'Македонский',
+			'Малазийский',
+			'Мансийский',
+			'Марийский',
+			'Молдавский',
+			'Монгольский',
+			'Немецкий',
+			'Непальский',
+			'Ногайский',
+			'Норвежский',
+			'Осетинский',
+			'Панджаби',
+			'Персидский',
+			'Польский',
+			'Португальский',
+			'Пушту',
+			'Румынский',
+			'Русский',
+			'Санскрит',
+			'Сербский',
+			'Словацкий',
+			'Словенский',
+			'Сомалийский',
+			'Суахили',
+			'Тагальский',
+			'ТаджиксТалышский',
+			'Тамильский',
+			'Татарский',
+			'Тибетский',
+			'Тувинский',
+			'Турецкий',
+			'Туркменский',
+			'Узбекский',
+			'Уйгурский',
+			'Украинский',
+			'Урду',
+			'Фарси',
+			'Финский',
+			'Фламандский',
+			'Французский',
+			'Хинди',
+			'Хорватский',
+			'Чеченский',
+			'Чешский',
+			'Чувашский',
+			'Шведский',
+			'Эсперанто',
+			'Эстонский',
+			'Якутский',
+			'Японский');
+	}
+
 	public function educationAction(){
 		if(isset($_POST['saveEducation'])){
 			$checkForm = $this->_checkFormEducation($_POST);
@@ -44,9 +151,11 @@ class SideController extends IController{
 						return $this->_view->render (array (
 							'view' => 'side/education',
 							'data' => array (
-								'table_base_education_count' => count($checkForm['names_institutions']['value']),
-								'table_training_courses_count' =>count($checkForm['courses_names']['value']),
-								'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
+								'table_base_education_count' => count($checkForm['names_institutions']['value'])?count($checkForm['names_institutions']['value']):1,
+								'table_training_courses_count' =>count($checkForm['courses_names']['value'])?count($checkForm['courses_names']['value']):1,
+								'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value'])?count($checkForm['tests_exams_names']['value']):1,
+								'table_count_electronic_certificates'=>count($checkForm['electronic_certificates_names']['value'])?count($checkForm['electronic_certificates_names']['value']):1,
+								'languages'=>$this->_getLanguages(),
 								'inputs'      => $checkForm),
 							'js'   => $this->_jsEducation()
 						));
@@ -63,6 +172,8 @@ class SideController extends IController{
 					'table_base_education_count'=>count($checkForm['names_institutions']['value']),
 					'table_training_courses_count' =>count($checkForm['courses_names']['value']),
 					'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
+					'table_count_electronic_certificates'=>count($checkForm['electronic_certificates_names']['value']),
+					'languages'=>$this->_getLanguages(),
 					'inputs'=>$checkForm),
 				'js'=>$this->_jsEducation()
 			));
@@ -79,8 +190,8 @@ class SideController extends IController{
 						return $this->_view->render (array (
 							'view' => 'side/experience',
 							'data' => array (
-								'table_count_work' => count($checkForm['organizations']['value']),
-								'table_count_recommendations' =>count($checkForm['recommend_names']['value']),
+								'table_count_work'=>count($checkForm['organizations']['value'])?count($checkForm['organizations']['value']):1,
+								'table_count_recommendations' =>count($checkForm['recommend_names']['value'])?count($checkForm['recommend_names']['value']):1,
 								'inputs'      => $checkForm),
 							'js'   => $this->_jsExperience ()
 						));
@@ -94,8 +205,8 @@ class SideController extends IController{
 			return $this->_view->render(array(
 				'view' => 'side/experience',
 				'data'=>array(
-					'table_count_work'=>count($checkForm['organizations']['value']),
-					'table_count_recommendations' =>count($checkForm['recommend_names']['value']),
+					'table_count_work'=>count($checkForm['organizations']['value'])?count($checkForm['organizations']['value']):1,
+					'table_count_recommendations' =>count($checkForm['recommend_names']['value'])?count($checkForm['recommend_names']['value']):1,
 					'inputs'=>$checkForm),
 				'js'=>$this->_jsExperience()
 			));
@@ -175,16 +286,17 @@ class SideController extends IController{
 
 		foreach($post['tests_exams_names'] as $key=>$test_exam_course_name) {
 
-			if((!empty($test_exam_course_name)||!empty($post['tests_exams_follow_organizations'][$key])||
-				!empty($post['tests_exams_courses_specialty'][$key])||
-				!empty($post['tests_exams_course_years_graduations'][$key]))){
+			if ((!empty($test_exam_course_name) ||
+				!empty($post['tests_exams_follow_organizations'][$key]) ||
+				!empty($post['tests_exams_courses_specialty'][$key]) ||
+				!empty($post['tests_exams_course_years_graduations'][$key]))) {
 
 				$tests_exams_names[$test_exam_education_key] = trim(strip_tags($test_exam_course_name));
 				$tests_exams_follow_organizations[$test_exam_education_key] = trim(strip_tags($post['tests_exams_follow_organizations'][$key]));
 				$tests_exams_specialty[$test_exam_education_key] = trim(strip_tags($post['tests_exams_specialty'][$key]));
 				$tests_exams_years_graduations[$test_exam_education_key] = trim(strip_tags($post['tests_exams_years_graduations'][$key]));
 
-				$tests_exams_names_val[$test_exam_education_key] = call_user_func(function($var) {
+				$tests_exams_names_val[$test_exam_education_key] = call_user_func(function ($var) {
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 				}, $tests_exams_names[$test_exam_education_key]);
 
@@ -205,6 +317,60 @@ class SideController extends IController{
 
 			}
 		}
+
+
+		$electronic_certificates_key = 0;
+
+		foreach ($post['electronic_certificates_names'] as $key => $electronic_certificates_name) {
+
+			if ((!empty($electronic_certificates_name)
+				|| !empty($post['electronic_certificates_years_graduations'][$key])
+				|| !empty($post['electronic_certificates_links'][$key]))) {
+
+				$electronic_certificates_names[$electronic_certificates_key] = trim(strip_tags($electronic_certificates_name));
+				$electronic_certificates_years_graduations[$electronic_certificates_key] = trim(strip_tags($post['electronic_certificates_years_graduations'][$key]));
+				$electronic_certificates_links[$electronic_certificates_key] = trim(strip_tags($post['electronic_certificates_links'][$key]));
+
+				$electronic_certificates_names_val[$electronic_certificates_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $electronic_certificates_names[$electronic_certificates_key]);
+
+				$electronic_certificates_years_graduations_val[$electronic_certificates_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $electronic_certificates_years_graduations[$electronic_certificates_key]);
+
+				$electronic_certificates_links_val[$electronic_certificates_key] = call_user_func(function ($var) {
+					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+				}, $electronic_certificates_links[$electronic_certificates_key]);
+
+
+				++$electronic_certificates_key;
+
+			}
+
+			$native_language = trim(strip_tags($post['native_language']));
+			$language_english = trim(strip_tags($post['language_english']));
+			$language_germany = trim(strip_tags($post['language_germany']));
+			$language_french = trim(strip_tags($post['language_french']));
+
+			$native_language_val[$electronic_certificates_key] = call_user_func(function ($var) {
+				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+			}, $native_language);
+
+			$language_english_val = call_user_func(function ($var) {
+				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+			}, $language_english);
+			$language_germany_val = call_user_func(function ($var) {
+				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+			}, $language_germany);
+			$language_french_val = call_user_func(function ($var) {
+				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+			}, $language_french);
+
+			//			$language_further
+
+		}
+
 
 		return array(
 			'level'=>array(
@@ -228,8 +394,8 @@ class SideController extends IController{
 				'value'=>$years_graduations
 			),
 			'courses_names'=>array(
-				'val'=>$courses_names_val,
-				'value'=>is_array($courses_names)?$courses_names: $courses_names[0]=''
+				'val'=>(array)$courses_names_val,
+				'value'=>is_array($courses_names)?$courses_names:array()
 			),
 			'follow_organizations'=>array(
 				'val'=>(array)$follow_organizations_val,
@@ -246,7 +412,7 @@ class SideController extends IController{
 
 			'tests_exams_names'=>array(
 				'val'=>(array)$tests_exams_names_val,
-				'value'=>is_array($tests_exams_names)?$tests_exams_names:$tests_exams_names[0]=''
+				'value'=>is_array($tests_exams_names)?$tests_exams_names:array()
 			),
 			'tests_exams_follow_organizations'=>array(
 				'val'=>(array)$tests_exams_follow_organizations_val,
@@ -259,7 +425,35 @@ class SideController extends IController{
 			'tests_exams_years_graduations'=>array(
 				'val'=>(array)$tests_exams_years_graduations_val,
 				'value'=>(array)$tests_exams_years_graduations
-			)
+			),
+			'electronic_certificates_names'=>array(
+				'val'=>(array)$electronic_certificates_names_val,
+				'value'=>is_array($electronic_certificates_names)?$electronic_certificates_names:array()
+			),
+			'electronic_certificates_years_graduations'=>array(
+				'val'=>(array)$electronic_certificates_years_graduations_val,
+				'value'=>(array)$electronic_certificates_years_graduations
+			),
+			'electronic_certificates_links'=>array(
+				'val'=>(array)$electronic_certificates_links_val,
+				'value'=>(array)$electronic_certificates_links
+			),
+			'native_language'=>array(
+				'val'=>$native_language_val,
+				'value'=>$native_language
+			),
+			'language_english'=>array(
+				'val'=>$language_english_val,
+				'value'=>$language_english
+			),
+			'language_germany'=>array(
+				'val'=>$language_germany_val,
+				'value'=>$language_germany
+			),
+			'language_french'=>array(
+				'val'=>$language_french_val,
+				'value'=>$language_french
+			),
 		);
 
 	}
@@ -359,8 +553,6 @@ class SideController extends IController{
 			}
 		}
 
-
-
 		$key_skills = $post['key_skills'];
 
 		$key_skills_val = call_user_func(function($key_skills){
@@ -406,7 +598,7 @@ class SideController extends IController{
 
 			'recommend_names'=>array(
 				'val'=>(array)$recommend_names_val,
-				'value'=>is_array($recommend_names)?$recommend_names:$recommend_names[0]='',
+				'value'=>is_array($recommend_names)?$recommend_names:array(),
 			),
 			'recommend_position'=>array(
 				'val'=>(array)$recommend_position_val,
