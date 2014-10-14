@@ -155,6 +155,7 @@ class SideController extends IController{
 								'table_training_courses_count' =>count($checkForm['courses_names']['value'])?count($checkForm['courses_names']['value']):1,
 								'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value'])?count($checkForm['tests_exams_names']['value']):1,
 								'table_count_electronic_certificates'=>count($checkForm['electronic_certificates_names']['value'])?count($checkForm['electronic_certificates_names']['value']):1,
+								'tr_count_language'=>count($checkForm['language_further']['value']),
 								'languages'=>$this->_getLanguages(),
 								'inputs'      => $checkForm),
 							'js'   => $this->_jsEducation()
@@ -173,6 +174,7 @@ class SideController extends IController{
 					'table_training_courses_count' =>count($checkForm['courses_names']['value']),
 					'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
 					'table_count_electronic_certificates'=>count($checkForm['electronic_certificates_names']['value']),
+					'tr_count_language'=>count($checkForm['language_further']['value']),
 					'languages'=>$this->_getLanguages(),
 					'inputs'=>$checkForm),
 				'js'=>$this->_jsEducation()
@@ -253,7 +255,10 @@ class SideController extends IController{
 
 		foreach($post['courses_names'] as $key=>$course_name) {
 
-			if ((!empty($course_name) || !empty($post['follow_organizations'][$key]) || !empty($post['courses_specialties'][$key]) || !empty($post['course_years_graduations'][$key]))) {
+			if ((!empty($course_name) ||
+				!empty($post['follow_organizations'][$key]) ||
+				!empty($post['courses_specialties'][$key]) ||
+				!empty($post['course_years_graduations'][$key]))) {
 
 				$courses_names[$education_course_key] = trim(strip_tags($course_name));
 				$follow_organizations[$education_course_key] = trim(strip_tags($post['follow_organizations'][$key]));
@@ -324,8 +329,8 @@ class SideController extends IController{
 		foreach ($post['electronic_certificates_names'] as $key => $electronic_certificates_name) {
 
 			if ((!empty($electronic_certificates_name)
-				|| !empty($post['electronic_certificates_years_graduations'][$key])
-				|| !empty($post['electronic_certificates_links'][$key]))) {
+				|| !empty($post['electronic_certificates_years_graduations'][$key]) ||
+				!empty($post['electronic_certificates_links'][$key]))) {
 
 				$electronic_certificates_names[$electronic_certificates_key] = trim(strip_tags($electronic_certificates_name));
 				$electronic_certificates_years_graduations[$electronic_certificates_key] = trim(strip_tags($post['electronic_certificates_years_graduations'][$key]));
@@ -347,28 +352,44 @@ class SideController extends IController{
 				++$electronic_certificates_key;
 
 			}
+		}
 
-			$native_language = trim(strip_tags($post['native_language']));
-			$language_english = trim(strip_tags($post['language_english']));
-			$language_germany = trim(strip_tags($post['language_germany']));
-			$language_french = trim(strip_tags($post['language_french']));
+		$native_language = trim(strip_tags($post['native_language']));
+		$language_english = trim(strip_tags($post['language_english']));
+		$language_germany = trim(strip_tags($post['language_germany']));
+		$language_french = trim(strip_tags($post['language_french']));
 
-			$native_language_val[$electronic_certificates_key] = call_user_func(function ($var) {
+		$native_language_val[$electronic_certificates_key] = call_user_func(function ($var) {
+			return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+		}, $native_language);
+
+		$language_english_val = call_user_func(function ($var) {
+			return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+		}, $language_english);
+		$language_germany_val = call_user_func(function ($var) {
+			return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+		}, $language_germany);
+		$language_french_val = call_user_func(function ($var) {
+			return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+		}, $language_french);
+
+		$count_language_further = 0;
+		foreach((array)$post['language_further'] as $key=>$language_further){
+
+			$language_furthers[$count_language_further] = $language_further;
+
+			$language_further_val[$count_language_further] = call_user_func(function ($var) {
 				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-			}, $native_language);
+			}, $language_further);
 
-			$language_english_val = call_user_func(function ($var) {
-				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-			}, $language_english);
-			$language_germany_val = call_user_func(function ($var) {
-				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-			}, $language_germany);
-			$language_french_val = call_user_func(function ($var) {
-				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-			}, $language_french);
+			$language_further_level[$count_language_further] =  trim(strip_tags($post['language_further_level'][$key]));
 
-			//			$language_further
+			$language_further_level_val[$count_language_further] = call_user_func(function ($var) {
+				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+			}, $language_further);
 
+
+			++$count_language_further;
 		}
 
 
@@ -453,6 +474,16 @@ class SideController extends IController{
 			'language_french'=>array(
 				'val'=>$language_french_val,
 				'value'=>$language_french
+			),
+
+			'language_further'=>array(
+				'val'=>(array)$language_further_val,
+				'value'=>is_array($language_furthers)?$language_furthers:array()
+			),
+
+			'language_further_level'=>array(
+				'val'=>(array)$language_further_level_val,
+				'value'=>(array)$language_further_level
 			),
 		);
 

@@ -730,6 +730,11 @@ table.possessions_language td select{
     font-size: 1em;
 }
 
+table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
+    padding-right: 20px;
+    width: 210px;
+}
+
 
 
 

@@ -287,30 +287,32 @@
 			<div class="message"><?=$this->data['data']['inputs']['language_french']['val']['message']?></div>
 		</td>
 	</tr>
-	<?php for( $i=0; $i < 0; ++$i): ?>
-		<tr data-tr-language-further-id='<?=$i?>'>
-			<td  class="delete language" colspan="2"><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</td>
-		</tr>
-		<tr data-tr-language-further-id='<?=$i?>'>
-			<td>
-				<select id="language_further" name="language_further[<?=$i?>]">
-					<?php foreach($this->data['data']['languages'] as  $language): ?>
-						<option value="<?=$language?>"><?=$language?></option>
-					<?php endforeach; ?>
-				</select>
-			</td>
-			<td>
-				<select id="language_further_level" name="language_further_level[<?=$i?>]">
-					<option value="Не владею" <?php if ($this->data['data']['inputs']['language_english']['value']==="Не владею")echo'selected'?>>Не владею</option>
-					<option value="Базовые знания"<?php if ($this->data['data']['inputs']['language_english']['value']==="Базовые знания")echo'selected'?>>Базовые знания</option>
-					<option value="Читаю профессиональную литературу"<?php if ($this->data['data']['inputs']['language_english']['value']==="Читаю профессиональную литературу")echo'selected'?>>Читаю профессиональную литературу</option>
-					<option value="Могу проходить интервью"<?php if ($this->data['data']['inputs']['language_english']['value']==="Могу проходить интервью")echo'selected'?>>Могу проходить интервью</option>
-					<option value="Свободно владею"<?php if ($this->data['data']['inputs']['language_english']['value']==="Свободно владею")echo'selected'?>>Свободно владею</option>
-				</select>
-				<div class="message"><?=$this->data['data']['inputs']['language_french']['val'][$i]['message']?></div>
-			</td>
-		</tr>
-	<?php endfor; ?>
+	<?php if($this->data['data']['inputs']['language_further']['value'][0]): ?>
+		<?php for( $i=0; $i < $this->data['data']['tr_count_language']; ++$i): ?>
+			<tr data-tr-language-further-id='<?=$i?>'>
+				<td  colspan="2" class="delete language" data-tr-language-further-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</td>
+			</tr>
+			<tr data-tr-language-further-id='<?=$i?>'>
+				<td>
+					<select id="language_further" name="language_further[<?=$i?>]">
+						<?php foreach($this->data['data']['languages'] as  $language): ?>
+							<option value="<?=$language?>" <?php if ($this->data['data']['inputs']['language_further']['value'][$i]===$language)echo'selected'?>><?=$language?></option>
+						<?php endforeach; ?>
+					</select>
+				</td>
+				<td>
+					<select id="language_further_level" name="language_further_level[<?=$i?>]">
+						<option value="Не владею" <?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Не владею")echo'selected'?>>Невладею</option>
+						<option value="Базовые знания"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Базовые знания")echo'selected'?>>Базовые знания</option>
+						<option value="Читаю профессиональную литературу"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Читаю профессиональную литературу")echo'selected'?>>Читаю профессиональную литературу</option>
+						<option value="Могу проходить интервью"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Могу проходить интервью")echo'selected'?>>Могу проходить интервью</option>
+						<option value="Свободно владею"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Свободно владею")echo'selected'?>>Свободно владею</option>
+					</select>
+					<div class="message"><?=$this->data['data']['inputs']['language_further_level']['val'][$i]['message']?></div>
+				</td>
+			</tr>
+		<?php endfor; ?>
+	<?php endif ?>
 	</tbody>
 </table>
 <div class="add_language"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще один язык</div>

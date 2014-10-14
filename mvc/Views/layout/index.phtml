@@ -317,4 +317,29 @@
 	</table>
 </script>
 
+<script id="tr_language_further" type="text/x-handlebars-template">
+	<tr data-tr-language-further-id='{{i}}'>
+		<td  colspan="2" class="delete language" data-tr-language-further-id='{{i}}'><img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</td>
+	</tr>
+	<tr data-tr-language-further-id='{{i}}'>
+		<td>
+			<select id="language_further" name="language_further[{{i}}]">
+				{{#languages}}
+				{{this}}
+				{{/languages}}
+			</select>
+		</td>
+		<td>
+			<select id="language_further_level" name="language_further_level[{{i}}]">
+				<option value="Не владею" >Не владею</option>
+				<option value="Базовые знания" >Базовые знания</option>
+				<option value="Читаю профессиональную литературу" >Читаю профессиональную литературу</option>
+				<option value="Могу проходить интервью" >Могу проходить интервью</option>
+				<option value="Свободно владею" >Свободно владею</option>
+			</select>
+			<div class="message"></div>
+		</td>
+	</tr>
+</script>
+
 </html>

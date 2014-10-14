@@ -120,7 +120,15 @@ class User{
 
 													electronic_certificates_names =:electronic_certificates_names,
 													electronic_certificates_years_graduations = :electronic_certificates_years_graduations,
-													electronic_certificates_links =:electronic_certificates_links
+													electronic_certificates_links =:electronic_certificates_links,
+
+													native_language = :native_language,
+													language_english = :language_english,
+													language_germany = :language_germany,
+													language_french = :language_french,
+
+													language_further = :language_further,
+													language_further_level = :language_further_level
 
 												WHERE
 													id_user = :id_user");
@@ -144,6 +152,14 @@ class User{
 				':electronic_certificates_names'=>implode('[@!-#-!@]',$inputs['electronic_certificates_names']['value']),
 				':electronic_certificates_years_graduations'=>implode('[@!-#-!@]',$inputs['electronic_certificates_years_graduations']['value']),
 				':electronic_certificates_links'=>implode('[@!-#-!@]',$inputs['electronic_certificates_links']['value']),
+
+				':language_further'=>implode('[@!-#-!@]',$inputs['language_further']['value']),
+				':language_further_level'=>implode('[@!-#-!@]',$inputs['language_further_level']['value']),
+
+				'native_language'=>$inputs['native_language']['value'],
+				'language_english'=>$inputs['language_english']['value'],
+				'language_germany'=>$inputs['language_germany']['value'],
+				'language_french'=>$inputs['language_french']['value'],
 
 				':id_user'=>$id_user)
 			);
@@ -265,7 +281,13 @@ class User{
 													tests_exams_years_graduations,
 													electronic_certificates_names,
 													electronic_certificates_years_graduations,
-													electronic_certificates_links
+													electronic_certificates_links,
+													native_language,
+													language_english,
+													language_germany,
+													language_french,
+													language_further,
+													language_further_level
 												FROM
 													education
 												WHERE
@@ -341,7 +363,30 @@ class User{
 				'val'=>true,
 				'value'=>explode('[@!-#-!@]',$education_data['electronic_certificates_links'])
 			),
-
+			'native_language'=>array(
+				'val'=>true,
+				'value'=>$education_data['native_language'],
+			),
+			'language_english'=>array(
+				'val'=>true,
+				'value'=>$education_data['language_english'],
+			),
+			'language_germany'=>array(
+				'val'=>true,
+				'value'=>$education_data['language_germany'],
+			),
+			'language_french'=>array(
+				'val'=>true,
+				'value'=>$education_data['language_french'],
+			),
+			'language_further'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['language_further'])
+			),
+			'language_further_level'=>array(
+				'val'=>true,
+				'value'=>explode('[@!-#-!@]',$education_data['language_further_level'])
+			),
 
 		);
 	}
