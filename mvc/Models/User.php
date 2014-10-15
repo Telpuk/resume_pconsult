@@ -86,9 +86,28 @@ class User{
 													  educ.names_institutions AS 'names_institutions',
 													  educ.faculties AS 'faculties',
 													  educ.specialties_specialties AS 'specialties_specialties',
-													  educ.years_graduations AS 'years_graduations'
+													  educ.years_graduations AS 'years_graduations',
 
+													  educ.native_language AS 'native_language',
+													  educ.language_english AS 'language_english',
+													  educ.language_germany AS 'language_germany',
+													  educ.language_french AS 'language_french',
+												      educ.language_further AS 'language_further',
+												      educ.language_further_level AS 'language_further_level',
 
+						                              educ.courses_names AS 'courses_names',
+						                              educ.follow_organizations AS 'follow_organizations',
+				                                      educ.courses_specialties AS 'courses_specialties',
+				                                      educ.course_years_graduations AS 'course_years_graduations',
+
+													  educ.tests_exams_names AS 'tests_exams_names',
+						                              educ.tests_exams_follow_organizations AS 'tests_exams_follow_organizations',
+				                                      educ.tests_exams_specialty AS 'tests_exams_specialty',
+				                                      educ.tests_exams_years_graduations AS'tests_exams_years_graduations',
+
+				                                      educ.electronic_certificates_names AS 'electronic_certificates_names',
+						                              educ.electronic_certificates_years_graduations AS 'electronic_certificates_years_graduations',
+				                                      educ.electronic_certificates_links AS 'electronic_certificates_links'
 												FROM
 													profile AS prof,
 													education AS educ
@@ -131,6 +150,36 @@ class User{
 			'years_graduations'=>explode('[@!-#-!@]',$personal_data['years_graduations']),
 		));
 
+		$personal['courses_names'] = $this->_getNamesCourses(array(
+			'courses_names'=>explode('[@!-#-!@]',$personal_data['courses_names']),
+			'follow_organizations'=>explode('[@!-#-!@]',$personal_data['follow_organizations']),
+			'courses_specialties'=>explode('[@!-#-!@]',$personal_data['courses_specialties']),
+			'course_years_graduations'=>explode('[@!-#-!@]',$personal_data['course_years_graduations']),
+		));
+
+		$personal['tests_exams_names'] = $this->_getTestsExamsNames(array(
+			'tests_exams_names'=>explode('[@!-#-!@]',$personal_data['tests_exams_names']),
+			'tests_exams_follow_organizations'=>explode('[@!-#-!@]',$personal_data['tests_exams_follow_organizations']),
+			'tests_exams_specialty'=>explode('[@!-#-!@]',$personal_data['tests_exams_specialty']),
+			'tests_exams_years_graduations'=>explode('[@!-#-!@]',$personal_data['tests_exams_years_graduations']),
+		));
+
+
+		$personal['electronic_certificates_names'] = $this->_getElectronicSertificates(array(
+			'electronic_certificates_names'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_names']),
+			'electronic_certificates_years_graduations'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_years_graduations']),
+			'electronic_certificates_links'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_links'])
+		));
+
+		$personal['languages'] = $this->_getLanguage(array(
+			'native_language'=>$personal_data['native_language'],
+			'language_english'=>$personal_data['language_english'],
+			'language_germany'=>$personal_data['language_germany'],
+			'language_french'=>$personal_data['language_french'],
+			'language_further'=>explode('[@!-#-!@]',$personal_data['language_further']),
+			'language_further_level'=>explode('[@!-#-!@]',$personal_data['language_further_level']),
+		));
+
 		$personal['call_me'] = $this->_getCallMe(array(
 			'mobile_phone'=>$personal_data['mobile_phone'],
 			'home_phone'=>$personal_data['home_phone'],
@@ -148,6 +197,81 @@ class User{
 		));
 
 		return $personal;
+	}
+
+	private function _getElectronicSertificates($personal_data){
+		$data ='';
+		if($personal_data['electronic_certificates_names'][0]){
+			$data = '<table>';
+			foreach ($personal_data['electronic_certificates_names'] as $key => $name) {
+				$data .= "<tr>"
+					."<td>{$personal_data['electronic_certificates_years_graduations'][$key]}<td>"
+					."<td>{$name}
+<span><a href='{$personal_data['electronic_certificates_links'][$key]}'
+target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></span></td>"
+					."</tr>";
+			}
+			$data .= '<table>';
+		}
+		return $data;
+	}
+
+	private function _getTestsExamsNames($personal_data){
+		$data ='';
+		if($personal_data['tests_exams_names'][0]){
+			$data = '<table>';
+			foreach ($personal_data['tests_exams_names'] as $key => $name) {
+				$data .= "<tr>"
+					."<td>{$personal_data['tests_exams_years_graduations'][$key]}<td>"
+					."<td>{$personal_data['tests_exams_follow_organizations'][$key]}<span>{$name},
+					{$personal_data['tests_exams_specialty'][$key]}</span></td>"
+					."</tr>";
+			}
+			$data .= '<table>';
+		}
+		return $data;
+	}
+
+	private function _getNamesCourses($personal_data){
+		$data ='';
+		if($personal_data['courses_names'][0]){
+			$data = '<table>';
+			foreach ($personal_data['courses_names'] as $key => $name) {
+				$data .= "<tr>"
+					."<td>{$personal_data['course_years_graduations'][$key]}<td>"
+					."<td>{$personal_data['follow_organizations'][$key]}<span>{$name},
+					{$personal_data['courses_specialties'][$key]}</span></td>"
+					."</tr>";
+			}
+			$data .= '<table>';
+		}
+		return $data;
+	}
+
+	private function _getLanguage($personal_data){
+		$data ='';
+		$language = array(
+			'native_language'=>'родной',
+			'language_english'=>'английский',
+			'language_germany'=>'немецкий',
+			'language_french'=>'французский'
+		);
+		foreach ($personal_data as $key => $value) {
+			if($value !== 'Не владею' && !is_array($value)){
+				$data .= "<p>".$language[$key]."&mdash;".$value."</p>";
+			}else if(is_array($value) && $key === 'language_further'){
+				foreach($value as $key=>$f_lang){
+					if(!empty($f_lang)){
+						$data .= "<p>".$f_lang."&mdash;".$personal_data['language_further_level'][$key]."</p>";
+					}
+
+				}
+
+			}
+
+		}
+
+		return $data;
 	}
 
 	private function _getNamesInstitutions($personal_data){

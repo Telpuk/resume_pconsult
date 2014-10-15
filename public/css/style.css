@@ -111,7 +111,9 @@ body {
 .resume .contacts_data h1 img,
 .resume .salary_position h1 img,
 .resume .education_language h1 img,
-.resume .education_language h2 img{
+.resume .education_language h2 img,
+.resume .education_language .languages h4 img,
+.resume .education_language .courses h4 img{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -123,6 +125,7 @@ body {
     margin-left: 10px;
     color: #bababa;
 }
+
 
 .resume .salary_position .salary_position_add,
 .resume .education_add{
@@ -138,7 +141,9 @@ body {
 .resume .contacts_data h1 a,
 .resume .salary_position  h1 a,
 .resume .education_language h1 a,
-.resume .education_language h2 a{
+.resume .education_language h2 a,
+.resume .education_language .languages h4 a,
+.resume .education_language .courses h4 a{
     font-size: .45em;
     font-weight: normal;
     text-decoration: none;
@@ -193,6 +198,20 @@ body {
 .resume .education_language table{
     border: none;
     margin-top: 5px;
+}
+.resume .education_language .languages h4,
+.resume .education_language .courses h4{
+    font-size: 0.3em;
+}
+
+.resume .education_language .courses{
+    margin-top: 10px;
+}
+
+.resume .languages p{
+    font-size: .2em;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 

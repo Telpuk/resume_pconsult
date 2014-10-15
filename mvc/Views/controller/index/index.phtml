@@ -66,18 +66,43 @@
 
 	<div class="education_language">
 		<?php if(!$this->data['data']['institutions']): ?>
-		<div class="education_add">
-			<a href='<?=BASE_URL.'/side/education'?>'><span>Образование</span><span>Добавить...</span></a>
-		</div>
+			<div class="education_add">
+				<a href='<?=BASE_URL.'/side/education'?>'><span>Образование</span><span>Добавить...</span></a>
+			</div>
 		<?php else: ?>
-				<section>
-					<h1>
-						Образование<a href='<?=BASE_URL.'/side/education'?>'>
-							<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a>
-					</h1>
-					<?=$this->data['data']['institutions']?>
-				</section>
-
+			<section>
+				<h1>
+					Образование<a href='<?=BASE_URL.'/side/education'?>'>
+						<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a>
+				</h1>
+				<?=$this->data['data']['institutions']?>
+				<div class="languages">
+					<h4>Знание языков <a href='<?=BASE_URL.'/side/education#lang'?>'>
+							<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a></h4>
+					<?=$this->data['data']['languages']?>
+				</div>
+				<?php if($this->data['data']['courses_names']): ?>
+				<div class="courses">
+					<h4>Повышение квалификации, курсы <a href='<?=BASE_URL.'/side/education#cours'?>'>
+							<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a></h4>
+					<?=$this->data['data']['courses_names']?>
+				</div>
+				<?php endif; ?>
+				<?php if($this->data['data']['tests_exams_names']): ?>
+					<div class="courses">
+						<h4>Тесты, экзамены <a href='<?=BASE_URL.'/side/education#tests'?>'>
+								<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a></h4>
+						<?=$this->data['data']['tests_exams_names']?>
+					</div>
+				<?php endif; ?>
+				<?php if($this->data['data']['electronic_certificates_names']): ?>
+					<div class="courses">
+						<h4>Тесты, экзамены <a href='<?=BASE_URL.'/side/education#sert'?>'>
+								<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a></h4>
+						<?=$this->data['data']['electronic_certificates_names']?>
+					</div>
+				<?php endif; ?>
+			</section>
 		<?php endif; ?>
 	</div>
 </main>

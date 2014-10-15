@@ -82,7 +82,7 @@
 	<?php if($i>=1): ?>
 		<div class="delete training courses" data-table-training-courses-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<table class="training_courses" data-table-training-courses-id='<?=$i?>'>
+	<table id="cours" class="training_courses" data-table-training-courses-id='<?=$i?>'>
 		<thead>
 		<tr>
 			<th colspan="2">Повышение квалификации, курсы</th>
@@ -90,7 +90,7 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td><label for="courses_name">Название учебного заведения</label></td>
+			<td><label for="courses_name">Название</label></td>
 			<td>
 				<input type="text" id="courses_name" name="courses_names[<?=$i?>]" value='<?=$this->data['data']['inputs']['courses_names']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['courses_names']['val'][$i]['message']?></div>
@@ -133,7 +133,7 @@
 	<?php if($i>=1): ?>
 		<div class="delete test_exam" data-table-tests-exams-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<table class="tests_exams" data-table-tests-exams-id='<?=$i?>'>
+	<table id="tests" class="tests_exams" data-table-tests-exams-id='<?=$i?>'>
 		<thead>
 		<tr>
 			<th colspan="2">Тесты, экзамены</th>
@@ -189,7 +189,7 @@
 	<?php if($i>=1): ?>
 		<div class="delete electronic_certificates" data-table-electronic-certificates-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<table class="electronic_certificates" data-table-electronic-certificates-id='<?=$i?>'>
+	<table id="sert" class="electronic_certificates" data-table-electronic-certificates-id='<?=$i?>'>
 		<thead>
 		<tr>
 			<th colspan="2">Электронные сертификаты</th>
@@ -228,7 +228,7 @@
 <div class="add_electronic_certificates"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
 	сертификат</div>
 
-<table class="possessions_language">
+<table class="possessions_language" id="lang" >
 	<thead>
 	<tr>
 		<th colspan="2">Владения языками</th>
@@ -302,7 +302,6 @@
 				</td>
 				<td>
 					<select id="language_further_level" name="language_further_level[<?=$i?>]">
-						<option value="Не владею" <?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Не владею")echo'selected'?>>Невладею</option>
 						<option value="Базовые знания"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Базовые знания")echo'selected'?>>Базовые знания</option>
 						<option value="Читаю профессиональную литературу"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Читаю профессиональную литературу")echo'selected'?>>Читаю профессиональную литературу</option>
 						<option value="Могу проходить интервью"<?php if ($this->data['data']['inputs']['language_further_level']['value'][$i]==="Могу проходить интервью")echo'selected'?>>Могу проходить интервью</option>
