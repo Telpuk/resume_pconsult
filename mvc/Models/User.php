@@ -32,48 +32,199 @@ class User{
 	}
 
 	public function selectPersonalData($id_user){
+		$trip = array('never'=>'никогда','ready'=>'готов','sometimes'=>'иногда');
+		$move = array('no'=>'невозможен','yes'=>'возможен','desirable'=>'желателен');
+		$birth_month = array(1=>"январь",
+			2=>"февраль",
+			3=>"март",
+			4=>"апрель",
+			5=>"май",
+			6=>"июнь",
+			7=>"июль",
+			8=>"август",
+			9=>"сентябрь",
+			10=>"октябрь",
+			11=>"ноябрь",
+			12=>"декабрь");
 		try {
 			$stmt = $this->_dbc->prepare ("SELECT
-													CONCAT_WS(' ',surname, first_name, patronymic)AS'name',
-													  birth,
-													  sex,
-													  city,
-													  move,
-													  trip,
-													  mobile_phone,
-													  home_phone,
-													  work_phone,
-													  email,
-													  preferred_communication,
+													CONCAT_WS(' ',prof.surname, prof.first_name, prof.patronymic)AS'name',
+													  prof.photo,
 
-													  icq,
-													  skype,
-													  free_lance,
-													  my_circle,
-													  linkedln,
-													  facebook,
-													  live_journal,
-													  other_site,
+													  prof.birth,
+													  prof.sex,
+													  prof.city,
+													  prof.move,
+													  prof.trip,
+													  prof.nationality,
+													  prof.work_permit,
 
-													  desired_position,
-													  professional_area,
+													  prof.mobile_phone,
+													  prof.home_phone,
+													  prof.work_phone,
+													  prof.email,
+													  prof.preferred_communication,
 
-													  salary,
-													  currency,
+													  prof.icq,
+													  prof.skype,
+													  prof.free_lance,
+													  prof.my_circle,
+													  prof.linkedln,
+													  prof.facebook,
+													  prof.live_journal,
+													  prof.other_site,
 
-													  REPLACE(schedule, '[@!-#-!@]', ', ') AS 'schedule',
-													  REPLACE(employment, '[@!-#-!@]', ', ') AS 'employment'
+													  prof.desired_position,
+													  prof.professional_area,
+
+													  prof.salary,
+													  prof.currency,
+
+													  REPLACE(prof.schedule, '[@!-#-!@]', ', ') AS 'schedule',
+													  REPLACE(prof.employment, '[@!-#-!@]', ', ') AS 'employment',
+
+													  educ.names_institutions AS 'names_institutions',
+													  educ.faculties AS 'faculties',
+													  educ.specialties_specialties AS 'specialties_specialties',
+													  educ.years_graduations AS 'years_graduations'
+
+
 												FROM
-													profile
+													profile AS prof,
+													education AS educ
 												WHERE
-													id = :id_user");
+													educ.id_user = prof.id AND
+													prof.id = :id_user");
 			$stmt->execute(array(':id_user'=>$id_user));
-			$persona_data = $stmt->fetch(PDO::FETCH_ASSOC);
+			$personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 
+		$birth_array = explode('-',$personal_data['birth']);
+		$birth_array[1] = $birth_month[$birth_array[1]];
+		$birth = implode($birth_array,' ');
 
+		$personal['name'] = $personal_data['name'];
+
+		$personal['photo'] = $personal_data['photo'];
+
+		$personal['birth_sex_city_move_trip'] = sprintf(
+			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
+			($birth !== '  ')?$birth:'не указано',
+			$personal_data['sex'],
+			$personal_data['city'],
+			$move[$personal_data['move']],
+			$trip[$personal_data['trip']]);
+
+		$personal['desired_position'] = $personal_data['desired_position'];
+		$personal['salary'] = $personal_data['salary']." ".$personal_data['currency'];
+		$personal['professional_area'] = $personal_data['professional_area'];
+
+		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);
+		$personal['schedule'] = sprintf('График работы: %s', $personal_data['schedule']);
+
+		$personal['institutions'] = $this->_getNamesInstitutions(array(
+			'names_institutions'=>explode('[@!-#-!@]',$personal_data['names_institutions']),
+			'faculties'=>explode('[@!-#-!@]',$personal_data['faculties']),
+			'specialties_specialties'=>explode('[@!-#-!@]',$personal_data['specialties_specialties']),
+			'years_graduations'=>explode('[@!-#-!@]',$personal_data['years_graduations']),
+		));
+
+		$personal['call_me'] = $this->_getCallMe(array(
+			'mobile_phone'=>$personal_data['mobile_phone'],
+			'home_phone'=>$personal_data['home_phone'],
+			'work_phone'=>$personal_data['work_phone'],
+			'email'=>$personal_data['email'],
+			'preferred_communication'=>$personal_data['preferred_communication'],
+			'icq'=>$personal_data['icq'],
+			'skype'=>$personal_data['skype'],
+			'free_lance'=>$personal_data['free_lance'],
+			'my_circle'=>$personal_data['my_circle'],
+			'linkedln'=>$personal_data['linkedln'],
+			'facebook'=>$personal_data['facebook'],
+			'live_journal'=>$personal_data['live_journal'],
+			'other_site'=>$personal_data['other_site'],
+		));
+
+		return $personal;
+	}
+
+	private function _getNamesInstitutions($personal_data){
+		$data ='';
+		if($personal_data['names_institutions'][0]){
+			$data = '<table>';
+			foreach ($personal_data['names_institutions'] as $key => $name_institution) {
+				$data .= "<tr>"
+					."<td>{$personal_data['years_graduations'][$key]}<td>"
+					."<td>{$name_institution}<span>{$personal_data['faculties'][$key]},
+					{$personal_data['specialties_specialties'][$key]}</span></td>"
+					."</tr>";
+			}
+			$data .= '<table>';
+		}
+		return $data;
+	}
+
+
+	private function _getCallMe($personal_data){
+		$call_me = '';
+		if($personal_data['mobile_phone']){
+			if($personal_data['preferred_communication']==1){
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}<span>желаемый способ связи</span></p>";
+			}else{
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}</p>";
+			}
+		}
+		if($personal_data['home_phone']){
+			if($personal_data['preferred_communication']==2){
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}<span>желаемый способ связи</span></p>";
+			}else{
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}</p>";
+			}
+
+		}
+		if($personal_data['work_phone']){
+			if($personal_data['preferred_communication']==3) {
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}<span>желаемый способ связи</span></p>";
+			}else{
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}</p>";
+			}
+		}
+		if($personal_data['email']){
+			if($personal_data['preferred_communication']==4) {
+				$call_me .= "<p><img src='".BASE_URL."/public/img/mail.png'>{$personal_data['email']}<span>желаемый способ связи</span></p>";
+			}else{
+				$call_me .= "<p><img src='".BASE_URL."/public/img/mail.png'>{$personal_data['email']}</p>";
+			}
+		}
+		if($personal_data['icq']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/icq.png'>{$personal_data['icq']}</p>";
+		}
+		if($personal_data['skype']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/skype.png'>{$personal_data['skype']}</p>";
+		}
+		if($personal_data['free_lance']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/freelance.png'>{$personal_data['free_lance']}</p>";
+		}
+		if($personal_data['my_circle']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/moykrug.png'>{$personal_data['my_circle']}</p>";
+		}
+		if($personal_data['linkedln']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/linkedin.png'>{$personal_data['linkedln']}</p>";
+		}
+		if($personal_data['facebook']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/facebook.png'>{$personal_data['facebook']}</p>";
+		}
+		if($personal_data['live_journal']){
+			$call_me .= "<p><img src='".BASE_URL."/public/img/livejournal.png'>{$personal_data['live_journal']}</p>";
+		}
+		if($personal_data['other_site']){
+			$call_me .= "<p>{$personal_data['other_site']}</p>";
+		}
+
+
+		return $call_me;
 	}
 
 	public function selectPosition($id_user){

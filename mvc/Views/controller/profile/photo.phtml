@@ -10,19 +10,22 @@
 					<img src='<?=BASE_URL.$this->data['data']['src']?>'>
 				</div>
 				<?php foreach($this->data['helpers'] as $helper)echo $helper?>
-				<div class="clear"></div>
 				<div class="photo_form">
 					<?php if($this->data['data']['submit']): ?>
-						<label for="file">Загрузить фотографию<br>jpg, gif, png, bmp, не более 6Mб</label>
-						<input type="hidden" name="MAX_FILE_SIZE" value="6291456" />
-						<input type="file" name="photo" max="1" id="file">
-						<input type="submit" id="submit_download" name="submit_download" value="Загрузить">
-					<?php else: ?>
-						<a class="delete_photo" href='<?=BASE_URL."/profile/delete/id{$this->data['data']['src']}"?>'>удалить</a>
-					<?php endif ?>
 					<div class="clear"></div>
+					<label for="file">Загрузить фотографию<br>jpg, gif, png, bmp, не более 6Mб</label>
+					<input type="hidden" name="MAX_FILE_SIZE" value="6291456" />
+					<input type="file" name="photo" max="1" id="file">
+					<input type="submit" id="submit_download" name="submit_download" value="Загрузить">
 				</div>
+				<div class="clear"></div>
+			<?php else: ?>
+				<div  class="delete_photo">
+					<a href='<?=BASE_URL."/profile/delete/id{$this->data['data']['src']}"?>'>удалить</a>
+				</div>
+			<?php endif ?>
 			</form>
+			<div class="clear"></div>
 		</section>
 	</article>
 </main>
