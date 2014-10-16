@@ -34,6 +34,13 @@ class SideController extends IController{
 		}
 	}
 
+	public function autocompleteAction(){
+		if($_POST['skill']==='skill'){
+			print_r($this->_dbuser->selectSkills($this->getSessionUserID('user')));
+		}
+
+	}
+
 	private function _getLanguages(){
 		return array(
 			'Абхазский',
@@ -584,11 +591,11 @@ class SideController extends IController{
 			}
 		}
 
-		$key_skills = $post['key_skills'];
+		$key_skills = $post['skills_hidden'];
 
 		$key_skills_val = call_user_func(function($key_skills){
-			return !empty($key_skills)?true: array('message'=>'Необходимо заполнить');
-		}, $key_skills);
+			return count($key_skills)!==0?true: array('message'=>'Необходимо заполнить');
+		}, (array)$key_skills);
 
 		$about_self = $post['about_self'];
 
@@ -729,6 +736,7 @@ class SideController extends IController{
 		return array(
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery-ui.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
 				BASE_URL."/public/js/handlebars-v2.0.0.js",
 				BASE_URL."/public/js/experience.js"

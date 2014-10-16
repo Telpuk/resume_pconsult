@@ -3,6 +3,9 @@
         this.$form = $('.personal.experience .form');
         this.count_table_experience = $('*[data-table-experience-id]:last').data()['tableExperienceId'];
         this.count_table_recommendations = $('*[data-table-recommendations-id]:last').data()['tableRecommendationsId'];
+        this.$key_skill = $('#key_skill');
+        this.$skills_td = $('.skills_td');
+        this.$add_skills_hid = $('.add_skills_hid');
     }
 
 
@@ -93,8 +96,49 @@
 
         });
     };
+    Personal.prototype.addEventListenerSkills = function(){
+        this.$skills_td.on('click', {self:this}, function(event) {
+
+            switch (event.target.className){
+                case 'button_skill':{
+                    if(event.data.self.$key_skill.val()){
+                        var val_h = event.data.self.$key_skill.val();
+                        event.data.self.$key_skill.
+                            append("<input type='hidden' name='skills_hidden[]' value='"+val_h+"'>");
+                        event.data.self.$key_skill.val('');
+                        event.data.self.$add_skills_hid.append('<span>'+val_h+'<img class="delete_skills" src="http://10.10.0.176/resume_pconsult/public/img/delete.png"></span>');
+                    }
+                    break;
+                }
+                case 'delete_skills':{
+                    $(event.target).parent().remove();
+                    break;
+                }
+            }
+
+        });
+
+    };
+
+
+    Personal.prototype.autocompleteLabel = function(data){
+        this.$key_skill.autocomplete({
+            source: data
+        });
+    };
+
+    Personal.prototype.autocompleteSkills = function(){
+        var self = this;
+        $.post( "http://10.10.0.176/resume_pconsult/side/autocomplete",
+            { skill: "skill"})
+            .done(function( data ) {
+                self.autocompleteLabel(JSON.parse(data));
+            });
+    };
 
     Personal.prototype.init = function(){
+        this.autocompleteSkills();
+        this.addEventListenerSkills();
         this.addEventListenerFORM();
     };
 
