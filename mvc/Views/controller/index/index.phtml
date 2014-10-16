@@ -1,4 +1,3 @@
-<?php //print_r($this->data) ?>
 <main class="resume">
 	<h1>Создать резюме за несколько минут</h1>
 	<section class="photo_personal_contacts">
@@ -13,7 +12,7 @@
 			<?php endif ?>
 		</div>
 		<div class="left">
-			<?php if($this->data['data']['name']===' '): ?>
+			<?php if(!$this->data['data']['name']): ?>
 				<div class='add'>
 					<a href='<?=BASE_URL.'/profile/personal'?>'><span>Имя, возвраст, город</span><span>Добавить...</span></a>
 				</div>
@@ -129,7 +128,7 @@
 
 				<div class="left_40">
 					<h2>
-						Обо мне<a href='<?=BASE_URL.'/side/experience'?>'>
+						Обо мне<a href='<?=BASE_URL.'/side/experience#ab_self'?>'>
 							<img src="<?=BASE_URL .'/public/img/edit.png'?>">редактировать</a>
 					</h2>
 					<p>
@@ -148,4 +147,20 @@
 			</section>
 		<?php endif; ?>
 	</div>
+	<?php if($this->data['data']['name']): ?>
+		<div class="nationality_workpermit">
+			<header>
+				<h1>Гражданство, время в пути до работы<a href='<?=BASE_URL.'/profile/personal#nat'?>'><img
+							src="<?=BASE_URL
+							.'/public/img/edit.png'?>">редактировать</a></h1>
+			</header>
+			<?=$this->data['data']['nationality_work_permit']?>
+		</div>
+	<?php endif; ?>
+	<?php if($this->data['data']['name']&&$this->data['data']['call_me']):?>
+		<div class="end_resume">
+			<a href="<?=BASE_URL.'/index/finish'?>">Отправить резюме</a>
+			<a href="<?=BASE_URL.'/index/delete'?>">Удалить свое резюме</a>
+		</div>
+	<?php endif; ?>
 </main>

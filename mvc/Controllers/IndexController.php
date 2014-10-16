@@ -9,8 +9,6 @@ class IndexController extends IController{
 		$this->_view = new View();
 		$this->_db_user = new User();
 
-		//			$this->sessionClear();
-
 		$this->_id_user = $this->getSessionUserID('user');
 
 		if(!$this->_id_user){
@@ -28,8 +26,16 @@ class IndexController extends IController{
 		));
 	}
 
+	public function deleteAction(){
+		$this->_db_user->deleteResume($this->_id_user);
+		$this->sessionClear();
+		$this->headerLocation('index');
+	}
 
-
-
+	public function finishAction(){
+		$this->_db_user->finishResume($this->_id_user);
+		$this->sessionClear();
+		$this->headerLocation('index');
+	}
 
 }

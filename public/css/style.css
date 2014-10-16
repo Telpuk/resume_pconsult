@@ -107,6 +107,7 @@ body {
     border-top: 1px #bbbbbb  dashed;
     border-bottom: 1px #bbbbbb dashed;
 }
+
 .resume .skills p{
     padding: 10px;
     font-size: 0.2em;
@@ -116,7 +117,10 @@ body {
 
 .resume
 .photo_personal_contacts
-.personal_data header h2{
+.personal_data header h2,
+.resume .experience .skills h2,
+.resume .left_40 h2,
+.resume .right_60 h2{
     font-size: .25em;
 }
 
@@ -128,7 +132,11 @@ body {
 .resume .experience h1 img,
 .resume .contacts_data section img,
 .resume .education_language .languages h4 img,
-.resume .education_language .courses h4 img{
+.resume .education_language .courses h4 img,
+.resume .experience .skills h2 img,
+.resume .left_40 h2 img,
+.resume .right_60 h2 img,
+.resume .nationality_workpermit h1 img{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -149,11 +157,13 @@ body {
     width: 80%;
 }
 .left_40{
+    margin-top: 10px;
     float: left;
     width: 40%;
 }
 
 .right_60{
+    margin-top: 10px;
     float: left;
     width: 60%;
 }
@@ -171,7 +181,11 @@ body {
 .resume .education_language h2 a,
 .resume .experience h1 a,
 .resume .education_language .languages h4 a,
-.resume .education_language .courses h4 a{
+.resume .education_language .courses h4 a,
+.resume .experience .skills h2 a,
+.resume .left_40 h2 a,
+.resume .right_60 h2 a,
+.resume .nationality_workpermit h1 a{
     font-size: .65em;
     font-weight: normal;
     text-decoration: none;
@@ -195,7 +209,8 @@ body {
 }
 .resume .salary_position  h1,
 .resume .education_language h1,
-.resume .experience h1{
+.resume .experience h1,
+.resume .nationality_workpermit h1{
     margin-top: 10px;
     border-bottom: 1px #bbbbbb ridge;
     font-size: 0.3em;
@@ -222,7 +237,9 @@ body {
     margin-bottom: 10px;
 }
 
-.resume .salary_position p{
+.resume .salary_position p,
+.resume .nationality_workpermit p{
+    font-size: 0.2em;
     padding: 5px;
 }
 .resume .education_language table,
@@ -310,8 +327,8 @@ body {
     height: 40px;
 }
 
-.end_resume a{
-    background-color: red;
+.end_resume a:last-child{
+    background-color: #ff564d;
     font-weight: bold;
     color: white;
     padding: 10px;
@@ -319,6 +336,16 @@ body {
     text-decoration: none;
     font-size: .3em;
 }
+.end_resume a:first-child{
+    background-color: green;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border: none;
+    text-decoration: none;
+    font-size: .3em;
+}
+
 
 
 .resume .right a.addPhoto{
@@ -820,7 +847,8 @@ input[type=email]{
 .add_training_courses img,
 .add_tests_exams img,
 .add_electronic_certificates img,
-.add_language img{
+.add_language img,
+.add_recommendations img{
     padding-right: 10px;
     padding-left: 10px;
 }

@@ -19,6 +19,48 @@ class User{
 		$this->_dbc = Model::getInstance()->getDbh();
 	}
 
+	public function finishResume($id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													registered_user = :registered_user
+												WHERE
+													id = :id_user");
+			$stmt->execute(array('registered_user'=>'yes',':id_user'=>$id_user)
+			);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+	}
+
+	public function deleteResume($id_user){
+		try {
+			$this->_dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->_dbc->beginTransaction();
+
+			$stmt = $this->_dbc->prepare ("SELECT
+													photo
+												FROM
+													profile
+												WHERE
+													id = :id_user");
+			$stmt->execute(array(':id_user'=>$id_user));
+			$photo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if($photo['photo'] !=='no-photo.png'){
+				@unlink(DIR_PROJECT."/files/photo/".$photo['photo']);
+			}
+
+			$stmt = $this->_dbc->prepare ("DELETE FROM profile WHERE id = :id_user");
+			$stmt->execute(array(':id_user'=>$id_user));
+			$this->_dbc->commit();
+		}catch (PDOException $e){
+			$this->_dbc->rollBack();
+			exit(print_r($e->errorInfo).$e->getFile().$e->getCode().$e->getLine());
+		}
+	}
+
 	public function setIdUser(){
 		try {
 			$this->_dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -57,6 +99,7 @@ class User{
 			  prof.trip,
 			  prof.nationality,
 			  prof.work_permit,
+			  prof.travel_time_work,
 
 			  prof.mobile_phone,
 			  prof.home_phone,
@@ -140,9 +183,9 @@ class User{
 
 
 
-		$personal['name'] = $personal_data['name'];
+		$personal['name'] = trim($personal_data['name']);
 
-		$personal['photo'] = $personal_data['photo'];
+		$personal['photo'] = trim($personal_data['photo']);
 
 		$personal['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(
 			array(
@@ -186,6 +229,14 @@ class User{
 
 		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);
 		$personal['schedule'] = sprintf('График работы: %s', $personal_data['schedule']);
+
+		$personal['nationality_work_permit'] = $this->_getNationalityWorkPermit(
+			array(
+				'nationality'=> $personal_data['nationality'],
+				'work_permit'=> $personal_data['work_permit'],
+				'travel_time_work'=> $personal_data['travel_time_work'],
+			)
+		);
 
 		$personal['institutions'] = $this->_getNamesInstitutions(
 			array(
@@ -247,6 +298,20 @@ class User{
 			));
 
 		return $personal;
+	}
+
+	private function _getNationalityWorkPermit($personal_data){
+		$data='';
+		if($personal_data['nationality']){
+			$data.="<p>Гражданство: {$personal_data['nationality']}</p>";
+		}
+		if($personal_data['work_permit']){
+			$data.="<p>Разрешение на работу: {$personal_data['work_permit']}</p>";
+		}
+		if($personal_data['travel_time_work']){
+			$data.="<p>Желательное время в пути до работы: {$personal_data['travel_time_work']}</p>";
+		}
+		return $data;
 	}
 
 	private function _getExperienceRecommend($personal_data){
