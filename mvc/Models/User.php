@@ -2,6 +2,18 @@
 class User{
 	private $_dbc;
 	private $_id;
+	private $_month = array(1=>"январь",
+		2=>"февраль",
+		3=>"март",
+		4=>"апрель",
+		5=>"май",
+		6=>"июнь",
+		7=>"июль",
+		8=>"август",
+		9=>"сентябрь",
+		10=>"октябрь",
+		11=>"ноябрь",
+		12=>"декабрь");
 
 	function __construct(){
 		$this->_dbc = Model::getInstance()->getDbh();
@@ -32,109 +44,141 @@ class User{
 	}
 
 	public function selectPersonalData($id_user){
-		$trip = array('never'=>'никогда','ready'=>'готов','sometimes'=>'иногда');
-		$move = array('no'=>'невозможен','yes'=>'возможен','desirable'=>'желателен');
-		$birth_month = array(1=>"январь",
-			2=>"февраль",
-			3=>"март",
-			4=>"апрель",
-			5=>"май",
-			6=>"июнь",
-			7=>"июль",
-			8=>"август",
-			9=>"сентябрь",
-			10=>"октябрь",
-			11=>"ноябрь",
-			12=>"декабрь");
 		try {
-			$stmt = $this->_dbc->prepare ("SELECT
-													CONCAT_WS(' ',prof.surname, prof.first_name, prof.patronymic)AS'name',
-													  prof.photo,
+			$stmt = $this->_dbc->prepare (
+				"SELECT
+					CONCAT_WS(' ',prof.surname, prof.first_name, prof.patronymic)AS'name',
+			  prof.photo,
 
-													  prof.birth,
-													  prof.sex,
-													  prof.city,
-													  prof.move,
-													  prof.trip,
-													  prof.nationality,
-													  prof.work_permit,
+			  prof.birth,
+			  prof.sex,
+			  prof.city,
+			  prof.move,
+			  prof.trip,
+			  prof.nationality,
+			  prof.work_permit,
 
-													  prof.mobile_phone,
-													  prof.home_phone,
-													  prof.work_phone,
-													  prof.email,
-													  prof.preferred_communication,
+			  prof.mobile_phone,
+			  prof.home_phone,
+			  prof.work_phone,
+			  prof.email,
+			  prof.preferred_communication,
 
-													  prof.icq,
-													  prof.skype,
-													  prof.free_lance,
-													  prof.my_circle,
-													  prof.linkedln,
-													  prof.facebook,
-													  prof.live_journal,
-													  prof.other_site,
+			  prof.icq,
+			  prof.skype,
+			  prof.free_lance,
+			  prof.my_circle,
+			  prof.linkedln,
+			  prof.facebook,
+			  prof.live_journal,
+			  prof.other_site,
 
-													  prof.desired_position,
-													  prof.professional_area,
+			  prof.desired_position,
+			  prof.professional_area,
 
-													  prof.salary,
-													  prof.currency,
+			  prof.salary,
+			  prof.currency,
 
-													  REPLACE(prof.schedule, '[@!-#-!@]', ', ') AS 'schedule',
-													  REPLACE(prof.employment, '[@!-#-!@]', ', ') AS 'employment',
+			  REPLACE(prof.schedule, '[@!-#-!@]', ', ') AS 'schedule',
+			  REPLACE(prof.employment, '[@!-#-!@]', ', ') AS 'employment',
 
-													  educ.names_institutions AS 'names_institutions',
-													  educ.faculties AS 'faculties',
-													  educ.specialties_specialties AS 'specialties_specialties',
-													  educ.years_graduations AS 'years_graduations',
+			  educ.names_institutions AS 'names_institutions',
+			  educ.faculties AS 'faculties',
+			  educ.specialties_specialties AS 'specialties_specialties',
+			  educ.years_graduations AS 'years_graduations',
 
-													  educ.native_language AS 'native_language',
-													  educ.language_english AS 'language_english',
-													  educ.language_germany AS 'language_germany',
-													  educ.language_french AS 'language_french',
-												      educ.language_further AS 'language_further',
-												      educ.language_further_level AS 'language_further_level',
+			  educ.native_language AS 'native_language',
+			  educ.language_english AS 'language_english',
+			  educ.language_germany AS 'language_germany',
+			  educ.language_french AS 'language_french',
+		      educ.language_further AS 'language_further',
+		      educ.language_further_level AS 'language_further_level',
 
-						                              educ.courses_names AS 'courses_names',
-						                              educ.follow_organizations AS 'follow_organizations',
-				                                      educ.courses_specialties AS 'courses_specialties',
-				                                      educ.course_years_graduations AS 'course_years_graduations',
+              educ.courses_names AS 'courses_names',
+              educ.follow_organizations AS 'follow_organizations',
+              educ.courses_specialties AS 'courses_specialties',
+              educ.course_years_graduations AS 'course_years_graduations',
 
-													  educ.tests_exams_names AS 'tests_exams_names',
-						                              educ.tests_exams_follow_organizations AS 'tests_exams_follow_organizations',
-				                                      educ.tests_exams_specialty AS 'tests_exams_specialty',
-				                                      educ.tests_exams_years_graduations AS'tests_exams_years_graduations',
+			  educ.tests_exams_names AS 'tests_exams_names',
+              educ.tests_exams_follow_organizations AS 'tests_exams_follow_organizations',
+              educ.tests_exams_specialty AS 'tests_exams_specialty',
+              educ.tests_exams_years_graduations AS'tests_exams_years_graduations',
 
-				                                      educ.electronic_certificates_names AS 'electronic_certificates_names',
-						                              educ.electronic_certificates_years_graduations AS 'electronic_certificates_years_graduations',
-				                                      educ.electronic_certificates_links AS 'electronic_certificates_links'
-												FROM
-													profile AS prof,
-													education AS educ
-												WHERE
-													educ.id_user = prof.id AND
-													prof.id = :id_user");
+              educ.electronic_certificates_names AS 'electronic_certificates_names',
+              educ.electronic_certificates_years_graduations AS 'electronic_certificates_years_graduations',
+              educ.electronic_certificates_links AS'electronic_certificates_links',
+
+			exper.organizations AS 'experience_organizations',
+			exper.regions AS 'experience_regions',
+			exper.positions AS 'experience_positions',
+			exper.sites AS 'experience_sites',
+			exper.field_activities AS 'experience_field_activities',
+			exper.getting_starteds AS 'experience_getting_starteds',
+			exper.closing_works AS 'experience_closing_works',
+			exper.at_the_moments AS 'experience_at_the_moments',
+			exper.functions AS 'experience_functions',
+			exper.key_skills AS 'experience_key_skills',
+			exper.about_self AS 'experience_about_self',
+			exper.recommend_names AS 'experience_recommend_names',
+			exper.recommend_position AS 'experience_recommend_position',
+			exper.recommend_organization AS 'experience_recommend_organization',
+			exper.recommend_phone AS 'experience_recommend_phone'
+				FROM
+					profile AS prof,
+					education AS educ,
+					experience AS exper
+				WHERE
+					educ.id_user = prof.id AND
+					exper.id_user = prof.id AND
+					prof.id = :id_user"
+			);
 			$stmt->execute(array(':id_user'=>$id_user));
 			$personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 
-		$birth_array = explode('-',$personal_data['birth']);
-		$birth_array[1] = $birth_month[$birth_array[1]];
-		$birth = implode($birth_array,' ');
+
 
 		$personal['name'] = $personal_data['name'];
 
 		$personal['photo'] = $personal_data['photo'];
 
-		$personal['birth_sex_city_move_trip'] = sprintf(
-			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
-			($birth !== '  ')?$birth:'не указано',
-			$personal_data['sex'],
-			$personal_data['city'],
-			$move[$personal_data['move']],
-			$trip[$personal_data['trip']]);
+		$personal['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(
+			array(
+				'birth'=>$personal_data['birth'],
+				'sex'=>$personal_data['sex'],
+				'move'=>$personal_data['move'],
+				'city'=>$personal_data['city'],
+				'trip'=>$personal_data['trip']
+			)
+		);
+
+		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
+			array(
+				'experience_organizations'=>explode('[@!-#-!@]',$personal_data['experience_organizations']),
+				'experience_getting_starteds'=>explode('[@!-#-!@]',$personal_data['experience_getting_starteds']),
+				'experience_closing_works'=>explode('[@!-#-!@]',$personal_data['experience_closing_works']),
+				'experience_at_the_moments'=>explode('[@!-#-!@]',$personal_data['experience_at_the_moments']),
+				'experience_regions'=>explode('[@!-#-!@]',$personal_data['experience_regions']),
+				'experience_sites'=>explode('[@!-#-!@]',$personal_data['experience_sites']),
+				'experience_field_activities'=>explode('[@!-#-!@]',$personal_data['experience_field_activities']),
+				'experience_positions'=>explode('[@!-#-!@]',$personal_data['experience_positions']),
+				'experience_functions'=>explode('[@!-#-!@]',$personal_data['experience_functions'])
+			)
+		);
+
+		$personal['experience_key_skills'] = $personal_data['experience_key_skills'];
+
+		$personal['experience_about_self'] = $personal_data['experience_about_self'];
+		$personal['experience_recommend'] = $this->_getExperienceRecommend(
+			array(
+				'experience_recommend_names'=>explode('[@!-#-!@]',$personal_data['experience_recommend_names']),
+				'experience_recommend_position'=>explode('[@!-#-!@]',$personal_data['experience_recommend_position']),
+				'experience_recommend_organization'=>explode('[@!-#-!@]',$personal_data['experience_recommend_organization']),
+				'experience_recommend_phone'=>explode('[@!-#-!@]',$personal_data['experience_recommend_phone']),
+			)
+		);
 
 		$personal['desired_position'] = $personal_data['desired_position'];
 		$personal['salary'] = $personal_data['salary']." ".$personal_data['currency'];
@@ -143,60 +187,138 @@ class User{
 		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);
 		$personal['schedule'] = sprintf('График работы: %s', $personal_data['schedule']);
 
-		$personal['institutions'] = $this->_getNamesInstitutions(array(
-			'names_institutions'=>explode('[@!-#-!@]',$personal_data['names_institutions']),
-			'faculties'=>explode('[@!-#-!@]',$personal_data['faculties']),
-			'specialties_specialties'=>explode('[@!-#-!@]',$personal_data['specialties_specialties']),
-			'years_graduations'=>explode('[@!-#-!@]',$personal_data['years_graduations']),
-		));
+		$personal['institutions'] = $this->_getNamesInstitutions(
+			array(
+				'names_institutions'=>explode('[@!-#-!@]',$personal_data['names_institutions']),
+				'faculties'=>explode('[@!-#-!@]',$personal_data['faculties']),
+				'specialties_specialties'=>explode('[@!-#-!@]',$personal_data['specialties_specialties']),
+				'years_graduations'=>explode('[@!-#-!@]',$personal_data['years_graduations']),
+			));
 
-		$personal['courses_names'] = $this->_getNamesCourses(array(
-			'courses_names'=>explode('[@!-#-!@]',$personal_data['courses_names']),
-			'follow_organizations'=>explode('[@!-#-!@]',$personal_data['follow_organizations']),
-			'courses_specialties'=>explode('[@!-#-!@]',$personal_data['courses_specialties']),
-			'course_years_graduations'=>explode('[@!-#-!@]',$personal_data['course_years_graduations']),
-		));
+		$personal['courses_names'] = $this->_getNamesCourses(
+			array(
+				'courses_names'=>explode('[@!-#-!@]',$personal_data['courses_names']),
+				'follow_organizations'=>explode('[@!-#-!@]',$personal_data['follow_organizations']),
+				'courses_specialties'=>explode('[@!-#-!@]',$personal_data['courses_specialties']),
+				'course_years_graduations'=>explode('[@!-#-!@]',$personal_data['course_years_graduations']),
+			));
 
-		$personal['tests_exams_names'] = $this->_getTestsExamsNames(array(
-			'tests_exams_names'=>explode('[@!-#-!@]',$personal_data['tests_exams_names']),
-			'tests_exams_follow_organizations'=>explode('[@!-#-!@]',$personal_data['tests_exams_follow_organizations']),
-			'tests_exams_specialty'=>explode('[@!-#-!@]',$personal_data['tests_exams_specialty']),
-			'tests_exams_years_graduations'=>explode('[@!-#-!@]',$personal_data['tests_exams_years_graduations']),
-		));
+		$personal['tests_exams_names'] = $this->_getTestsExamsNames(
+			array(
+				'tests_exams_names'=>explode('[@!-#-!@]',$personal_data['tests_exams_names']),
+				'tests_exams_follow_organizations'=>explode('[@!-#-!@]',$personal_data['tests_exams_follow_organizations']),
+				'tests_exams_specialty'=>explode('[@!-#-!@]',$personal_data['tests_exams_specialty']),
+				'tests_exams_years_graduations'=>explode('[@!-#-!@]',$personal_data['tests_exams_years_graduations']),
+			));
 
 
-		$personal['electronic_certificates_names'] = $this->_getElectronicSertificates(array(
-			'electronic_certificates_names'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_names']),
-			'electronic_certificates_years_graduations'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_years_graduations']),
-			'electronic_certificates_links'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_links'])
-		));
+		$personal['electronic_certificates_names'] = $this->_getElectronicSertificates(
+			array(
+				'electronic_certificates_names'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_names']),
+				'electronic_certificates_years_graduations'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_years_graduations']),
+				'electronic_certificates_links'=>explode('[@!-#-!@]',$personal_data['electronic_certificates_links'])
+			));
 
-		$personal['languages'] = $this->_getLanguage(array(
-			'native_language'=>$personal_data['native_language'],
-			'language_english'=>$personal_data['language_english'],
-			'language_germany'=>$personal_data['language_germany'],
-			'language_french'=>$personal_data['language_french'],
-			'language_further'=>explode('[@!-#-!@]',$personal_data['language_further']),
-			'language_further_level'=>explode('[@!-#-!@]',$personal_data['language_further_level']),
-		));
+		$personal['languages'] = $this->_getLanguage(
+			array(
+				'native_language'=>$personal_data['native_language'],
+				'language_english'=>$personal_data['language_english'],
+				'language_germany'=>$personal_data['language_germany'],
+				'language_french'=>$personal_data['language_french'],
+				'language_further'=>explode('[@!-#-!@]',$personal_data['language_further']),
+				'language_further_level'=>explode('[@!-#-!@]',$personal_data['language_further_level']),
+			));
 
-		$personal['call_me'] = $this->_getCallMe(array(
-			'mobile_phone'=>$personal_data['mobile_phone'],
-			'home_phone'=>$personal_data['home_phone'],
-			'work_phone'=>$personal_data['work_phone'],
-			'email'=>$personal_data['email'],
-			'preferred_communication'=>$personal_data['preferred_communication'],
-			'icq'=>$personal_data['icq'],
-			'skype'=>$personal_data['skype'],
-			'free_lance'=>$personal_data['free_lance'],
-			'my_circle'=>$personal_data['my_circle'],
-			'linkedln'=>$personal_data['linkedln'],
-			'facebook'=>$personal_data['facebook'],
-			'live_journal'=>$personal_data['live_journal'],
-			'other_site'=>$personal_data['other_site'],
-		));
+		$personal['call_me'] = $this->_getCallMe(
+			array(
+				'mobile_phone'=>$personal_data['mobile_phone'],
+				'home_phone'=>$personal_data['home_phone'],
+				'work_phone'=>$personal_data['work_phone'],
+				'email'=>$personal_data['email'],
+				'preferred_communication'=>$personal_data['preferred_communication'],
+				'icq'=>$personal_data['icq'],
+				'skype'=>$personal_data['skype'],
+				'free_lance'=>$personal_data['free_lance'],
+				'my_circle'=>$personal_data['my_circle'],
+				'linkedln'=>$personal_data['linkedln'],
+				'facebook'=>$personal_data['facebook'],
+				'live_journal'=>$personal_data['live_journal'],
+				'other_site'=>$personal_data['other_site'],
+			));
 
 		return $personal;
+	}
+
+	private function _getExperienceRecommend($personal_data){
+		$data='';
+		if($personal_data['experience_recommend_names'][0]) {
+			foreach ($personal_data['experience_recommend_names'] as $key => $experience_recommend_names) {
+				$data .= "<p><b>{$personal_data['experience_recommend_organization'][$key]}</b><br>" .
+					"{$experience_recommend_names} ({$personal_data['experience_recommend_position'][$key]})<br>" .
+					"{$personal_data['experience_recommend_phone'][$key]}</p>";
+
+			}
+		}
+		return $data;
+	}
+
+	private function _getExperienceOrganizations($personal_data){
+		$data='';
+		if($personal_data['experience_organizations'][0]){
+			$data='<table>';
+			foreach($personal_data['experience_organizations'] as $key=>$organizations){
+
+				$starteds = explode('-',$personal_data['experience_getting_starteds'][$key]);
+				$starteds[0] = $this->_month[$starteds[0]];
+				$starteds = implode($starteds,' ');
+
+				$data.="<tr>"
+					."<td>{$starteds}";
+				if($personal_data['experience_at_the_moments'][$key]=='true'){
+					$data.="&mdash; по ностоящее время</td>";
+				}else{
+					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
+					$closing[0] = $this->_month[$closing[0]];
+					$closing = implode($closing,' ');
+					$data.="&mdash; {$closing}</td>";
+				}
+				$data .="<td>"
+					."<b>$organizations</b><br>"
+					."{$personal_data['experience_regions'][$key]}";
+				if($personal_data['experience_sites'][$key])
+					$data .=",{$personal_data['experience_sites'][$key]}";
+
+				if($personal_data['experience_field_activities'][$key])
+					$data .="<br>{$personal_data['experience_field_activities'][$key]}";
+
+				$data .="<br><br><b>{$personal_data['experience_positions'][$key]}</b><br>"
+					."{$personal_data['experience_functions'][$key]}</td>"
+					."</tr>";
+			}
+
+			$data .="<table>";
+
+		}
+
+		return $data;
+	}
+
+	private function _getBerBirthSexCityMoveTrip($personal_data){
+		$trip = array('never'=>'никогда','ready'=>'готов','sometimes'=>'иногда');
+		$move = array('no'=>'невозможен','yes'=>'возможен','desirable'=>'желателен');
+
+
+		$birth_array = explode('-',$personal_data['birth']);
+		$birth_array[1] = $this->_month[$birth_array[1]];
+		$birth = implode($birth_array,' ');
+
+		return sprintf(
+			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
+			($birth !== '  ')?$birth:'не указано',
+			$personal_data['sex'],
+			$personal_data['city'],
+			$move[$personal_data['move']],
+			$trip[$personal_data['trip']]);
 	}
 
 	private function _getElectronicSertificates($personal_data){

@@ -122,10 +122,10 @@
 				</table>
 			<?php endfor; ?>
 			<div class="add_position"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить место работы</div>
-			<table class="key_skills">
+			<table class="key_skills" id="skill">
 				<tbody>
 				<tr>
-					<td><label for="key_skill">Ключевые навыки</label></td>
+					<td><label for="key_skill">Ключевые навыки<span class="required">*</span></label></td>
 					<td>
 						<input type="text" id="key_skill" name="key_skills" value='<?=$this->data['data']['inputs']['key_skills']['value']?>'>
 						<div class="message"><?=$this->data['data']['inputs']['key_skills']['val']['message']?></div>
@@ -151,7 +151,7 @@
 				<?php if($i>=1): ?>
 					<div class="delete recommendations" data-table-recommendations-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 				<?php endif; ?>
-				<table data-table-recommendations-id="<?=$i?>" class="recommendations">
+				<table id="reg" data-table-recommendations-id="<?=$i?>" class="recommendations">
 					<tbody>
 					<tr>
 						<td colspan="2">Рекомендации</td>

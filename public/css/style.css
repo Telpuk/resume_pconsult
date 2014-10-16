@@ -47,7 +47,7 @@ html {
 body {
     min-width: 900px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto;
     background-color: white;
     border: 1px black solid;
     padding: 10px;
@@ -101,6 +101,19 @@ body {
 
 }
 
+.resume .skills{
+    margin-top: 5px;
+    padding: 5px;
+    border-top: 1px #bbbbbb  dashed;
+    border-bottom: 1px #bbbbbb dashed;
+}
+.resume .skills p{
+    padding: 10px;
+    font-size: 0.2em;
+    margin-bottom: 5px;
+    color: #bababa;
+}
+
 .resume
 .photo_personal_contacts
 .personal_data header h2{
@@ -112,15 +125,14 @@ body {
 .resume .salary_position h1 img,
 .resume .education_language h1 img,
 .resume .education_language h2 img,
+.resume .experience h1 img,
+.resume .contacts_data section img,
 .resume .education_language .languages h4 img,
 .resume .education_language .courses h4 img{
     margin-left: 10px;
     margin-right: 10px;
 }
-.resume .contacts_data section img{
-    margin-left: 10px;
-    margin-right: 10px;
-}
+
 .resume .contacts_data section span{
     margin-left: 10px;
     color: #bababa;
@@ -136,15 +148,31 @@ body {
     float: left;
     width: 80%;
 }
+.left_40{
+    float: left;
+    width: 40%;
+}
+
+.right_60{
+    float: left;
+    width: 60%;
+}
+
+.resume .left_40 p,
+.resume .right_60 p{
+    padding: 10px;
+    font-size: .2em;
+}
 
 .resume .personal_data header h1 a,
 .resume .contacts_data h1 a,
 .resume .salary_position  h1 a,
 .resume .education_language h1 a,
 .resume .education_language h2 a,
+.resume .experience h1 a,
 .resume .education_language .languages h4 a,
 .resume .education_language .courses h4 a{
-    font-size: .45em;
+    font-size: .65em;
     font-weight: normal;
     text-decoration: none;
     color: #c67b37;
@@ -166,9 +194,11 @@ body {
     margin-top: 30px;
 }
 .resume .salary_position  h1,
-.resume .education_language h1{
-    border-bottom: 1px #bbbbbb solid;
-    font-size: 0.35em;
+.resume .education_language h1,
+.resume .experience h1{
+    margin-top: 10px;
+    border-bottom: 1px #bbbbbb ridge;
+    font-size: 0.3em;
     color: #bbbbbb;
 }
 .resume .education_language{
@@ -178,12 +208,12 @@ body {
 
 .resume .education_language h2{
     margin-top: 10px;
-    font-size: .3em;
+    font-size: .25em;
 }
 
 .resume .salary_position  h2{
     margin-top: 10px;
-    font-size: 0.35em;
+    font-size: 0.3em;
 }
 .resume .salary_position  h3{
     margin-top: 10px;
@@ -195,13 +225,14 @@ body {
 .resume .salary_position p{
     padding: 5px;
 }
-.resume .education_language table{
+.resume .education_language table,
+.resume .experience table{
     border: none;
     margin-top: 5px;
 }
 .resume .education_language .languages h4,
 .resume .education_language .courses h4{
-    font-size: 0.3em;
+    font-size: 0.25em;
 }
 
 .resume .education_language .courses{
@@ -215,7 +246,8 @@ body {
 }
 
 
-.resume .education_language table td{
+.resume .education_language table td,
+.resume .experience table td{
     font-weight: normal;
     padding: 10px;
     font-size: 0.2em;
@@ -301,7 +333,8 @@ body {
 }
 .resume .left .add a,
 .resume .salary_position_add a,
-.resume .education_add a{
+.resume .education_add a,
+.resume .experience_add a{
     display: block;
     width: 100%;
     text-decoration: none;
@@ -309,16 +342,17 @@ body {
 
 .resume .left .add a span,
 .resume .salary_position_add span,
-.resume .education_add span{
+.resume .education_add span,
+.resume .experience_add span{
     display: inline-block;
     margin-top: 10px;
     margin-left: 20px;
 }
 
-
 .resume .left .add,
 .resume .salary_position_add,
-.resume .education_add{
+.resume .education_add,
+.resume .experience_add{
     width: 100%;
     margin-top: 30px;
     border: 1px #bbbbbb dashed;
@@ -343,16 +377,19 @@ body {
 
 .resume .left .add:hover,
 .resume .salary_position_add:hover,
-.resume .education_add:hover{
+.resume .education_add:hover,
+.resume .experience_add:hover{
     cursor: pointer;
     background-color: rgba(186, 186, 186, 0.3);
     border: 1px #bbbbbb dashed;
 }
 
+
 a.addPhoto span:first-child,
 .add a span:first-child,
-.resume .salary_position_add a span,
-.resume .education_add a span{
+.resume .salary_position_add a span:first-child,
+.resume .education_add a span:first-child,
+.resume .experience_add a span:first-child{
     font-size: 1.4em;
     color: #bbbbbb;
 }
@@ -360,7 +397,8 @@ a.addPhoto span:first-child,
 a.addPhoto span:last-child,
 .add a span:last-child,
 .resume .salary_position_add a span:last-child,
-.resume .education_add a span:last-child{
+.resume .education_add a span:last-child,
+.resume .experience_add a span:last-child{
     color: deepskyblue;
     font-size: 0.9em;
 }

@@ -521,7 +521,7 @@ class SideController extends IController{
 
 			$positions_val[$organizations_key] = call_user_func(function($position){
 				return !empty($position)?true: array('message'=>'Необходимо заполнить');
-			}, $positions);
+			}, $positions[$organizations_key]);
 
 
 			$getting_starteds[$organizations_key]=$post['getting_starteds'][$key];
