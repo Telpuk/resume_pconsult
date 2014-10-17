@@ -18,7 +18,8 @@
 <script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
 <?=$this->_javascript?>
 <script id="table-template-experience" type="text/x-handlebars-template">
-	<div class="delete experience" data-table-experience-id="{{i}}"><img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+	<div class="delete experience" data-table-experience-id="{{i}}">
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table data-table-experience-id="{{i}}">
 		<tbody>
 		<tr>
@@ -103,7 +104,7 @@
 
 <script id="table-template-recommendations" type="text/x-handlebars-template">
 	<div class="delete recommendations" data-table-recommendations-id='{{i}}'>
-		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table data-table-recommendations-id='{{i}}' class="recommendations">
 		<tbody>
 		<tr>
@@ -143,7 +144,7 @@
 
 <script id="table-base-education" type="text/x-handlebars-template">
 	<div class="delete education base" data-table-base-education-id='{{i}}'>
-		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="base_education" data-table-base-education-id='{{i}}'>
 		<tbody>
 		<tr>
@@ -186,7 +187,7 @@
 
 <script id="table_training_courses" type="text/x-handlebars-template">
 	<div class="delete training courses" data-table-training-courses-id='{{i}}'>
-		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="training_courses" data-table-training-courses-id='{{i}}'>
 		<thead>
 		<tr>
@@ -234,7 +235,7 @@
 
 <script id="table_tests_exams" type="text/x-handlebars-template">
 	<div class="delete test_exam" data-table-tests-exams-id='{{i}}'>
-		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="tests_exams" data-table-tests-exams-id='{{i}}'>
 		<thead>
 		<tr>
@@ -282,7 +283,7 @@
 
 <script id="table_electronic_certificates" type="text/x-handlebars-template">
 	<div class="delete electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
-		<img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
+		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
 		<thead>
 		<tr>
@@ -321,7 +322,9 @@
 
 <script id="tr_language_further" type="text/x-handlebars-template">
 	<tr data-tr-language-further-id='{{i}}'>
-		<td  colspan="2" class="delete language" data-tr-language-further-id='{{i}}'><img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</td>
+		<td  colspan="2" class="delete language" data-tr-language-further-id='{{i}}'><img
+				src='{{BASE_URL}}/public/img/delete
+		.png'>Удалить</td>
 	</tr>
 	<tr data-tr-language-further-id='{{i}}'>
 		<td>

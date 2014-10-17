@@ -1,4 +1,4 @@
-(function($, Handlebars ,window){
+(function($, BASE_URL,Handlebars ,window){
     function Personal(){
         this.$form = $('.personal.education .form');
         this.count_base_education = $('*[data-table-base-education-id]:last').data()['tableBaseEducationId'];
@@ -75,7 +75,7 @@
         });
 
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_electronic_certificates});
+        return template({'i':++this.count_electronic_certificates,'BASE_URL':BASE_URL});
     };
 
     Personal.prototype.tableTemplateTrLanguage = function(){
@@ -269,4 +269,4 @@
     var personal = new Personal();
     personal.init();
 
-})(jQuery, Handlebars ,window)
+})(jQuery, BASE_URL,Handlebars ,window)

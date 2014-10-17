@@ -6,7 +6,7 @@
 
 		private $data;
 
-		public function render($arguments = []){
+		public function render($arguments = array()){
 			try{
 
 				if(isset($arguments['js']) && JS === true){

@@ -1,5 +1,5 @@
 <?php
-	return [
+	return array(
 		'user'=>array('controllers'=>array(
 			'ProfileController',
 			'SideController'
@@ -10,4 +10,4 @@
 		'manager'=>array('controllers'=>array(
 
 		))
-	];
+	);

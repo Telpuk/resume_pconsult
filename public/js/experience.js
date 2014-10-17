@@ -130,13 +130,13 @@
             return out;
         });
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_table_experience});
+        return template({'i':++this.count_table_experience,'BASE_URL':BASE_URL});
     };
 
     Personal.prototype.tableTemplateRecommendations = function(){
         var source = $("#table-template-recommendations").html();
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_table_recommendations});
+        return template({'i':++this.count_table_recommendations,'BASE_URL':BASE_URL});
 
     };
 
