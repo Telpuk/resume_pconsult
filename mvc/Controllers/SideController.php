@@ -35,10 +35,9 @@ class SideController extends IController{
 	}
 
 	public function autocompleteAction(){
-		if($_POST['skill']==='skill'){
-			print_r($this->_dbuser->selectSkills($this->getSessionUserID('user')));
+		if($_POST['autocomplete']==='autocomplete'){
+			print_r($this->_dbuser->selectAutocomplete());
 		}
-
 	}
 
 	private function _getLanguages(){

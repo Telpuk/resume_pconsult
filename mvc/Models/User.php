@@ -42,18 +42,33 @@ class User{
 		return $str2;
 	}
 
-	public function selectSkills(){
-		$stmt = $this->_dbc->query("SELECT DISTINCT key_skills FROM experience WHERE key_skills!=''" );
-		$skills = $stmt->fetch(PDO::FETCH_ASSOC);
+	public function selectAutocomplete(){
+		$stmt = $this->_dbc->query("SELECT DISTINCT key_skills, regions FROM experience");
+		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-		foreach($skills as $key=>$value){
-			 foreach(explode('[@!-#-!@]', $value) as $key=>$val){
-				 $skills_arr[]=$val;
-			 }
+		foreach ($autocomplete as $key => $value) {
+			foreach (explode('[@!-#-!@]', $value['key_skills']) as $key => $val) {
+				$autocomplete_arr['key_skills'][] = $val;
+			}
+			foreach (explode('[@!-#-!@]', $value['regions']) as $key => $val) {
+				$autocomplete_arr['regions'][] = $val;
+			}
 		}
 
+		$autocomplete_arr['key_skills'] = array_filter($autocomplete_arr['key_skills'], function($el){
+			return !empty($el);}
+		);
+		$autocomplete_arr['regions'] = array_filter($autocomplete_arr['regions'], function($el){
+			return !empty($el);}
+		);
 
-		return $this->json_encode_cyr(array_unique($skills_arr));
+		$autocomplete_arr['key_skills'] = array_slice(array_unique($autocomplete_arr['key_skills']), 0);
+		$autocomplete_arr['regions'] = array_slice(array_unique($autocomplete_arr['regions']), 0);
+
+		$json['key_skills'] = $this->json_encode_cyr($autocomplete_arr['key_skills']);
+		$json['regions'] = $this->json_encode_cyr($autocomplete_arr['regions']);
+
+		return $this->json_encode_cyr($json);
 	}
 
 	public function deleteResume($id_user){
@@ -246,7 +261,8 @@ class User{
 		);
 
 		$personal['desired_position'] = $personal_data['desired_position'];
-		$personal['salary'] = $personal_data['salary']." ".$personal_data['currency'];
+
+		$personal['salary'] = $personal_data['salary']?$personal_data['salary']." ".$personal_data['currency']:'';
 		$personal['professional_area'] = $personal_data['professional_area'];
 
 		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);

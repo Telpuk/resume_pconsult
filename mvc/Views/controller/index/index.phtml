@@ -159,8 +159,17 @@
 	<?php endif; ?>
 	<?php if($this->data['data']['name']&&$this->data['data']['call_me']):?>
 		<div class="end_resume">
-			<a href="<?=BASE_URL.'/index/finish'?>">Отправить резюме</a>
-			<a href="<?=BASE_URL.'/index/delete'?>">Удалить свое резюме</a>
+			<a class="save" href="<?=BASE_URL.'/index/finish'?>">Отправить резюме</a>
+			<a class="delete" href="<?=BASE_URL.'/index/delete'?>">Удалить свое резюме</a>
+		</div>
+		<?php elseif($this->data['data']['name']
+		||$this->data['data']['call_me']
+		||$this->data['data']['experience_organizations']
+		||$this->data['data']['institutions']
+		||$this->data['data']['desired_position']
+		||$this->data['data']['photo'] !== 'no-photo.png'):?>
+		<div class="end_resume">
+			<a class="delete" href="<?=BASE_URL.'/index/delete'?>">Удалить свое резюме</a>
 		</div>
 	<?php endif; ?>
 </main>

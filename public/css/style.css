@@ -327,7 +327,7 @@ body {
     height: 40px;
 }
 
-.end_resume a:last-child{
+.end_resume a.delete{
     background-color: #ff564d;
     font-weight: bold;
     color: white;
@@ -336,7 +336,7 @@ body {
     text-decoration: none;
     font-size: .3em;
 }
-.end_resume a:first-child{
+.end_resume a.save{
     background-color: green;
     font-weight: bold;
     color: white;
@@ -364,6 +364,7 @@ body {
 .resume .experience_add a{
     display: block;
     width: 100%;
+    height: 100%;
     text-decoration: none;
 }
 
@@ -589,8 +590,9 @@ a.addPhoto span:last-child,
 }
 
 .personal table td{
-    height: 50px;
+    height: 60px;
 }
+
 
 .personal table td label{
     cursor: pointer;
@@ -598,8 +600,15 @@ a.addPhoto span:last-child,
 }
 
 .error{
+    margin-top: 5px;
+    font-size: .8em;
     width: 100%;
     color: red;
+}
+
+table.foot_table  tr td{
+    color: red;
+    height: 50px;
 }
 
 .personal table td input[type=text]{
@@ -620,7 +629,6 @@ a.addPhoto span:last-child,
 }
 
 .personal tfoot tr{
-    height: 100px;
     text-align: center;
     background-color: rgba(186, 186, 186, 0.3);
 }
@@ -760,6 +768,7 @@ input[type=email]{
 }
 
 .message{
+    font-weight: normal;
     width: 30%;
 }
 /*personal position*/
@@ -820,6 +829,19 @@ input[type=email]{
 
 .add_skills_hid{
     font-weight: normal;
+}
+
+.add_skills_hid span{
+    border-radius: 4px;
+    text-align: center;
+    background-color: rgba(175, 175, 175, .3);
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.add_skills_hid span img{
+    margin-left: 15px;
+    margin-right: 2px;
 }
 
 .delete_skills:hover{
@@ -944,7 +966,7 @@ table.electronic_certificates  tbody td:nth-child(2) {
     border-top:1px  dotted #bababa;
 }
 table.key_skills tr:first-child{
-    font-size: .9em;
+    font-size: 1.2em;
     color: black;
     font-weight: bold;
 }

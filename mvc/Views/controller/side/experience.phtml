@@ -6,7 +6,7 @@
 <section>
 <h1>Опыт работы</h1>
 <div class="form">
-<form action='<?=BASE_URL.'/side/experience'?>' id="experience" method="post" novalidate="novalidate">
+<form action='<?=BASE_URL.'/side/experience'?>' id="experience_form" method="post" novalidate="novalidate">
 <?php for( $i=0; $i <= $this->data['data']['table_count_work']-1; ++$i): ?>
 	<?php if($i>=1): ?>
 		<div class="delete experience" data-table-experience-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
@@ -21,9 +21,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="region">Регион<span class="required">*</span></label></td>
+			<td><label for="region[<?=$i?>]">Регион<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="region" name="regions[<?=$i?>]" value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
+				<input class="regions" type="text" id="region[<?=$i?>]"  name="regions[<?=$i?>]"
+				        value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['regions']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -137,7 +138,7 @@
 			<div class="add_skills_hid">
 				<?php foreach($this->data['data']['inputs']['key_skills']['value'] as $skills): ?>
 					<?php if($skills):?>
-						<span><input type='hidden' name='skills_hidden[]' value='<?=$skills?>'><?=$skills?><img class="delete_skills" src="<?=BASE_URL ."/public/img/delete.png"?>"></span>
+						<span><input type='hidden' name='skills_hidden[]' value='<?=$skills?>'><?=$skills?><img class="delete_skills" src="<?=BASE_URL ."/public/img/remove.png"?>"></span>
 					<?php endif?>
 				<?php endforeach;?>
 			</div>
@@ -145,14 +146,14 @@
 	</tr>
 	<tr>
 		<td>
-			<label for="about_s">Обо мне</label><br>
+			<label for="about_s"><b>Обо мне</b></label><br>
 			<p id="ab_self" class="about_self">
 				Ваше хобби,
 				<br>личные качества,
 				<br>любая дополнительная<br>информация
 			</p>
 		</td>
-		<td class="about_me">
+		<td class="about_me" id="ab_self">
 			<textarea id="about_s" name="about_self"><?=$this->data['data']['inputs']['about_self']['value']?></textarea>
 			<div class="message"><?=$this->data['data']['inputs']['about_self']['val']['message']?></div>
 		</td>
@@ -201,7 +202,7 @@
 <?php endfor; ?>
 <div class="add_recommendations"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить рекомендацию</div>
 <hr>
-<table>
+<table class="foot_table">
 	<tfoot>
 	<tr>
 		<td colspan="2">

@@ -6,7 +6,81 @@
         this.$key_skill = $('#key_skill');
         this.$skills_td = $('.skills_td');
         this.$add_skills_hid = $('.add_skills_hid');
+        this.$regions = $('.regions');
     }
+
+    Personal.prototype.validateForm = function(){
+
+        $("#experience_form").validate({
+
+            rules: {
+
+                'organizations[0]': {
+                    required: true
+                },
+                'organizations[1]': {
+                    required: true
+                },
+                'organizations[2]': {
+                    required: true
+                },
+
+                'regions[0]': {
+                    required: true
+                },
+                'regions[1]': {
+                    required: true
+                },
+                'regions[2]': {
+                    required: true
+                },
+
+                'functions[0]': {
+                    required: true
+                },
+                'functions[1]': {
+                    required: true
+                },
+                'functions[2]': {
+                    required: true
+                }
+
+            },
+            messages: {
+
+                'organizations[0]': {
+                    required: "Это поле обязательно для заполнения"
+                }, 'organizations[1]': {
+                    required: "Это поле обязательно для заполнения"
+                }, 'organizations[2]': {
+                    required: "Это поле обязательно для заполнения"
+                },
+                'regions[0]': {
+                    required: "Это поле обязательно для заполнения"
+                }, 'regions[1]': {
+                    required: "Это поле обязательно для заполнения"
+                }, 'regions[2]': {
+                    required: "Это поле обязательно для заполнения"
+                },
+
+                'functions[0]': {
+                    required: "Это поле обязательно для заполнения"
+                },'functions[1]': {
+                    required: "Это поле обязательно для заполнения"
+                },'functions[2]': {
+                    required: "Это поле обязательно для заполнения"
+                },
+                'positions[0]': {
+                    required: "Это поле обязательно для заполнения"
+                },'positions[1]': {
+                    required: "Это поле обязательно для заполнения"
+                },'positions[2]': {
+                    required: "Это поле обязательно для заполнения"
+                }
+            }
+        });
+
+    };
 
 
     Personal.prototype.tableTemplatePosition = function(){
@@ -106,7 +180,7 @@
                         event.data.self.$key_skill.
                             append("<input type='hidden' name='skills_hidden[]' value='"+val_h+"'>");
                         event.data.self.$key_skill.val('');
-                        event.data.self.$add_skills_hid.append('<span>'+val_h+'<img class="delete_skills" src="http://10.10.0.176/resume_pconsult/public/img/delete.png"></span>');
+                        event.data.self.$add_skills_hid.append('<span>'+val_h+'<img class="delete_skills" src="http://10.10.0.176/resume_pconsult/public/img/remove.png"></span>');
                     }
                     break;
                 }
@@ -121,8 +195,15 @@
     };
 
 
-    Personal.prototype.autocompleteLabel = function(data){
+    Personal.prototype.autocompSkills = function(data){
         this.$key_skill.autocomplete({
+            source: data
+        });
+    };
+
+    Personal.prototype.autocompRegions = function(data){
+        console.log(data);
+        this.$regions.autocomplete({
             source: data
         });
     };
@@ -130,13 +211,16 @@
     Personal.prototype.autocompleteSkills = function(){
         var self = this;
         $.post( "http://10.10.0.176/resume_pconsult/side/autocomplete",
-            { skill: "skill"})
+            { autocomplete: "autocomplete"})
             .done(function( data ) {
-                self.autocompleteLabel(JSON.parse(data));
+                data = JSON.parse(data);
+                self.autocompSkills(JSON.parse(data['key_skills']));
+                self.autocompRegions(JSON.parse(data['regions']));
             });
     };
 
     Personal.prototype.init = function(){
+        this.validateForm();
         this.autocompleteSkills();
         this.addEventListenerSkills();
         this.addEventListenerFORM();

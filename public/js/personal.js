@@ -50,7 +50,7 @@
     Personal.prototype.birth = function(){
         var d = new Date();
         if( this.day && this.month && this.year){
-            this.$error_data.text("года("+ (d.getFullYear()-this.year - 1)+" лет)").css({visibility: 'visible', color: 'black'});
+            this.$error_data.text("года("+ (d.getFullYear()-this.year)+" лет)").css({visibility: 'visible', color: 'black'});
             $('.data_f').css({visibility: 'hidden'});
             this.$submitPersonal.attr('disabled', false);
         }else if(!this.day && !this.month && !this.year){
