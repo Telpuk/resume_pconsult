@@ -49,7 +49,7 @@ body {
     max-width: 1200px;
     margin: 50px auto;
     background-color: white;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     padding: 10px;
 }
 
@@ -89,7 +89,7 @@ body {
     -moz-border-radius: 10px;
     width: 15%;
     height: 150px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top: 30px;
 }
 
@@ -109,6 +109,7 @@ body {
 }
 
 .resume .skills p{
+    width: 100%;
     padding: 10px;
     font-size: 0.2em;
     margin-bottom: 5px;
@@ -154,7 +155,7 @@ body {
 
 .left{
     float: left;
-    width: 80%;
+    width: 83%;
 }
 .left_40{
     margin-top: 10px;
@@ -327,23 +328,18 @@ body {
     height: 40px;
 }
 
-.end_resume a.delete{
+.end_resume a.delete_resume,
+.end_resume a.save_resume{
     background-color: #ff564d;
     font-weight: bold;
     color: white;
     padding: 10px;
     border: none;
     text-decoration: none;
-    font-size: .3em;
+    font-size: .2em;
 }
-.end_resume a.save{
+.end_resume a.save_resume{
     background-color: green;
-    font-weight: bold;
-    color: white;
-    padding: 10px;
-    border: none;
-    text-decoration: none;
-    font-size: .3em;
 }
 
 

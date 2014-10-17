@@ -48,19 +48,17 @@ class User{
 
 		foreach ($autocomplete as $key => $value) {
 			foreach (explode('[@!-#-!@]', $value['key_skills']) as $key => $val) {
-				$autocomplete_arr['key_skills'][] = $val;
+				if($val){
+					$autocomplete_arr['key_skills'][] = $val;
+				}
+
 			}
 			foreach (explode('[@!-#-!@]', $value['regions']) as $key => $val) {
-				$autocomplete_arr['regions'][] = $val;
+				if($val) {
+					$autocomplete_arr['regions'][] = $val;
+				}
 			}
 		}
-
-		$autocomplete_arr['key_skills'] = array_filter($autocomplete_arr['key_skills'], function($el){
-			return !empty($el);}
-		);
-		$autocomplete_arr['regions'] = array_filter($autocomplete_arr['regions'], function($el){
-			return !empty($el);}
-		);
 
 		$autocomplete_arr['key_skills'] = array_slice(array_unique($autocomplete_arr['key_skills']), 0);
 		$autocomplete_arr['regions'] = array_slice(array_unique($autocomplete_arr['regions']), 0);
@@ -197,7 +195,7 @@ class User{
 			exper.closing_works AS 'experience_closing_works',
 			exper.at_the_moments AS 'experience_at_the_moments',
 			exper.functions AS 'experience_functions',
-			REPLACE(exper.key_skills,'[@!-#-!@]', '&nbsp;&nbsp;&nbsp;') AS 'experience_key_skills',
+			REPLACE(exper.key_skills,'[@!-#-!@]', '&nbsp; &nbsp;') AS 'experience_key_skills',
 			exper.about_self AS 'experience_about_self',
 			exper.recommend_names AS 'experience_recommend_names',
 			exper.recommend_position AS 'experience_recommend_position',
