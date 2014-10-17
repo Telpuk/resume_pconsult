@@ -14,32 +14,33 @@
 	<table data-table-experience-id='<?=$i?>'>
 		<tbody>
 		<tr>
-			<td><label for="organization">Организация<span class="required">*</span></label></td>
+			<td><label>Организация<span class="required">*</span></label></td>
 			<td>
-				<input type="text"  id="organization"  name="organizations[<?=$i?>]" value='<?=$this->data['data']['inputs']['organizations']['value'][$i]?>'>
+				<input type="text"  class="organizations"  name="organizations[<?=$i?>]"
+				       value='<?=$this->data['data']['inputs']['organizations']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['organizations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="region[<?=$i?>]">Регион<span class="required">*</span></label></td>
+			<td><label>Регион<span class="required">*</span></label></td>
 			<td>
-				<input class="regions" type="text" id="region[<?=$i?>]"  name="regions[<?=$i?>]"
+				<input class="regions" type="text"  name="regions[<?=$i?>]"
 				        value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['regions']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="site">Сайт</label></td>
+			<td><label>Сайт</label></td>
 			<td>
-				<input type="text"  id="site"  name="sites[<?=$i?>]"
+				<input type="text"  name="sites[<?=$i?>]"
 				       value='<?=$this->data['data']['inputs']['sites']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['sites']['val']['message'][$i]?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="field_activity">Сфера деятельности компании</label></td>
+			<td><label>Сфера деятельности компании</label></td>
 			<td>
-				<input type="text"  id="field_activity"  name="field_activities[<?=$i?>]"
+				<input type="text" class="field_activities"  name="field_activities[<?=$i?>]"
 				       value='<?=$this->data['data']['inputs']['field_activities']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['field_activities']['val'][$i]['message']?></div>
 			</td>
@@ -47,7 +48,7 @@
 		<tr>
 			<td><label for="positions">Должность<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="positions" name="positions[<?=$i?>]"
+				<input type="text" class="positions"  name="positions[<?=$i?>]"
 				       value='<?=$this->data['data']['inputs']['positions']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['positions']['val'][$i]['message']?></div>
 			</td>
@@ -114,7 +115,7 @@
 		<tr>
 			<td class="functions" ><label for="functions">Обязанности, функции, достижения<span class="required">*</span></label></td>
 			<td class="function_td">
-				<textarea id="functions"  name="functions[<?=$i?>]"><?=$this->data['data']['inputs']['functions']['value'][$i]?></textarea>
+				<textarea name="functions[<?=$i?>]"><?=$this->data['data']['inputs']['functions']['value'][$i]?></textarea>
 				<p>Не ограничивайтесь одним-двумя словами, а подробно опишите ваши обязанности и результаты</p>
 				<div class="message"><?=$this->data['data']['inputs']['functions']['val'][$i]['message']?></div>
 			</td>
@@ -201,7 +202,6 @@
 	</table>
 <?php endfor; ?>
 <div class="add_recommendations"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить рекомендацию</div>
-<hr>
 <table class="foot_table">
 	<tfoot>
 	<tr>

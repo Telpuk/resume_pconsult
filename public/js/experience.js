@@ -1,4 +1,4 @@
-(function($, Handlebars ,window){
+(function($, BASE_URL, Handlebars ,window){
     function Personal(){
         this.$form = $('.personal.experience .form');
         this.count_table_experience = $('*[data-table-experience-id]:last').data()['tableExperienceId'];
@@ -7,6 +7,9 @@
         this.$skills_td = $('.skills_td');
         this.$add_skills_hid = $('.add_skills_hid');
         this.$regions = $('.regions');
+        this.$organizations = $('.organizations');
+        this.$positions = $('.positions');
+        this.$field_activities = $('.field_activities');
     }
 
     Personal.prototype.validateForm = function(){
@@ -202,20 +205,41 @@
     };
 
     Personal.prototype.autocompRegions = function(data){
-        console.log(data);
         this.$regions.autocomplete({
+            source: data
+        });
+    };
+
+    Personal.prototype.autocompOrganization = function(data){
+        this.$organizations.autocomplete({
+            source: data
+        });
+    };
+    Personal.prototype.autocomPositions = function(data){
+        this.$positions.autocomplete({
+            source: data
+        });
+    };
+
+    Personal.prototype.autocompFieldActivities = function(data){
+        this.$field_activities.autocomplete({
             source: data
         });
     };
 
     Personal.prototype.autocompleteSkills = function(){
         var self = this;
-        $.post( "http://10.10.0.176/resume_pconsult/side/autocomplete",
+        $.post( BASE_URL+"/side/autocomplete",
             { autocomplete: "autocomplete"})
             .done(function( data ) {
+                console.log(data);
                 data = JSON.parse(data);
+                console.log(JSON.parse(data['key_skills']));
                 self.autocompSkills(JSON.parse(data['key_skills']));
                 self.autocompRegions(JSON.parse(data['regions']));
+                self.autocompOrganization(JSON.parse(data['organizations']));
+                self.autocomPositions(JSON.parse(data['positions']));
+                self.autocompFieldActivities(JSON.parse(data['field_activities']));
             });
     };
 
@@ -229,5 +253,5 @@
     var personal = new Personal();
     personal.init();
 
-})(jQuery, Handlebars ,window)
+})(jQuery, BASE_URL, Handlebars ,window)
 

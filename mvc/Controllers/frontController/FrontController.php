@@ -2,7 +2,7 @@
 
 	class FrontController extends Config{
 		static private $_instance = null;
-		private $_controller, $_action, $_content ,$_body, $_params = [];
+		private $_controller, $_action, $_content ,$_body, $_params = array();
 
 		private function __construct(){
 			$this->getConfig();

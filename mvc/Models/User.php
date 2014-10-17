@@ -43,7 +43,15 @@ class User{
 	}
 
 	public function selectAutocomplete(){
-		$stmt = $this->_dbc->query("SELECT DISTINCT key_skills, regions FROM experience");
+		$stmt = $this->_dbc->query("SELECT DISTINCT
+												organizations,
+												key_skills,
+												regions,
+												positions,
+												field_activities
+											FROM
+												experience"
+		);
 		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		foreach ($autocomplete as $key => $value) {
@@ -51,20 +59,40 @@ class User{
 				if($val){
 					$autocomplete_arr['key_skills'][] = $val;
 				}
-
 			}
 			foreach (explode('[@!-#-!@]', $value['regions']) as $key => $val) {
 				if($val) {
 					$autocomplete_arr['regions'][] = $val;
 				}
 			}
+			foreach (explode('[@!-#-!@]', $value['organizations']) as $key => $val) {
+				if($val){
+					$autocomplete_arr['organizations'][] = $val;
+				}
+			}
+			foreach (explode('[@!-#-!@]', $value['field_activities']) as $key => $val) {
+				if($val) {
+					$autocomplete_arr['field_activities'][] = $val;
+				}
+			}
+			foreach (explode('[@!-#-!@]', $value['positions']) as $key => $val) {
+				if($val) {
+					$autocomplete_arr['positions'][] = $val;
+				}
+			}
 		}
 
-		$autocomplete_arr['key_skills'] = array_slice(array_unique($autocomplete_arr['key_skills']), 0);
-		$autocomplete_arr['regions'] = array_slice(array_unique($autocomplete_arr['regions']), 0);
+		$autocomplete_arr['key_skills'] = array_slice(array_unique((array)$autocomplete_arr['key_skills']), 0);
+		$autocomplete_arr['regions'] = array_slice(array_unique((array)$autocomplete_arr['regions']), 0);
+		$autocomplete_arr['organizations'] = array_slice(array_unique((array)$autocomplete_arr['organizations']), 0);
+		$autocomplete_arr['positions'] = array_slice(array_unique((array)$autocomplete_arr['positions']), 0);
+		$autocomplete_arr['field_activities'] = array_slice(array_unique((array)$autocomplete_arr['field_activities']), 0);
 
 		$json['key_skills'] = $this->json_encode_cyr($autocomplete_arr['key_skills']);
 		$json['regions'] = $this->json_encode_cyr($autocomplete_arr['regions']);
+		$json['organizations'] = $this->json_encode_cyr($autocomplete_arr['organizations']);
+		$json['positions'] = $this->json_encode_cyr($autocomplete_arr['positions']);
+		$json['field_activities'] = $this->json_encode_cyr($autocomplete_arr['field_activities']);
 
 		return $this->json_encode_cyr($json);
 	}

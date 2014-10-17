@@ -36,7 +36,9 @@ class SideController extends IController{
 
 	public function autocompleteAction(){
 		if($_POST['autocomplete']==='autocomplete'){
-			print_r($this->_dbuser->selectAutocomplete());
+			echo($this->_dbuser->selectAutocomplete());
+		}else {
+			$this->headerLocation('index');
 		}
 	}
 

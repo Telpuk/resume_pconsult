@@ -2,7 +2,7 @@
 	abstract class Config{
 		protected  abstract  function getConfig();
 
-		protected  function _setConfigBD($config_bd = []){
+		protected  function _setConfigBD($config_bd = array()){
 			define('TYPE_BD', $config_bd['type_bd']);
 			define('HOST_DB', $config_bd['host']);
 			define('DB_NAME', $config_bd['db_name']);
@@ -10,7 +10,7 @@
 			define('PASSWORD', $config_bd['password']);
 		}
 
-		protected function _setConfigJS($config_js=[]){
+		protected function _setConfigJS($config_js=array()){
 			define('JS', $config_js['javascript']);
 		}
 

@@ -15,43 +15,44 @@
 	<div class="content"><?=$this->_content?></div>
 </div>
 </body>
+<script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
 <?=$this->_javascript?>
 <script id="table-template-experience" type="text/x-handlebars-template">
 	<div class="delete experience" data-table-experience-id="{{i}}"><img src='http://10.10.0.176/resume_pconsult/public/img/delete.png'>Удалить</div>
 	<table data-table-experience-id="{{i}}">
 		<tbody>
 		<tr>
-			<td><label for="organization">Организация<span class="required">*</span></label></td>
+			<td><label>Организация<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="organization"  name="organizations[{{i}}]" value="">
+				<input type="text"  name="organizations[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="region">Регион<span class="required">*</span></label></td>
+			<td><label>Регион<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="region" name="regions[{{i}}]" value="">
+				<input type="text"  name="regions[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="site">Сайт</label></td>
+			<td><label>Сайт</label></td>
 			<td>
-				<input type="text"  id="site"  name="sites[{{i}}]" value="">
+				<input type="text"   name="sites[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="field_activity">Сфера деятельности компании</label></td>
+			<td><label>Сфера деятельности компании</label></td>
 			<td>
-				<input type="text" id="field_activity"  name="field_activities[{{i}}]" value="">
+				<input type="text"  name="field_activities[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="positions">Должность<span class="required">*</span></label></td>
+			<td><label>Должность<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="positions" name="positions[{{i}}]" value="">
+				<input type="text" name="positions[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
@@ -89,9 +90,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="functions" ><label for="functions">Обязанности, функции, достижения<span class="required">*</span></label></td>
+			<td class="functions" ><label>Обязанности, функции, достижения<span class="required">*</span></label></td>
 			<td class="function_td">
-				<textarea id="functions"  name="functions[{{i}}]"></textarea>
+				<textarea name="functions[{{i}}]"></textarea>
 				<p>Не ограничивайтесь одним-двумя словами, а подробно опишите ваши обязанности и результаты</p>
 				<div class="message"></div>
 			</td>
@@ -146,29 +147,29 @@
 	<table class="base_education" data-table-base-education-id='{{i}}'>
 		<tbody>
 		<tr>
-			<td><label for="names_institutions">Название учебного заведения<span class="required">*</span></label></td>
+			<td><label>Название учебного заведения<span class="required">*</span></label></td>
 			<td>
-				<input type="text" id="names_institutions" name="names_institutions[{{i}}]" value=''>
+				<input type="text"  name="names_institutions[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="faculties">Факультет<span class="required">*</span></label></td>
+			<td><label>Факультет<span class="required">*</span></label></td>
 			<td>
-				<input type="text"  id="faculties"  name="faculties[{{i}}]" value=''>
+				<input type="text"  name="faculties[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="specialty_specialty">Cпециализация / специальность<span class="required">*</span></label></td>
+			<td><label>Cпециализация / специальность<span class="required">*</span></label></td>
 			<td>
-				<input type="text"  id="specialty_specialty"  name="specialties_specialties[{{i}}]" value=''>
+				<input type="text" name="specialties_specialties[{{i}}]" value=''>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="year_graduation">Год окончания<span class="required">*</span></label></td>
+			<td><label>Год окончания<span class="required">*</span></label></td>
 			<td>
 				<select name="years_graduations[{{i}}]">
 					{{#years}}
@@ -194,29 +195,29 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td><label for="courses_name">Название</label></td>
+			<td><label>Название</label></td>
 			<td>
-				<input type="text" id="courses_name" name="courses_names[{{i}}]" value=''>
+				<input type="text" name="courses_names[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="follow_organizations">Проводившая организация</label></td>
+			<td><label>Проводившая организация</label></td>
 			<td>
-				<input type="text"  id="follow_organizations"  name="follow_organizations[{{i}}]" value=''>
+				<input type="text" name="follow_organizations[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="courses_specialty">Cпециализация / специальность</label></td>
+			<td><label>Cпециализация / специальность</label></td>
 			<td>
-				<input type="text"  id="courses_specialty"  name="courses_specialties[{{i}}]" value=''>
+				<input type="text" name="courses_specialties[{{i}}]" value=''>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="course_year_graduation">Год окончания</label></td>
+			<td><label>Год окончания</label></td>
 			<td>
 				<select name="course_years_graduations[{{i}}]">
 					{{#years}}
@@ -242,29 +243,29 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td><label for="tests_exams_names">Название</label></td>
+			<td><label>Название</label></td>
 			<td>
-				<input type="text" id="tests_exams_names" name="tests_exams_names[{{i}}]" value=''>
+				<input type="text" name="tests_exams_names[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_follow_organizations">Проводившая организация</label></td>
+			<td><label>Проводившая организация</label></td>
 			<td>
-				<input type="text"  id="tests_exams_follow_organizations"  name="tests_exams_follow_organizations[{{i}}]" value=''>
+				<input type="text"  name="tests_exams_follow_organizations[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_specialty">Cпециализация / специальность</label></td>
+			<td><label>Cпециализация / специальность</label></td>
 			<td>
-				<input type="text"  id="tests_exams_specialty"  name="tests_exams_specialty[{{i}}]" value=''>
+				<input type="text" name="tests_exams_specialty[{{i}}]" value=''>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_years_graduations">Год сдачи</label></td>
+			<td><label>Год сдачи</label></td>
 			<td>
 				<select name="tests_exams_years_graduations[{{i}}]">
 					{{#years}}
@@ -290,14 +291,14 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td><label for="electronic_certificates_names">Название</label></td>
+			<td><label>Название</label></td>
 			<td>
-				<input type="text" id="electronic_certificates_names" name="electronic_certificates_names[{{i}}]" value=''>
+				<input type="text" name="electronic_certificates_names[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="electronic_certificates_years_graduations">Год получения</label></td>
+			<td><label>Год получения</label></td>
 			<td>
 				<select name="electronic_certificates_years_graduations[{{i}}]">
 					{{#years}}
@@ -308,9 +309,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="electronic_certificates_links">Ссылка на сертификат</label></td>
+			<td><label>Ссылка на сертификат</label></td>
 			<td>
-				<input type="text"  id="electronic_certificates_links" name="electronic_certificates_links[{{i}}]" value=''>
+				<input type="text" name="electronic_certificates_links[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
@@ -324,14 +325,14 @@
 	</tr>
 	<tr data-tr-language-further-id='{{i}}'>
 		<td>
-			<select id="language_further" name="language_further[{{i}}]">
+			<select name="language_further[{{i}}]">
 				{{#languages}}
 				{{this}}
 				{{/languages}}
 			</select>
 		</td>
 		<td>
-			<select id="language_further_level" name="language_further_level[{{i}}]">
+			<select  name="language_further_level[{{i}}]">
 				<option value="Базовые знания" >Базовые знания</option>
 				<option value="Читаю профессиональную литературу" >Читаю профессиональную литературу</option>
 				<option value="Могу проходить интервью" >Могу проходить интервью</option>

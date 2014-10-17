@@ -1,7 +1,7 @@
 <?php
 
 	abstract class IController extends SessionController{
-		protected $_paramsGET = [];
+		protected $_paramsGET = array();
 		protected $_body;
 
 		public function __construct(){

@@ -1,4 +1,4 @@
-(function($, window){
+(function($, BASE_URL ,window){
     function Personal(){
 
         this.$day_birth = $('#day_birth');
@@ -116,4 +116,4 @@
     var personal = new Personal();
     personal.init();
 
-})(jQuery, window)
+})(jQuery, BASE_URL ,window)
