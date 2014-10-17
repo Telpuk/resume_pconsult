@@ -180,14 +180,16 @@
 		<tr>
 			<td>Должность</td>
 			<td>
-				<input type="text" name="recommend_position[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_position']['value'][$i]?>">
+				<input class="positions" type="text" name="recommend_position[<?=$i?>]"
+				        value="<?=$this->data['data']['inputs']['recommend_position']['value'][$i]?>">
 				<div class="message"><?=$this->data['data']['inputs']['recommend_position']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
 			<td>Организация</td>
 			<td>
-				<input type="text" name="recommend_organization[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_organization']['value'][$i]?>">
+				<input class="organizations" type="text" name="recommend_organization[<?=$i?>]"
+				        value="<?=$this->data['data']['inputs']['recommend_organization']['value'][$i]?>">
 				<div class="message"><?=$this->data['data']['inputs']['recommend_organization']['val'][$i]['message']?></div>
 			</td>
 		</tr>

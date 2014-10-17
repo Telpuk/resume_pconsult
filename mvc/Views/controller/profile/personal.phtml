@@ -107,17 +107,19 @@
 							</td>
 						</tr>
 						<tr id="nat">
-							<td>Гражданство</td>
+							<td><label for="nationality">Гражданство</label></td>
 							<td>
 								<p  class="example">Например: <span id="nationality_example">Беларусь</span></p>
-								<input type="text" name="nationality" value='<?=$this->data['data']['inputs']['nationality']['value']?>'>
+								<input type="text" id="nationality" name="nationality"
+								       value='<?=$this->data['data']['inputs']['nationality']['value']?>'>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="work_permit">Разрешение на работу</label></td>
 							<td>
 								<p  class="example">Например: <span id="work_permit_example">Беларусь</span></p>
-								<input type="text" name="work_permit" value='<?=$this->data['data']['inputs']['work_permit']['value']?>'>
+								<input type="text" id="work_permit" name="work_permit"
+								       value='<?=$this->data['data']['inputs']['work_permit']['value']?>'>
 							</td>
 						</tr>
 						<tr>

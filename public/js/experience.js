@@ -6,10 +6,6 @@
         this.$key_skill = $('#key_skill');
         this.$skills_td = $('.skills_td');
         this.$add_skills_hid = $('.add_skills_hid');
-        this.$regions = $('.regions');
-        this.$organizations = $('.organizations');
-        this.$positions = $('.positions');
-        this.$field_activities = $('.field_activities');
     }
 
     Personal.prototype.validateForm = function(){
@@ -148,11 +144,13 @@
         this.$form.on('click', {self:this}, function(event){
             switch (event.target.className){
                 case 'add_position':{
+                    event.data.self.autocompletePost();
                     var html = event.data.self.tableTemplatePosition();
                     $(event.target).before(html);
                     break;
                 }
                 case 'add_recommendations':{
+                    event.data.self.autocompletePost();
                     var html = event.data.self.tableTemplateRecommendations();
                     $(event.target).before(html);
                     break;
@@ -205,36 +203,34 @@
     };
 
     Personal.prototype.autocompRegions = function(data){
-        this.$regions.autocomplete({
+        $('.regions').autocomplete({
             source: data
         });
     };
 
     Personal.prototype.autocompOrganization = function(data){
-        this.$organizations.autocomplete({
+        $('.organizations').autocomplete({
             source: data
         });
     };
     Personal.prototype.autocomPositions = function(data){
-        this.$positions.autocomplete({
+        $('.positions').autocomplete({
             source: data
         });
     };
 
     Personal.prototype.autocompFieldActivities = function(data){
-        this.$field_activities.autocomplete({
+        $('.field_activities').autocomplete({
             source: data
         });
     };
 
-    Personal.prototype.autocompleteSkills = function(){
+    Personal.prototype.autocompletePost = function(){
         var self = this;
         $.post( BASE_URL+"/side/autocomplete",
             { autocomplete: "autocomplete"})
             .done(function( data ) {
-                console.log(data);
                 data = JSON.parse(data);
-                console.log(JSON.parse(data['key_skills']));
                 self.autocompSkills(JSON.parse(data['key_skills']));
                 self.autocompRegions(JSON.parse(data['regions']));
                 self.autocompOrganization(JSON.parse(data['organizations']));
@@ -245,7 +241,7 @@
 
     Personal.prototype.init = function(){
         this.validateForm();
-        this.autocompleteSkills();
+        this.autocompletePost();
         this.addEventListenerSkills();
         this.addEventListenerFORM();
     };

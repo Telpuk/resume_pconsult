@@ -13,6 +13,10 @@
         this.$submitPersonal = $('#submitPersonal',this.$wrapper);
         this.$error_data = $('.data', this.$wrapper);
 
+        this.$city = $('#city');
+        this.$nationality = $('#nationality');
+        this.$work_permit = $('#work_permit');
+
     }
 
     Personal.prototype.validateForm = function(){
@@ -104,9 +108,37 @@
             $(event.target).parent().parent().children().get(1).value = $(event.target).text();
         });
     };
+    Personal.prototype.autocompCity = function(data){
+        this.$city.autocomplete({
+            source: data
+        });
+    };
+    Personal.prototype.autocompNationality = function(data){
+        this.$nationality.autocomplete({
+            source: data
+        });
+    };
+    Personal.prototype.autocompWorkPermit = function(data){
+        this.$work_permit.autocomplete({
+            source: data
+        });
+    };
 
+
+    Personal.prototype.autocompletePost = function(){
+        var self = this;
+        $.post( BASE_URL+"/profile/autocomplete",
+            { autocomplete: "autocomplete"})
+            .done(function( data ) {
+                data = JSON.parse(data);
+                self.autocompCity(JSON.parse(data['city']));
+                self.autocompNationality(JSON.parse(data['city']));
+                self.autocompWorkPermit(JSON.parse(data['city']));
+            });
+    };
 
     Personal.prototype.init = function(){
+        this.autocompletePost();
         this.validateForm();
         this.addEventListenerBirth();
         this.addEventListenerExample();

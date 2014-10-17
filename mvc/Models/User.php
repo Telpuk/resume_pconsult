@@ -42,7 +42,7 @@ class User{
 		return $str2;
 	}
 
-	public function selectAutocomplete(){
+	public function selectAutocompleteExperence(){
 		$stmt = $this->_dbc->query("SELECT DISTINCT
 												organizations,
 												key_skills,
@@ -95,6 +95,41 @@ class User{
 		$json['field_activities'] = $this->json_encode_cyr($autocomplete_arr['field_activities']);
 
 		return $this->json_encode_cyr($json);
+	}
+
+	public function selectAutocompletePersonal(){
+		$stmt = $this->_dbc->query("SELECT DISTINCT
+												p.city,
+												e.regions,
+												p.nationality,
+												p.work_permit
+											FROM
+												profile p,
+												experience e"
+		);
+		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach ($autocomplete as $key => $value) {
+			if($value['city']){
+				$autocomplete_arr['city'][] = $value['city'];
+			}
+			if($value['regions']){
+				$autocomplete_arr['city'][] = $value['regions'];
+			}
+			if($value['nationality']) {
+				$autocomplete_arr['city'][] = $value['nationality'];
+
+			}
+			if($value['work_permit']){
+				$autocomplete_arr['city'][] = $value['work_permit'];
+			}
+
+		}
+
+		$json['city'] = $this->json_encode_cyr((array)$autocomplete_arr['city']);
+
+		return $this->json_encode_cyr($json);
+
 	}
 
 	public function deleteResume($id_user){

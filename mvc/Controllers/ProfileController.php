@@ -2,7 +2,7 @@
 class ProfileController extends IController{
 	private $_view;
 	private $_dbuser;
-	private $_format_photo = ['png'=>'png','jpg'=>'jpg','gif' =>'gif'];
+	private $_format_photo = array('png'=>'png','jpg'=>'jpg','gif' =>'gif');
 	private $_size_photo = 6291456;
 
 	public function __construct(){
@@ -14,6 +14,15 @@ class ProfileController extends IController{
 	private function _getDownloadDirPhoto(){
 		return DIR_PROJECT.'/files/photo';
 	}
+
+	public function autocompleteAction(){
+		if($_POST['autocomplete']==='autocomplete'){
+			echo($this->_dbuser->selectAutocompletePersonal());
+		}else {
+			$this->headerLocation('index');
+		}
+	}
+
 
 	public function contactsAction(){
 		if(isset($_POST['saveContacts'])){
@@ -53,7 +62,8 @@ class ProfileController extends IController{
 
 	public function deleteAction(){
 		$this->_dbuser->updatePhotoId('no-photo.png', $this->getSessionUserID('user'));
-		@unlink($this->_getDownloadDirPhoto()."/".$this->getParams()['photo']);
+		$params = $this->getParams();
+		@unlink($this->_getDownloadDirPhoto()."/".$params['photo']);
 		$this->headerLocation('profile/photo');
 
 	}
@@ -336,6 +346,7 @@ class ProfileController extends IController{
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/jquery-ui.js",
 				BASE_URL."/public/js/personal.js"
 			),
 		);
