@@ -18,6 +18,4 @@ class AdminControlController extends IController{
 			'view'=>'admin_control/index'
 		));
 	}
-
-
 }

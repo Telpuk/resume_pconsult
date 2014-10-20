@@ -64,7 +64,7 @@ class ProfileController extends IController{
 		$this->_dbuser->updatePhotoId('no-photo.png', $this->getSessionUserID('user'));
 		$params = $this->getParams();
 		@unlink($this->_getDownloadDirPhoto()."/".$params['photo']);
-		$this->headerLocation('profile/photo');
+		$this->headerLocation('index');
 
 	}
 
@@ -312,7 +312,7 @@ class ProfileController extends IController{
 					}
 				}else{
 					$this->_movePhotoDir($_FILES['photo']);
-					$this->headerLocation('profile/photo');
+					$this->headerLocation('index');
 				}
 			}else{
 				return array('helpers'=>array('empty_photo'=>'profile/helpers/empty_photo'));
