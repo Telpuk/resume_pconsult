@@ -49,7 +49,7 @@ body {
     max-width: 1200px;
     margin: 50px auto;
     background-color: white;
-    /*border: 1px black solid;*/
+    border: 1px black solid;
     padding: 10px;
 }
 
@@ -1014,46 +1014,172 @@ table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
     width: 210px;
 }
 
+/*authorization*/
+main.authorization{
+    margin:  0 auto;
+    width: 60%;
+}
+
+main.authorization p{
+    padding: 20px;
+}
+main.authorization p label{
+    display: block;
+    margin-right: 10px;
+    float: left;
+    font-size: .3em;
+    text-align: right;
+    width: 30%;
+}
+
+main.authorization p input[type=text],
+main.authorization p input[type=password]{
+    padding-left: 5px;
+    display: block;
+    height: 30px;
+    width: 30%;
+    float: left;
+}
+main.authorization p input[type=submit]{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: #ff564d;
+    display: block;
+    height: 30px;
+    width: 30%;
+    margin-right: 38.5%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+main.authorization .helpers_message_authorization{
+    border: 1px red dashed;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    color: red;
+    font-size: .2em;
+}
+/*admin_control*/
+.admin_control{
+
+}
+.admin_control .left_admin_control{
+    float: left;
+    width: 25%;
+    font-size: .2em;
+    border: 1px black solid;
+}
+.admin_control .right_admin_control{
+    float: left;
+    width: 75%;
+    font-size: .2em;
+    border: 1px black solid;
+}
+
+.admin_control .right_admin_control nav{
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.admin_control .right_admin_control nav ul{
+    padding: 0; margin: 0;
+}
+.admin_control .right_admin_control nav ul li{
+    display: inline-block;
+    list-style-type: none;
+    border: 1px black solid;
+}
+
+.admin_control .right_admin_control nav ul li a{
+    padding: 10px;
+    text-decoration: none;
+}
+
+.admin_control .right_admin_control .user_id{
+    padding: 20px;
+    margin-top: 10px;
+    border-top: 1px #bababa dashed;
+}
+.admin_control .right_admin_control .user_id figure{
+    display: block;
+    float: left;
+    width: 25%;
+}
+
+.admin_control .right_admin_control .user_id .inform_user{
+    float: left;
+    width: 75%;
+}
+
+.admin_control .right_admin_control .user_id .inform_user p{
+    margin-top: 10px;
+}
+
+.admin_control .right_admin_control .user_id .inform_user p:last-child{
+    color: #bababa;
+    font-weight: bold;
+}
+
+.admin_control .right_admin_control .user_id .inform_user span{
+    color: #bababa;
+    padding: 10px;
+}
+
+.admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
+    display: block;
+    float: right;
+}
+.admin_control .right_admin_control .user_id .inform_user .name_user_inform{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
+.admin_control .right_admin_control .user_id img{
+    width: 150px;
+    height: 150px;
+}
 
 
+.admin_control .out{
+    float: right;
+    width: 20%;
+    text-align: right;
+    font-size: .15em;
+    margin-bottom: 10px;
+}
+.admin_control .out a{
+    background-color: red;
+    padding: 5px 10px 5px 10px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing:2px;
+    text-decoration: none;
+}
+
+.admin_control .search{
+    padding: 5px;
+    background-color: #7fbeff;
+}
 
 
+.admin_control .search input[type=search]{
+    padding-left: 10px;
+    display: block;
+    float: left;
+    margin-left: 50px;
+    height: 30px;
+    width: 50%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.admin_control .search input[type=submit]{
+    display: block;
+    float: left;
+    margin-left: 10px;
+    height: 30px;
+    width: 150px;
+}
 
 

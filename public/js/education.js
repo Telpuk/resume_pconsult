@@ -24,7 +24,7 @@
         });
 
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_base_education});
+        return template({'i':++this.count_base_education,'BASE_URL':BASE_URL});
     };
 
     Personal.prototype.tableTemplateTrainingCourse = function(){
@@ -41,7 +41,7 @@
         });
 
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_traning_course});
+        return template({'i':++this.count_traning_course,'BASE_URL':BASE_URL});
     };
 
     Personal.prototype.tableTemplateTestsExams = function(){
@@ -58,7 +58,7 @@
         });
 
         var template = Handlebars.compile(source);
-        return template({'i':++this.count_tests_exams});
+        return template({'i':++this.count_tests_exams,'BASE_URL':BASE_URL});
     };
 
     Personal.prototype.tableTemplateElectronicCertificates = function(){

@@ -5,7 +5,7 @@
 			'SideController'
 		)),
 		'admin'=>array('controllers'=>array(
-
+			'AdmincontrolController'
 		)),
 		'manager'=>array('controllers'=>array(
 

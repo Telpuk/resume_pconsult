@@ -1,0 +1,22 @@
+<?php //print_r($this->data) ?>
+<main class="authorization">
+	<?php if(isset($this->data['helpers']['no-authorization'])): ?>
+		<?=$this->data['helpers']['no-authorization']?>
+	<?php endif; ?>
+	<form action='<?=BASE_URL."/admin/authorization"?>' method="post">
+		<p>
+			<label for="login">Логин</label>
+			<input type="text" name="login" id="login" value="<?=$this->data['data']['login']?>">
+		</p>
+		<div class="clear"></div>
+		<p>
+			<label for="password">Пароль</label>
+			<input type="password" name="password" value="">
+		</p>
+		<div class="clear"></div>
+		<p>
+			<input type="submit" name="submitAuthorization" value="войти">
+		</p>
+		<div class="clear"></div>
+	</form>
+</main>

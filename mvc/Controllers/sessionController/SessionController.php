@@ -15,7 +15,7 @@
 		}
 
 		public function setSessionUsers($session=array()){
-			$_SESSION['session_users']['users'] = $session;
+			$_SESSION['session_users']['users'] = array_merge($session,(array)$_SESSION['session_users']['users']);
 		}
 
 		public function getSessionUsers(){
@@ -26,9 +26,12 @@
 			return isset($_SESSION['session_users']['users'][$user]) ? $_SESSION['session_users']['users'][$user]: false;
 		}
 
+		public function deleteSessionUsers($user){
+			unset($_SESSION['session_users']['users'][$user]);
+		}
+
 		public function sessionClear(){
 			session_destroy();
-			$this->headerLocation();
 		}
 
 
