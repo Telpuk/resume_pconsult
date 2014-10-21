@@ -239,6 +239,7 @@
 		<td><label for="native_language">Родной язык</label></td>
 		<td>
 			<select id="native_language" name="native_language">
+				<option value=""></option>
 				<?php foreach($this->data['data']['languages'] as  $language): ?>
 					<option value="<?=$language?>" <?php if($this->data['data']['inputs']['native_language']['value']===$language)echo'selected'?>><?=$language?></option>
 				<?php endforeach; ?>

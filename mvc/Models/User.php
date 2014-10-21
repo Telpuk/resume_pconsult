@@ -295,8 +295,19 @@ class User{
 			)
 		);
 
+		$experience_count = $this->_getExperienceCount(
+			array(
+				'experience_getting_starteds'=>explode('[@!-#-!@]',$personal_data['experience_getting_starteds']),
+				'experience_closing_works'=>explode('[@!-#-!@]',$personal_data['experience_closing_works']),
+				'experience_at_the_moments'=>explode('[@!-#-!@]',$personal_data['experience_at_the_moments'])
+			)
+		);
+
+		$personal['sum_experience'] = $experience_count['sum'];
+
 		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
 			array(
+				'experience_count' =>$experience_count,
 				'experience_organizations'=>explode('[@!-#-!@]',$personal_data['experience_organizations']),
 				'experience_getting_starteds'=>explode('[@!-#-!@]',$personal_data['experience_getting_starteds']),
 				'experience_closing_works'=>explode('[@!-#-!@]',$personal_data['experience_closing_works']),
@@ -308,6 +319,7 @@ class User{
 				'experience_functions'=>explode('[@!-#-!@]',$personal_data['experience_functions'])
 			)
 		);
+
 
 		$personal['experience_key_skills'] = $personal_data['experience_key_skills'];
 
@@ -399,16 +411,62 @@ class User{
 		return $personal;
 	}
 
+	private function _getExperienceCount($personal_data){
+		$date = array();
+		$year_sum = '';
+		$month_sum = '';
+
+		if($personal_data['experience_getting_starteds'][0]) {
+			foreach ($personal_data['experience_getting_starteds'] as $key => $data) {
+				$str_date = '';
+				$d1 = new DateTime($data . "-1");
+				if ($personal_data['experience_at_the_moments'][$key] === 'false') {
+					$d2 = new DateTime($personal_data['experience_closing_works'][$key] . '-1');
+				} elseif ($personal_data['experience_at_the_moments'][$key] === 'true') {
+					$d2 = new DateTime('NOW');
+				}
+
+				$year = (int)$d2->diff($d1)->format('%Y');
+
+				if ($year) {
+					$str_date .= $year . ' год(лет) ';
+				}
+
+				$month = (int)$d2->diff($d1)->format('%m');
+
+				if ($month) {
+					$str_date .= $month . ' месяц(ев)';
+				} elseif (!$year && !$month) {
+					$str_date .= 'около месяца';
+				}
+
+				$date[$key] = $str_date;
+				$year_sum += $year;
+				$month_sum += $month;
+			}
+
+			$year_sum += round($month_sum / 12);
+			$month_sum = $month_sum % 12;
+
+			$str_year = (int)$year_sum ? $year_sum . " год(лет) " : '';
+			$str_moth = (int)$month_sum ? $month_sum . " месяц(ев)" : '';
+
+			$date['sum'] = $str_year . $str_moth;
+		}
+
+		return $date;
+	}
+
 	private function _getNationalityWorkPermit($personal_data){
 		$data='';
 		if($personal_data['nationality']){
-			$data.="<p>Гражданство: {$personal_data['nationality']}</p>";
+			$data.="<p>Гражданство: {$personal_data['nationality']}</p>\n";
 		}
 		if($personal_data['work_permit']){
-			$data.="<p>Разрешение на работу: {$personal_data['work_permit']}</p>";
+			$data.="<p>Разрешение на работу: {$personal_data['work_permit']}</p>\n";
 		}
 		if($personal_data['travel_time_work']){
-			$data.="<p>Желательное время в пути до работы: {$personal_data['travel_time_work']}</p>";
+			$data.="<p>Желательное время в пути до работы: {$personal_data['travel_time_work']}</p>\n";
 		}
 		return $data;
 	}
@@ -419,7 +477,7 @@ class User{
 			foreach ($personal_data['experience_recommend_names'] as $key => $experience_recommend_names) {
 				$data .= "<p><b>{$personal_data['experience_recommend_organization'][$key]}</b><br>" .
 					"{$experience_recommend_names} ({$personal_data['experience_recommend_position'][$key]})<br>" .
-					"{$personal_data['experience_recommend_phone'][$key]}</p>";
+					"{$personal_data['experience_recommend_phone'][$key]}</p>\n";
 
 			}
 		}
@@ -433,18 +491,21 @@ class User{
 			foreach($personal_data['experience_organizations'] as $key=>$organizations){
 
 				$starteds = explode('-',$personal_data['experience_getting_starteds'][$key]);
-				$starteds[0] = $this->_month[$starteds[0]];
-				$starteds = implode($starteds,' ');
+				$starteds[1] = $this->_month[$starteds[1]];
+				$starteds = implode(array_reverse($starteds),' ');
 
 				$data.="<tr>"
 					."<td>{$starteds}";
 				if($personal_data['experience_at_the_moments'][$key]=='true'){
-					$data.="&mdash; по ностоящее время</td>";
+					$data.="&mdash; по ностоящее время<br>
+					<span>{$personal_data['experience_count'][$key]}</span></td>\n";
 				}else{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
-					$closing[0] = $this->_month[$closing[0]];
-					$closing = implode($closing,' ');
-					$data.="&mdash; {$closing}</td>";
+					$closing[1] = $this->_month[$closing[1]];
+					$closing = implode(array_reverse($closing),' ');
+					$data.="&mdash; {$closing}<br>
+					<span>{$personal_data['experience_count'][$key]}</span>
+					</td>\n";
 				}
 				$data .="<td>"
 					."<b>$organizations</b><br>"
@@ -456,11 +517,11 @@ class User{
 					$data .="<br>{$personal_data['experience_field_activities'][$key]}";
 
 				$data .="<br><br><b>{$personal_data['experience_positions'][$key]}</b><br>"
-					."{$personal_data['experience_functions'][$key]}</td>"
+					."{$personal_data['experience_functions'][$key]}</td>\n"
 					."</tr>";
 			}
 
-			$data .="<table>";
+			$data .="<table>\n";
 
 		}
 
@@ -468,10 +529,6 @@ class User{
 	}
 
 	private function _getBerBirthSexCityMoveTrip($personal_data){
-		$trip = array('never'=>'никогда','ready'=>'готов','sometimes'=>'иногда');
-		$move = array('no'=>'невозможен','yes'=>'возможен','desirable'=>'желателен');
-
-
 		$birth_array = explode('-',$personal_data['birth']);
 		$birth_array[1] = $this->_month[$birth_array[1]];
 		$birth = implode($birth_array,' ');
@@ -481,8 +538,8 @@ class User{
 			($birth !== '  ')?$birth:'не указано',
 			$personal_data['sex'],
 			$personal_data['city'],
-			$move[$personal_data['move']],
-			$trip[$personal_data['trip']]);
+			$personal_data['move'],
+			$personal_data['trip']);
 	}
 
 	private function _getElectronicSertificates($personal_data){
@@ -491,7 +548,7 @@ class User{
 			$data = '<table>';
 			foreach ($personal_data['electronic_certificates_names'] as $key => $name) {
 				$data .= "<tr>"
-					."<td>{$personal_data['electronic_certificates_years_graduations'][$key]}<td>"
+					."<td>{$personal_data['electronic_certificates_years_graduations'][$key]}</td>"
 					."<td>{$name}
 <span><a href='{$personal_data['electronic_certificates_links'][$key]}'
 target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></span></td>"
@@ -505,15 +562,15 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 	private function _getTestsExamsNames($personal_data){
 		$data ='';
 		if($personal_data['tests_exams_names'][0]){
-			$data = '<table>';
+			$data = '<table>\n';
 			foreach ($personal_data['tests_exams_names'] as $key => $name) {
 				$data .= "<tr>"
-					."<td>{$personal_data['tests_exams_years_graduations'][$key]}<td>"
+					."<td>{$personal_data['tests_exams_years_graduations'][$key]}</td>\n"
 					."<td>{$personal_data['tests_exams_follow_organizations'][$key]}<span>{$name},
-					{$personal_data['tests_exams_specialty'][$key]}</span></td>"
-					."</tr>";
+					{$personal_data['tests_exams_specialty'][$key]}</span></td>\n"
+					."</tr>\n";
 			}
-			$data .= '<table>';
+			$data .= '<table>\n';
 		}
 		return $data;
 	}
@@ -524,7 +581,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 			$data = '<table>';
 			foreach ($personal_data['courses_names'] as $key => $name) {
 				$data .= "<tr>"
-					."<td>{$personal_data['course_years_graduations'][$key]}<td>"
+					."<td>{$personal_data['course_years_graduations'][$key]}</td>\n"
 					."<td>{$personal_data['follow_organizations'][$key]}<span>{$name},
 					{$personal_data['courses_specialties'][$key]}</span></td>"
 					."</tr>";
@@ -566,7 +623,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 			$data = '<table>';
 			foreach ($personal_data['names_institutions'] as $key => $name_institution) {
 				$data .= "<tr>"
-					."<td>{$personal_data['years_graduations'][$key]}<td>"
+					."<td>{$personal_data['years_graduations'][$key]}</td>"
 					."<td>{$name_institution}<span>{$personal_data['faculties'][$key]},
 					{$personal_data['specialties_specialties'][$key]}</span></td>"
 					."</tr>";
@@ -1114,10 +1171,10 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 	public function updateExperience($inputs, $id_user){
 
 		foreach($inputs['getting_starteds']['value'] as $key=>$value){
-			$getting_starteds[$key] = $value['month'].'-'.$value['year'];
+			$getting_starteds[$key] = $value['year'].'-'.$value['month'];
 		}
 		foreach($inputs['closing_works']['value'] as $key=>$value){
-			$closing_works[$key] = $value['month'].'-'.$value['year'];
+			$closing_works[$key] = $value['year'].'-'.$value['month'];
 		}
 
 		try {
@@ -1198,14 +1255,14 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 
 		foreach($getting_start as $key=>$value){
 			$month_year= explode('-',$value);
-			$getting_starteds[$key]['month'] = $month_year[0];
-			$getting_starteds[$key]['year'] = $month_year[1];
+			$getting_starteds[$key]['month'] = $month_year[1];
+			$getting_starteds[$key]['year'] = $month_year[0];
 		}
 
 		foreach($closing_work as $key=>$value){
 			$month_year= explode('-',$value);
-			$closing_works[$key]['month'] = $month_year[0];
-			$closing_works[$key]['year'] = $month_year[1];
+			$closing_works[$key]['month'] = $month_year[1];
+			$closing_works[$key]['year'] = $month_year[0];
 		}
 
 

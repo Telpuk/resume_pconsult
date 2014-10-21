@@ -1,6 +1,5 @@
 <?php
-class Admin
-{
+class Admin{
 	private
 		$_dbc;
 

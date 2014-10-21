@@ -155,7 +155,7 @@ body {
 
 .left{
     float: left;
-    width: 83%;
+    width: 82%;
 }
 .left_40{
     margin-top: 10px;
@@ -276,57 +276,11 @@ body {
 }
 
 
-/*.registration h1{*/
-/*font-weight: normal;*/
-/*text-align: center;*/
-/*font-size: 0.5em;*/
-/*margin-bottom: 20px;*/
-/*}*/
-.registration input[type=submit]{
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    background-color: red;
-    text-transform: uppercase;
-    color: white;
-    padding: 10px 5px 10px 5px;
-    margin-left: 40%;
-}
 .required{
     color: red;
+    margin-left: 3px;
 }
 
-
-.registration{
-    width: 100%;
-}
-.registration .label{
-    margin-top: 10px;
-    float: left;
-    font-size: 0.7em;
-    width: 40%;
-}
-.registration .input{
-    float: left;
-    width: 60%;
-}
-
-
-.registration .label label{
-    display: block;
-    height: 50px;
-    text-align: right;
-    font-size: .5em;
-}
-
-.registration .input input{
-    display: block;
-    padding: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 300px;
-    height: 40px;
-}
 
 .end_resume a.delete_resume,
 .end_resume a.save_resume{
@@ -349,10 +303,10 @@ body {
     line-height: 40px;
     font-weight: bold;
     text-decoration: none;
-    font-size: .3em;
+    font-size: .23em;
     height: 150px;
-    padding-top: 20px;
-    padding-left: 30px;
+    padding-top: 25px;
+    padding-left: 35px;
 }
 .resume .left .add a,
 .resume .salary_position_add a,
@@ -425,6 +379,11 @@ a.addPhoto span:last-child,
 .resume .experience_add a span:last-child{
     color: deepskyblue;
     font-size: 0.9em;
+}
+
+.resume .experience table td span{
+    padding: 5px;
+    color: #bababa;
 }
 
 
@@ -652,7 +611,7 @@ table.foot_table  tr td{
 
 .personal tfoot tr .back {
     font-size: 1.5em;
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 .personal tfoot tr td{

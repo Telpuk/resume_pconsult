@@ -113,7 +113,7 @@
             var out="<option value='0'></option>";
             var date = new Date();
 
-            for(var i=n; i < date.getFullYear(); ++i) {
+            for(var i=n; i <= date.getFullYear(); ++i) {
                 out += "<option value='"+i+"'>"+i+"</option>";
             }
             return out;

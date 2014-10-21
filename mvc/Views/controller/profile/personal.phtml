@@ -91,19 +91,19 @@
 						<tr>
 							<td>Переезд</td>
 							<td>
-								<input type="radio" name="move" value="no" <?php if($this->data['data']['inputs']['move']['value'] === 'no' ||
+								<input type="radio" name="move" value="Невозможен" <?php if($this->data['data']['inputs']['move']['value'] === 'Невозможен' ||
 									!$this->data['data']['inputs']['move']['value']) echo 'checked'?>>Невозможен<br>
-								<input type="radio" name="move" value="yes" <?php if($this->data['data']['inputs']['move']['value'] === 'yes') echo 'checked' ?>>Возможен<br>
-								<input type="radio" name="move" value="desirable"  <?php if($this->data['data']['inputs']['move']['value'] === 'desirable') echo 'checked' ?>>Желателен
+								<input type="radio" name="move" value="Возможен" <?php if($this->data['data']['inputs']['move']['value'] === 'Возможен') echo 'checked' ?>>Возможен<br>
+								<input type="radio" name="move" value="Желателен"  <?php if($this->data['data']['inputs']['move']['value'] === 'Желателен') echo 'checked' ?>>Желателен
 							</td>
 						</tr>
 						<tr>
 							<td>Готовность к командировкам</td>
 							<td>
-								<input type="radio" name="trip" value="never" <?php if ($this->data['data']['inputs']['trip']['value'] === 'never' ||
+								<input type="radio" name="trip" value="Никогда" <?php if ($this->data['data']['inputs']['trip']['value'] === 'Никогда' ||
 									!$this->data['data']['inputs']['trip']['value']) echo 'checked'?>>Никогда<br>
-								<input type="radio" name="trip" value="ready" <?php if($this->data['data']['inputs']['trip']['value'] === 'ready') echo 'checked' ?>>Готов<br>
-								<input type="radio" name="trip" value="sometimes" <?php if($this->data['data']['inputs']['trip']['value'] === 'sometimes') echo 'checked' ?>>Иногда
+								<input type="radio" name="trip" value="Готов" <?php if($this->data['data']['inputs']['trip']['value'] === 'Готов') echo 'checked' ?>>Готов<br>
+								<input type="radio" name="trip" value="Иногда" <?php if($this->data['data']['inputs']['trip']['value'] === 'Иногда') echo 'checked' ?>>Иногда
 							</td>
 						</tr>
 						<tr id="nat">
