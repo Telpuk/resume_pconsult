@@ -53,7 +53,8 @@ class Admin{
 		  exper.closing_works AS 'experience_closing_works',
 		  exper.at_the_moments AS 'experience_at_the_moments',
 		  prof.desired_position,
-		  prof.salary
+		  prof.salary,
+		  prof.currency
 		FROM
 		  profile AS prof,
 		  experience AS exper,
@@ -144,6 +145,7 @@ class Admin{
 				)
 			);
 			$search_data[$key]['sum_experience'] = $experience_count[$key]['sum'];
+			$search_data[$key]['salary'] = $data['salary'] ? $data['salary']." ".$data['currency'] : '';
 		}
 
 
