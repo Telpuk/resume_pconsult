@@ -275,6 +275,9 @@ class User{
 			);
 			$stmt->execute(array(':id_user'=>$id_user));
 			$personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
+			if(!$personal_data){
+				return false;
+			}
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
@@ -295,7 +298,7 @@ class User{
 			)
 		);
 
-		$experience_count = $this->_getExperienceCount(
+		$experience_count = $this->getExperienceCount(
 			array(
 				'experience_getting_starteds'=>explode('[@!-#-!@]',$personal_data['experience_getting_starteds']),
 				'experience_closing_works'=>explode('[@!-#-!@]',$personal_data['experience_closing_works']),
@@ -411,12 +414,12 @@ class User{
 		return $personal;
 	}
 
-	private function _getExperienceCount($personal_data){
+	public function getExperienceCount($personal_data){
 		$date = array();
 		$year_sum = '';
 		$month_sum = '';
 
-		if($personal_data['experience_getting_starteds'][0]) {
+		if(isset($personal_data['experience_getting_starteds'][0]) && $personal_data['experience_getting_starteds'][0]) {
 			foreach ($personal_data['experience_getting_starteds'] as $key => $data) {
 				$str_date = '';
 				$d1 = new DateTime($data . "-1");
@@ -445,7 +448,7 @@ class User{
 				$month_sum += $month;
 			}
 
-			$year_sum += round($month_sum / 12);
+			$year_sum += floor($month_sum / 12);
 			$month_sum = $month_sum % 12;
 
 			$str_year = (int)$year_sum ? $year_sum . " год(лет) " : '';
@@ -453,7 +456,6 @@ class User{
 
 			$date['sum'] = $str_year . $str_moth;
 		}
-
 		return $date;
 	}
 

@@ -18,8 +18,8 @@
 			exit;
 		}
 
-		public function getParams(){
-			return $this->_paramsGET;
+		public function getParams($param){
+			return $this->_paramsGET[$param];
 		}
 
 	}
