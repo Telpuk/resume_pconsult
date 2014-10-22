@@ -5,6 +5,7 @@
 		private $_controller, $_action, $_content ,$_body, $_params = array();
 
 		private function __construct(){
+
 			$this->getConfig();
 			$request = $_SERVER["REQUEST_URI"];
 

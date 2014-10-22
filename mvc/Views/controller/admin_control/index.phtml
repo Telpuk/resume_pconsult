@@ -1,36 +1,24 @@
 <main class="admin_control">
 	<div class="out">
-		<a href='<?=BASE_URL."/admin/out"?>'>Выход</a>
+		<a href='<?=BASE_URL."/admin/out/"?>'>Выход</a>
 	</div>
 	<div class="clear"></div>
-	<form  action='<?=BASE_URL."/admincontrol"?>' method="post">
+	<form  action='<?=BASE_URL."/admincontrol/index/search/"?>' method="get">
 		<div class="search">
-			<input type="search" name="search" value="<?=$this->data['data']['search']?>"
-			       placeholder="введите текст для поиска">
-			<input type="submit"  name="searchResume" value="найти">
+			<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
+			<input type="submit" value="найти">
+			<span><a href="">не просмотренных анкет:</a></span>
 			<div class="clear"></div>
 		</div>
 	</form>
 	<div class="left_admin_control">
-		цйфвфу ывфы
-		ываzxcz
-		zdc
-		ds
-		fd
-		вы
+		<p><?=$this->data['data']['users_count']?></p>
 	</div>
 	<div class="right_admin_control">
 		<nav>
-			<ul>
-				<li><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">...</a></li>
-				<li><a href="">10</a></li>
-			</ul>
+			<?=$this->data['data']['pagination']?>
 		</nav>
-		<?php foreach($this->data['data']['user'] as $key=>$user): ?>
+		<?php foreach($this->data['data']['users'] as $key=>$user): ?>
 			<div class="user_id">
 				<figure>
 					<img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'>
@@ -44,10 +32,10 @@
 					</p>
 					<p>
 						Последнее место работы<br>
-						<span>Региональный представитель, ведущий презентаций, июнь 2012—по настоящее время</span>
+						<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
 					</p>
 					<p>
-						ЛамаГолд, ИООО, медицина, фармацевтика, аптеки
+						<?=$user['last_place_work']['last_works']?>
 					</p>
 				</div>
 				<div class="clear"></div>

@@ -14,7 +14,7 @@
 		}
 
 		public function headerLocation($url = ""){
-			header("Location: ".BASE_URL."/{$url}");
+			header("Location: ".BASE_URL."/{$url}/");
 			exit;
 		}
 

@@ -6,6 +6,7 @@ class AdminController extends IController{
 		$_id_admin;
 
 	public function  __construct(){
+
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_admin = new Admin();

@@ -1031,6 +1031,13 @@ main.authorization .helpers_message_authorization{
     font-size: .2em;
     border: 1px black solid;
 }
+.admin_control .left_admin_control p{
+    color: #bbbbbb;
+    padding: 5px;
+    font-size: .9em;
+    font-weight: bold;
+    margin-top: 10px;
+}
 .admin_control .right_admin_control{
     float: left;
     width: 75%;
@@ -1046,20 +1053,26 @@ main.authorization .helpers_message_authorization{
     padding: 0; margin: 0;
 }
 .admin_control .right_admin_control nav ul li{
+    text-align: center;
     display: inline-block;
     list-style-type: none;
-    border: 1px black solid;
+    margin-left: 5px;
+    width: 35px;
 }
 
 .admin_control .right_admin_control nav ul li a{
-    padding: 10px;
+    display: block;
+    padding: 3px;
+    color: black;
+    text-align: center;
     text-decoration: none;
+    border: 1px #bababa solid;
 }
 
 .admin_control .right_admin_control .user_id{
     padding: 20px;
     margin-top: 10px;
-    border-top: 1px #bababa dashed;
+    border-bottom: 1px #bababa dashed;
 }
 .admin_control .right_admin_control .user_id figure{
     display: block;
@@ -1123,9 +1136,23 @@ main.authorization .helpers_message_authorization{
     background-color: #7fbeff;
 }
 
+.admin_control .search span{
+    display: block;
+    float: right;
+    padding: 5px;
+    color: white;
+    border: 1px white dashed;
+    margin-right: 10px;
+    font-size: .2em;
+}
+.admin_control .search span a:visited{
+    color: white;
+}
+
 
 .admin_control .search input[type=search]{
     padding-left: 10px;
+    padding-right: 10px;
     display: block;
     float: left;
     margin-left: 50px;
@@ -1139,6 +1166,15 @@ main.authorization .helpers_message_authorization{
     margin-left: 10px;
     height: 30px;
     width: 150px;
+}
+
+.admin_control  .right_admin_control .active{
+    border: none;
+    font-weight: bold;
+}
+
+.admin_control  .right_admin_control .no-active:hover{
+    background-color: #428bca;
 }
 
 

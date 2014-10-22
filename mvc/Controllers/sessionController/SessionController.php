@@ -17,6 +17,13 @@
 		public function setSessionUsers($session=array()){
 			$_SESSION['session_users']['users'] = array_merge($session,(array)$_SESSION['session_users']['users']);
 		}
+		public function setSessionParams($session=array()){
+			$_SESSION['params'] = array_merge($session,(array)$_SESSION['params']);
+		}
+
+		public function getSessionParamsId($id_params){
+			return isset($_SESSION['params'][$id_params]) ? $_SESSION['params'][$id_params]: false;
+		}
 
 		public function getSessionUsers(){
 			return isset($_SESSION['session_users']['users']) ? $_SESSION['session_users']['users']: false;
