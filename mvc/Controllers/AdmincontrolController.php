@@ -2,7 +2,7 @@
 class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
-		$_count_view =3;
+		$_count_view =2;
 
 	public function  __construct(){
 		parent::__construct();
