@@ -672,11 +672,25 @@ table.foot_table  tr td{
     height: 50px;
 }
 
-.contacts table tfoot td div{
+.contacts table tfoot td .contacts_footer{
     margin: 0 auto;
     padding: 10px;
-    width: 60%;
+    width: 80%;
 }
+.contacts table tfoot td .contacts_footer input{
+    display: block;
+    float: left;
+    margin-left: 20%;
+    width: 50%;
+}
+.contacts table tfoot td .contacts_footer a{
+    display: block;
+    float: left;
+    width: 20%;
+    margin-left: 10px;
+}
+
+
 
 
 .contacts table td input[type=radio]{
