@@ -1068,9 +1068,6 @@ main.authorization .helpers_message_authorization{
     color: #bbbbbb;
 }
 
-
-
-
 .admin_control .right_admin_control{
     float: left;
     width: 75%;
@@ -1080,8 +1077,10 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control nav{
     margin-left: 50px;
+    margin-bottom: 10px;
     margin-top: 10px;
 }
+
 .admin_control .right_admin_control nav ul{
     padding: 0; margin: 0;
 }
@@ -1105,6 +1104,9 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id{
     padding: 20px;
     margin-top: 10px;
+    border-top: 1px #bababa dashed;
+}
+.admin_control .right_admin_control .user_id:nth-last-child(2){
     border-bottom: 1px #bababa dashed;
 }
 .admin_control .right_admin_control .user_id figure{
