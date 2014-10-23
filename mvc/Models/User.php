@@ -185,94 +185,7 @@ class User{
 
 	public function selectPersonalData($id_user){
 		try {
-			$stmt = $this->_dbc->prepare (
-				"SELECT
-					CONCAT_WS(' ',prof.surname, prof.first_name, prof.patronymic)AS'name',
-			  prof.photo,
-
-			  prof.birth,
-			  prof.sex,
-			  prof.city,
-			  prof.move,
-			  prof.trip,
-			  prof.nationality,
-			  prof.work_permit,
-			  prof.travel_time_work,
-
-			  prof.mobile_phone,
-			  prof.home_phone,
-			  prof.work_phone,
-			  prof.email,
-			  prof.preferred_communication,
-
-			  prof.icq,
-			  prof.skype,
-			  prof.free_lance,
-			  prof.my_circle,
-			  prof.linkedln,
-			  prof.facebook,
-			  prof.live_journal,
-			  prof.other_site,
-
-			  prof.desired_position,
-			  prof.professional_area,
-
-			  prof.salary,
-			  prof.currency,
-
-			  REPLACE(prof.schedule, '[@!-#-!@]', ', ') AS 'schedule',
-			  REPLACE(prof.employment, '[@!-#-!@]', ', ') AS 'employment',
-
-			  educ.names_institutions AS 'names_institutions',
-			  educ.faculties AS 'faculties',
-			  educ.specialties_specialties AS 'specialties_specialties',
-			  educ.years_graduations AS 'years_graduations',
-
-			  educ.native_language AS 'native_language',
-			  educ.language_english AS 'language_english',
-			  educ.language_germany AS 'language_germany',
-			  educ.language_french AS 'language_french',
-		      educ.language_further AS 'language_further',
-		      educ.language_further_level AS 'language_further_level',
-
-              educ.courses_names AS 'courses_names',
-              educ.follow_organizations AS 'follow_organizations',
-              educ.courses_specialties AS 'courses_specialties',
-              educ.course_years_graduations AS 'course_years_graduations',
-
-			  educ.tests_exams_names AS 'tests_exams_names',
-              educ.tests_exams_follow_organizations AS 'tests_exams_follow_organizations',
-              educ.tests_exams_specialty AS 'tests_exams_specialty',
-              educ.tests_exams_years_graduations AS'tests_exams_years_graduations',
-
-              educ.electronic_certificates_names AS 'electronic_certificates_names',
-              educ.electronic_certificates_years_graduations AS 'electronic_certificates_years_graduations',
-              educ.electronic_certificates_links AS'electronic_certificates_links',
-
-			exper.organizations AS 'experience_organizations',
-			exper.regions AS 'experience_regions',
-			exper.positions AS 'experience_positions',
-			exper.sites AS 'experience_sites',
-			exper.field_activities AS 'experience_field_activities',
-			exper.getting_starteds AS 'experience_getting_starteds',
-			exper.closing_works AS 'experience_closing_works',
-			exper.at_the_moments AS 'experience_at_the_moments',
-			exper.functions AS 'experience_functions',
-			REPLACE(exper.key_skills,'[@!-#-!@]', '&nbsp; &nbsp;') AS 'experience_key_skills',
-			exper.about_self AS 'experience_about_self',
-			exper.recommend_names AS 'experience_recommend_names',
-			exper.recommend_position AS 'experience_recommend_position',
-			exper.recommend_organization AS 'experience_recommend_organization',
-			exper.recommend_phone AS 'experience_recommend_phone'
-				FROM
-					profile AS prof,
-					education AS educ,
-					experience AS exper
-				WHERE
-					educ.id_user = prof.id AND
-					exper.id_user = prof.id AND
-					prof.id = :id_user"
-			);
+			$stmt = $this->_dbc->prepare("CALL selectPersonalData(:id_user)");
 			$stmt->execute(array(':id_user'=>$id_user));
 			$personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
 			if(!$personal_data){
@@ -281,8 +194,6 @@ class User{
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
-
-
 
 		$personal['name'] = trim($personal_data['name']);
 
