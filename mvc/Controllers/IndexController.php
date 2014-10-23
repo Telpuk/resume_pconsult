@@ -11,7 +11,7 @@ class IndexController extends IController{
 
 		$this->_id_admin = $this->getSessionUserID('admin');
 
-		if($this->_id_admin){
+		if($this->_id_admin === 'admin'){
 			if($this->getParams('id')) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));

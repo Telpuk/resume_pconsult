@@ -11,13 +11,15 @@
 
 	spl_autoload_register(function ($class) {
 		$file = $class . '.php';
-		try{
-			if(!@include_once "$file")
-				throw new Exception();
-		}catch (Exception $e){
-			header("Location: ".BASE_URL."/error");
-			exit;
-		}
+//		try{
+//			if(!@
+			include_once "$file";
+//			)
+//				throw new Exception();
+//		}catch (Exception $e){
+//			header("Location: ".BASE_URL."/error");
+//			exit;
+//		}
 	});
 
 	$app = FrontController::getInstance();

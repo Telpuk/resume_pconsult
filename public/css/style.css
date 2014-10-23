@@ -561,6 +561,11 @@ a.addPhoto span:last-child,
     color: red;
 }
 
+input.error, textarea.error{
+    outline: none;
+    border: 2px red solid;
+}
+
 table.foot_table  tr td{
     color: red;
     height: 50px;
@@ -654,6 +659,7 @@ table.foot_table  tr td{
     color: red;
     visibility: hidden;
 }
+
 
 /*contacts*/
 .personal.contacts{

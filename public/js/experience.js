@@ -42,6 +42,22 @@
                 },
                 'functions[2]': {
                     required: true
+                },
+
+                'positions[0]':{
+                    required: true
+                },
+                'positions[1]':{
+                    required: true
+                },
+                'positions[2]':{
+                    required: true
+                },
+                'positions[3]':{
+                    required: true
+                },
+                'getting_starteds[0][year]':{
+                    required: true
                 }
 
             },
@@ -64,16 +80,24 @@
 
                 'functions[0]': {
                     required: "Это поле обязательно для заполнения"
-                },'functions[1]': {
+                },
+                'functions[1]': {
                     required: "Это поле обязательно для заполнения"
-                },'functions[2]': {
+                },
+                'functions[2]': {
                     required: "Это поле обязательно для заполнения"
                 },
                 'positions[0]': {
                     required: "Это поле обязательно для заполнения"
-                },'positions[1]': {
+                },
+                'positions[1]': {
                     required: "Это поле обязательно для заполнения"
-                },'positions[2]': {
+                },
+                'positions[2]': {
+                    required: "Это поле обязательно для заполнения"
+                },
+
+                'getting_starteds[0][year]':{
                     required: "Это поле обязательно для заполнения"
                 }
             }

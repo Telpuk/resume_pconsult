@@ -21,6 +21,19 @@ class Admin{
 		$this->_user_object = new User();
 	}
 
+	public function deleteNotStockedResume(){
+		try {
+			$sql = "DELETE
+						profile
+					FROM
+						profile
+					WHERE registered_user='no' AND  DATEDIFF(CURRENT_TIMESTAMP(),date) >=1";
+			$this->_dbc->query($sql);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+	}
+
 	public  function checkLoginAndPassword($data){
 		try {
 			$stmt = $this->_dbc->prepare ("
@@ -49,125 +62,65 @@ class Admin{
 		return false;
 	}
 
-	public function search($search, $count_view, $page=0){
-		if($page >= 0){
-			$page = $count_view * $page;
-			$limit = " LIMIT {$page}, {$count_view}";
-		}
+	public function selectAllResume($count_view, $page)
+	{
 		try {
-			$stmt = $this->_dbc->prepare (
-				"SELECT DISTINCT
-		  prof.id,
-		  prof.photo,
-		  CONCAT_WS(
-		    ' ',
-		    prof.surname,
-		    prof.first_name,
-		    prof.patronymic) AS 'name',
-		    prof.desired_position,
-		  prof.salary,
-		  prof.currency,
-		  exper.getting_starteds AS 'experience_getting_starteds',
-		  exper.closing_works AS 'experience_closing_works',
-		  exper.at_the_moments AS 'experience_at_the_moments',
-		  exper.positions AS 'experience_positions',
-		  exper.organizations AS 'experience_organizations'
+			$stmt = $this->_dbc->prepare("CALL allResume(:start,:count_view)");
+			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
+			$search_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			exit(print_r($e->errorInfo) . $e->getFile());
+		}
 
-		FROM
-		  profile AS prof,
-		  experience AS exper,
-		  education AS educ
-		WHERE
-		prof.registered_user = 'yes' AND
-		prof.id = exper.id_user AND
-		prof.id = educ.id_user
-		  AND(
-		    prof.surname  LIKE :search ||
-		    prof.first_name LIKE :search ||
-		    prof.patronymic  LIKE :search ||
-		    prof.birth LIKE :search ||
-		    prof.sex LIKE :search ||
-		    prof.city LIKE :search ||
-			prof.move LIKE :search ||
-			prof.trip LIKE :search ||
-		    prof.nationality LIKE :search ||
-		    prof.work_permit LIKE :search ||
-		    prof.travel_time_work LIKE :search ||
-		    prof.preferred_communication LIKE :search ||
-		    prof.mobile_phone LIKE :search ||
-		    prof.home_phone LIKE :search ||
-		    prof.work_phone LIKE :search ||
-		    prof.email LIKE :search ||
-		    prof.comment_mobile_phone LIKE :search ||
-		    prof.comment_home_phone LIKE :search ||
-		    prof.comment_work_phone LIKE :search ||
-		    prof.skype LIKE :search ||
-		    prof.facebook LIKE :search ||
-		    prof.desired_position LIKE :search ||
-		    prof.professional_area LIKE :search ||
-		    prof.salary LIKE :search ||
-		    prof.currency LIKE :search ||
-		    prof.employment LIKE :search ||
-		    prof.schedule LIKE :search ||
+		if (is_null($page)) {
 
-		    exper.organizations LIKE :search ||
-		    exper.regions LIKE :search ||
-		    exper.positions LIKE :search ||
-			exper.sites LIKE :search ||
-		    exper.field_activities LIKE :search ||
-		    exper.getting_starteds LIKE :search ||
-		    exper.closing_works LIKE :search ||
-		    exper.functions LIKE :search ||
-		    exper.key_skills LIKE :search ||
-		    exper.about_self LIKE :search ||
-		    exper.recommend_names LIKE :search ||
-		    exper.recommend_position LIKE :search ||
-		    exper.recommend_organization LIKE :search ||
-		    exper.recommend_phone LIKE :search ||
+			$count_user = count($search_data);
+			$_SESSION['params']['count_users'] = $count_user;
 
-		    educ.level LIKE :search ||
-		    educ.names_institutions LIKE :search ||
-		    educ.faculties LIKE :search ||
-		    educ.specialties_specialties LIKE :search ||
-		    educ.years_graduations LIKE :search ||
-		    educ.courses_names LIKE :search ||
-		    educ.follow_organizations LIKE :search ||
-		    educ.courses_specialties LIKE :search ||
-		    educ.course_years_graduations LIKE :search ||
-		    educ.tests_exams_names LIKE :search ||
-		    educ.tests_exams_follow_organizations LIKE :search ||
-		    educ.tests_exams_specialty LIKE :search ||
-		    educ.tests_exams_years_graduations LIKE :search ||
-		    educ.electronic_certificates_names LIKE :search ||
-		    educ.electronic_certificates_years_graduations LIKE :search ||
-		    educ.electronic_certificates_links LIKE :search ||
-		    educ.native_language LIKE :search ||
-		    educ.language_english LIKE :search ||
-		    educ.language_germany LIKE :search ||
-		    educ.language_french LIKE :search ||
-		    educ.language_further LIKE :search ||
-		    educ.language_further_level LIKE :search
-		  ) ORDER BY prof.date DESC {$limit}");
+			if ($count_user > $count_view) {
+				for ($i = $count_view; $i < $count_user; ++$i) {
+					unset($search_data[$i]);
+				}
+
+			}
+		}
+
+
+		return $this->getResumeFormat($search_data, $count_user);
+	}
+
+	public function search($search, $count_view, $page){
+
+		try {
+			$stmt = $this->_dbc->prepare ("CALL searchResume(:search, :start, :count_view)");
 			$stmt->execute(array(
-				':search'=>"%".$search."%"
+				':search'=>"%".$search."%",
+				':start' => $page,
+				':count_view'=>$count_view
 			));
 			$search_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-			if($page < 0){
-				$count_user =  count($search_data);
-				$_SESSION['params']['count_users'] = $count_user;
-
-				if($count_user > $count_view){
-					for($i = $count_view; $i<$count_user;++$i){
-						unset($search_data[$i]);
-					}
-				}
-			}
-
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 
+		if (is_null($page)) {
+
+			$count_user = count($search_data);
+			$_SESSION['params']['count_users'] = $count_user;
+
+			if ($count_user > $count_view) {
+				for ($i = $count_view; $i < $count_user; ++$i) {
+					unset($search_data[$i]);
+				}
+
+			}
+		}
+
+		return $this->getResumeFormat($search_data, $count_user);
+
+	}
+
+	private function getResumeFormat($search_data, $count_user){
 		foreach($search_data as $key =>$data){
 			$experience_count[$key] = $this->_user_object->getExperienceCount(
 				array(

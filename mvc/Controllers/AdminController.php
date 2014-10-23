@@ -10,6 +10,7 @@ class AdminController extends IController{
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_admin = new Admin();
+		$this->_db_admin->deleteNotStockedResume();
 	}
 
 	public function indexAction(){

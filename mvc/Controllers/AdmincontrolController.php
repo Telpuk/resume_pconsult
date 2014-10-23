@@ -2,7 +2,8 @@
 class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
-		$_count_view =2;
+		$_count_view = 2,
+		$_page = null;
 
 	public function  __construct(){
 		parent::__construct();
@@ -12,32 +13,34 @@ class AdminControlController extends IController{
 
 
 	public function indexAction(){
-		if(isset($_GET['search'])){
-			$search = explode('/',$_GET['search']);
-			if($search[0]) {
-				$page = $this->getParams('page');
+		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 
-				$users = $this->_db_admin->search($search[0], $this->_count_view, $page-1);
+		if (isset($search[0]) && !empty($search[0])) {
+			$page = $this->getParams('page');
+			$this->_page = empty($page)?null:$page;
 
+			$users = $this->_db_admin->search($search[0], $this->_count_view, $this->_page);
 
-				if($page >= 0){
-					$users['count'] = $this->getSessionParamsId('count_users');
-				}
+			$users['count'] = $this->getSessionParamsId('count_users');
 
-				return $this->_view->render(array(
-					'view' => 'admin_control/index',
-					'data' => array(
-						'users' => $search[0] ? $users['users'] : '',
-						'users_count'=>"Количество найденных анкет: ".$users['count'],
-						'search' => $search[0],
-						'pagination' => $this->_db_admin->printPagination(
-							ceil($users['count'] / $this->_count_view), $page, $search[0])
-					)));
-			}
+		}elseif(!isset($search[0]) || (isset($search[0]) && empty($search[0]))) {
+			$page = $this->getParams('page');
+			$this->_page = empty($page)?null:$page;
+
+			$users = $this->_db_admin->selectAllResume($this->_count_view, $this->_page);
+
+			$users['count'] = $this->getSessionParamsId('count_users');
+
 		}
 
 		return $this->_view->render(array(
-			'view'=>'admin_control/index'
-		));
+			'view' => 'admin_control/index',
+			'data' => array(
+				'users' => $users['users'] ? $users['users']  : '',
+				'users_count' => "Количество найденных анкет: " . $users['count'],
+				'search' => $search[0],
+				'pagination' => $this->_db_admin->printPagination(
+					ceil($users['count'] / $this->_count_view), $this->_page, $search[0]))));
+
 	}
 }

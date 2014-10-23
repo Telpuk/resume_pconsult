@@ -289,7 +289,6 @@ class SideController extends IController{
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 				}, $course_years_graduations[$education_course_key]);
 
-
 				++$education_course_key;
 
 			}
@@ -367,7 +366,7 @@ class SideController extends IController{
 		$language_germany = trim(strip_tags($post['language_germany']));
 		$language_french = trim(strip_tags($post['language_french']));
 
-		$native_language_val[$electronic_certificates_key] = call_user_func(function ($var) {
+		$native_language_val = call_user_func(function ($var) {
 			return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 		}, $native_language);
 
