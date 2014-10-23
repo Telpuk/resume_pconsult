@@ -1,3 +1,4 @@
+<?php //print_r($this->data['data']) ?>
 <main class="admin_control">
 	<div class="out">
 		<a href='<?=BASE_URL."/admin/out/"?>'>Выход</a>
@@ -7,12 +8,13 @@
 		<div class="search">
 			<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
 			<input type="submit" value="найти">
-			<span><a href="">не просмотренных анкет:</a></span>
 			<div class="clear"></div>
 		</div>
 	</form>
 	<div class="left_admin_control">
 		<p><?=$this->data['data']['users_count']?></p>
+		<p><a href="<?=BASE_URL."/admincontrol/unreviewed/view/no"?>">новые анкеты:
+				<?=$this->data['data']['count_view_admin_resume']?></a></p>
 	</div>
 	<div class="right_admin_control">
 		<nav>
@@ -41,7 +43,9 @@
 				<div class="clear"></div>
 			</div>
 		<?php endforeach; ?>
-
+		<nav>
+			<?=$this->data['data']['pagination']?>
+		</nav>
 	</div>
 	<div class="clear"></div>
 </main>

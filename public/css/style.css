@@ -1051,12 +1051,26 @@ main.authorization .helpers_message_authorization{
     border: 1px black solid;
 }
 .admin_control .left_admin_control p{
+    margin-top: 0.2em;
     color: #bbbbbb;
     padding: 5px;
-    font-size: .9em;
+    font-size: 1em;
     font-weight: bold;
     margin-top: 10px;
 }
+.admin_control .left_admin_control p a{
+    color: #bbbbbb;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.admin_control .left_admin_control p a:visited{
+    color: #bbbbbb;
+}
+
+
+
+
 .admin_control .right_admin_control{
     float: left;
     width: 75%;
@@ -1153,19 +1167,6 @@ main.authorization .helpers_message_authorization{
 .admin_control .search{
     padding: 5px;
     background-color: #7fbeff;
-}
-
-.admin_control .search span{
-    display: block;
-    float: right;
-    padding: 5px;
-    color: white;
-    border: 1px white dashed;
-    margin-right: 10px;
-    font-size: .2em;
-}
-.admin_control .search span a:visited{
-    color: white;
 }
 
 

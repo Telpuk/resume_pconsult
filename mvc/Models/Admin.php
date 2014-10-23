@@ -62,6 +62,28 @@ class Admin{
 		return false;
 	}
 
+	public function selectResumeNoView($count_view, $page){
+		try {
+			$stmt = $this->_dbc->prepare("CALL noViewAdmin(:start,:count_view)");
+			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			exit(print_r($e->errorInfo) . $e->getFile());
+		}
+
+		if (is_null($page)) {
+			$count_user = count($data);
+			$_SESSION['params']['count_view_admin_resume'] = $count_user;
+			foreach($data as $key=>$user) {
+				if ($key >= $count_view) {
+					unset($data[$key]);
+				}
+			}
+		}
+
+		return $this->getResumeFormat($data, $count_user);
+	}
+
 	public function selectAllResume($count_view, $page)
 	{
 		try {
@@ -73,18 +95,22 @@ class Admin{
 		}
 
 		if (is_null($page)) {
+			$count_view_admin_resume = 0;
+			$count_user = 0;
 
-			$count_user = count($search_data);
-			$_SESSION['params']['count_users'] = $count_user;
-
-			if ($count_user > $count_view) {
-				for ($i = $count_view; $i < $count_user; ++$i) {
-					unset($search_data[$i]);
+			foreach($search_data as $key=>$user) {
+				++$count_user;
+				if ($user['view_admin'] === 'no') {
+					++$count_view_admin_resume;
 				}
-
+				if ($key >= $count_view) {
+					unset($search_data[$key]);
+				}
 			}
-		}
+			$_SESSION['params']['count_users'] = $count_user;
+			$_SESSION['params']['count_view_admin_resume'] = $count_view_admin_resume;
 
+		}
 
 		return $this->getResumeFormat($search_data, $count_user);
 	}
@@ -102,17 +128,11 @@ class Admin{
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
-
 		if (is_null($page)) {
-
 			$count_user = count($search_data);
 			$_SESSION['params']['count_users'] = $count_user;
-
-			if ($count_user > $count_view) {
-				for ($i = $count_view; $i < $count_user; ++$i) {
-					unset($search_data[$i]);
-				}
-
+			for ($i = $count_view; $i < $count_user; ++$i) {
+				unset($search_data[$i]);
 			}
 		}
 
@@ -188,30 +208,30 @@ class Admin{
 			if($actPage <= 4 || $actPage + 3 >= $countPage){
 				for($i = 0; $i <= 4; $i++) {
 					$class = (($i + 1) == $actPage)? 'active' : 'no-active';
-					$pageArray[$i] = "<li><a class='$class' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($i + 1)."'>".($i + 1)."</a></li>";
+					$pageArray[$i] = "<li><a class='$class' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($i + 1)."'>".($i + 1)."</a></li>";
 				}
 				$pageArray[5] = "<li>...</li>";
 				for($j = 6, $k = 4; $j <= 10; $j++, $k--){
 					$class = (($countPage - $k) == $actPage)? 'active' : 'no-active';
-					$pageArray[$j] = "<li><a class='$class' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($countPage - $k)."'>".($countPage - $k)."</a></li>";
+					$pageArray[$j] = "<li><a class='$class' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($countPage - $k)."'>".($countPage - $k)."</a></li>";
 				}
 			}else{
-				$pageArray[0] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/1'>1</a></li>";
-				$pageArray[1] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/2'>2</a></li>";
+				$pageArray[0] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/1'>1</a></li>";
+				$pageArray[1] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/2'>2</a></li>";
 				$pageArray[2] = "<li>...</li>";
-				$pageArray[3] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($actPage - 2)."'>".($actPage - 2)."</a></li>";
-				$pageArray[4] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($actPage - 1)."'>".($actPage - 1)."</a></li>";
-				$pageArray[5] = "<li><a class='active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".$actPage."'>".$actPage."</a></li>";
-				$pageArray[6] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($actPage + 1)."'>".($actPage + 1)."</a></li>";
-				$pageArray[7] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($actPage + 2)."'>".($actPage + 2)."</a></li>";
+				$pageArray[3] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($actPage - 2)."'>".($actPage - 2)."</a></li>";
+				$pageArray[4] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($actPage - 1)."'>".($actPage - 1)."</a></li>";
+				$pageArray[5] = "<li><a class='active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".$actPage."'>".$actPage."</a></li>";
+				$pageArray[6] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($actPage + 1)."'>".($actPage + 1)."</a></li>";
+				$pageArray[7] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($actPage + 2)."'>".($actPage + 2)."</a></li>";
 				$pageArray[8] = "<li>...</li>";
-				$pageArray[9] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($countPage - 1)."'>".($countPage - 1)."</a></li>";
-				$pageArray[10] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".$countPage."'>".$countPage."</a></li>";
+				$pageArray[9] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($countPage - 1)."'>".($countPage - 1)."</a></li>";
+				$pageArray[10] = "<li><a class='no-active' href='".BASE_URL."/admincontrol/".$search['url']."/page/".$countPage."'>".$countPage."</a></li>";
 			}
 		}else{
 			for($n = 0; $n < $countPage; $n++) {
 				$class = ($n == ($actPage-1))? 'active' : 'no-active';
-				$pageArray[$n] = "<li><a class='$class' href='".BASE_URL."/admincontrol/index/search/?search=".$search."/page/".($n + 1)."'>".($n + 1)."</a></li>";
+				$pageArray[$n] = "<li><a class='$class' href='".BASE_URL."/admincontrol/".$search['url']."/page/".($n + 1)."'>".($n + 1)."</a></li>";
 			}
 		}
 
