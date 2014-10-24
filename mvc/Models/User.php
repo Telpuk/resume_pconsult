@@ -1117,8 +1117,6 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 			'trip'=>array('value'=>$personal_data['trip']),
 			'work_permit'=>array('value'=>$personal_data['work_permit']),
 			'nationality'=>array('value'=>$personal_data['nationality']),
-			'nationality_other'=>array('value'=>$personal_data['nationality_other']),
-			'work_permit_other'=>array('value'=>$personal_data['work_permit_other']),
 			'travel_time_work'=>array('value'=>$personal_data['travel_time_work'])
 		);
 	}

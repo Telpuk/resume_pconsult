@@ -1,5 +1,5 @@
 <?php
-	set_include_path( implode(PATH_SEPARATOR, [
+	set_include_path( implode(PATH_SEPARATOR, array(
 		'mvc/Controllers/frontController',
 		'mvc/Controllers/errorController',
 		'mvc/Controllers/sessionController',
@@ -7,7 +7,7 @@
 		'mvc/Models',
 		'mvc/Views',
 		'config/'
-	]));
+	)));
 
 	spl_autoload_register(function ($class) {
 		$file = $class . '.php';
