@@ -129,11 +129,47 @@ body {
     border-radius: 10px;
     -moz-border-radius: 10px;
     padding: 10px;
-    font-size: .25em;
+    font-size: .20em;
     background-color: rgba(255, 86, 77, 0.10);
     color: #ff5d10;
     font-weight: bold;
 }
+
+fieldset {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #bbbbbb;
+    border:  1px #bbbbbb dashed;
+}
+
+
+.resume .resume_widget .form_comment{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.resume .resume_widget  textarea{
+    display: block;
+    resize: vertical;
+    height: 50px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+}
+.resume .resume_widget input[type=submit]{
+    display: block;
+    background-color: green;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding: 2px 5px 2px 5px;
+    -moz-border-radius: 10px;
+    border-color: green;
+    margin-top: 5px;
+}
+
+
 .resume .resume_widget p{
     font-size: .9em;
 }
@@ -323,6 +359,7 @@ body {
     margin-top: 10px;
 }
 
+
 .resume .end_resume a.delete_resume,
 .resume .end_resume a.save_resume{
     display: block;
@@ -330,12 +367,13 @@ body {
     background-color: green;
     font-weight: bold;
     color: white;
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border: none;
     text-decoration: none;
     width: 49%;
     text-align: center;
-    font-size: .5em;
+    font-size: .65em;
     border-radius: 10px;
     -moz-border-radius: 10px;
 }
@@ -1097,7 +1135,7 @@ main.authorization .helpers_message_authorization{
 .admin_control .left_admin_control{
     float: left;
     width: 25%;
-    font-size: .2em;
+    font-size: .17em;
     border: 1px black solid;
 }
 .admin_control .left_admin_control p{

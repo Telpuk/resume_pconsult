@@ -24,10 +24,27 @@ class User{
 			$stmt = $this->_dbc->prepare ("UPDATE
 													profile
 												SET
-													registered_user = :registered_user
+													registered_user = :registered_user,
+													date  = CURDATE()
 												WHERE
 													id = :id_user");
 			$stmt->execute(array('registered_user'=>'yes',':id_user'=>$id_user)
+			);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+	}
+
+	public function addComment($comment, $id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("INSERT INTO
+													comments(id_user, comment)
+												VALUES(
+													:id_user,
+													:comment)");
+			$stmt->execute(array(
+				':comment'=>$comment,
+				':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -181,6 +198,30 @@ class User{
 			exit(print_r($e->errorInfo).$e->getFile().$e->getCode().$e->getLine());
 		}
 		$this->_id = $id;
+	}
+
+	public function deleteComment($id){
+		try{
+			$stmt = $this->_dbc->prepare ("DELETE FROM comments WHERE id = :id");
+			$stmt->execute(array(':id'=>$id));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile().$e->getCode().$e->getLine());
+		}
+	}
+
+	public function  selectCommits($id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("SELECT
+												id, comment, date
+						                	FROM
+						                    	comments
+                                        	WHERE id_user = :id_user");
+			$stmt->execute(array(':id_user'=>$id_user));
+			$data['comments'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $data;
 	}
 
 	public function selectPersonalData($id_user){

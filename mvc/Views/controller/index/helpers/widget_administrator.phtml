@@ -1,0 +1,18 @@
+<p>Вы можите оставлять свои камментарии к резюме, редактировать его или удалить.</p>
+<?php foreach($this->data['data']['comments'] as $value): ?>
+	<fieldset>
+		<legend><a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'><img src='<?=BASE_URL ."/public/img/comment-delete.png"?>'></a>
+			<?=$value['date']?></legend>
+		<p><?=$value['comment']?></p>
+	</fieldset>
+<?php endforeach; ?>
+<div class="form_comment">
+<form action='<?=BASE_URL."/index/comment"?>' method="post">
+	<textarea name="comment" placeholder="введите свой комментарий"></textarea>
+	<input type="submit" name="addComment" value="добавить комментарий">
+</form>
+</div>
+<div class="end_resume">
+	<a class="save_resume" href="<?=BASE_URL.'/admincontrol'?>">админ панель</a>
+	<a class="delete_resume" href="<?=BASE_URL.'/index/delete'?>">удалить резюме</a>
+</div>

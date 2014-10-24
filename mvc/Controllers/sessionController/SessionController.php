@@ -15,7 +15,7 @@
 		}
 
 		public function setSessionUsers($session=array()){
-			$_SESSION['session_users']['users'] = array_merge($session,(array)$_SESSION['session_users']['users']);
+			$_SESSION['session_users']['users'] = array_merge((array)$_SESSION['session_users']['users'],$session);
 		}
 		public function setSessionParams($session=array()){
 			$_SESSION['params'] = array_merge($session,(array)$_SESSION['params']);
@@ -39,6 +39,10 @@
 
 		public function sessionClear(){
 			session_destroy();
+		}
+
+		public function sessionDeleteIdUser($user){
+			unset($_SESSION['session_users']['users'][$user]);
 		}
 
 

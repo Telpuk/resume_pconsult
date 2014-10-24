@@ -25,6 +25,7 @@ class AdminControlController extends IController{
 				'view' => 'admin_control/index',
 				'data' => array(
 					'users' => $users['users'] ? $users['users']  : '',
+					'users_count' => "Все анкеты",
 					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 					'pagination' => $this->_db_admin->printPagination(
 						ceil($users['count'] / $this->_count_view), $this->_page, array(
@@ -58,7 +59,7 @@ class AdminControlController extends IController{
 			'view' => 'admin_control/index',
 			'data' => array(
 				'users' => $users['users'] ? $users['users']  : '',
-				'users_count' => "Количество найденных анкет: " . $users['count'],
+				'users_count' => "Всего анкет: " . $users['count'],
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'search' => $search[0],
 				'pagination' => $this->_db_admin->printPagination(

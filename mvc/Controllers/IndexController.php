@@ -1,8 +1,9 @@
 <?php
 class IndexController extends IController{
-	private $_view;
-	private $_db_user;
-	private $_id_user;
+	private $_view,
+		$_db_user,
+		$_id_user,
+		$_id_admin;
 
 	public function __construct(){
 		parent::__construct();
@@ -29,24 +30,48 @@ class IndexController extends IController{
 		}
 	}
 
+	public function dcommentAction(){
+		$id = $this->getParams('comment_id');
+		if($id){
+			$this->_db_user->deleteComment($id);
+		}
+		$this->headerLocation('index');
+	}
+
 	public  function indexAction(){
+		$widget = !$this->_id_admin?array('widget' => 'index/helpers/widget_personal'):array('widget'=>'index/helpers/widget_administrator');
+
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
+
+		if($this->_id_admin){
+			$select_personal_data = array_merge($select_personal_data,$this->_db_user->selectCommits($this->_id_user));
+		}
+
 		if($select_personal_data !== false) {
 			return $this->_view->render(array(
 				'view' => 'index/index',
-				'data' => array_merge(array(
-					'helpers'=> array('widget_personal' => 'index/helpers/widget_personal')),
-					$select_personal_data
-				)
+				'data' => array_merge(array('helpers'=> $widget), $select_personal_data)
 			));
 		}
 		$this->headerLocation('error');
 	}
 
+	public function commentAction(){
+		if(isset($_POST['addComment']) && !empty($_POST['comment'])){
+			$this->_db_user->addComment($_POST['comment'],$this->_id_user);
+		}
+		$this->headerLocation('index');
+	}
+
 	public function deleteAction(){
 		$this->_db_user->deleteResume($this->_id_user);
-		$this->sessionClear();
-		$this->headerLocation('index');
+		if($this->_id_admin){
+			$this->sessionDeleteIdUser('user');
+			$this->headerLocation('admincontrol');
+		}else{
+			$this->sessionClear();
+			$this->headerLocation('index');
+		}
 	}
 
 	public function finishAction(){
