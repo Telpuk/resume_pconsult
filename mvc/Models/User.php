@@ -325,6 +325,7 @@ class User{
 		return $personal;
 	}
 
+
 	public function getExperienceCount($personal_data){
 		$date = array();
 		$year_sum = '';
@@ -434,7 +435,7 @@ class User{
 					."</tr>";
 			}
 
-			$data .="<table>\n";
+			$data .="</table>\n";
 
 		}
 
@@ -467,7 +468,7 @@ class User{
 target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></span></td>"
 					."</tr>";
 			}
-			$data .= '<table>';
+			$data .= '</table>';
 		}
 		return $data;
 	}
@@ -483,7 +484,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 					{$personal_data['tests_exams_specialty'][$key]}</span></td>\n"
 					."</tr>\n";
 			}
-			$data .= '<table>\n';
+			$data .= '</table>\n';
 		}
 		return $data;
 	}
@@ -499,7 +500,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 					{$personal_data['courses_specialties'][$key]}</span></td>"
 					."</tr>";
 			}
-			$data .= '<table>';
+			$data .= '</table>';
 		}
 		return $data;
 	}
@@ -541,7 +542,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 					{$personal_data['specialties_specialties'][$key]}</span></td>"
 					."</tr>";
 			}
-			$data .= '<table>';
+			$data .= '</table>';
 		}
 		return $data;
 	}

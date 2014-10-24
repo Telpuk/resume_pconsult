@@ -1,0 +1,40 @@
+<?php if($this->data['data']['name'] &&
+	$this->data['data']['experience_organizations']&&
+	$this->data['data']['institutions']&&
+	$this->data['data']['desired_position']&&
+	$this->data['data']['call_me']): ?>
+	<p>Резюме полностью заполнено вы можите:</p>
+	<div class="end_resume">
+		<a class="save_resume" href="<?=BASE_URL.'/index/finish'?>">Отправить резюме</a>
+		<a class="delete_resume" href="<?=BASE_URL.'/index/delete'?>">Удалить резюме</a>
+	</div>
+<?php elseif($this->data['data']['name'] ||
+	$this->data['data']['photo'] !== 'no-photo.png'||
+	$this->data['data']['experience_organizations']||
+	$this->data['data']['institutions']||
+	$this->data['data']['desired_position']||
+	$this->data['data']['call_me']): ?>
+	<p>Для отправки резюме осталось указать:</p>
+	<ul>
+		<?php if(!$this->data['data']['name']):?>
+			<li><a href='<?=BASE_URL."/profile/personal"?>'>&mdash; имя, возвраст, город</a></li>
+		<?php endif; ?>
+		<?php if(!$this->data['data']['desired_position']):?>
+			<li><a href='<?=BASE_URL."/side/position"?>'>&mdash; желаемую должность и зарплату</a></li>
+		<?php endif ?>
+		<?php if(!$this->data['data']['call_me']):?>
+			<li><a href='<?=BASE_URL."/profile/contacts"?>'>&mdash; контактную информацию</a></li>
+		<?php endif ?>
+		<?php if(!$this->data['data']['institutions']):?>
+			<li><a href='<?=BASE_URL."/side/education"?>'>&mdash; образование</a></li>
+		<?php endif; ?>
+		<?php if(!$this->data['data']['experience_organizations']):?>
+			<li><a href='<?=BASE_URL."/side/experience"?>'>&mdash; опыт работы и ключевые навыки</a></li>
+		<?php endif; ?>
+	</ul>
+	<div class="end_resume">
+		<a class="delete_resume" href="<?=BASE_URL.'/index/delete'?>">Передумал</a>
+	</div>
+<?php else: ?>
+	<p>Для отправки резюме начните заполнять пункты!</p>
+<?php endif;

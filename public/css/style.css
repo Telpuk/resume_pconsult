@@ -45,9 +45,9 @@ html {
 
 }
 body {
-    min-width: 900px;
-    max-width: 1200px;
-    margin: 50px auto;
+    min-width: 750px;
+    max-width:  1200px;
+    margin: 20px auto;
     background-color: white;
     border: 1px black solid;
     padding: 10px;
@@ -74,7 +74,7 @@ body {
 
 .wrapper{
     width: 100%;
-    min-height: 80%;
+    min-height: 100%;
 }
 
 .resume  h1:first-child{
@@ -115,6 +115,44 @@ body {
     margin-bottom: 5px;
     color: #bababa;
 }
+
+.resume .resume_data_left{
+    float: left;
+    width: 77%;
+    padding: 10px;
+    border: 1px black solid;
+}
+
+.resume .resume_widget{
+    float: right;
+    width: 23%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 10px;
+    font-size: .25em;
+    background-color: rgba(255, 86, 77, 0.10);
+    color: #ff5d10;
+    font-weight: bold;
+}
+.resume .resume_widget p{
+    font-size: .9em;
+}
+.resume .resume_widget ul{
+    padding: 0;
+    margin: 0;
+}
+.resume .resume_widget ul li{
+    list-style: none;
+    font-size: .7em;
+    padding: 5px;
+}
+
+.resume .resume_widget ul li a{
+    color: red;
+    font-weight: normal;
+}
+
+
 
 .resume
 .photo_personal_contacts
@@ -281,32 +319,44 @@ body {
     margin-left: 3px;
 }
 
+.resume .end_resume{
+    margin-top: 10px;
+}
 
-.end_resume a.delete_resume,
-.end_resume a.save_resume{
-    background-color: #ff564d;
+.resume .end_resume a.delete_resume,
+.resume .end_resume a.save_resume{
+    display: block;
+    float: left;
+    background-color: green;
     font-weight: bold;
     color: white;
-    padding: 10px;
+    padding: 5px;
     border: none;
     text-decoration: none;
-    font-size: .2em;
+    width: 49%;
+    text-align: center;
+    font-size: .5em;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
 }
-.end_resume a.save_resume{
-    background-color: green;
+.resume .end_resume a.delete_resume{
+    background-color: #ff564d;
+    margin-left: 3px;
+
 }
 
 
 
 .resume .right a.addPhoto{
     display: block;
-    line-height: 40px;
+    width: 100%;
+    line-height: 30px;
     font-weight: bold;
     text-decoration: none;
-    font-size: .23em;
+    font-size: .2em;
     height: 150px;
-    padding-top: 25px;
-    padding-left: 35px;
+    padding-top: 40px;
+    padding-left: 30px;
 }
 .resume .left .add a,
 .resume .salary_position_add a,

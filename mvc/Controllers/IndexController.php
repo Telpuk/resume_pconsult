@@ -30,8 +30,15 @@ class IndexController extends IController{
 	}
 
 	public  function indexAction(){
-		if($this->_db_user->selectPersonalData($this->_id_user) !== false) {
-			return $this->_view->render(array('view' => 'index/index', 'data' => $this->_db_user->selectPersonalData($this->_id_user)));
+		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
+		if($select_personal_data !== false) {
+			return $this->_view->render(array(
+				'view' => 'index/index',
+				'data' => array_merge(array(
+					'helpers'=> array('widget_personal' => 'index/helpers/widget_personal')),
+					$select_personal_data
+				)
+			));
 		}
 		$this->headerLocation('error');
 	}
