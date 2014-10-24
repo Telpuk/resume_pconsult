@@ -25,7 +25,7 @@ class User{
 													profile
 												SET
 													registered_user = :registered_user,
-													date  = CURDATE()
+													date  = NOW()
 												WHERE
 													id = :id_user");
 			$stmt->execute(array('registered_user'=>'yes',':id_user'=>$id_user)
@@ -212,10 +212,10 @@ class User{
 	public function  selectCommits($id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("SELECT
-												id, comment, date
+												id, comment, DATE_FORMAT(date,'%Y-%m-%d %H:%m')as 'date'
 						                	FROM
 						                    	comments
-                                        	WHERE id_user = :id_user");
+                                        	WHERE id_user = :id_user ORDER BY date DESC");
 			$stmt->execute(array(':id_user'=>$id_user));
 			$data['comments'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){

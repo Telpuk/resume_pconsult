@@ -47,9 +47,9 @@ html {
 body {
     min-width: 750px;
     max-width:  1200px;
-    margin: 20px auto;
+    margin: 40px auto;
     background-color: white;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     padding: 10px;
 }
 
@@ -75,6 +75,9 @@ body {
 .wrapper{
     width: 100%;
     min-height: 100%;
+}
+.resume{
+    font-size: .95em;
 }
 
 .resume  h1:first-child{
@@ -120,7 +123,7 @@ body {
     float: left;
     width: 77%;
     padding: 10px;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
 }
 
 .resume .resume_widget{
@@ -196,7 +199,7 @@ fieldset {
 .resume .experience .skills h2,
 .resume .left_40 h2,
 .resume .right_60 h2{
-    font-size: .25em;
+    font-size: .23em;
 }
 
 .resume .personal_data header h1 img,
@@ -246,7 +249,7 @@ fieldset {
 .resume .left_40 p,
 .resume .right_60 p{
     padding: 10px;
-    font-size: .2em;
+    font-size: .15em;
 }
 
 .resume .personal_data header h1 a,
@@ -261,7 +264,7 @@ fieldset {
 .resume .left_40 h2 a,
 .resume .right_60 h2 a,
 .resume .nationality_workpermit h1 a{
-    font-size: .65em;
+    font-size: .55em;
     font-weight: normal;
     text-decoration: none;
     color: #c67b37;
@@ -1136,7 +1139,7 @@ main.authorization .helpers_message_authorization{
     float: left;
     width: 25%;
     font-size: .17em;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
 }
 .admin_control .left_admin_control p{
     margin-top: 0.2em;
@@ -1160,7 +1163,7 @@ main.authorization .helpers_message_authorization{
     float: left;
     width: 75%;
     font-size: .2em;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
 }
 
 .admin_control .right_admin_control nav{
