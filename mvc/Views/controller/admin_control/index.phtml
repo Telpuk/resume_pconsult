@@ -21,7 +21,7 @@
 		<?php foreach($this->data['data']['users'] as $key=>$user): ?>
 			<div class="user_id">
 				<figure>
-					<img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'>
+					<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
 				</figure>
 				<div class="inform_user">
 					<span class="salary_inform_user"><?=$user['salary']?></span>

@@ -43,14 +43,14 @@ class IndexController extends IController{
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
 
-		if($this->_id_admin){
-			$select_personal_data = array_merge($select_personal_data,$this->_db_user->selectCommits($this->_id_user));
+		if($this->_id_admin==='admin'){
+			$select_personal_data = @array_merge((array)$select_personal_data,(array)$this->_db_user->selectCommits($this->_id_user));
 		}
 
 		if($select_personal_data !== false) {
 			return $this->_view->render(array(
 				'view' => 'index/index',
-				'data' => array_merge(array('helpers'=> $widget), $select_personal_data)
+				'data' => @array_merge(array('helpers'=> $widget), (array)$select_personal_data)
 			));
 		}
 		$this->headerLocation('error');
