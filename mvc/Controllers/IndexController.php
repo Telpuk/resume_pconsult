@@ -3,17 +3,17 @@ class IndexController extends IController{
 	private $_view,
 		$_db_user,
 		$_id_user,
-		$_id_admin,
-		$type_admin = array('main'=>'админ','manager'=>"менеджер");
+		$_admin,
+		$_type_admin = array('main'=>'админ','manager'=>"менеджер");
 
 	public function __construct(){
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_user = new User();
 
-		$this->_id_admin = $this->getSessionUserID('admin');
+		$this->_admin = $this->getSessionUserID('admin');
 
-		if($this->_id_admin === 'main' || $this->_id_admin === 'manager'){
+		if($this->_admin === 'main' || $this->_admin === 'manager'){
 			if($this->getParams('id')) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));
@@ -24,7 +24,7 @@ class IndexController extends IController{
 			$this->_id_user = $this->getSessionUserID('user');
 		}
 
-		if(!$this->_id_user && !$this->_id_admin){
+		if(!$this->_id_user && !$this->_admin){
 			$this->_db_user->setIdUser();
 			$this->_id_user = $this->_db_user->getIdUser();
 			$this->setSessionUsers(array('user' => $this->_id_user));
@@ -40,11 +40,11 @@ class IndexController extends IController{
 	}
 
 	public  function indexAction(){
-		$widget = !$this->_id_admin?array('widget' => 'index/helpers/widget_personal'):array('widget'=>'index/helpers/widget_administrator');
+		$widget = !$this->_admin?array('widget' => 'index/helpers/widget_personal'):array('widget'=>'index/helpers/widget_administrator');
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
 
-		if($this->_id_admin==='main' || $this->_id_admin==='manager'){
+		if($this->_admin==='main' || $this->_admin==='manager'){
 			$select_personal_data = @array_merge((array)$select_personal_data,(array)$this->_db_user->selectCommits($this->_id_user));
 		}
 
@@ -55,8 +55,8 @@ class IndexController extends IController{
 						'helpers'=> $widget
 					),
 					array(
-						'id_admin'=>$this->_id_admin,
-						'type_admin'=>$this->type_admin
+						'id_admin'=>$this->getSessionUserID('id_user_admin'),
+						'type_admin'=>$this->_type_admin
 					),
 					(array)$select_personal_data)
 			));
@@ -66,14 +66,14 @@ class IndexController extends IController{
 
 	public function commentAction(){
 		if(isset($_POST['addComment']) && !empty($_POST['comment'])){
-			$this->_db_user->addComment($_POST['comment'],$this->_id_user);
+			$this->_db_user->addComment($_POST['comment'],$this->_id_user, $this->getSessionUserID('id_user_admin'));
 		}
 		$this->headerLocation('index');
 	}
 
 	public function deleteAction(){
 		$this->_db_user->deleteResume($this->_id_user);
-		if($this->_id_admin){
+		if($this->_admin){
 			$this->sessionDeleteIdUser('user');
 			$this->headerLocation('admincontrol');
 		}else{

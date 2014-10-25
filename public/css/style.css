@@ -159,6 +159,11 @@ fieldset legend{
     margin-top: 20px;
     margin-bottom: 30px;
 }
+
+.resume .resume_widget .admin_comments{
+    margin-top: 20px;
+
+}
 .resume .resume_widget  textarea{
     display: block;
     resize: vertical;

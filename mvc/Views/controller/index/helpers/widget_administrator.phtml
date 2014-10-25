@@ -1,21 +1,24 @@
-<?php print_r($this->data['data']['comments']) ?>
 <p>Вы можите оставлять свои камментарии к резюме, редактировать его или удалить.</p>
-
 <?php foreach($this->data['data']['comments'] as $value): ?>
+	<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'> <?=$value['name']?></p>
 	<fieldset>
 		<legend>
-			<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'><img src='<?=BASE_URL
-				."/public/img/comment-delete.png"?>'></a> <?=$value['date']?></legend>
-		<p>Кем написан</p>
+			<?php if(((int)$value['id_admin'] === $this->data['data']['id_admin']) ||
+				((int)$this->data['data']['id_admin'] === 1)): ?>
+				<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'>
+					<img src='<?=BASE_URL."/public/img/comment-delete.png"?>'></a>
+			<?php endif; ?>
+			<?=$this->data['data']['type_admin'][$value['type_user']]?>&#8212;<?=$value['date']?>
+		</legend>
 		<p><?=$value['comment']?></p>
 	</fieldset>
 <?php endforeach; ?>
 
 <div class="form_comment">
-<form action='<?=BASE_URL."/index/comment"?>' method="post">
-	<textarea name="comment" placeholder="введите свой комментарий"></textarea>
-	<input type="submit" name="addComment" value="добавить комментарий">
-</form>
+	<form action='<?=BASE_URL."/index/comment"?>' method="post">
+		<textarea name="comment" placeholder="введите свой комментарий"></textarea>
+		<input type="submit" name="addComment" value="добавить комментарий">
+	</form>
 </div>
 <div class="end_resume">
 	<a class="save_resume" href="<?=BASE_URL.'/admincontrol'?>">главная</a>

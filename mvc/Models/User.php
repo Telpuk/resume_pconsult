@@ -35,17 +35,19 @@ class User{
 		}
 	}
 
-	public function addComment($comment, $id_user){
+	public function addComment($comment, $id_user, $id_admin){
 		try {
 			$stmt = $this->_dbc->prepare ("INSERT INTO
-													comments(id_user, comment)
+													comments(id_user, comment, id_admin)
 												VALUES(
 													:id_user,
-													:comment)");
+													:comment,
+													:id_admin)");
 			$stmt->execute(array(
 				':comment'=>$comment,
-				':id_user'=>$id_user)
-			);
+				':id_user'=>$id_user,
+				':id_admin'=>$id_admin
+			));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
