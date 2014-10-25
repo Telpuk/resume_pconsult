@@ -3,7 +3,8 @@ class IndexController extends IController{
 	private $_view,
 		$_db_user,
 		$_id_user,
-		$_id_admin;
+		$_id_admin,
+		$type_admin = array('main'=>'админ','manager'=>"менеджер");
 
 	public function __construct(){
 		parent::__construct();
@@ -12,7 +13,7 @@ class IndexController extends IController{
 
 		$this->_id_admin = $this->getSessionUserID('admin');
 
-		if($this->_id_admin === 'admin'){
+		if($this->_id_admin === 'main' || $this->_id_admin === 'manager'){
 			if($this->getParams('id')) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));
@@ -43,14 +44,21 @@ class IndexController extends IController{
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
 
-		if($this->_id_admin==='admin'){
+		if($this->_id_admin==='main' || $this->_id_admin==='manager'){
 			$select_personal_data = @array_merge((array)$select_personal_data,(array)$this->_db_user->selectCommits($this->_id_user));
 		}
 
 		if($select_personal_data !== false) {
 			return $this->_view->render(array(
 				'view' => 'index/index',
-				'data' => @array_merge(array('helpers'=> $widget), (array)$select_personal_data)
+				'data' => @array_merge(array(
+						'helpers'=> $widget
+					),
+					array(
+						'id_admin'=>$this->_id_admin,
+						'type_admin'=>$this->type_admin
+					),
+					(array)$select_personal_data)
 			));
 		}
 		$this->headerLocation('error');

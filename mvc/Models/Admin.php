@@ -38,9 +38,9 @@ class Admin{
 		try {
 			$stmt = $this->_dbc->prepare ("
 												SELECT
-													login
+													id, type_user
 												FROM
-													users_access
+													users
 												WHERE
 													login = :login
 												AND
@@ -55,8 +55,8 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 
-		if($user_access_data['login']){
-			return $user_access_data['login'];
+		if($user_access_data['type_user'] && $user_access_data['id']){
+			return $user_access_data;
 		}
 
 		return false;

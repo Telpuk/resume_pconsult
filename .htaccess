@@ -4,7 +4,17 @@ php_flag html_errors on
 
 AddDefaultCharset utf-8
 
+php_value upload_max_filesize 10M
+php_value post_max_size 20M
+
 php_value session.auto_start 1
+
+# Установите максимальное время жизни сессии в секундах.
+php_value session.gc_maxlifetime 1800
+
+# Установите время жизни cookie, которая сохраняет идентификатор сессии
+# в браузере пользователя.
+php_value session.cookie_lifetime 1800
 
 RewriteEngine On
 # The following rule tells Apache that if the requested filename

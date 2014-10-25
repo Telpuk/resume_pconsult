@@ -181,7 +181,7 @@ class User{
 			$this->_dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->_dbc->beginTransaction();
 
-			$stmt = $this->_dbc->prepare("INSERT INTO profile(registered_user) VALUES(:registered_user)");
+			$stmt = $this->_dbc->prepare("INSERT INTO profile(registered_user, date) VALUES(:registered_user, NOW())");
 			$stmt->execute(array(':registered_user'=>'no'));
 			$id = $this->_dbc->lastInsertId('id');
 
@@ -212,10 +212,19 @@ class User{
 	public function  selectCommits($id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("SELECT
-												id, comment, DATE_FORMAT(date,'%Y-%m-%d %H:%m')as 'date'
+												comments.id,
+												comments.comment,
+												comments.id_admin,
+												DATE_FORMAT(comments.date,'%Y-%m-%d %H:%i')as 'date',
+												users.type_user,
+												CONCAT_WS(' ', name_second, name_first, patronymic) as 'name'
 						                	FROM
-						                    	comments
-                                        	WHERE id_user = :id_user ORDER BY date DESC");
+						                    	comments,
+						                    	users
+                                        	WHERE
+                                        		comments.id_admin = users.id
+                                        	AND
+                                        		comments.id_user = :id_user ORDER BY date DESC");
 			$stmt->execute(array(':id_user'=>$id_user));
 			$data['comments'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
@@ -484,13 +493,16 @@ class User{
 	}
 
 	private function _getBerBirthSexCityMoveTrip($personal_data){
-		$birth_array = explode('-',$personal_data['birth']);
-		$birth_array[1] = $this->_month[$birth_array[1]];
-		$birth = implode($birth_array,' ');
+		$birth='';
+		if(trim($personal_data['birth'])!=='--'){
+			$birth_array = explode('-',$personal_data['birth']);
+			$birth_array[1] = $this->_month[$birth_array[1]];
+			$birth = implode($birth_array,' ');
+		}
 
 		return sprintf(
 			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
-			($birth !== '  ')?$birth:'не указано',
+			$birth,
 			$personal_data['sex'],
 			$personal_data['city'],
 			$personal_data['move'],

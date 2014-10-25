@@ -2,8 +2,7 @@
 class AdminController extends IController{
 	private
 		$_view,
-		$_db_admin,
-		$_id_admin;
+		$_db_admin;
 
 	public function  __construct(){
 
@@ -14,16 +13,10 @@ class AdminController extends IController{
 	}
 
 	public function indexAction(){
-		$this->_id_admin = $this->getSessionUserID('admin');
-		if($this->_id_admin === 'admin'){
-			if($this->getSessionUserID('user')){
-				$this->deleteSessionUsers('user');
-			}
-			$this->headerLocation('admincontrol');
-		}else{
-			$this->sessionClear();
-			$this->headerLocation('admin/authorization');
-		}
+		$this->sessionClear();
+		return $this->_view->render(array(
+			'view' => 'admin/authorization',
+		));
 	}
 
 	public function outAction(){
@@ -34,17 +27,18 @@ class AdminController extends IController{
 	public function authorizationAction(){
 		if (isset($_POST['submitAuthorization'])){
 			if (!empty($_POST['login']) && !empty($_POST['password'])) {
-				$admin = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'], 'password' => $_POST['password']));
-				if ($admin !== 'admin') {
+				$users = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'], 'password' => $_POST['password']));
+				if ($users === false) {
 					return $this->_view->render(array(
 						'view' => 'admin/authorization',
 						'data' => array('helpers' => array('no-authorization' => 'admin/helpers/repeat'), 'login' => $_POST['login'])
 
 					));
-				} else if($admin === 'admin'){
-					$this->setSessionUsers(array('admin' => $admin));
+				} else if(isset($users['type_user']) && isset($users['id'])){
+					$this->setSessionUsers(array('admin' => $users['type_user'], 'id_user_admin'=>$users['id']));
 					$this->headerLocation('admincontrol');
 				}
+
 			} else {
 				return $this->_view->render(array(
 					'view' => 'admin/authorization',

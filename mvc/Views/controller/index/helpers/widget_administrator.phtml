@@ -1,11 +1,16 @@
+<?php print_r($this->data['data']['comments']) ?>
 <p>Вы можите оставлять свои камментарии к резюме, редактировать его или удалить.</p>
+
 <?php foreach($this->data['data']['comments'] as $value): ?>
 	<fieldset>
-		<legend><a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'><img src='<?=BASE_URL ."/public/img/comment-delete.png"?>'></a>
-			<?=$value['date']?></legend>
+		<legend>
+			<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'><img src='<?=BASE_URL
+				."/public/img/comment-delete.png"?>'></a> <?=$value['date']?></legend>
+		<p>Кем написан</p>
 		<p><?=$value['comment']?></p>
 	</fieldset>
 <?php endforeach; ?>
+
 <div class="form_comment">
 <form action='<?=BASE_URL."/index/comment"?>' method="post">
 	<textarea name="comment" placeholder="введите свой комментарий"></textarea>
