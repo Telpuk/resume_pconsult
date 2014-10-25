@@ -56,7 +56,8 @@ class IndexController extends IController{
 					),
 					array(
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
-						'type_admin'=>$this->_type_admin
+						'admin'=>$this->_admin,
+						'type_admin_rus'=>$this->_type_admin
 					),
 					(array)$select_personal_data)
 			));
