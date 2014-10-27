@@ -3,7 +3,7 @@
 	<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'> <?=$value['name']?></p>
 	<fieldset>
 		<legend>
-			<?php if(((int)$value['id_admin'] === $this->data['data']['id_admin']) ||
+			<?php if(((int)$value['id_admin'] === (int)$this->data['data']['id_admin']) ||
 				((int)$this->data['data']['id_admin'] === 1)): ?>
 				<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'>
 					<img src='<?=BASE_URL."/public/img/comment-delete.png"?>'></a>
