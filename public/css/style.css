@@ -599,6 +599,7 @@ a.addPhoto span:last-child,
     font-size: 0.25em;
     display: block;
     float: left;
+    width: 25%;
     margin-left: -20px;
 }
 #submit_download,

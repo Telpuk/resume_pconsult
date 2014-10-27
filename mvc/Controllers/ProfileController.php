@@ -1,14 +1,18 @@
 <?php
 class ProfileController extends IController{
-	private $_view;
-	private $_dbuser;
-	private $_format_photo = array('png'=>'png','jpg'=>'jpg','gif' =>'gif');
-	private $_size_photo = 6291456;
+	private
+		$_view,
+		$_dbuser,
+		$_admin = false,
+		$_format_photo = array('png'=>'png','jpg'=>'jpg','gif' =>'gif'),
+		$_size_photo = 6291456;
 
 	public function __construct(){
 		parent::__construct();
 		$this->_view = new View();
 		$this->_dbuser = new User();
+
+		$this->_admin = $this->getSessionUserID('admin');
 	}
 
 	private function _getDownloadDirPhoto(){
@@ -42,7 +46,9 @@ class ProfileController extends IController{
 			$checkForm = $this->_dbuser->selectContacts($this->getSessionUserID('user'));
 			return $this->_view->render(array(
 				'view' => 'profile/contacts',
-				'data'=>array('inputs'=>$checkForm),
+				'data'=>array(
+					'admin'=>$this->_admin,
+					'inputs'=>$checkForm),
 				'js'=>$this->_jsContacts(),
 			));
 		}
@@ -54,6 +60,7 @@ class ProfileController extends IController{
 		return $this->_view->render(array(
 			'view' => 'profile/photo',
 			'data'=> array_merge( array(
+					'admin'=>$this->_admin,
 					'src'=>"/files/photo/{$photo_name}",
 					'submit'=>($photo_name === 'no-photo.png') ? true: false),
 				$this->_uploadsAction())
@@ -77,7 +84,8 @@ class ProfileController extends IController{
 				if(isset($input['val']['message']) || $input['val']===false){
 					return $this->_view->render(array(
 						'view' => 'profile/personal',
-						'data'=>array('inputs'=>$checkForm),
+						'data'=>array(
+							'inputs'=>$checkForm),
 						'js'=>$this->_jsPersonal(),
 					));
 				}
@@ -88,7 +96,9 @@ class ProfileController extends IController{
 			$checkForm = $this->_dbuser->selectPersonal($this->getSessionUserID('user'));
 			return $this->_view->render(array(
 				'view' => 'profile/personal',
-				'data'=>array('inputs'=>$checkForm),
+				'data'=>array(
+					'admin'=>$this->_admin,
+					'inputs'=>$checkForm),
 				'js'=>$this->_jsPersonal(),
 			));
 		}

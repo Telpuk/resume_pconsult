@@ -123,14 +123,16 @@
 						</tr>
 						</tbody>
 						<tfoot>
-						<tr>
-							<td colspan="5">
-								<div class="contacts_footer">
-									<input type="submit"  name="saveContacts" value="Сохранить">
-									<a class="back" href="<?=BASE_URL?>">Отмена</a>
-								</div>
-							</td>
-						</tr>
+						<?php if($this->data['data']['admin'] !== 'manager'): ?>
+							<tr>
+								<td colspan="5">
+									<div class="contacts_footer">
+										<input type="submit"  name="saveContacts" value="Сохранить">
+										<a class="back" href="<?=BASE_URL?>">Отмена</a>
+									</div>
+								</td>
+							</tr>
+						<?php endif ?>
 						</tfoot>
 					</table>
 				</form>

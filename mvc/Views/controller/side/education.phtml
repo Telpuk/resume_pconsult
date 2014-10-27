@@ -74,7 +74,10 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_education"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно место обучения</div>
+
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_education"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно место обучения</div>
+<?php endif; ?>
 
 <?php for( $i=0; $i <= $this->data['data']['table_training_courses_count']-1; ++$i): ?>
 	<?php if($i>=1): ?>
@@ -125,7 +128,10 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_training_courses"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно повышение квалификации или курсы</div>
+
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_training_courses"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно повышение квалификации или курсы</div>
+<?php endif; ?>
 
 <?php for( $i=0; $i <= $this->data['data']['table_count_tests_exams']-1; ++$i): ?>
 	<?php if($i>=1): ?>
@@ -178,8 +184,11 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_tests_exams"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
-	один тест или экзамен</div>
+
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_tests_exams"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
+		один тест или экзамен</div>
+<?php endif ?>
 
 
 <?php for( $i=0; $i <= $this->data['data']['table_count_electronic_certificates']-1; ++$i): ?>
@@ -222,8 +231,10 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_electronic_certificates"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
-	сертификат</div>
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_electronic_certificates"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
+		сертификат</div>
+<?php endif; ?>
 
 <table class="possessions_language" id="lang" >
 	<thead>
@@ -312,17 +323,21 @@
 	<?php endif ?>
 	</tbody>
 </table>
-<div class="add_language"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще один язык</div>
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_language"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще один язык</div>
+<?php endif; ?>
 <table class="foot_table">
 	<tfoot>
-	<tr>
-		<td colspan="2">
-			<div>
-				<input type="submit" id="saveEducation"  name="saveEducation" value="Сохранить">
-				<a class="back" href="<?=BASE_URL?>">Отмена</a>
-			</div>
-		</td>
-	</tr>
+	<?php if($this->data['data']['admin'] !== 'manager'): ?>
+		<tr>
+			<td colspan="2">
+				<div>
+					<input type="submit" id="saveEducation"  name="saveEducation" value="Сохранить">
+					<a class="back" href="<?=BASE_URL?>">Отмена</a>
+				</div>
+			</td>
+		</tr>
+	<?php endif; ?>
 	</tfoot>
 </table>
 </form>

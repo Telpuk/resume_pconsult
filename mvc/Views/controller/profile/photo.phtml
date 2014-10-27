@@ -9,7 +9,9 @@
 				<div class="user_photo">
 					<img src='<?=BASE_URL.$this->data['data']['src']?>'>
 				</div>
+				<?php if($this->data['data']['admin'] !== 'manager'): ?>
 				<?php foreach($this->data['helpers'] as $helper)echo $helper?>
+				<div class="clear"></div>
 				<div class="photo_form">
 					<?php if($this->data['data']['submit']): ?>
 					<div class="clear"></div>
@@ -23,8 +25,9 @@
 				<div  class="delete_photo">
 					<a href='<?=BASE_URL."/profile/delete/id{$this->data['data']['src']}"?>'>удалить</a>
 				</div>
-			<?php endif ?>
+			<?php endif; ?>
 			</form>
+			<?php endif; ?>
 			<div class="clear"></div>
 		</section>
 	</article>

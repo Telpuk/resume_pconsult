@@ -1,13 +1,16 @@
 <?php
 class SideController extends IController{
-	private $_view;
-	private $_dbuser;
+	private
+		$_view,
+		$_dbuser,
+		$_admin=false;
 
-	public function __construct ()
-	{
+	public function __construct (){
 		parent::__construct ();
 		$this->_view   = new View();
 		$this->_dbuser = new User();
+
+		$this->_admin = $this->getSessionUserID('admin');
 	}
 
 	public function positionAction(){
@@ -28,7 +31,10 @@ class SideController extends IController{
 			$checkForm = $this->_dbuser->selectPosition($this->getSessionUserID('user'));
 			return $this->_view->render(array(
 				'view' => 'side/position',
-				'data'=>array('inputs'=>$checkForm),
+				'data'=>array(
+					'admin'=>$this->_admin,
+					'inputs'=>$checkForm
+				),
 				'js'=>$this->_jsPosition(),
 			));
 		}
@@ -178,6 +184,7 @@ class SideController extends IController{
 			return $this->_view->render(array(
 				'view' => 'side/education',
 				'data'=>array(
+					'admin'=>$this->_admin,
 					'table_base_education_count'=>count($checkForm['names_institutions']['value']),
 					'table_training_courses_count' =>count($checkForm['courses_names']['value']),
 					'table_count_tests_exams'=>count($checkForm['tests_exams_names']['value']),
@@ -215,6 +222,7 @@ class SideController extends IController{
 			return $this->_view->render(array(
 				'view' => 'side/experience',
 				'data'=>array(
+					'admin'=>$this->_admin,
 					'table_count_work'=>count($checkForm['organizations']['value'])?count($checkForm['organizations']['value']):1,
 					'table_count_recommendations' =>count($checkForm['recommend_names']['value'])?count($checkForm['recommend_names']['value']):1,
 					'inputs'=>$checkForm),

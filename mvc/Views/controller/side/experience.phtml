@@ -25,7 +25,7 @@
 			<td><label>Регион<span class="required">*</span></label></td>
 			<td>
 				<input class="regions" type="text"  name="regions[<?=$i?>]"
-				        value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
+				       value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['regions']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -123,7 +123,9 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_position"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить место работы</div>
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_position"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить место работы</div>
+<?php endif; ?>
 <table class="key_skills" id="skill">
 	<tbody>
 	<tr>
@@ -181,7 +183,7 @@
 			<td>Должность</td>
 			<td>
 				<input class="positions" type="text" name="recommend_position[<?=$i?>]"
-				        value="<?=$this->data['data']['inputs']['recommend_position']['value'][$i]?>">
+				       value="<?=$this->data['data']['inputs']['recommend_position']['value'][$i]?>">
 				<div class="message"><?=$this->data['data']['inputs']['recommend_position']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -189,7 +191,7 @@
 			<td>Организация</td>
 			<td>
 				<input class="organizations" type="text" name="recommend_organization[<?=$i?>]"
-				        value="<?=$this->data['data']['inputs']['recommend_organization']['value'][$i]?>">
+				       value="<?=$this->data['data']['inputs']['recommend_organization']['value'][$i]?>">
 				<div class="message"><?=$this->data['data']['inputs']['recommend_organization']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -203,17 +205,21 @@
 		</tbody>
 	</table>
 <?php endfor; ?>
-<div class="add_recommendations"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить рекомендацию</div>
+<?php if($this->data['data']['admin'] !== 'manager'): ?>
+	<div class="add_recommendations"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Добавить рекомендацию</div>
+<?php endif; ?>
 <table class="foot_table">
 	<tfoot>
-	<tr>
-		<td colspan="2">
-			<div>
-				<input type="submit" id="submitExperience"  name="saveExperience" value="Сохранить">
-				<a class="back" href="<?=BASE_URL?>">Отмена</a>
-			</div>
-		</td>
-	</tr>
+	<?php if($this->data['data']['admin'] !== 'manager'): ?>
+		<tr>
+			<td colspan="2">
+				<div>
+					<input type="submit" id="submitExperience"  name="saveExperience" value="Сохранить">
+					<a class="back" href="<?=BASE_URL?>">Отмена</a>
+				</div>
+			</td>
+		</tr>
+	<?php endif; ?>
 	</tfoot>
 </table>
 </form>
