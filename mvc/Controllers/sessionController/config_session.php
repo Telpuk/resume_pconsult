@@ -5,6 +5,7 @@
 			'SideController'
 		)),
 		'admin'=>array('controllers'=>array(
-			'AdmincontrolController'
+			'AdmincontrolController',
+			'ExcelController'
 		))
 	);

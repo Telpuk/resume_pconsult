@@ -40,6 +40,11 @@ class IndexController extends IController{
 	}
 
 	public  function indexAction(){
+
+		if( $this->_admin && $this->getParams('id')){
+			$this->_db_user->viewAdmin($this->_id_user);
+		}
+
 		$widget = !$this->_admin?array('widget' => 'index/helpers/widget_personal'):array('widget'=>'index/helpers/widget_administrator');
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);

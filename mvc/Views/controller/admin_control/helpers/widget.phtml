@@ -1,0 +1,16 @@
+<div class="widget admin">
+	<p class='<?php if($this->data['data']['active_all_resume']) echo 'active'?>'
+	   class="active"><a href='<?=BASE_URL."/admincontrol"?>'>
+			<?php if(!$this->data['data']['search']): ?>
+				всего анкет:
+			<?php else: ?>
+				найдено анкет:
+			<?php endif ?>
+			<span><?=$this->data['data']['users_count']?></span></a></p>
+	<?php if($this->data['data']['search']): ?>
+		<p><a href='<?=BASE_URL."/admincontrol"?>'>показать все анкеты</a></p>
+	<?php endif ?>
+	<p class='<?php if($this->data['data']['active_all_no_view']) echo 'active'?>'>
+		<a href="<?=BASE_URL."/admincontrol/unreviewed/view/no"?>">смотреть новые анкеты:
+			<span><?=$this->data['data']['count_view_admin_resume']?></span></a></p>
+</div>

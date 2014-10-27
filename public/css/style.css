@@ -1150,26 +1150,67 @@ main.authorization .helpers_message_authorization{
 }
 .admin_control .left_admin_control{
     float: left;
-    width: 25%;
+    width: 23%;
+    margin-top: 10px;
     font-size: .17em;
     /*border: 1px black solid;*/
 }
-.admin_control .left_admin_control p{
-    margin-top: 0.2em;
-    color: #bbbbbb;
-    padding: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 10px;
+
+.admin_control .right_admin_control .no_resume{
+    margin-top: 50px;
+    font-size: 1.3em;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.64);
 }
-.admin_control .left_admin_control p a{
-    color: #bbbbbb;
+.admin_control .left_admin_control .widget.admin{
+    background-color: rgba(175, 175, 175, 0.2);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+.admin_control .left_admin_control .widget.admin p{
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    background-color: rgba(127, 190, 255, 0.50);
+    color: white;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 10px;
 }
+
+.admin_control .left_admin_control .widget.admin p:hover{
+    background-color: rgba(0, 128, 0, 0.64);
+}
+.admin_control .left_admin_control .widget.admin a{
+    display: block;
+    color: white;
+    width: 98%;
+}
+
+
+
+.admin_control .left_admin_control .widget.admin span{
+    display: block;
+    float: right;
+    width: 3%;
+    color: gold;
+}
+
+
+
+.admin_control .left_admin_control .widget.admin .active{
+    background-color: rgba(0, 128, 0, 0.72);
+}
+
 .admin_control .left_admin_control p a:visited{
-    color: #bbbbbb;
+    color: white;
 }
 
 .admin_control .right_admin_control{
@@ -1242,6 +1283,12 @@ main.authorization .helpers_message_authorization{
     display: block;
     float: right;
 }
+
+.admin_control .right_admin_control .user_id .inform_user .word{
+    width: 32px;
+    height: 32px;
+}
+
 .admin_control .right_admin_control .user_id .inform_user .name_user_inform{
     margin-top: 10px;
     margin-bottom: 10px;

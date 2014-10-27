@@ -19,17 +19,30 @@ class User{
 		$this->_dbc = Model::getInstance()->getDbh();
 	}
 
+	public function viewAdmin($id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													view_admin = 'yes'
+												WHERE
+													id = :id_user");
+			$stmt->execute(array(':id_user'=>$id_user));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+	}
+
 	public function finishResume($id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("UPDATE
 													profile
 												SET
-													registered_user = :registered_user,
+													registered_user = 'yes',
 													date  = NOW()
 												WHERE
 													id = :id_user");
-			$stmt->execute(array('registered_user'=>'yes',':id_user'=>$id_user)
-			);
+			$stmt->execute(array(':id_user'=>$id_user));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}

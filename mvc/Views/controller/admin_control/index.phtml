@@ -11,39 +11,46 @@
 		</div>
 	</form>
 	<div class="left_admin_control">
-		<p><a href='<?=BASE_URL."/admincontrol"?>'><?=$this->data['data']['users_count']?></a></p>
-		<p><a href="<?=BASE_URL."/admincontrol/unreviewed/view/no"?>">новые анкеты:<?=$this->data['data']['count_view_admin_resume']?></a></p>
+		<?=$this->data['helpers']['widget_admin']?>
 	</div>
 	<div class="right_admin_control">
-		<nav>
-			<?=$this->data['data']['pagination']?>
-		</nav>
-		<?php foreach($this->data['data']['users'] as $key=>$user): ?>
-			<div class="user_id">
-				<figure>
-					<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
-				</figure>
-				<div class="inform_user">
-					<span class="salary_inform_user"><?=$user['salary']?></span>
-					<div class="position"><?=$user['desired_position']?></div>
-					<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
-					<p>
-						Опыт работы<br><span><?=$user['sum_experience']?></span>
-					</p>
-					<p>
-						Последнее место работы<br>
-						<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
-					</p>
-					<p>
-						<?=$user['last_place_work']['last_works']?>
-					</p>
+		<?php if($this->data['data']['users'][0]):?>
+			<nav>
+				<?=$this->data['data']['pagination']?>
+			</nav>
+			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
+				<div class="user_id">
+					<figure>
+						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+					</figure>
+					<div class="inform_user">
+						<span class="salary_inform_user"><?=$user['salary']?></span>
+						<div>
+							<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
+								<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>
+							</a></div>
+						<div class="position"><?=$user['desired_position']?></div>
+						<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
+						<p>
+							Опыт работы<br><span><?=$user['sum_experience']?></span>
+						</p>
+						<p>
+							Последнее место работы<br>
+							<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+						</p>
+						<p>
+							<?=$user['last_place_work']['last_works']?>
+						</p>
+					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-		<?php endforeach; ?>
-		<nav>
-			<?=$this->data['data']['pagination']?>
-		</nav>
+			<?php endforeach; ?>
+			<nav>
+				<?=$this->data['data']['pagination']?>
+			</nav>
+		<?php else: ?>
+			<p class="no_resume">По этому запросу у вас ничего нет</p>
+		<?php endif; ?>
 	</div>
 	<div class="clear"></div>
 </main>

@@ -2,7 +2,7 @@
 class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
-		$_count_view = 7,
+		$_count_view = 1,
 		$_page = null;
 
 	public function  __construct(){
@@ -24,8 +24,10 @@ class AdminControlController extends IController{
 			return $this->_view->render(array(
 				'view' => 'admin_control/index',
 				'data' => array(
+					'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+					'active_all_no_view'=>true,
 					'users' => $users['users'] ? $users['users']  : '',
-					'users_count' => "Все анкеты",
+					'users_count'=>$this->getSessionParamsId('count_users'),
 					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 					'pagination' => $this->_db_admin->printPagination(
 						ceil($users['count'] / $this->_count_view), $this->_page, array(
@@ -58,8 +60,10 @@ class AdminControlController extends IController{
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
 			'data' => array(
+				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+				'active_all_resume'=>true,
 				'users' => $users['users'] ? $users['users']  : '',
-				'users_count' => "Всего анкет: " . $users['count'],
+				'users_count' =>$users['count'],
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'search' => $search[0],
 				'pagination' => $this->_db_admin->printPagination(
