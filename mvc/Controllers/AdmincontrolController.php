@@ -11,6 +11,59 @@ class AdminControlController extends IController{
 		$this->_db_admin = new Admin();
 	}
 
+	public function addmanagerAction(){
+		if($_POST['addManager']){
+			if( empty($_POST['name_first']) || empty($_POST['password_manager']) || empty($_POST['login_manager'])){
+				$message = 'admin_control/helpers/empty_form';
+			}else{
+				if(!$this->_db_admin->inserManager($_POST)){
+					$message = 'admin_control/helpers/exists_login';
+				}else{
+					$this->headerLocation('admincontrol/managers');
+				}
+			}
+
+			return $this->_view->render(array(
+				'view'=>'admin_control/managers',
+				'data' => array(
+					'active_manager'=>true,
+					'inputs'=>$_POST,
+					'helpers' => array(
+						'widget_admin' => 'admin_control/helpers/widget',
+						'message'=>$message
+					),
+					'users_count'=>$this->getSessionParamsId('count_users'),
+					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
+				)
+			));
+
+		}
+
+
+	}
+
+	public function managersAction(){
+		$managers = $this->_db_admin->selectManager();
+		if(!count($managers)){
+			$message = array('message'=>"admin_control/helpers/no_manager");
+		}else{
+			$message =  array('manager_count'=>"admin_control/helpers/manager_count");
+		}
+
+		return $this->_view->render(array(
+			'view'=>'admin_control/managers',
+			'data' => array(
+				'active_manager'=>true,
+				'managers'=>$managers,
+				'helpers' =>
+					array_merge(array('widget_admin' => 'admin_control/helpers/widget'),
+						$message),
+				'users_count'=>$this->getSessionParamsId('count_users'),
+				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
+			)
+		));
+	}
+
 	public function unreviewedAction(){
 
 		if ($this->getParams('view')) {

@@ -1176,7 +1176,7 @@ main.authorization .helpers_message_authorization{
 .admin_control .left_admin_control .widget.admin p{
     width: 100%;
     padding: 5px 10px 5px 10px;
-    background-color: rgba(127, 190, 255, 0.50);
+    background-color: rgba(198, 123, 55, 0.37);
     color: white;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -1186,10 +1186,11 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .left_admin_control .widget.admin p:hover{
-    background-color: rgba(0, 128, 0, 0.64);
+    background-color: rgba(198, 123, 55, 0.76);
 }
 .admin_control .left_admin_control .widget.admin a{
     display: block;
+    font-weight: bold;
     color: white;
     width: 98%;
 }
@@ -1206,7 +1207,7 @@ main.authorization .helpers_message_authorization{
 
 
 .admin_control .left_admin_control .widget.admin .active{
-    background-color: rgba(0, 128, 0, 0.72);
+    background-color: rgba(198, 123, 55, 0.76);
 }
 
 .admin_control .left_admin_control p a:visited{
@@ -1349,5 +1350,49 @@ main.authorization .helpers_message_authorization{
 .admin_control  .right_admin_control .no-active:hover{
     background-color: #428bca;
 }
+
+.admin_control .form_manager{
+    border: 1px solid black;
+    width: 100%;
+    margin-top: 5px;
+}
+.admin_control .form_manager p{
+    padding: 20px;
+}
+.admin_control .form_manager label{
+    display: block;
+    float: left;
+    font-size: 1.2em;
+    width: 20%;
+    margin-right: 10px;
+    text-align: right;
+}
+.admin_control .form_manager input{
+    display: block;
+    float: right;
+    margin-right: 250px;
+    font-size: 0.9em;
+    padding: 5px;
+    height: 30px;
+    width: 45%;
+}
+.admin_control .form_manager input[type=submit]{
+    padding: 5px;
+    height: 30px;
+    margin-bottom: 40px;
+}
+.admin_control .message{
+    margin-top: 10px;
+    font-size: 1.4em;
+    padding: 10px;
+    border: 1px red dashed;
+    width: 100%;
+    text-align: center;
+    color: red;
+}
+
+
+
+
 
 

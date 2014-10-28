@@ -33,6 +33,73 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 	}
+	public function selectManager(){
+		try {
+			$stmt = $this->_dbc->query("
+												SELECT
+													name_first,
+													login,
+													password
+												FROM
+													users
+												WHERE
+													type_user = 'manager'"
+			);
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $data;
+	}
+
+	public function inserManager($data){
+		$manager = $this->_existsManager($data['login_manager']);
+
+		if($manager){
+			return false;
+		}else{
+			try {
+				$stmt = $this->_dbc->prepare ("
+												INSERT INTO
+													users(type_user,name_first,login,password)
+												VALUES('manager',:name_first,:login,:password)"
+				);
+				$stmt->execute(array(
+					':name_first'=>$data['name_first'],
+					':login'=>$data['login_manager'],
+					':password'=>$data['password_manager']
+				));
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile());
+			}
+
+			return true;
+
+		}
+	}
+
+	private function _existsManager($login_manager){
+		try {
+			$stmt = $this->_dbc->prepare ("
+												SELECT
+													COUNT(id) as 'count'
+												FROM
+													users
+												WHERE
+													login = :login"
+			);
+			$stmt->execute(array(
+				':login'=>$login_manager
+			));
+			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		if((int)$data['count'] === 0){
+			return false;
+		}
+		return true;
+	}
 
 	public  function checkLoginAndPassword($data){
 		try {
