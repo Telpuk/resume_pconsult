@@ -374,6 +374,9 @@ class User{
 
 		$personal['call_me'] = $this->_getCallMe(
 			array(
+				'comment_mobile_phone'=>"(".$personal_data['comment_mobile_phone'].")",
+				'comment_home_phone'=>"(".$personal_data['comment_home_phone'].")",
+				'comment_work_phone'=>"(".$personal_data['comment_work_phone'].")",
 				'mobile_phone'=>$personal_data['mobile_phone'],
 				'home_phone'=>$personal_data['home_phone'],
 				'work_phone'=>$personal_data['work_phone'],
@@ -624,24 +627,26 @@ class User{
 		$call_me = '';
 		if($personal_data['mobile_phone']){
 			if($personal_data['preferred_communication']==1){
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']} <span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}
+				{$personal_data['comment_mobile_phone']} <span>желаемый способ связи</span></p>";
 			}else{
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}</p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}</p>";
 			}
 		}
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']} <span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']} {$personal_data['comment_home_phone']}<span>желаемый способ связи</span></p>";
 			}else{
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}</p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']} {$personal_data['comment_home_phone']}</p>";
 			}
 
 		}
 		if($personal_data['work_phone']){
 			if($personal_data['preferred_communication']==3) {
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']} <span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']} {$personal_data['comment_work_phone']}<span>желаемый способ связи</span></p>";
 			}else{
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}</p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}
+				{$personal_data['comment_work_phone']}</p>";
 			}
 		}
 		if($personal_data['email']){

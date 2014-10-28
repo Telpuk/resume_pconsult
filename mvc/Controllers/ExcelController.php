@@ -1,6 +1,4 @@
 <?php
-
-
 \PhpOffice\PhpWord\Autoloader::register();
 class ExcelController extends IController{
 	private
@@ -17,12 +15,7 @@ class ExcelController extends IController{
 	}
 
 	private function _m2t($millimeters){
-		return floor($millimeters*56.7); //1 твип равен 1/567 сантиметра
-	}//m2t
-
-	private  function _str_replace_once($search, $replace, $text){
-		$pos = strpos($text, $search);
-		return $pos!==false ? substr_replace($text, $replace, $pos, strlen($search)) : $text;
+		return floor($millimeters*56.7);
 	}
 
 	public function indexAction(){
@@ -30,8 +23,6 @@ class ExcelController extends IController{
 		if($this->getParams('id')){
 
 			$personal_data = $this->_db_excel->excelExport($this->_id_user);
-//									echo "<pre>";
-//									print_r($personal_data);
 
 			$this->_word->setDefaultFontName('Times New Roman');
 			$this->_word->setDefaultFontSize(14);
@@ -45,16 +36,24 @@ class ExcelController extends IController{
 
 			$section = $this->_word->createSection($sectionStyle);
 
-			$section->addImage(
-				BASE_URL."/files/photo/".$personal_data['photo'],
+			$header = $section->addHeader();
+			$header->addImage(BASE_URL."/public/img/logo.jpg",
 				array(
 					'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
 					'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
 					'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_MARGIN,
-					'width' => 250,
-					'height' => 250,
-					'marginRight' =>20,
-					'marginTop' => 100
+					'marginRight' =>2,
+					'marginTop' => 1,
+					'width' => 70,
+					'height' => 70)
+			);
+
+
+			$section->addImage(
+				BASE_URL."/files/photo/".$personal_data['photo'],
+				array('positioning' => 'relative', 'marginTop' => 50,'marginLeft' => -300, 'align' => 'right',
+					'width' => 200, 'height' => 200, 'wrappingStyle' => 'square'
+
 				));
 			$section->addText($personal_data['name'], array('bold'=>true));
 
@@ -65,8 +64,8 @@ class ExcelController extends IController{
 			foreach($personal_data['call_me'] as $key=>$value){
 				$section->addText($value);
 			}
-			$section->addText("Желаемая должность и зарплата", array('bold'=>true, 'size'=>20,'underline'=>'solid',
-				'color'=> 'bababa' ));
+			$section->addText("Желаемая должность и зарплата", array(
+				'bold'=>true, 'size'=>20,'underline'=>'solid', 'color'=> 'bababa' ));
 
 			$section->addText($personal_data['desired_position']);
 			$personal_data['salary'] = $personal_data['salary']?$personal_data['salary']." " .$personal_data['currency']:'';

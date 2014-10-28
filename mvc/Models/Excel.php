@@ -20,6 +20,9 @@ class Excel{
 		}
 
 		$personal_data['call_me'] = $this->_getCallMeNoHTML(array(
+			'comment_mobile_phone'=>"(".$personal_data['comment_mobile_phone'].")",
+			'comment_home_phone'=>"(".$personal_data['comment_home_phone'].")",
+			'comment_work_phone'=>"(".$personal_data['comment_work_phone'].")",
 			'mobile_phone'=>$personal_data['mobile_phone'],
 			'home_phone'=>$personal_data['home_phone'],
 			'work_phone'=>$personal_data['work_phone'],
@@ -268,29 +271,29 @@ class Excel{
 		$call_me = array();
 		if($personal_data['mobile_phone']){
 			if($personal_data['preferred_communication']==1){
-				$call_me[] = "мобильный — {$personal_data['mobile_phone']} (желаемый способ связи)";
+				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}—желаемый способ связи";
 			}else{
-				$call_me[] = "мобильный — {$personal_data['mobile_phone']}";
+				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}";
 			}
 		}
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
-				$call_me[] = "домашний — {$personal_data['home_phone']} (желаемый способ связи)";
+				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}—желаемый способ связи";
 			}else{
-				$call_me[] = "домашний — {$personal_data['home_phone']}";
+				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}";
 			}
 
 		}
 		if($personal_data['work_phone']){
 			if($personal_data['preferred_communication']==3) {
-				$call_me[] = "рабочий — {$personal_data['work_phone']} (желаемый способ связи)";
+				$call_me[] = "рабочий — {$personal_data['work_phone']}{$personal_data['comment_work_phone']}—желаемый способ связи";
 			}else{
-				$call_me[] = "рабочий — {$personal_data['work_phone']}";
+				$call_me[] = "рабочий — {$personal_data['work_phone']}{$personal_data['comment_work_phone']}";
 			}
 		}
 		if($personal_data['email']){
 			if($personal_data['preferred_communication']==4) {
-				$call_me[] = "email — {$personal_data['email']} (желаемый способ связи)";
+				$call_me[] = "email — {$personal_data['email']}—желаемый способ связи";
 			}else{
 				$call_me[] = "email — {$personal_data['email']}";
 			}
