@@ -7,9 +7,14 @@ set_include_path( implode(PATH_SEPARATOR, array(
 	'mvc/Models',
 	'mvc/Views',
 	'config/',
-	'vendor/word/PHPWord'
+	'vendor/word/PhpWord'
 )));
-require_once realpath(__DIR__.'/vendor/word/PHPWord.php');
+
+require_once  realpath(__DIR__.'/vendor/word/PhpWord/Autoloader.php');
+\PhpOffice\PhpWord\Autoloader::register();
+
+//require_once realpath(__DIR__.'/vendor/word/PhpWord/PhpWord.php');
+
 
 spl_autoload_register(function ($class) {
 	$file = $class . '.php';

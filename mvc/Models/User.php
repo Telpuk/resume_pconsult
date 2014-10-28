@@ -248,6 +248,8 @@ class User{
 		return $data;
 	}
 
+
+
 	public function selectPersonalData($id_user){
 		try {
 			$stmt = $this->_dbc->prepare("CALL selectPersonalData(:id_user)");
@@ -439,13 +441,13 @@ class User{
 	private function _getNationalityWorkPermit($personal_data){
 		$data='';
 		if($personal_data['nationality']){
-			$data.="<p>Гражданство: {$personal_data['nationality']}</p>\n";
+			$data.="<p>Гражданство: {$personal_data['nationality']}</p>";
 		}
 		if($personal_data['work_permit']){
-			$data.="<p>Разрешение на работу: {$personal_data['work_permit']}</p>\n";
+			$data.="<p>Разрешение на работу: {$personal_data['work_permit']}</p>";
 		}
 		if($personal_data['travel_time_work']){
-			$data.="<p>Желательное время в пути до работы: {$personal_data['travel_time_work']}</p>\n";
+			$data.="<p>Желательное время в пути до работы: {$personal_data['travel_time_work']}</p>";
 		}
 		return $data;
 	}
@@ -456,12 +458,14 @@ class User{
 			foreach ($personal_data['experience_recommend_names'] as $key => $experience_recommend_names) {
 				$data .= "<p><b>{$personal_data['experience_recommend_organization'][$key]}</b><br>" .
 					"{$experience_recommend_names} ({$personal_data['experience_recommend_position'][$key]})<br>" .
-					"{$personal_data['experience_recommend_phone'][$key]}</p>\n";
+					"{$personal_data['experience_recommend_phone'][$key]}</p>";
 
 			}
 		}
 		return $data;
 	}
+
+
 
 	private function _getExperienceOrganizations($personal_data){
 		$data='';
@@ -477,14 +481,14 @@ class User{
 					."<td>{$starteds}";
 				if($personal_data['experience_at_the_moments'][$key]=='true'){
 					$data.="&mdash; по ностоящее время<br>
-					<span>{$personal_data['experience_count'][$key]}</span></td>\n";
+					<span>{$personal_data['experience_count'][$key]}</span></td>";
 				}else{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
 					$closing[1] = $this->_month[$closing[1]];
 					$closing = implode(array_reverse($closing),' ');
 					$data.="&mdash; {$closing}<br>
 					<span>{$personal_data['experience_count'][$key]}</span>
-					</td>\n";
+					</td>";
 				}
 				$data .="<td>"
 					."<b>$organizations</b><br>"
@@ -496,11 +500,11 @@ class User{
 					$data .="<br>{$personal_data['experience_field_activities'][$key]}";
 
 				$data .="<br><br><b>{$personal_data['experience_positions'][$key]}</b><br>"
-					."{$personal_data['experience_functions'][$key]}</td>\n"
+					."{$personal_data['experience_functions'][$key]}</td>"
 					."</tr>";
 			}
 
-			$data .="</table>\n";
+			$data .="</table>";
 
 		}
 
@@ -532,8 +536,7 @@ class User{
 				$data .= "<tr>"
 					."<td>{$personal_data['electronic_certificates_years_graduations'][$key]}</td>"
 					."<td>{$name}
-<span><a href='{$personal_data['electronic_certificates_links'][$key]}'
-target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></span></td>"
+<span><a href='{$personal_data['electronic_certificates_links'][$key]}'>{$personal_data['electronic_certificates_links'][$key]}</a></span></td>"
 					."</tr>";
 			}
 			$data .= '</table>';
@@ -544,15 +547,15 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 	private function _getTestsExamsNames($personal_data){
 		$data ='';
 		if($personal_data['tests_exams_names'][0]){
-			$data = '<table>\n';
+			$data = '<table>';
 			foreach ($personal_data['tests_exams_names'] as $key => $name) {
 				$data .= "<tr>"
-					."<td>{$personal_data['tests_exams_years_graduations'][$key]}</td>\n"
+					."<td>{$personal_data['tests_exams_years_graduations'][$key]}</td>"
 					."<td>{$personal_data['tests_exams_follow_organizations'][$key]}<span>{$name},
-					{$personal_data['tests_exams_specialty'][$key]}</span></td>\n"
-					."</tr>\n";
+					{$personal_data['tests_exams_specialty'][$key]}</span></td>"
+					."</tr>";
 			}
-			$data .= '</table>\n';
+			$data .= '</table>';
 		}
 		return $data;
 	}
@@ -563,7 +566,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 			$data = '<table>';
 			foreach ($personal_data['courses_names'] as $key => $name) {
 				$data .= "<tr>"
-					."<td>{$personal_data['course_years_graduations'][$key]}</td>\n"
+					."<td>{$personal_data['course_years_graduations'][$key]}</td>"
 					."<td>{$personal_data['follow_organizations'][$key]}<span>{$name},
 					{$personal_data['courses_specialties'][$key]}</span></td>"
 					."</tr>";
@@ -599,6 +602,7 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 		return $data;
 	}
 
+
 	private function _getNamesInstitutions($personal_data){
 		$data ='';
 		if($personal_data['names_institutions'][0]){
@@ -620,14 +624,14 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 		$call_me = '';
 		if($personal_data['mobile_phone']){
 			if($personal_data['preferred_communication']==1){
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}<span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']} <span>желаемый способ связи</span></p>";
 			}else{
 				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}</p>";
 			}
 		}
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}<span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']} <span>желаемый способ связи</span></p>";
 			}else{
 				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}</p>";
 			}
@@ -635,14 +639,14 @@ target='_blank'>{$personal_data['electronic_certificates_links'][$key]}</a></spa
 		}
 		if($personal_data['work_phone']){
 			if($personal_data['preferred_communication']==3) {
-				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}<span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']} <span>желаемый способ связи</span></p>";
 			}else{
 				$call_me .= "<p><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['work_phone']}</p>";
 			}
 		}
 		if($personal_data['email']){
 			if($personal_data['preferred_communication']==4) {
-				$call_me .= "<p><img src='".BASE_URL."/public/img/mail.png'>{$personal_data['email']}<span>желаемый способ связи</span></p>";
+				$call_me .= "<p><img src='".BASE_URL."/public/img/mail.png'>{$personal_data['email']} <span>желаемый способ связи</span></p>";
 			}else{
 				$call_me .= "<p><img src='".BASE_URL."/public/img/mail.png'>{$personal_data['email']}</p>";
 			}
