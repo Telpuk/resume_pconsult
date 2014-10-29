@@ -40,9 +40,14 @@ class IndexController extends IController{
 	}
 
 	public function conclusionAction(){
-		if($this->_db_user->updateConclusion($this->_id_user)){
-			$this->headerLocation('index');
+		if(isset($_POST['updateConclusion'])){
+			if($this->_db_user->updateConclusion($_POST['conclusion'],$this->_id_user)){
+				$this->headerLocation('index');
+			}
 		}
+
+		$this->headerLocation('index');
+
 	}
 
 	public  function indexAction(){
@@ -70,7 +75,8 @@ class IndexController extends IController{
 						'admin'=>$this->_admin,
 						'type_admin_rus'=>$this->_type_admin
 					),
-					(array)$select_personal_data)
+					(array)$select_personal_data),
+				'js'=>$this->_jsIndex()
 			));
 		}
 		$this->headerLocation('error');
@@ -98,6 +104,16 @@ class IndexController extends IController{
 		$this->_db_user->finishResume($this->_id_user);
 		$this->sessionClear();
 		$this->headerLocation('index');
+	}
+
+	private function _jsIndex(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/resume.js"
+			),
+		);
 	}
 
 }

@@ -33,8 +33,19 @@ class User{
 		}
 	}
 
-	public function updateConclusion(){
-
+	public function updateConclusion($conclusion,$id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													conclusion = :conclusion
+												WHERE
+													id = :id_user");
+			$stmt->execute(array(':conclusion'=>$conclusion,':id_user'=>$id_user));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return true;
 	}
 
 	public function finishResume($id_user){

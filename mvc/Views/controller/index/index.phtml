@@ -239,15 +239,17 @@
 <div class="clear"></div>
 <?php if(!empty($this->data['data']['admin'])): ?>
 	<div class="conclusion">
-		<h1>Заключение</h1>
 		<?php if( empty($this->data['data']['conclusion']) ): ?>
-			<form action="<?=BASE_URL."/index/conclusion" ?>" method="post">
+			<h1>Заключение</h1>
+			<form id="conclusion_form" action="<?=BASE_URL."/index/conclusion" ?>" method="post">
 				<textarea name="conclusion"></textarea>
-				<input type="submit" value="сохранить">
+				<input type="submit" name="updateConclusion" value="сохранить">
 			</form>
 			<div class="clear"></div>
 		<?php  else: ?>
+			<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span></h1>
 			<div class="conclusion_text"><?=$this->data['data']['conclusion']?></div>
+			<div class="clear"></div>
 		<?php endif; ?>
 	</div>
 
