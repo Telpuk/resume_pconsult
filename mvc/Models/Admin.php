@@ -33,10 +33,26 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 	}
-	public function selectManager(){
+
+	public function deleteManager($id){
+		try {
+			 $stm= $this->_dbc->prepare( "DELETE
+						users
+					FROM
+						users
+					WHERE id = :id");
+
+			$stm->execute(array(':id'=>$id));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return true;
+	}
+	public function selectManagers(){
 		try {
 			$stmt = $this->_dbc->query("
 												SELECT
+													id,
 													name_first,
 													login,
 													password
@@ -52,9 +68,8 @@ class Admin{
 		return $data;
 	}
 
-	public function inserManager($data){
-		$manager = $this->_existsManager($data['login_manager']);
-
+	public function insertManager($data){
+		$manager = $this->_existsManager($data['login_manager']['value']);
 		if($manager){
 			return false;
 		}else{
@@ -65,14 +80,13 @@ class Admin{
 												VALUES('manager',:name_first,:login,:password)"
 				);
 				$stmt->execute(array(
-					':name_first'=>$data['name_first'],
-					':login'=>$data['login_manager'],
-					':password'=>$data['password_manager']
+					':name_first'=>$data['name_first']['value'],
+					':login'=>$data['login_manager']['value'],
+					':password'=>$data['password_manager']['value']
 				));
 			}catch (PDOException $e){
 				exit(print_r($e->errorInfo).$e->getFile());
 			}
-
 			return true;
 
 		}

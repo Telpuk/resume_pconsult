@@ -1352,12 +1352,15 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .form_manager{
-    border: 1px solid black;
+    border: 1px rgba(187, 187, 187, 0.87) dashed;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 10px;
+    padding: 15px;
 }
 .admin_control .form_manager p{
-    padding: 20px;
+    position: relative;
+    clear: both;
+    padding: 5px;
 }
 .admin_control .form_manager label{
     display: block;
@@ -1379,16 +1382,59 @@ main.authorization .helpers_message_authorization{
 .admin_control .form_manager input[type=submit]{
     padding: 5px;
     height: 30px;
-    margin-bottom: 40px;
+}
+
+.admin_control .form_manager .error{
+    text-align: center;
 }
 .admin_control .message{
-    margin-top: 10px;
-    font-size: 1.4em;
-    padding: 10px;
-    border: 1px red dashed;
+    clear: both;
+    font-size: 1.1em;
     width: 100%;
     text-align: center;
     color: red;
+}
+
+.admin_control .form_manager a.generate_password{
+    position: absolute;
+    left: 73%;
+    background-color: rgba(255, 0, 0, 0.68);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+    height: 30px;
+}
+
+.admin_control.managers .table_managers{
+    margin-top: 10px;
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.admin_control.managers .table_managers table{
+    width: 100%;
+}
+
+.admin_control.managers .table_managers table th{
+    background-color: rgba(187, 187, 187, 0.52);
+    border: 1px rgba(187, 187, 187, 0.34) dashed;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.admin_control.managers .table_managers table img{
+    width: 16px;
+    height: 16px;
+}
+
+.admin_control.managers .table_managers table td{
+    text-align: center;
+    border: 1px rgba(187, 187, 187, 0.56) dashed;
+    padding: 20px;
+
 }
 
 

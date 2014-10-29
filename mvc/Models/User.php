@@ -374,9 +374,12 @@ class User{
 
 		$personal['call_me'] = $this->_getCallMe(
 			array(
-				'comment_mobile_phone'=>"(".$personal_data['comment_mobile_phone'].")",
-				'comment_home_phone'=>"(".$personal_data['comment_home_phone'].")",
-				'comment_work_phone'=>"(".$personal_data['comment_work_phone'].")",
+				'comment_mobile_phone'=>$personal_data['comment_mobile_phone']?"("
+					.$personal_data['comment_mobile_phone'].")":'',
+				'comment_home_phone'=>$personal_data['comment_home_phone']?"(".$personal_data['comment_home_phone']
+					.")":'',
+				'comment_work_phone'=>$personal_data['comment_work_phone']?"(".$personal_data['comment_work_phone']
+					.")":'',
 				'mobile_phone'=>$personal_data['mobile_phone'],
 				'home_phone'=>$personal_data['home_phone'],
 				'work_phone'=>$personal_data['work_phone'],

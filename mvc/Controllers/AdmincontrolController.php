@@ -11,56 +11,120 @@ class AdminControlController extends IController{
 		$this->_db_admin = new Admin();
 	}
 
+	public function delmanagerAction(){
+		$id = $this->getParams('delete');
+		if($id){
+			if($this->_db_admin->deleteManager($id)){
+				$this->headerLocation("admincontrol/managers");
+			}
+		}
+	}
+
 	public function addmanagerAction(){
+		$managers = $this->_db_admin->selectManagers();
+
 		if($_POST['addManager']){
-			if( empty($_POST['name_first']) || empty($_POST['password_manager']) || empty($_POST['login_manager'])){
-				$message = 'admin_control/helpers/empty_form';
-			}else{
-				if(!$this->_db_admin->inserManager($_POST)){
-					$message = 'admin_control/helpers/exists_login';
-				}else{
-					$this->headerLocation('admincontrol/managers');
+			$inputs = $this->_checkFormManager($_POST);
+			foreach($inputs as $value) {
+				if (isset($value['val']['message'])) {
+					return $this->_view->render(array(
+						'view'=>'admin_control/managers',
+						'data' => array(
+							'active_manager'=>true,
+							'managers'=>$managers,
+							'inputs'=>$inputs,
+							'helpers' => array(
+								'widget_admin' => 'admin_control/helpers/widget',
+							),
+							'users_count'=>$this->getSessionParamsId('count_users'),
+							'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
+						),
+						'js'=>$this->_jsManager()
+					));
 				}
 			}
-
-			return $this->_view->render(array(
-				'view'=>'admin_control/managers',
-				'data' => array(
-					'active_manager'=>true,
-					'inputs'=>$_POST,
-					'helpers' => array(
-						'widget_admin' => 'admin_control/helpers/widget',
-						'message'=>$message
+			if (!$this->_db_admin->insertManager($inputs)) {
+				return $this->_view->render(array(
+					'view'=>'admin_control/managers',
+					'data' => array(
+						'active_manager'=>true,
+						'managers'=>$managers,
+						'inputs'=>$inputs,
+						'helpers' => array(
+							'widget_admin' => 'admin_control/helpers/widget',
+							'message'=>'admin_control/helpers/exists_login'
+						),
+						'users_count'=>$this->getSessionParamsId('count_users'),
+						'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
 					),
-					'users_count'=>$this->getSessionParamsId('count_users'),
-					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
-				)
-			));
-
+					'js'=>$this->_jsManager()
+				));
+			}
 		}
-
+		$this->headerLocation('admincontrol/managers');
 
 	}
 
+
+	private function _checkFormManager($inputs){
+		$name_first = strip_tags(trim($inputs['name_first']));
+		$name_first_val = call_user_func(function($var){
+			if(empty($var)){
+				return  array('message'=>'Необходимо заполнить');
+			}elseif(!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s]{2,}+$/ui',$var)){
+				return  array('message'=>'Указано некорректно');
+			}
+		}, $name_first);
+
+		$login_manager = strip_tags(trim($inputs['login_manager']));
+		$login_manager_val = call_user_func(function($var){
+			if(empty($var)){
+				return  array('message'=>'Необходимо заполнить');
+			}elseif(!preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.]{4,20}$/',$var)){
+				return  array('message'=>'Указано некорректно(мининимум 4 символа, на кирилице)');
+			}
+		}, $login_manager);
+
+		$password_manager = strip_tags(trim($inputs['password_manager']));
+		$password_manager_val = call_user_func(function($var){
+			if(empty($var)){
+				return  array('message'=>'Необходимо заполнить');
+			}elseif(!preg_match('/^[_a-zA-Z0-9-_\.\$\!\@\#]{4,20}$/',$var)){
+				return  array('message'=>'Указано некорректно (пример: parol123)');
+			}
+		}, $password_manager);
+
+		return array(
+			'name_first'=>array(
+				'val'=>$name_first_val,
+				'value'=>$name_first
+			),
+			'login_manager'=>array(
+				'val'=>$login_manager_val,
+				'value'=>$login_manager
+			),
+			'password_manager'=>array(
+				'val'=>$password_manager_val,
+				'value'=>$password_manager
+			)
+		);
+	}
+
 	public function managersAction(){
-		$managers = $this->_db_admin->selectManager();
-		if(!count($managers)){
-			$message = array('message'=>"admin_control/helpers/no_manager");
-		}else{
-			$message =  array('manager_count'=>"admin_control/helpers/manager_count");
-		}
+		$managers = $this->_db_admin->selectManagers();
 
 		return $this->_view->render(array(
 			'view'=>'admin_control/managers',
 			'data' => array(
 				'active_manager'=>true,
 				'managers'=>$managers,
-				'helpers' =>
-					array_merge(array('widget_admin' => 'admin_control/helpers/widget'),
-						$message),
+				'helpers' =>array(
+					'widget_admin' => 'admin_control/helpers/widget'
+				),
 				'users_count'=>$this->getSessionParamsId('count_users'),
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
-			)
+			),
+			'js'=>$this->_jsManager()
 		));
 	}
 
@@ -125,5 +189,15 @@ class AdminControlController extends IController{
 			)
 		));
 
+	}
+
+	private function _jsManager(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/manager.js"
+			),
+		);
 	}
 }
