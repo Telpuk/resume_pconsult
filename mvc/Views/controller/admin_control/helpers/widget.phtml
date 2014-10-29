@@ -13,5 +13,7 @@
 	<p class='<?php if($this->data['data']['active_all_no_view']) echo 'active'?>'>
 		<a href="<?=BASE_URL."/admincontrol/unreviewed/view/no"?>">смотреть новые анкеты:
 			<span><?=$this->data['data']['count_view_admin_resume']?></span></a></p>
-	<p class='<?php if($this->data['data']['active_manager']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/managers"?>">менеджеры</a></p>
+	<?php if($this->data['data']['admin'] === 'main'):?>
+		<p class='<?php if($this->data['data']['active_manager']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/managers"?>">менеджеры</a></p>
+	<?php endif; ?>
 </div>

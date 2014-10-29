@@ -80,7 +80,7 @@ class AdminControlController extends IController{
 		$login_manager_val = call_user_func(function($var){
 			if(empty($var)){
 				return  array('message'=>'Необходимо заполнить');
-			}elseif(!preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.]{4,20}$/',$var)){
+			}elseif(!preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.\@]{3,60}$/',$var)){
 				return  array('message'=>'Указано некорректно(мининимум 4 символа, на кирилице)');
 			}
 		}, $login_manager);
@@ -116,6 +116,7 @@ class AdminControlController extends IController{
 		return $this->_view->render(array(
 			'view'=>'admin_control/managers',
 			'data' => array(
+				'admin'=>$this->getSessionUserID('admin'),
 				'active_manager'=>true,
 				'managers'=>$managers,
 				'helpers' =>array(
@@ -141,6 +142,7 @@ class AdminControlController extends IController{
 			return $this->_view->render(array(
 				'view' => 'admin_control/index',
 				'data' => array(
+					'admin'=>$this->getSessionUserID('admin'),
 					'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
 					'active_all_no_view'=>true,
 					'users' => $users['users'] ? $users['users']  : '',
@@ -174,9 +176,12 @@ class AdminControlController extends IController{
 
 		$users['count'] = $this->getSessionParamsId('count_users');
 
+
+
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
 			'data' => array(
+				'admin'=>$this->getSessionUserID('admin'),
 				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
 				'active_all_resume'=>true,
 				'users' => $users['users'] ? $users['users']  : '',

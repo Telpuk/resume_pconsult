@@ -39,6 +39,12 @@ class IndexController extends IController{
 		$this->headerLocation('index');
 	}
 
+	public function conclusionAction(){
+		if($this->_db_user->updateConclusion($this->_id_user)){
+			$this->headerLocation('index');
+		}
+	}
+
 	public  function indexAction(){
 
 		if( $this->_admin && $this->getParams('id')){

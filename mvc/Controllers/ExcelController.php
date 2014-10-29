@@ -156,11 +156,13 @@ class ExcelController extends IController{
 			$section->addText($personal_data['experience_about_self'],array('color'=>'bababa'));
 
 			$section->addText("Рекомендации ",array('bold'=>true,'size'=>18));
-			foreach($personal_data['experience_recommend']['experience_recommend_names'] as $key=>$value){
-				$section->addText($personal_data['experience_recommend']['experience_recommend_organization'][$key],array('bold'=>true, 'size'=>16));
-				$section->addText("{$value} ({$personal_data['experience_recommend']['experience_recommend_position'][$key]})");
-				$section->addText($personal_data['experience_recommend']['experience_recommend_phone'][$key]);
-				$section->addTextBreak();
+			if($personal_data['experience_recommend']){
+				foreach($personal_data['experience_recommend']['experience_recommend_names'] as $key=>$value){
+					$section->addText($personal_data['experience_recommend']['experience_recommend_organization'][$key],array('bold'=>true, 'size'=>16));
+					$section->addText("{$value} ({$personal_data['experience_recommend']['experience_recommend_position'][$key]})");
+					$section->addText($personal_data['experience_recommend']['experience_recommend_phone'][$key]);
+					$section->addTextBreak();
+				}
 			}
 
 			$section->addText("Гражданство, время в пути до работы", array(

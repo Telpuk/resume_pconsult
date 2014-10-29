@@ -1,10 +1,9 @@
-<p>Вы можите оставлять свои камментарии к резюме, редактировать его или удалить.</p>
+<p class="header_comments">Комментарии</p>
 <?php foreach($this->data['data']['comments'] as $value): ?>
 	<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'> <?=$value['name']?></p>
 	<fieldset>
 		<legend>
-			<?php if(((int)$value['id_admin'] === (int)$this->data['data']['id_admin']) ||
-				((int)$this->data['data']['id_admin'] === 1)): ?>
+			<?php if((int)$this->data['data']['id_admin'] === 1): ?>
 				<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'>
 					<img src='<?=BASE_URL."/public/img/comment-delete.png"?>'></a>
 			<?php endif; ?>
@@ -20,7 +19,6 @@
 		<input type="submit" name="addComment" value="добавить комментарий">
 	</form>
 </div>
-<div class="end_resume">
-	<a class="save_resume" href="<?=BASE_URL.'/admincontrol'?>">главная</a>
-	<a class="delete_resume" href="<?=BASE_URL.'/index/delete'?>">удалить резюме</a>
-</div>
+<!--<div class="end_resume">-->
+<!--	<a class="delete_resume" href="--><?//=BASE_URL.'/index/delete'?><!--">удалить резюме</a>-->
+<!--</div>-->

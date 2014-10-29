@@ -130,6 +130,16 @@
 								<input type="radio" name="travel_time_work" value="Не более полутора часов"  <?php if($this->data['data']['inputs']['travel_time_work']['value'] === 'Не более полутора часов') echo 'checked' ?>>Не более полутора часов
 							</td>
 						</tr>
+						<tr>
+							<td>Наличие авто</td>
+							<td><input type="checkbox" name="auto" value="есть" <?php if
+								($this->data['data']['inputs']['auto']['value'] === 'есть') echo 'checked'?>></td>
+						</tr>
+						<tr>
+							<td>Наличие водительского удостоверения</td>
+							<td><input type="checkbox" name="certificate_auto" value="есть" 
+									<?php if($this->data['data']['inputs']['certificate_auto']['value'] === 'есть') echo 'checked' ?>></td>
+						</tr>
 						</tbody>
 						<tfoot>
 						<?php if($this->data['data']['admin'] !== 'manager'): ?>

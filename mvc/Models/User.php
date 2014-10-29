@@ -33,6 +33,10 @@ class User{
 		}
 	}
 
+	public function updateConclusion(){
+
+	}
+
 	public function finishResume($id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("UPDATE
@@ -266,6 +270,8 @@ class User{
 
 		$personal['photo'] = trim($personal_data['photo']);
 
+		$personal['conclusion'] = trim($personal_data['conclusion']);
+
 		$personal['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(
 			array(
 				'birth'=>$personal_data['birth'],
@@ -275,6 +281,10 @@ class User{
 				'trip'=>$personal_data['trip']
 			)
 		);
+
+		$personal['auto'] = "Наличие авто: <b>{$personal_data['auto']}</b>. Наличие
+		водительского удостоверения: <b>{$personal_data['certificate_auto']}</b>";
+
 
 		$experience_count = $this->getExperienceCount(
 			array(
@@ -520,9 +530,11 @@ class User{
 	private function _getBerBirthSexCityMoveTrip($personal_data){
 		$birth='';
 		if(trim($personal_data['birth'])!=='--'){
-			$birth_array = explode('-',$personal_data['birth']);
-			$birth_array[1] = $this->_month[$birth_array[1]];
-			$birth = implode($birth_array,' ');
+			$now = new DateTime(date("Y-m-d"));
+			$births = new DateTime($personal_data['birth']);
+
+			$interval = $now->diff($births);
+			$birth = $interval->format('%y года(лет)');
 		}
 
 		return sprintf(
@@ -850,7 +862,9 @@ class User{
 													trip = :trip,
 													nationality = :nationality,
 													work_permit = :work_permit,
-													travel_time_work = :travel_time_work
+													travel_time_work = :travel_time_work,
+													auto = :auto,
+													certificate_auto = :certificate_auto
 												WHERE
 													id = :id_user");
 			$stmt->execute(array(
@@ -865,6 +879,8 @@ class User{
 				':nationality'=>$inputs['nationality']['value'],
 				':work_permit'=>$inputs['work_permit']['value'],
 				':travel_time_work'=>$inputs['travel_time_work']['value'],
+				':auto'=>$inputs['auto']['value'],
+				':certificate_auto'=>$inputs['certificate_auto']['value'],
 				':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
@@ -1119,7 +1135,9 @@ class User{
 													trip,
 													nationality,
 													work_permit,
-													travel_time_work
+													travel_time_work,
+													auto,
+													certificate_auto
 												FROM
 													profile
 												WHERE
@@ -1156,7 +1174,9 @@ class User{
 			'trip'=>array('value'=>$personal_data['trip']),
 			'work_permit'=>array('value'=>$personal_data['work_permit']),
 			'nationality'=>array('value'=>$personal_data['nationality']),
-			'travel_time_work'=>array('value'=>$personal_data['travel_time_work'])
+			'travel_time_work'=>array('value'=>$personal_data['travel_time_work']),
+			'auto'=>array('value'=>$personal_data['auto']),
+			'certificate_auto'=>array('value'=>$personal_data['certificate_auto']),
 		);
 	}
 

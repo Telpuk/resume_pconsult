@@ -121,6 +121,9 @@ class ProfileController extends IController{
 		$move = isset($post['move'])?trim(strip_tags($post['move'])):'';
 		$trip = isset($post['trip'])?trim(strip_tags($post['trip'])):'';
 
+		$auto = isset($post['auto'])?trim(strip_tags($post['auto'])):'нет';
+		$certificate_auto = isset($post['certificate_auto'])?trim(strip_tags($post['certificate_auto'])):'нет';
+
 		$nationality = isset($post['nationality'])?trim(strip_tags($post['nationality'])): '';
 
 		$work_permit = isset($post['work_permit'])?trim(strip_tags($post['work_permit'])):'';
@@ -193,6 +196,8 @@ class ProfileController extends IController{
 			'move'=>array('value'=>$move),
 			'trip'=>array('value'=>$trip),
 			'work_permit'=>array('value'=>$work_permit),
+			'auto'=>array('value'=>$auto),
+			'certificate_auto'=>array('value'=>$certificate_auto),
 			'nationality'=>array('value'=>$nationality),
 			'travel_time_work'=>array('value'=>$travel_time_work)
 		);

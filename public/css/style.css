@@ -49,7 +49,7 @@ body {
     max-width:  1200px;
     margin: 40px auto;
     background-color: white;
-    /*border: 1px black solid;*/
+    border: 1px black solid;
     padding: 10px;
 }
 
@@ -79,6 +79,60 @@ body {
 .resume{
     font-size: .95em;
 }
+.resume .resume_header a.header_back{
+    color: white;
+    background-color: rgba(255, 0, 0, 0.44);
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: .2em;
+}
+
+.resume .conclusion{
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    background-color: rgba(255, 86, 77, 0.10);
+}
+
+.resume .conclusion h1{
+    width: 100%;
+    text-align: center;
+    color: #c67b37;
+    margin-bottom: 5px;
+    font-size: 0.3em !important;
+}
+
+.resume .conclusion .conclusion_text{
+    font-size: 0.2em;
+    margin-left: 100px;
+    padding: 10px;
+}
+.resume .conclusion textarea{
+    display: block;
+    padding: 10px;
+    float: left;
+    width: 50%;
+    margin-left: 250px;
+    height: 50px;
+    resize: vertical;
+}
+.resume .conclusion input[type=submit]{
+    display: block;
+    float: left;
+    height: 50px;
+    width: 150px;
+    font-size: .3em;
+    color: white;
+    border: none;
+    background-color: rgba(0, 128, 0, 0.57);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin-left: 20px;
+}
+
+
 
 .resume  h1:first-child{
     font-size: .5em;
@@ -162,7 +216,11 @@ fieldset legend{
 
 .resume .resume_widget .admin_comments{
     margin-top: 20px;
-
+}
+.resume .resume_widget .header_comments{
+    text-align: center;
+    font-size: 1.3em;
+    color: #7a7a7a;
 }
 .resume .resume_widget  textarea{
     display: block;
@@ -174,13 +232,13 @@ fieldset legend{
 }
 .resume .resume_widget input[type=submit]{
     display: block;
-    background-color: green;
+    border: none;
     color: white;
     width: 100%;
     border-radius: 10px;
-    padding: 2px 5px 2px 5px;
+    padding: 5px 5px 5px 5px;
     -moz-border-radius: 10px;
-    border-color: green;
+    background-color: rgba(0, 128, 0, 0.55);
     margin-top: 5px;
 }
 
