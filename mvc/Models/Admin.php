@@ -21,6 +21,17 @@ class Admin{
 		$this->_user_object = new User();
 	}
 
+	public function conclusionAction(){
+		if(isset($_POST['updateConclusion'])){
+			$this->_db_user->updateConclusion($_POST['conclusion'],$this->_id_user);
+		}
+		if($this->getParams('delete')=='true'){
+			$this->_db_user->updateConclusion('',$this->_id_user);
+		}
+
+		$this->headerLocation('index');
+	}
+
 	public function deleteNotStockedResume(){
 		try {
 			$sql = "DELETE
@@ -36,7 +47,7 @@ class Admin{
 
 	public function deleteManager($id){
 		try {
-			 $stm= $this->_dbc->prepare( "DELETE
+			$stm= $this->_dbc->prepare( "DELETE
 						users
 					FROM
 						users
@@ -162,7 +173,7 @@ class Admin{
 			}
 		}
 
-		return $this->getResumeFormat($data, $count_user);
+		return $this->_getResumeFormat($data, $count_user);
 	}
 
 	public function selectAllResume($count_view, $page)
@@ -193,7 +204,7 @@ class Admin{
 
 		}
 
-		return $this->getResumeFormat($search_data, $count_user);
+		return $this->_getResumeFormat($search_data, $count_user);
 	}
 
 	public function search($search, $count_view, $page){
@@ -217,11 +228,11 @@ class Admin{
 			}
 		}
 
-		return $this->getResumeFormat($search_data, $count_user);
+		return $this->_getResumeFormat($search_data, $count_user);
 
 	}
 
-	private function getResumeFormat($search_data, $count_user){
+	private function _getResumeFormat($search_data, $count_user){
 		foreach($search_data as $key =>$data){
 			$experience_count[$key] = $this->_user_object->getExperienceCount(
 				array(
@@ -233,7 +244,11 @@ class Admin{
 			$search_data[$key]['sum_experience'] = $experience_count[$key]['sum'];
 			$search_data[$key]['salary'] = $data['salary'] ? $data['salary']." ".$data['currency'] : '';
 
-			$search_data[$key]['last_place_work'] = $this->lastPlaceWork(array(
+			$search_data[$key]['years_user'] = $this->_getYearsUser($data['birth']);
+
+			$search_data[$key]['conclusion'] = !empty($data['conclusion']) ? trim($data['conclusion']):'';
+
+			$search_data[$key]['last_place_work'] = $this->_lastPlaceWork(array(
 				'experience_positions'=>explode('[@!-#-!@]',$data['experience_positions']),
 				'experience_organizations'=>explode('[@!-#-!@]',$data['experience_organizations']),
 
@@ -246,7 +261,19 @@ class Admin{
 		return array('users'=>$search_data, 'count'=>$count_user);
 	}
 
-	private function lastPlaceWork($data_user){
+	private function _getYearsUser($date){
+		$birth = '';
+		if(trim($date) !=='--'){
+			$now = new DateTime(date("Y-m-d"));
+			$births = new DateTime($date);
+
+			$interval = $now->diff($births);
+			$birth = $interval->format('%y года(лет)');
+		}
+		return $birth;
+	}
+
+	private function _lastPlaceWork($data_user){
 		$data = '';
 		$date = array();
 

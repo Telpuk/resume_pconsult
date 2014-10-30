@@ -2,13 +2,15 @@
 class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
-		$_count_view = 1,
+		$_db_user,
+		$_count_view = 5,
 		$_page = null;
 
 	public function  __construct(){
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_admin = new Admin();
+		$this->_db_user = new User();
 	}
 
 	public function delmanagerAction(){
@@ -18,6 +20,15 @@ class AdminControlController extends IController{
 				$this->headerLocation("admincontrol/managers");
 			}
 		}
+	}
+
+	public function conclusionAction(){
+
+		if(isset($_POST['updateConclusion'])){
+			$this->_db_user->updateConclusion($_POST['conclusion'], $_POST['id_user']);
+		}
+		echo "true";
+		exit;
 	}
 
 	public function addmanagerAction(){
@@ -141,6 +152,7 @@ class AdminControlController extends IController{
 
 			return $this->_view->render(array(
 				'view' => 'admin_control/index',
+				'js'=>$this->_jsAdminControl(),
 				'data' => array(
 					'admin'=>$this->getSessionUserID('admin'),
 					'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
@@ -180,6 +192,7 @@ class AdminControlController extends IController{
 
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
+			'js'=>$this->_jsAdminControl(),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
 				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
@@ -190,10 +203,18 @@ class AdminControlController extends IController{
 				'search' => $search[0],
 				'pagination' => $this->_db_admin->printPagination(
 					ceil($users['count'] / $this->_count_view), $this->_page, array(
-						'url'=>"index/search/?search=".$search[0]))
+						'url'=>"index/search/?search=".$search[0])),
 			)
 		));
 
+	}
+
+	private function _jsAdminControl()
+	{
+		return array('src' => array(
+			BASE_URL . "/public/js/jquery-2.1.1.min.js",
+			BASE_URL . "/public/js/admincontrol.js")
+		);
 	}
 
 	private function _jsManager(){

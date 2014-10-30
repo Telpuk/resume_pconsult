@@ -41,13 +41,13 @@ class IndexController extends IController{
 
 	public function conclusionAction(){
 		if(isset($_POST['updateConclusion'])){
-			if($this->_db_user->updateConclusion($_POST['conclusion'],$this->_id_user)){
-				$this->headerLocation('index');
-			}
+			$this->_db_user->updateConclusion($_POST['conclusion'],$this->_id_user);
+		}
+		if($this->getParams('delete')=='true'){
+			$this->_db_user->updateConclusion('',$this->_id_user);
 		}
 
 		$this->headerLocation('index');
-
 	}
 
 	public  function indexAction(){

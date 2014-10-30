@@ -2,6 +2,13 @@
 <?php if($this->data['data']['admin']): ?>
 	<div class="resume_header">
 		<p><a class="header_back" href="<?=BASE_URL.'/admincontrol'?>">вернуться к админке</a></p>
+<!--		<form  action='--><?//=BASE_URL."/admincontrol/index/search/"?><!--' method="get">-->
+<!--			<div class="search">-->
+<!--				<input type="search" name="search" value="--><?//=$this->data['data']['search']?><!--" placeholder="введите текст для поиска">-->
+<!--				<input type="submit" value="найти">-->
+<!--				<div class="clear"></div>-->
+<!--			</div>-->
+<!--		</form>-->
 	</div>
 <?php else: ?>
 	<h1>Создать резюме за несколько минут</h1>
@@ -241,17 +248,17 @@
 	<div class="conclusion">
 		<?php if( empty($this->data['data']['conclusion']) ): ?>
 			<h1>Заключение</h1>
-			<form id="conclusion_form" action="<?=BASE_URL."/index/conclusion" ?>" method="post">
-				<textarea name="conclusion"></textarea>
-				<input type="submit" name="updateConclusion" value="сохранить">
+			<form  action="<?=BASE_URL."/index/conclusion" ?>" method="post">
+				<textarea class='conclusion_textarea' name="conclusion"></textarea>
+				<input class="button_conclusion" type="submit" name="updateConclusion" value="сохранить">
 			</form>
 			<div class="clear"></div>
 		<?php  else: ?>
-			<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span></h1>
+			<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span>
+				<span class="deleteConclusion"><a href="<?=BASE_URL.'/index/conclusion/delete/true'?>"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
 			<div class="conclusion_text"><?=$this->data['data']['conclusion']?></div>
 			<div class="clear"></div>
 		<?php endif; ?>
 	</div>
-
 <?php endif; ?>
 </main>

@@ -106,10 +106,25 @@ body {
 }
 
 
-.resume .conclusion .editConclusion{
+
+
+.resume .conclusion .editConclusion,
+.resume .conclusion .deleteConclusion a{
     font-size: .6em;
     margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    color: white;
+    background-color: rgba(198, 123, 55, 0.58);
+    padding: 10px 15px 10px 15px;
     text-decoration: underline;
+}
+
+.resume .conclusion .editConclusion img,
+.resume .conclusion .deleteConclusion img{
+    height: 12px;
+    margin-right: 10px;
 }
 
 .resume .conclusion .editConclusion:hover{
@@ -127,7 +142,7 @@ body {
     float: left;
     width: 50%;
     margin-left: 250px;
-    height: 50px;
+    height: 80px;
     resize: vertical;
 }
 .resume .conclusion input[type=submit]{
@@ -467,8 +482,6 @@ fieldset legend{
     margin-left: 3px;
 
 }
-
-
 
 .resume .right a.addPhoto{
     display: block;
@@ -1504,9 +1517,74 @@ main.authorization .helpers_message_authorization{
     text-align: center;
     border: 1px rgba(187, 187, 187, 0.56) dashed;
     padding: 20px;
-
 }
 
+.admin_control .conclusion{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    background-color: rgba(255, 86, 77, 0.10);
+}
+
+.admin_control .conclusion h1{
+    width: 100%;
+    text-align: center;
+    color: #c67b37;
+    margin-bottom: 10px;
+}
+
+.admin_control .conclusion .editConclusion,
+.admin_control .conclusion .deleteConclusion a{
+    font-size: .8em;
+    margin-left: 5px;
+    border: none;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    color: white  !important;
+    background-color: rgba(198, 123, 55, 0.58);
+    padding: 5px 10px 5px 10px  !important;
+    text-decoration: underline;
+}
+
+.admin_control .conclusion .editConclusion img,
+.admin_control .conclusion .deleteConclusion img{
+    height: 12px;
+    width: 12px;
+    margin-right: 10px;
+}
+
+.admin_control .conclusion .editConclusion:hover{
+    cursor: pointer;
+}
+
+.admin_control .conclusion .conclusion_text{
+    margin-left: 5px;
+    padding: 10px;
+}
+.admin_control .conclusion textarea{
+    display: block;
+    padding: 10px;
+    float: left;
+    width: 60%;
+    margin-left: 60px;
+    height: 40px;
+    resize: vertical;
+}
+.admin_control .conclusion input[type=submit]{
+    display: block;
+    float: left;
+    height: 40px;
+    width: 150px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    background-color: rgba(0, 128, 0, 0.57);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin-left: 20px;
+}
 
 
 
