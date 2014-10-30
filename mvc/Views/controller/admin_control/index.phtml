@@ -24,8 +24,11 @@
 						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
 					</figure>
 					<div class="inform_user">
-						<span class="salary_inform_user"><?=$user['salary']?><br><?=$user['years_user']?><br
-								><?=$user['date_registration']?></span>
+						<div class="salary_inform_user">
+							<span><?=$user['salary']?></span>
+							<span><?=$user['years_user']?></span>
+							<span><?=$user['date_registration']?></span>
+						</div>
 						<div>
 							<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
 								<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>

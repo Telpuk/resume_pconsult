@@ -32,6 +32,47 @@ class Admin{
 		$this->headerLocation('index');
 	}
 
+	public function deleteFolder($id){
+		try {
+			$stmt = $this->_dbc->prepare("DELETE folders FROM folders WHERE id= :id");
+			$stmt->execute(array(
+				':id'=>$id
+			));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+
+		return true;
+	}
+
+	public function insertFolder($folder){
+		try {
+			$stmt = $this->_dbc->prepare ("INSERT INTO folders(name) VALUES(:name)");
+			$stmt->execute(array(
+				':name'=>$folder
+			));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return true;
+	}
+
+	public function selectFolders(){
+		try {
+			$stmt = $this->_dbc->query("
+												SELECT
+													id,
+													name
+												FROM
+													folders"
+			);
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $data;
+	}
+
 	public function deleteNotStockedResume(){
 		try {
 			$sql = "DELETE

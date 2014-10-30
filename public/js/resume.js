@@ -21,6 +21,8 @@
                 $('.editConclusion').html("<img src='"+BASE_URL+"/public/img/edit.png'>редактировать");
                 event.data.self.$conclusion_text.text(text);
             }
+
+
         });
     }
     Resume.prototype.init = function(){

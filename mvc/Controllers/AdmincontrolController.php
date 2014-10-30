@@ -25,10 +25,40 @@ class AdminControlController extends IController{
 	public function conclusionAction(){
 
 		if(isset($_POST['updateConclusion'])){
-			$this->_db_user->updateConclusion($_POST['conclusion'], $_POST['id_user']);
+			$this->_db_user->updateConclusion(strip_tags($_POST['conclusion']), $_POST['id_user']);
 		}
 		echo "true";
 		exit;
+	}
+
+	public function foldersAction(){
+
+		if(isset($_POST['addFolder']) && !empty($_POST['folder'])){
+			if(!$this->_db_admin->insertFolder($_POST['folder'])){
+				$this->headerLocation('admincontrol');
+			}
+		}
+
+		if($this->getParams('delete')){
+			if(!$this->_db_admin->deleteFolder($this->getParams('delete'))){
+				$this->headerLocation('admincontrol');
+			}
+		}
+
+		$folders  = $this->_db_admin->selectFolders();
+
+		return $this->_view->render(array(
+			'view' => 'admin_control/folders',
+			'js'=>$this->_jsAdminControl(),
+			'data' => array(
+				'admin'=>$this->getSessionUserID('admin'),
+				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+				'folder'=>true,
+				'folders'=>$folders,
+				'users_count'=>$this->getSessionParamsId('count_users'),
+				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
+			)
+		));
 	}
 
 	public function addmanagerAction(){

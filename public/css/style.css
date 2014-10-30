@@ -212,20 +212,21 @@ body {
     width: 23%;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    padding: 10px;
+    padding: 0px;
     font-size: .20em;
-    background-color: rgba(255, 86, 77, 0.10);
+    background-color: rgba(255, 86, 77, 0.04);
+    border: 1px rgba(171, 171, 171, 0.46) solid;
     color: #ff5d10;
     font-weight: bold;
 }
 
+
 fieldset {
     display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 10px 10px 10px;
     padding: 10px;
     color: dimgray;
-    border:  1px #bbbbbb dashed;
+    border:  1px #5e5e5e dashed;
 }
 fieldset img{
     width: 18px;
@@ -238,16 +239,24 @@ fieldset legend{
 
 .resume .resume_widget .form_comment{
     margin-top: 20px;
+    padding: 19px;
     margin-bottom: 30px;
 }
 
 .resume .resume_widget .admin_comments{
     margin-top: 20px;
+    padding-left: 5px;
 }
 .resume .resume_widget .header_comments{
     text-align: center;
     font-size: 1.3em;
-    color: #7a7a7a;
+    width: 100%;
+    background-color: rgba(187, 187, 187, 0.69);
+    border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px;
+    padding: 4px;
+    border: none;
+    color: white;
 }
 .resume .resume_widget  textarea{
     display: block;
@@ -255,7 +264,7 @@ fieldset legend{
     height: 50px;
     padding: 10px;
     width: 100%;
-    border: none;
+    border:  1px #5e5e5e dashed;
 }
 .resume .resume_widget input[type=submit]{
     display: block;
@@ -1228,9 +1237,7 @@ main.authorization .helpers_message_authorization{
     font-size: .2em;
 }
 /*admin_control*/
-.admin_control{
 
-}
 .admin_control .left_admin_control{
     float: left;
     width: 23%;
@@ -1359,14 +1366,22 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .right_admin_control .user_id .inform_user span{
-    color: #bababa;
-    padding: 10px;
+    color: #616161;
 }
 
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
-    display: block;
     float: right;
+    border-radius: 20px;
+    padding: 20px;
+    -moz-border-radius: 20px;
+    background-color: rgba(255, 86, 77, 0.10);
 }
+.admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
+    display: block;
+    text-align: left;
+    padding: 3px;
+}
+
 
 .admin_control .right_admin_control .user_id .inform_user .word{
     width: 32px;
@@ -1586,7 +1601,37 @@ main.authorization .helpers_message_authorization{
     margin-left: 20px;
 }
 
+.admin_control.folders{
+    width: 100%;
+}
 
 
+.admin_control.folders .right_admin_control .folders_form,
+.admin_control.folders .right_admin_control .folders_list{
+    width: 100%;
+    margin: 20px;
+}
+
+.admin_control.folders .right_admin_control .folders_list li{
+    list-style: decimal;
+    margin-bottom: 20px;
+}
+.admin_control.folders .right_admin_control .folders_list span{
+    background-color: rgba(187, 187, 187, 0.44);
+    padding: 5px 20px 5px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+.admin_control.folders .right_admin_control .folders_form input{
+    width: 30%;
+    padding: 5px;
+    height: 30px;
+}
+
+.admin_control.folders .right_admin_control .folders_form input[type=submit]{
+    width: 10%;
+}
 
 
