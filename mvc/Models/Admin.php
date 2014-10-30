@@ -248,6 +248,8 @@ class Admin{
 
 			$search_data[$key]['conclusion'] = !empty($data['conclusion']) ? trim($data['conclusion']):'';
 
+			$search_data[$key]['date_registration'] = $data['date_registration'];
+
 			$search_data[$key]['last_place_work'] = $this->_lastPlaceWork(array(
 				'experience_positions'=>explode('[@!-#-!@]',$data['experience_positions']),
 				'experience_organizations'=>explode('[@!-#-!@]',$data['experience_organizations']),

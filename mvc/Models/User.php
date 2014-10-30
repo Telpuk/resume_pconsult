@@ -614,7 +614,7 @@ class User{
 			'language_french'=>'французский'
 		);
 		foreach ($personal_data as $key => $value) {
-			if($value !== 'Не владею' && !is_array($value)){
+			if($value !== 'не владею' && !is_array($value)){
 				$data .= "<p>".$language[$key]."&mdash;".$value."</p>";
 			}else if(is_array($value) && $key === 'language_further'){
 				foreach($value as $key=>$f_lang){
