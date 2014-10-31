@@ -2,13 +2,28 @@
 <?php if($this->data['data']['admin']): ?>
 	<div class="resume_header">
 		<p><a class="header_back" href="<?=BASE_URL.'/admincontrol'?>">вернуться к админке</a></p>
-<!--		<form  action='--><?//=BASE_URL."/admincontrol/index/search/"?><!--' method="get">-->
-<!--			<div class="search">-->
-<!--				<input type="search" name="search" value="--><?//=$this->data['data']['search']?><!--" placeholder="введите текст для поиска">-->
-<!--				<input type="submit" value="найти">-->
-<!--				<div class="clear"></div>-->
-<!--			</div>-->
-<!--		</form>-->
+	</div>
+	<div class="favorite">
+		<p class="header_favorite"><img src='<?=BASE_URL."/public/img/favorite.png"?>'>Добавить в отобранные</p>
+	</div>
+	<div id="favorite_folds">
+		<p class="myFolders">МОИ ПАПКИ</p>
+		<ul id="checkbox_list">
+			<?php if(count($this->data['data']['folders']) !== 0):?>
+				<?php foreach($this->data['data']['folders'] as $value): ?>
+					<li>
+						<input type="checkbox"  <?php if(in_array($value['id'],$this->data['data']['user_folders']))echo 'checked' ?>
+					           value='<?=$value['id']?>'><?=$value['name']?>
+					</li>
+				<?php endforeach; ?>
+			<?endif ?>
+		</ul>
+		<p class="addFolders">СОЗДАТЬ ПАПКУ</p>
+		<input type="checkbox"  value="new_folder" id="new_checkbox" disabled>
+		<input id="input_text" type="text" placeholder="Новая папка">
+		<div class="clear"></div>
+		<button id='button'>сохранить</button>
+		<img id="ajax_loader" src="<?=BASE_URL.'/public/img/ajax-loader.gif'?>">
 	</div>
 <?php else: ?>
 	<h1>Создать резюме за несколько минут</h1>

@@ -281,6 +281,8 @@ class User{
 
 		$personal['photo'] = trim($personal_data['photo']);
 
+		$personal['user_folders'] = explode(',',$personal_data['user_folders']);
+
 		$personal['conclusion'] = trim($personal_data['conclusion']);
 
 		$personal['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(

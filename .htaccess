@@ -10,11 +10,11 @@ php_value post_max_size 20M
 php_value session.auto_start 1
 
 # Установите максимальное время жизни сессии в секундах.
-php_value session.gc_maxlifetime 3600
+#php_value session.gc_maxlifetime 3600
 
 # Установите время жизни cookie, которая сохраняет идентификатор сессии
 # в браузере пользователя.
-php_value session.cookie_lifetime 3600
+#php_value session.cookie_lifetime 3600
 
 RewriteEngine On
 # The following rule tells Apache that if the requested filename

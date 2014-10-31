@@ -10,6 +10,7 @@ class IndexController extends IController{
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_user = new User();
+		$this->_db_admin = new Admin();
 
 		$this->_admin = $this->getSessionUserID('admin');
 
@@ -51,12 +52,14 @@ class IndexController extends IController{
 	}
 
 	public  function indexAction(){
+		$widget = array('widget' => 'index/helpers/widget_personal');
+		$folders = array();
 
 		if( $this->_admin && $this->getParams('id')){
 			$this->_db_user->viewAdmin($this->_id_user);
+			$widget = array('widget'=>'index/helpers/widget_administrator');
+			$folders = $this->_db_admin->selectFolders();
 		}
-
-		$widget = !$this->_admin?array('widget' => 'index/helpers/widget_personal'):array('widget'=>'index/helpers/widget_administrator');
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
 
@@ -67,15 +70,14 @@ class IndexController extends IController{
 		if($select_personal_data !== false) {
 			return $this->_view->render(array(
 				'view' => 'index/index',
-				'data' => @array_merge(array(
-						'helpers'=> $widget
-					),
-					array(
+				'data' =>@array_merge(array(
+						'helpers'=> $widget,
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
-						'type_admin_rus'=>$this->_type_admin
-					),
-					(array)$select_personal_data),
+						'type_admin_rus'=>$this->_type_admin,
+						'folders'=>$folders),
+						((array)$select_personal_data)
+				),
 				'js'=>$this->_jsIndex()
 			));
 		}

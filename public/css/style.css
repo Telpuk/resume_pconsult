@@ -105,7 +105,66 @@ body {
     font-size: 0.3em !important;
 }
 
+.resume .favorite{
+    width: 300px;
+    position: relative;
+    margin-top: 5px;
+    font-size: .15em;
+}
+.resume .favorite p.header_favorite:hover{
+   cursor: pointer;
+}
 
+.resume #favorite_folds{
+    display: none;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: .15em;
+    padding: 10px;
+    overflow: auto;
+    width: 250px;
+    height: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-color: white;
+}
+
+.resume  #favorite_folds p.addFolders,
+.resume  #favorite_folds p.myFolders{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: .8em;
+    color: #bbbbbb;
+}
+
+.resume  #favorite_folds button{
+    display: block;
+    float: left;
+    width: 40%;
+    margin-top: 10px;
+}
+.resume  #favorite_folds #ajax_loader{
+    display: block;
+    visibility:hidden;
+    float: left;
+    margin-left: 30px;
+    width: 10%;
+    margin-top: 10px;
+}
+.resume  #favorite_folds ul{
+    padding: 0;
+    margin: 0;
+}
+.resume  #favorite_folds li{
+    list-style: none;
+}
+
+
+
+.resume .favorite img{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 
 .resume .conclusion .editConclusion,
