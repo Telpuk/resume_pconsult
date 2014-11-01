@@ -2,28 +2,20 @@
 class Folders{
 	private
 		$_db_folder,
-		$_id,
-		$_folders = array();
+		$_id;
 
 	function __construct($id){
 		$this->_id = $id;
 		$this->_db_folder = new Folder();
 	}
 
-	private function _updateFolders(){
-		$this->_db_folder->updateFolders(implode(',',$this->_folders),$this->_id);
-	}
-
-	public function setFolders($folders=array()){
-		$this->_folders = $folders;
-		if(isset($this->_folders['new_folder'])){
-			$id = $this->_db_folder->insertFolder($this->_folders['new_folder']);
-			unset($this->_folders['new_folder']);
-			if($id){
-				$this->_folders[$id] = $id;
-			}
+	public function insertFolders($folders){
+		if(isset($folders['new_folder'])){
+			$id = $this->_db_folder->insertFolder($folders['new_folder']);
+			unset($folders['new_folder']);
+			$folders[$id]=$id;
 		}
-		$this->_updateFolders();
+		$this->_db_folder->updateFoldersUsers($folders,$this->_id);
 	}
 
 	public function json_encode_cyr($str){
@@ -34,8 +26,8 @@ class Folders{
 		return $str2;
 	}
 
-	public function getUserFolders(){
-		return $this->json_encode_cyr($this->_folders);
+	public function getUserFolders($id_user){
+		return $this->json_encode_cyr($this->_db_folder->selectFoldersUser($id_user));
 	}
 
 	public function getFolders(){
@@ -43,7 +35,7 @@ class Folders{
 	}
 
 	public  function getAjaxPost(){
-		$ajax['user_folders'] =  $this->getUserFolders();
+		$ajax['user_folders'] =  $this->getUserFolders($this->_id);
 		$ajax['folders'] =  $this->getFolders();
 
 		return $this->json_encode_cyr($ajax);

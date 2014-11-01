@@ -45,16 +45,31 @@ class Admin{
 		return true;
 	}
 
+	public function updateFoldersUsers($folders,$id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("UPDATE
+													profile
+												SET
+													folders = :folders
+												WHERE
+													id = :id_user");
+			$stmt->execute(array(':folders'=>implode(',',$folders),':id_user'=>$id_user));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+	}
+
 	public function insertFolder($folder){
 		try {
 			$stmt = $this->_dbc->prepare ("INSERT INTO folders(name) VALUES(:name)");
 			$stmt->execute(array(
 				':name'=>$folder
 			));
+			$id = $this->_dbc->lastInsertId();
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
-		return true;
+		return $id;
 	}
 
 	public function selectFolders(){
@@ -64,13 +79,32 @@ class Admin{
 													id,
 													name
 												FROM
-													folders"
+													folders
+												ORDER BY name"
 			);
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		return $data;
+	}
+
+	public function selectFoldersUser($id_user){
+		try {
+			$stmt = $this->_dbc->prepare("
+												SELECT
+													folders
+												FROM
+													profile
+												WHERE
+												id=:id_user"
+			);
+			$stmt->execute(array(':id_user'=>$id_user));
+			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return explode(',',$data['folders']);
 	}
 
 	public function deleteNotStockedResume(){

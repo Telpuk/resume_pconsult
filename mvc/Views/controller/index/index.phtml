@@ -8,16 +8,7 @@
 	</div>
 	<div id="favorite_folds">
 		<p class="myFolders">МОИ ПАПКИ</p>
-		<ul id="checkbox_list">
-			<?php if(count($this->data['data']['folders']) !== 0):?>
-				<?php foreach($this->data['data']['folders'] as $value): ?>
-					<li>
-						<input type="checkbox"  <?php if(in_array($value['id'],$this->data['data']['user_folders']))echo 'checked' ?>
-					           value='<?=$value['id']?>'><?=$value['name']?>
-					</li>
-				<?php endforeach; ?>
-			<?endif ?>
-		</ul>
+		<ul id="checkbox_list"></ul>
 		<p class="addFolders">СОЗДАТЬ ПАПКУ</p>
 		<input type="checkbox"  value="new_folder" id="new_checkbox" disabled>
 		<input id="input_text" type="text" placeholder="Новая папка">

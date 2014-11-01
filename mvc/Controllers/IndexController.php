@@ -53,12 +53,10 @@ class IndexController extends IController{
 
 	public  function indexAction(){
 		$widget = array('widget' => 'index/helpers/widget_personal');
-		$folders = array();
 
-		if( $this->_admin && $this->getParams('id')){
+		if($this->_admin){
 			$this->_db_user->viewAdmin($this->_id_user);
 			$widget = array('widget'=>'index/helpers/widget_administrator');
-			$folders = $this->_db_admin->selectFolders();
 		}
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
@@ -74,8 +72,7 @@ class IndexController extends IController{
 						'helpers'=> $widget,
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
-						'type_admin_rus'=>$this->_type_admin,
-						'folders'=>$folders),
+						'type_admin_rus'=>$this->_type_admin),
 						((array)$select_personal_data)
 				),
 				'js'=>$this->_jsIndex()

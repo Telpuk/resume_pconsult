@@ -33,9 +33,12 @@ class AdminControlController extends IController{
 
 
 	public function ajaxfoldersAction(){
-		if(isset($_POST['ajax']) && count($_POST['folders']) >0){
+		if(isset($_POST['ajax'])) {
 			$obj_folders = new Folders($this->getSessionUserID('user'));
-			$obj_folders->setFolders($_POST['folders']);
+			if(!isset($_POST['all_checkbox']) && $_POST['all_checkbox'] !== 'true'){
+				$folders = isset($_POST['folders'])?$_POST['folders']:array();
+				$obj_folders->insertFolders($folders);
+			}
 			$ajax =  $obj_folders->getAjaxPost();
 			print_r($ajax);
 		}
@@ -43,7 +46,6 @@ class AdminControlController extends IController{
 	}
 
 	public function foldersAction(){
-
 		if(isset($_POST['addFolder']) && !empty($_POST['folder'])){
 			if(!$this->_db_admin->insertFolder($_POST['folder'])){
 				$this->headerLocation('admincontrol');

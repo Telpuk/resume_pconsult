@@ -1,51 +1,23 @@
 <?php
 class Folder{
-	private $_dbc;
+	private
+		$_db_admin;
 
 	function __construct(){
-		$this->_dbc = Model::getInstance()->getDbh();
+		$this->_db_admin =  new Admin();
 	}
 
 	public function insertFolder($folder){
-		try {
-			$stmt = $this->_dbc->prepare ("INSERT INTO folders(name) VALUES(:name)");
-			$stmt->execute(array(
-				':name'=>$folder
-			));
-			$id = $this->_dbc->lastInsertId();
-		}catch (PDOException $e){
-			exit(print_r($e->errorInfo).$e->getFile());
-		}
-		return $id;
+		return $this->_db_admin->insertFolder($folder);
 	}
 
-	public function updateFolders($folders,$id_user){
-		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													folders = :folders
-												WHERE
-													id = :id_user");
-			$stmt->execute(array(':folders'=>$folders,':id_user'=>$id_user));
-		}catch (PDOException $e){
-			exit(print_r($e->errorInfo).$e->getFile());
-		}
+	public function updateFoldersUsers($folders,$id_user){
+		$this->_db_admin->updateFoldersUsers($folders,$id_user);
 	}
 	public function selectFolders(){
-		try {
-			$stmt = $this->_dbc->query("SELECT
-												id,
-												name
-											FROM
-												folders
-											ORDER BY name "
-			);
-			$folders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		}catch (PDOException $e){
-			exit(print_r($e->errorInfo).$e->getFile());
-		}
-
-		return $folders;
+		return $this->_db_admin->selectFolders();
+	}
+	public function selectFoldersUser($id_user){
+		return $this->_db_admin->selectFoldersUser($id_user);
 	}
 }

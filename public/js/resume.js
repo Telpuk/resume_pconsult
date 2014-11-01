@@ -49,7 +49,7 @@
             checked = '';
         for(var i in folders) {
             checked = '';
-            if(user_folders[folders[i]['id']] == folders[i]['id']){
+            if($.inArray(folders[i]['id'],user_folders)>=0){
                 checked = 'checked'
             }
             li += '<li><input type="checkbox" value="'+folders[i]['id']+'" '+checked+'>'+folders[i]['name']+'</li>';
@@ -62,8 +62,6 @@
 
     Resume.prototype.ajaxQuery = function(){
         var folders = {},
-            user_folders,
-            folders,
             self = this;
         $('#favorite_folds input[type=checkbox]').each(function() {
             var $self = $(this);
@@ -76,17 +74,15 @@
             }
 
         });
-        if(Object.keys( folders ).length !== 0){
-            self.$ajax_loader.css('visibility', 'visible');
-            $.post(BASE_URL + "/admincontrol/ajaxfolders", {ajax: "ajax", folders: folders})
-                .done(function (data) {
-                    self.$ajax_loader.css('visibility', 'hidden');
-                    data = $.parseJSON(data);
-                    user_folders = $.parseJSON(data['user_folders']);
-                    folders = $.parseJSON(data['folders'])
-                    self.getFoldersLI(user_folders,folders);
-                });
-        }
+
+        self.$ajax_loader.css('visibility', 'visible');
+        $.post(BASE_URL + "/admincontrol/ajaxfolders", {'ajax': "ajax", 'folders': folders})
+            .done(function (data) {
+                self.$ajax_loader.css('visibility', 'hidden');
+                data = $.parseJSON(data);
+                self.getFoldersLI($.parseJSON(data['user_folders']),$.parseJSON(data['folders']));
+            });
+
     };
 
     Resume.prototype.addEventListenerFavoriteFolds = function(){
@@ -100,6 +96,15 @@
     Resume.prototype.addEventListenerFavorite = function(){
         this.$favorite.on('click', {self:this}, function(event){
             event.data.self.$favorite_folds.toggle();
+            if(event.data.self.$favorite_folds.is(':visible')){
+                $.post(BASE_URL + "/admincontrol/ajaxfolders", {'ajax': "ajax",'all_checkbox':'true'})
+                    .done(function (data) {
+                        event.data.self.$ajax_loader.css('visibility', 'hidden');
+                        data = $.parseJSON(data);
+                        event.data.self.getFoldersLI($.parseJSON(data['user_folders']),$.parseJSON(data['folders']));
+                    });
+
+            }
             event.stopPropagation();
         });
 
