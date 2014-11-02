@@ -59,6 +59,31 @@ class Admin{
 		}
 	}
 
+	public function selectFolderUsersProcedure($id,$count_view,$page){
+		try {
+			$stmt = $this->_dbc->prepare("CALL selectFolderUser(:id, :start, :count_view)");
+			$stmt->execute(array(
+				':id'=>"[[:<:]]{$id}[[:>:]]",
+				':start' => $page,
+				':count_view'=>$count_view
+			));
+			$search_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		if (is_null($page)) {
+			$count_user = count($search_data);
+			$_SESSION['params']['count_users_folders'] = $count_user;
+			for ($i = $count_view; $i < $count_user; ++$i) {
+				unset($search_data[$i]);
+			}
+		}
+
+
+		return $this->_getResumeFormat($search_data, $count_user);
+
+	}
+
 	public function insertFolder($folder){
 		try {
 			$stmt = $this->_dbc->prepare ("INSERT INTO folders(name) VALUES(:name)");
@@ -251,8 +276,7 @@ class Admin{
 		return $this->_getResumeFormat($data, $count_user);
 	}
 
-	public function selectAllResume($count_view, $page)
-	{
+	public function selectAllResume($count_view, $page){
 		try {
 			$stmt = $this->_dbc->prepare("CALL allResume(:start,:count_view)");
 			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
@@ -283,7 +307,6 @@ class Admin{
 	}
 
 	public function search($search, $count_view, $page){
-
 		try {
 			$stmt = $this->_dbc->prepare ("CALL searchResume(:search, :start, :count_view)");
 			$stmt->execute(array(
@@ -297,7 +320,7 @@ class Admin{
 		}
 		if (is_null($page)) {
 			$count_user = count($search_data);
-			$_SESSION['params']['count_users'] = $count_user;
+			$_SESSION['params']['count_users_search'] = $count_user;
 			for ($i = $count_view; $i < $count_user; ++$i) {
 				unset($search_data[$i]);
 			}

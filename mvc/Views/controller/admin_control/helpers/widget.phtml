@@ -1,15 +1,9 @@
 <div class="widget admin">
 	<p class='<?php if($this->data['data']['active_all_resume']) echo 'active'?>'>
-		<?php if(!$this->data['data']['search']): ?>
-			<a href='<?=BASE_URL."/admincontrol"?>'>всего анкет:
-				<span><?=$this->data['data']['users_count']?></span></a>
-		<?php else: ?>
-			найдено анкет: <span><?=$this->data['data']['users_count']?></span>
-		<?php endif ?>
+		<a href='<?=BASE_URL."/admincontrol"?>'>всего анкет:
+			<span><?=$this->data['data']['users_count']?></span>
+		</a>
 	</p>
-	<?php if($this->data['data']['search']): ?>
-		<p><a href='<?=BASE_URL."/admincontrol"?>'>показать все анкеты</a></p>
-	<?php endif ?>
 	<p class='<?php if($this->data['data']['active_all_no_view']) echo 'active'?>'>
 		<a href="<?=BASE_URL."/admincontrol/unreviewed/view/no"?>">смотреть новые анкеты:
 			<span><?=$this->data['data']['count_view_admin_resume']?></span></a></p>
@@ -17,6 +11,6 @@
 		<p class='<?php if($this->data['data']['active_manager']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/managers"?>">менеджеры</a></p>
 	<?php endif; ?>
 	<?php if($this->data['data']['admin'] === 'main'):?>
-		<p class='<?php if($this->data['data']['folder']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/folders"?>">ваши папки</a></p>
+		<p class='<?php if($this->data['data']['folder']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/folders"?>">отобранные</a></p>
 	<?php endif; ?>
 </div>

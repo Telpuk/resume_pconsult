@@ -75,6 +75,7 @@ body {
 .wrapper{
     width: 100%;
     min-height: 100%;
+    margin-bottom: 100px;
 }
 .resume{
     font-size: .95em;
@@ -94,13 +95,14 @@ body {
     padding: 20px;
     border-radius: 20px;
     -moz-border-radius: 20px;
-    background-color: rgba(255, 86, 77, 0.10);
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    background-color: white;
 }
 
 .resume .conclusion h1{
     width: 100%;
     text-align: center;
-    color: #c67b37;
+    color: rgba(198, 123, 55, 0.71);
     margin-bottom: 5px;
     font-size: 0.3em !important;
 }
@@ -175,8 +177,8 @@ body {
     border-radius: 10px;
     -moz-border-radius: 10px;
     color: white;
-    background-color: rgba(198, 123, 55, 0.58);
-    padding: 10px 15px 10px 15px;
+    background-color: rgba(198, 123, 55, 0.44);
+    padding: 5px 10px 5px 10px;
     text-decoration: underline;
 }
 
@@ -221,7 +223,7 @@ body {
 
 
 .resume  h1:first-child{
-    font-size: .5em;
+    font-size: .35em;
 }
 
 
@@ -1370,6 +1372,10 @@ main.authorization .helpers_message_authorization{
     /*border: 1px black solid;*/
 }
 
+.admin_control .right_admin_control .found{
+    padding: 10px;
+}
+
 .admin_control .right_admin_control nav{
     margin-left: 50px;
     margin-bottom: 10px;
@@ -1599,7 +1605,8 @@ main.authorization .helpers_message_authorization{
     padding: 10px;
     border-radius: 20px;
     -moz-border-radius: 20px;
-    background-color: rgba(255, 86, 77, 0.10);
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    background-color: white;
 }
 
 .admin_control .conclusion h1{
@@ -1662,25 +1669,97 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.folders{
     width: 100%;
+    border: 1px black solid;
 }
 
 
-.admin_control.folders .right_admin_control .folders_form,
-.admin_control.folders .right_admin_control .folders_list{
+.admin_control.folders .right_admin_control .folders_form{
     width: 100%;
     margin: 20px;
 }
+.admin_control.folders
+.right_admin_control
+.folders_list{
+    padding: 5px;
+    margin-bottom: 10px;
+    float: right;
+    margin-top: 40px;
+    font-size: .6em;
+    border: 1px solid #bbbbbb;
+    width: 24%;
+}
+.admin_control.folders
+.right_admin_control
+.no_resume.folders{
+    float: left;
+    width: 75%;
+}
+
+.admin_control.folders .right_admin_control .folders_list p{
+    margin-top: 10px;
+    padding-left: 10px;
+    color: #bbbbbb;
+    width: 100%;
+    font-size: 1.3em;
+}
+
+.admin_control.folders .right_admin_control .folders_list p#addFolder{
+    color: #45921e;
+}
+
+.admin_control.folders .right_admin_control .folders_list p#addFolder:hover{
+    color: red;
+    cursor: pointer;
+}
+
 
 .admin_control.folders .right_admin_control .folders_list li{
-    list-style: decimal;
-    margin-bottom: 20px;
+    padding: 5px;
+    list-style: none;
 }
-.admin_control.folders .right_admin_control .folders_list span{
-    background-color: rgba(187, 187, 187, 0.44);
-    padding: 5px 20px 5px 20px;
-    margin-left: 10px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+.admin_control.folders .right_admin_control .folders_list  a{
+    font-size: 1.4em;
+    color: #71a7e1;
+    text-decoration: none;
+}
+
+.admin_control.folders .right_admin_control .folders_list  ul a:hover{
+    color: red;
+}
+.admin_control.folders .right_admin_control .folders_list  ul a img{
+    width: 10px;
+    margin-right: 10px;
+}
+
+.admin_control.folders .right_admin_control .folders_list #input_new_folder_block{
+    width: 100%;
+    display: none;
+    margin-bottom: 10px;
+}
+.admin_control.folders
+.right_admin_control
+.folders_list
+#input_new_folder_block #new_folder{
+    width: 50%;
+}
+.admin_control.folders
+.right_admin_control
+.folders_list
+.ajax_loader{
+    width: 100%;
+    display: none;
+    padding-left: 80px;
+}
+.admin_control.folders
+.right_admin_control
+.folders_list
+#input_new_folder_block #back:hover{
+   cursor: pointer;
+}
+
+
+.admin_control.folders .right_admin_control .folders_list  a:visited{
+    color: #71a7e1;
 }
 
 .admin_control.folders .right_admin_control .folders_form input{
@@ -1692,5 +1771,11 @@ main.authorization .helpers_message_authorization{
 .admin_control.folders .right_admin_control .folders_form input[type=submit]{
     width: 10%;
 }
+
+.admin_control.folders .user_folders{
+    float: left;
+    width: 75%;
+}
+
 
 

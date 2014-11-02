@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 5,
+		$_count_view = 1,
 		$_page = null;
 
 	public function  __construct(){
@@ -32,10 +32,10 @@ class AdminControlController extends IController{
 	}
 
 
-	public function ajaxfoldersAction(){
+	public function ajaxfoldersusersAction(){
 		if(isset($_POST['ajax'])) {
 			$obj_folders = new Folders($this->getSessionUserID('user'));
-			if(!isset($_POST['all_checkbox']) && $_POST['all_checkbox'] !== 'true'){
+			if(!isset($_POST['all_checkbox'])){
 				$folders = isset($_POST['folders'])?$_POST['folders']:array();
 				$obj_folders->insertFolders($folders);
 			}
@@ -45,32 +45,44 @@ class AdminControlController extends IController{
 		exit;
 	}
 
-	public function foldersAction(){
-		if(isset($_POST['addFolder']) && !empty($_POST['folder'])){
-			if(!$this->_db_admin->insertFolder($_POST['folder'])){
-				$this->headerLocation('admincontrol');
+	public function ajaxfoldersAction(){
+		if(isset($_POST['ajax']) && !empty($_POST['folder_name'])) {
+			$obj_folders = new Folders();
+			if($obj_folders->insertFolder($_POST['folder_name'])){
+				echo($obj_folders->getFolders());
 			}
 		}
+		exit;
+	}
+
+	public function foldersAction(){
 
 		if($this->getParams('delete')){
-			if(!$this->_db_admin->deleteFolder($this->getParams('delete'))){
-				$this->headerLocation('admincontrol');
-			}
+			$this->_db_admin->deleteFolder($this->getParams('delete'));
+			$this->headerLocation('admincontrol/folders');
 		}
+
+		if($this->getParams('id')){
+			$folder_users  = $this->_db_admin->selectFolderUsersProcedure($this->getParams('id'), 1, null);
+		}
+
 
 		$folders  = $this->_db_admin->selectFolders();
 
 		return $this->_view->render(array(
 			'view' => 'admin_control/folders',
-			'js'=>$this->_jsAdminControl(),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
-				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+				'users'=> $folder_users['users'],
+				'helpers' => array(
+					'widget_admin' => 'admin_control/helpers/widget',
+					'widget_folders'=>'admin_control/helpers/widget_folders'),
 				'folder'=>true,
 				'folders'=>$folders,
 				'users_count'=>$this->getSessionParamsId('count_users'),
-				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
-			)
+				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
+			),
+			'js'=>$this->_jsFolders()
 		));
 	}
 
@@ -221,17 +233,16 @@ class AdminControlController extends IController{
 			$this->_page = empty($page)?null:$page;
 
 			$users = $this->_db_admin->search($search[0], $this->_count_view, $this->_page);
+			$users['count'] = $this->getSessionParamsId('count_users_search');
 
 		}elseif(!isset($search[0]) || (isset($search[0]) && empty($search[0]))) {
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;
 
 			$users = $this->_db_admin->selectAllResume($this->_count_view, $this->_page);
+			$users['count'] = $this->getSessionParamsId('count_users');
+			$this->deleteSessionParamsId('count_users_search');
 		}
-
-		$users['count'] = $this->getSessionParamsId('count_users');
-
-
 
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
@@ -241,7 +252,8 @@ class AdminControlController extends IController{
 				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
 				'active_all_resume'=>true,
 				'users' => $users['users'] ? $users['users']  : '',
-				'users_count' =>$users['count'],
+				'users_count' =>$this->getSessionParamsId('count_users'),
+				'users_count_search'=>$this->getSessionParamsId('count_users_search'),
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'search' => $search[0],
 				'pagination' => $this->_db_admin->printPagination(
@@ -251,6 +263,8 @@ class AdminControlController extends IController{
 		));
 
 	}
+
+
 
 	private function _jsAdminControl()
 	{
@@ -269,4 +283,13 @@ class AdminControlController extends IController{
 			),
 		);
 	}
+	private function _jsFolders(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/folders.js"
+			),
+		);
+	}
+
 }

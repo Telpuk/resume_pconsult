@@ -4,7 +4,7 @@ class Folders{
 		$_db_folder,
 		$_id;
 
-	function __construct($id){
+	function __construct($id=null){
 		$this->_id = $id;
 		$this->_db_folder = new Folder();
 	}
@@ -16,6 +16,10 @@ class Folders{
 			$folders[$id]=$id;
 		}
 		$this->_db_folder->updateFoldersUsers($folders,$this->_id);
+	}
+
+	public function insertFolder($folders){
+		return $this->_db_folder->insertFolder($folders)?true:false;
 	}
 
 	public function json_encode_cyr($str){

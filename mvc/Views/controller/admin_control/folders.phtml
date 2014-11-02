@@ -14,26 +14,54 @@
 		<?=$this->data['helpers']['widget_admin']?>
 	</div>
 	<div class="right_admin_control">
-		<div class="folders_form">
-			<form action='<?=BASE_URL."/admincontrol/folders"?>' method="post">
-				<input type="text" name="folder" value="">
-				<input type="submit" name="addFolder" value="создать">
-			</form>
+		<?=$this->data['helpers']['widget_folders']?>
+		<div class="user_folders">
+			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
+				<div class="user_id">
+					<figure>
+						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+					</figure>
+					<div class="inform_user">
+						<div class="salary_inform_user">
+							<span><?=$user['salary']?></span>
+							<span><?=$user['years_user']?></span>
+							<span><?=$user['date_registration']?></span>
+						</div>
+						<div>
+							<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
+								<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>
+							</a></div>
+						<div class="position"><?=$user['desired_position']?></div>
+						<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
+						<p>
+							Опыт работы<br><span><?=$user['sum_experience']?></span>
+						</p>
+						<p>
+							Последнее место работы<br>
+							<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+						</p>
+						<p>
+							<?=$user['last_place_work']['last_works']?>
+						</p>
+						<div class="conclusion" data-id-conclusion='<?=$user['id']?>'>
+							<?php if( $user['conclusion'] == ''): ?>
+								<h1>Заключение</h1>
+								<textarea class='conclusion_textarea' name="conclusion"></textarea>
+								<input type="hidden" name="admincontrol" value="admincontrol">
+								<input class="button_conclusion"  type="submit" name="updateConclusion" value="сохранить">
+								<div class="clear"></div>
+							<?php  else: ?>
+								<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
+								<div class="conclusion_text"><?=$user['conclusion']?></div>
+								<div class="clear"></div>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			<?php endforeach; ?>
+			<div class="clear"></div>
 		</div>
-		<?php if(count($this->data['data']['folders']) !== 0): ?>
-			<div class="folders_list">
-				<ul>
-					<?php foreach($this->data['data']['folders'] as $value): ?>
-						<li>
-							<a href='<?=BASE_URL."/admincontrol/folders/delete/{$value['id']}"?>'><img src="<?=BASE_URL ."/public/img/delete.png"?>"></a>
-							<span><?=$value['name']?></span>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-		<?php else: ?>
-			<p class="no_resume">У вас нет папок</p>
-		<?php endif; ?>
 	</div>
 	<div class="clear"></div>
 </main>

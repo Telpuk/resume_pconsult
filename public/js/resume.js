@@ -13,22 +13,22 @@
 
     Resume.prototype.addEventListener = function(){
         this.$resume.on('click', {self:this}, function(event){
-            //var text = event.data.self.$conclusion_text.text();
-            //if(event.target.className === 'editConclusion' || event.target.className === 'conclusion_text'){
-            //    $(event.target).text('отменить');
-            //    $('.editConclusion').addClass('cancel');
-            //    event.data.self.$conclusion_text.html(
-            //        "<form action='"+BASE_URL+"/index/conclusion' method='post'>"+
-            //        "<textarea class='conclusion_textarea' name='conclusion'>"+text+"</textarea>"+
-            //        "<input class='button_conclusion' type='submit' name='updateConclusion' value='обновить'>"+
-            //        "</form>");
-            //}else if(event.target.className != 'conclusion_textarea' && event.target.className != 'button_conclusion'){
-            //    $('.editConclusion').removeClass('editConclusion cancel').addClass('editConclusion');
-            //    $('.editConclusion').html("<img src='"+BASE_URL+"/public/img/edit.png'>редактировать");
-            //    event.data.self.$conclusion_text.text(text);
-            //}
+            var text = event.data.self.$conclusion_text.text();
+            if(event.target.className === 'editConclusion' || event.target.className === 'conclusion_text'){
+                $(event.target).text('отменить');
+                $('.editConclusion').addClass('cancel');
+                event.data.self.$conclusion_text.html(
+                    "<form action='"+BASE_URL+"/index/conclusion' method='post'>"+
+                    "<textarea class='conclusion_textarea' name='conclusion'>"+text+"</textarea>"+
+                    "<input class='button_conclusion' type='submit' name='updateConclusion' value='обновить'>"+
+                    "</form>");
+            }else if(event.target.className != 'conclusion_textarea' && event.target.className != 'button_conclusion'){
+                $('.editConclusion').removeClass('editConclusion cancel').addClass('editConclusion');
+                $('.editConclusion').html("<img src='"+BASE_URL+"/public/img/edit.png'>редактировать");
+                event.data.self.$conclusion_text.text(text);
+            }
 
-            //event.data.self.$favorite_folds.toggle();
+            event.data.self.$favorite_folds.toggle();
             event.data.self.$favorite_folds.hide();
 
         });
@@ -76,11 +76,12 @@
         });
 
         self.$ajax_loader.css('visibility', 'visible');
-        $.post(BASE_URL + "/admincontrol/ajaxfolders", {'ajax': "ajax", 'folders': folders})
+        $.post(BASE_URL + "/admincontrol/ajaxfoldersusers", {'ajax': "ajax", 'folders': folders})
             .done(function (data) {
                 self.$ajax_loader.css('visibility', 'hidden');
                 data = $.parseJSON(data);
                 self.getFoldersLI($.parseJSON(data['user_folders']),$.parseJSON(data['folders']));
+                self.$favorite_folds.toggle();
             });
 
     };
@@ -97,7 +98,7 @@
         this.$favorite.on('click', {self:this}, function(event){
             event.data.self.$favorite_folds.toggle();
             if(event.data.self.$favorite_folds.is(':visible')){
-                $.post(BASE_URL + "/admincontrol/ajaxfolders", {'ajax': "ajax",'all_checkbox':'true'})
+                $.post(BASE_URL + "/admincontrol/ajaxfoldersusers", {'ajax': "ajax",'all_checkbox':'true'})
                     .done(function (data) {
                         event.data.self.$ajax_loader.css('visibility', 'hidden');
                         data = $.parseJSON(data);

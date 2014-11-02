@@ -1,0 +1,19 @@
+<div class="folders_list">
+	<p>МОИ ПАПКИ</p>
+	<p id="addFolder">Создать новую</p>
+	<p class="ajax_loader"><img src="<?=BASE_URL.'/public/img/ajax-loader.gif'?>"></p>
+	<p id="input_new_folder_block">
+		<input type="text" id="new_folder" value="" placeholder="новая папка">
+		<button id="button">ок</button>
+		<span id="back">Отмена</span>
+	</p>
+	<hr>
+	<ul id="folders_list_li">
+		<?php foreach($this->data['data']['folders'] as $value): ?>
+			<li>
+				<a href='<?=BASE_URL."/admincontrol/folders/delete/{$value['id']}"?>'><img src="<?=BASE_URL ."/public/img/folder_remove.png"?>" title="удалить"></a>
+				<a href='<?=BASE_URL."/admincontrol/folders/id/{$value['id']}"?>'><?=$value['name']?></a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+</div>

@@ -24,6 +24,9 @@
 		public function getSessionParamsId($id_params){
 			return isset($_SESSION['params'][$id_params]) ? $_SESSION['params'][$id_params]: false;
 		}
+		public function deleteSessionParamsId($id_params){
+			unset($_SESSION['params'][$id_params]);
+		}
 
 		public function getSessionUsers(){
 			return isset($_SESSION['session_users']['users']) ? $_SESSION['session_users']['users']: false;
