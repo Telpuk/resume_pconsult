@@ -49,21 +49,21 @@
 						<p>
 							<?=$user['last_place_work']['last_works']?>
 						</p>
-						<div class="conclusion" data-id-conclusion='<?=$user['id']?>'>
-							<?php if( $user['conclusion'] == ''): ?>
-								<h1>Заключение</h1>
-								<textarea class='conclusion_textarea' name="conclusion"></textarea>
-								<input type="hidden" name="admincontrol" value="admincontrol">
-								<input class="button_conclusion"  type="submit" name="updateConclusion" value="сохранить">
-								<div class="clear"></div>
-							<?php  else: ?>
-								<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
-								<div class="conclusion_text"><?=$user['conclusion']?></div>
-								<div class="clear"></div>
-							<?php endif; ?>
-						</div>
 					</div>
-
+					<div class="clear"></div>
+					<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>
+						<?php if( $user['conclusion'] == ''): ?>
+							<h1>Заключение</h1>
+							<textarea class='conclusion_textarea' name="conclusion"></textarea>
+							<input type="hidden" name="admincontrol" value="admincontrol">
+							<button class="button_conclusion">Сохранить</button>
+							<div class="clear"></div>
+						<?php  else: ?>
+							<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#<?=$user['id']?>"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
+							<div class="conclusion_text"><?=$user['conclusion']?></div>
+							<div class="clear"></div>
+						<?php endif; ?>
+					</div>
 					<div class="clear"></div>
 				</div>
 			<?php endforeach; ?>

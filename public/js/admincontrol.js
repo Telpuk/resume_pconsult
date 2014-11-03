@@ -1,6 +1,6 @@
 (function($, BASE_URL,window){
     function Resume(){
-        this.$resume = $('.admin_control');
+        this.$resume = $('.conclusion');
         this.conclusion_text;
     }
 
@@ -34,12 +34,15 @@
                 var $element = $(event.target);
                 var $textarea =  $element.parent().siblings(".conclusion_text");
                 event.data.self.conclusion_text = $textarea.text();
+
                 $element.parent().parent().html(
                     "<h1>Заключение <span class='editConclusion back'>отменить</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                     "<textarea class='conclusion_textarea' name='conclusion'>"+$textarea.text()+"</textarea>"+
-                    "<input class='button_conclusion' type='submit' name='updateConclusion' value='обновить'>"+
+                    "<button class='button_conclusion'>Обновить</button>"+
                     "<div class='clear'></div>"
                 );
+
+
             }else if(event.target.className === 'editConclusion back'){
                 $(event.target).parent().parent().html(
                     "<h1>Заключение <span class='editConclusion'><img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
@@ -58,7 +61,7 @@
                             $element.parent().parent().parent().html(
                                 "<h1>Заключение</h1>"+
                                 "<textarea class='conclusion_textarea' name='conclusion'></textarea>"+
-                                "<input class='button_conclusion' type='submit' name='updateConclusion' value='сохранить'>"+
+                                "<button class='button_conclusion'>Сохранить</button>"+
                                 "<div class='clear'></div>"
                             );
                         }
@@ -68,7 +71,7 @@
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
 
-
+            return false;
         });
     }
     Resume.prototype.init = function(){

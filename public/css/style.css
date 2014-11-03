@@ -322,8 +322,8 @@ fieldset legend{
 .resume .resume_widget  textarea{
     display: block;
     resize: vertical;
-    height: 50px;
-    padding: 10px;
+    height: 60px;
+    padding: 5px;
     width: 100%;
     border:  1px #5e5e5e dashed;
 }
@@ -1442,14 +1442,16 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
     float: right;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     -moz-border-radius: 20px;
     box-shadow: 0 0 7px #666;
+    overflow:hidden;
 
 }
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
     display: block;
     text-align: left;
+    margin-bottom: 10px;
     padding: 3px;
 }
 
@@ -1603,8 +1605,8 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion{
     width: 100%;
-    margin-top: 50px;
     padding: 10px;
+    margin-top: 5px;
     border-radius: 20px;
     -moz-border-radius: 20px;
     box-shadow: 0 0 7px #666;
@@ -1655,7 +1657,7 @@ main.authorization .helpers_message_authorization{
     height: 40px;
     resize: vertical;
 }
-.admin_control .conclusion input[type=submit]{
+.admin_control .conclusion button{
     display: block;
     float: left;
     height: 40px;
@@ -1673,6 +1675,10 @@ main.authorization .helpers_message_authorization{
     width: 100%;
     border: 1px black solid;
 }
+.admin_control.folders .user_folders .inform_user {
+    width:  80%;
+}
+
 
 
 .admin_control.folders .right_admin_control .folders_form{
@@ -1790,8 +1796,8 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.folders .user_folders .user_id{
     width: 100%;
-    padding: 10px 0 10px 0;
-    margin: 10px 0 10px 0;
+    padding: 10px 0 10px 0 !important;
+    margin: 10px 0 10px 0 !important;
 }
 
 
@@ -1807,7 +1813,7 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.folders .user_folders .conclusion{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 20px;
     -moz-border-radius: 20px;
@@ -1815,20 +1821,6 @@ main.authorization .helpers_message_authorization{
     background-color: white;
 }
 
-.admin_control.folders .user_folders .conclusion textarea{
-    display: block;
-    padding: 10px;
-    float: left;
-    width: 60%;
-    margin-left: 20px;
-    height: 30px;
-    resize: vertical;
-}
-.admin_control.folders .conclusion input[type=submit]{
-    height: 30px;
-    width: 100px;
-    background-color: rgba(0, 128, 0, 0.57);
-}
 
 .admin_control.folders .search_folders{
     padding: 10px;
