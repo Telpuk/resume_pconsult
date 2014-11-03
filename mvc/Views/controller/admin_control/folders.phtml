@@ -15,6 +15,15 @@
 	</div>
 	<div class="right_admin_control">
 		<?=$this->data['helpers']['widget_folders']?>
+		<nav>
+			<?=$this->data['data']['pagination']?>
+		</nav>
+		<div class="search_folders">
+			<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
+				<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search']?>">
+				<input type="submit"  value="искать в папке">
+			</form>
+		</div>
 		<div class="user_folders">
 			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
 				<div class="user_id">
@@ -57,11 +66,15 @@
 							<?php endif; ?>
 						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
 				<div class="clear"></div>
 			<?php endforeach; ?>
-			<div class="clear"></div>
 		</div>
+		<div class="clear"></div>
+		<nav>
+			<?=$this->data['data']['pagination']?>
+		</nav>
 	</div>
 	<div class="clear"></div>
 </main>

@@ -1298,6 +1298,10 @@ main.authorization .helpers_message_authorization{
     font-size: .2em;
 }
 /*admin_control*/
+.admin_control{
+    width: 100%;
+    padding: 5px;
+}
 
 .admin_control .left_admin_control{
     float: left;
@@ -1422,7 +1426,7 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .right_admin_control .user_id .inform_user p{
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .admin_control .right_admin_control .user_id .inform_user p:last-child{
@@ -1688,6 +1692,15 @@ main.authorization .helpers_message_authorization{
     border: 1px solid #bbbbbb;
     width: 24%;
 }
+
+.admin_control.folders
+.right_admin_control
+.folders_list
+#folders_list_li
+.folders_active{
+   color: black;
+    font-weight: bold;
+}
 .admin_control.folders
 .right_admin_control
 .no_resume.folders{
@@ -1776,6 +1789,64 @@ main.authorization .helpers_message_authorization{
     float: left;
     width: 75%;
 }
+
+.admin_control.folders .user_folders{
+    font-size: 0.75em;
+}
+.admin_control.folders .user_folders figure{
+    padding: 0;
+    margin: 0;
+}
+
+
+.admin_control.folders .user_folders figure img{
+    width: 100px;
+    height: 100px;
+}
+
+.admin_control.folders .user_folders .conclusion{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    background-color: white;
+}
+
+.admin_control.folders .user_folders .conclusion textarea{
+    display: block;
+    padding: 10px;
+    float: left;
+    width: 60%;
+    margin-left: 20px;
+    height: 30px;
+    resize: vertical;
+}
+.admin_control.folders .conclusion input[type=submit]{
+    height: 30px;
+    width: 100px;
+    background-color: rgba(0, 128, 0, 0.57);
+}
+
+.admin_control.folders .search_folders{
+    padding: 10px;
+}
+.admin_control.folders .search_folders form input[type=search]{
+    width: 250px;
+    height: 30px;
+    padding: 5px;
+}
+.admin_control.folders .search_folders form input[type=submit]{
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+}
+
+
+
+
+
 
 
 

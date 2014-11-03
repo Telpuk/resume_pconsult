@@ -67,18 +67,42 @@ class Admin{
 				':start' => $page,
 				':count_view'=>$count_view
 			));
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		if (is_null($page)) {
+			$count_user = count($data);
+			$_SESSION['params']['count_users_folders'] = $count_user;
+			for ($i = $count_view; $i < $count_user; ++$i) {
+				unset($data[$i]);
+			}
+		}
+
+		return $this->_getResumeFormat($data, $count_user);
+
+	}
+
+	public function searchFolderUsersProcedure($id, $search, $count_view, $page){
+		try {
+			$stmt = $this->_dbc->prepare ("CALL searchFolderUsersProcedure(:id, :search, :start, :count_view)");
+			$stmt->execute(array(
+				':id'=>"[[:<:]]{$id}[[:>:]]",
+				':search'=>"%".$search."%",
+				':start' => $page,
+				':count_view'=>$count_view
+			));
 			$search_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
 			$count_user = count($search_data);
-			$_SESSION['params']['count_users_folders'] = $count_user;
+			$_SESSION['params']['count_users_folders_search'] = $count_user;
 			for ($i = $count_view; $i < $count_user; ++$i) {
 				unset($search_data[$i]);
 			}
 		}
-
 
 		return $this->_getResumeFormat($search_data, $count_user);
 

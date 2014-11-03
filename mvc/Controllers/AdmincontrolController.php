@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 1,
+		$_count_view = 2,
 		$_page = null;
 
 	public function  __construct(){
@@ -56,31 +56,48 @@ class AdminControlController extends IController{
 	}
 
 	public function foldersAction(){
+		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 
 		if($this->getParams('delete')){
 			$this->_db_admin->deleteFolder($this->getParams('delete'));
 			$this->headerLocation('admincontrol/folders');
 		}
 
-		if($this->getParams('id')){
-			$folder_users  = $this->_db_admin->selectFolderUsersProcedure($this->getParams('id'), 1, null);
+
+		if (isset($search[0]) && !empty($search[0])) {
+			$page = $this->getParams('page');
+			$this->_page = empty($page)?null:$page;
+
+			$folder_users = $this->_db_admin->searchFolderUsersProcedure($this->getParams('id'),$search[0], $this->_count_view, $this->_page);
+			$users['count'] = $this->getSessionParamsId('count_users_folders_search');
+
+		}elseif(!isset($search[0]) || (isset($search[0]) && empty($search[0]) && $this->getParams('id'))) {
+			$page = $this->getParams('page');
+			$this->_page = empty($page)?null:$page;
+
+			$folder_users  = $this->_db_admin->selectFolderUsersProcedure($this->getParams('id'), $this->_count_view, $this->_page);
+			$folder_users['count'] = $this->getSessionParamsId('count_users_folders');
 		}
 
+		$folders_list  = $this->_db_admin->selectFolders();
 
-		$folders  = $this->_db_admin->selectFolders();
 
 		return $this->_view->render(array(
 			'view' => 'admin_control/folders',
 			'data' => array(
+				'id_folders_active'=>$this->getParams('id'),
 				'admin'=>$this->getSessionUserID('admin'),
 				'users'=> $folder_users['users'],
 				'helpers' => array(
 					'widget_admin' => 'admin_control/helpers/widget',
 					'widget_folders'=>'admin_control/helpers/widget_folders'),
 				'folder'=>true,
-				'folders'=>$folders,
+				'folders'=>$folders_list,
 				'users_count'=>$this->getSessionParamsId('count_users'),
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
+				'pagination' => $this->_db_admin->printPagination(
+					ceil($folder_users['count'] / $this->_count_view), $this->_page, array(
+						'url'=>"folders/id/28/search/?search=")),
 			),
 			'js'=>$this->_jsFolders()
 		));
@@ -96,6 +113,7 @@ class AdminControlController extends IController{
 					return $this->_view->render(array(
 						'view'=>'admin_control/managers',
 						'data' => array(
+							'admin'=>$this->getSessionUserID('admin'),
 							'active_manager'=>true,
 							'managers'=>$managers,
 							'inputs'=>$inputs,
@@ -113,6 +131,7 @@ class AdminControlController extends IController{
 				return $this->_view->render(array(
 					'view'=>'admin_control/managers',
 					'data' => array(
+						'admin'=>$this->getSessionUserID('admin'),
 						'active_manager'=>true,
 						'managers'=>$managers,
 						'inputs'=>$inputs,
