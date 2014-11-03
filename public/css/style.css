@@ -95,7 +95,7 @@ body {
     padding: 20px;
     border-radius: 20px;
     -moz-border-radius: 20px;
-    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -114,7 +114,7 @@ body {
     font-size: .15em;
 }
 .resume .favorite p.header_favorite:hover{
-   cursor: pointer;
+    cursor: pointer;
 }
 
 .resume #favorite_folds{
@@ -127,7 +127,7 @@ body {
     overflow: auto;
     width: 250px;
     height: 200px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -273,8 +273,8 @@ body {
     width: 23%;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    padding: 0px;
-    font-size: .20em;
+    padding: 10px;
+    font-size: .24em;
     background-color: rgba(255, 86, 77, 0.04);
     border: 1px rgba(171, 171, 171, 0.46) solid;
     color: #ff5d10;
@@ -283,6 +283,7 @@ body {
 
 
 fieldset {
+    font-size: 0.85em;
     display: block;
     margin: 10px 10px 10px 10px;
     padding: 10px;
@@ -312,12 +313,11 @@ fieldset legend{
     text-align: center;
     font-size: 1.3em;
     width: 100%;
-    background-color: rgba(187, 187, 187, 0.69);
     border-radius: 10px 10px 0 0;
     -moz-border-radius: 10px;
-    padding: 4px;
+    padding: 0px;
     border: none;
-    color: white;
+    color: #56a5f8;
 }
 .resume .resume_widget  textarea{
     display: block;
@@ -330,13 +330,14 @@ fieldset legend{
 .resume .resume_widget input[type=submit]{
     display: block;
     border: none;
+    font-weight: bold;
     color: white;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px 5px 5px 5px;
-    -moz-border-radius: 10px;
+    -moz-border-radius: 5px;
     background-color: rgba(0, 128, 0, 0.55);
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 
@@ -416,7 +417,7 @@ fieldset legend{
 .resume .left_40 p,
 .resume .right_60 p{
     padding: 10px;
-    font-size: .15em;
+    font-size: .23em;
 }
 
 .resume .personal_data header h1 a,
@@ -981,7 +982,6 @@ table.foot_table  tr td{
 
 .comment{
     font-size: .8em;
-    color: rgba(175, 175, 175, .8);
 }
 
 input[type=tel]{
@@ -1048,7 +1048,7 @@ input[type=email]{
     color: #96f226;
     border: 2px solid #454545;
     border-radius: 0px;
-    box-shadow: 0 0
+    box-shadow: 0 0;
 }
 .delete_skills{
     margin-left: 5px;
@@ -1434,8 +1434,9 @@ main.authorization .helpers_message_authorization{
     font-weight: bold;
 }
 
-.admin_control .right_admin_control .user_id .inform_user span{
-    color: #616161;
+.admin_control .right_admin_control .user_id .inform_user p span{
+    padding-left: 20px;
+    color: #8b8b8b;
 }
 
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
@@ -1443,7 +1444,8 @@ main.authorization .helpers_message_authorization{
     border-radius: 20px;
     padding: 20px;
     -moz-border-radius: 20px;
-    background-color: rgba(255, 86, 77, 0.10);
+    box-shadow: 0 0 7px #666;
+
 }
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
     display: block;
@@ -1563,15 +1565,11 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .form_manager a.generate_password{
+    margin-top: 5px;
+    display: block;
     position: absolute;
     left: 73%;
-    background-color: rgba(255, 0, 0, 0.68);
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 5px;
-    height: 30px;
+    color: #428bca;
 }
 
 .admin_control.managers .table_managers{
@@ -1605,11 +1603,11 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion{
     width: 100%;
-    margin-top: 10px;
+    margin-top: 50px;
     padding: 10px;
     border-radius: 20px;
     -moz-border-radius: 20px;
-    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -1698,7 +1696,7 @@ main.authorization .helpers_message_authorization{
 .folders_list
 #folders_list_li
 .folders_active{
-   color: black;
+    color: black;
     font-weight: bold;
 }
 .admin_control.folders
@@ -1767,7 +1765,7 @@ main.authorization .helpers_message_authorization{
 .right_admin_control
 .folders_list
 #input_new_folder_block #back:hover{
-   cursor: pointer;
+    cursor: pointer;
 }
 
 
@@ -1790,12 +1788,15 @@ main.authorization .helpers_message_authorization{
     width: 75%;
 }
 
-.admin_control.folders .user_folders{
-    font-size: 0.75em;
+.admin_control.folders .user_folders .user_id{
+    width: 100%;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 10px 0;
 }
+
+
 .admin_control.folders .user_folders figure{
-    padding: 0;
-    margin: 0;
+    width: 19%;
 }
 
 
@@ -1806,11 +1807,11 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.folders .user_folders .conclusion{
     width: 100%;
-    margin-top: 10px;
+    margin-top: 50px;
     padding: 10px;
     border-radius: 20px;
     -moz-border-radius: 20px;
-    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -1832,6 +1833,23 @@ main.authorization .helpers_message_authorization{
 .admin_control.folders .search_folders{
     padding: 10px;
 }
+.admin_control.folders .choose_folders{
+    width: 75%;
+    padding: 10px;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 1.4em;
+    background:#fff;
+    border-radius:4px;
+    box-shadow: 0 0 7px #666;
+    -moz-border-radius:4px;
+}
+
+.admin_control.folders .search_folders span{
+    margin-left: 10px;
+    color: #4a4a4a;
+}
+
 .admin_control.folders .search_folders form input[type=search]{
     width: 250px;
     height: 30px;

@@ -1,3 +1,4 @@
+<?php ?>
 <main class="admin_control folders">
 	<div class="out">
 		<a href='<?=BASE_URL."/admin/out/"?>'>Выход</a>
@@ -15,66 +16,72 @@
 	</div>
 	<div class="right_admin_control">
 		<?=$this->data['helpers']['widget_folders']?>
-		<nav>
-			<?=$this->data['data']['pagination']?>
-		</nav>
-		<div class="search_folders">
-			<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
-				<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search']?>">
-				<input type="submit"  value="искать в папке">
-			</form>
-		</div>
-		<div class="user_folders">
-			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
-				<div class="user_id">
-					<figure>
-						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
-					</figure>
-					<div class="inform_user">
-						<div class="salary_inform_user">
-							<span><?=$user['salary']?></span>
-							<span><?=$user['years_user']?></span>
-							<span><?=$user['date_registration']?></span>
+		<?php if($this->data['data']['id_folders_active']): ?>
+			<nav>
+				<?=$this->data['data']['pagination']?>
+			</nav>
+			<div class="search_folders">
+				<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
+					<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search_folders_user']?>">
+					<input type="submit"  value="искать в папке">
+					<span><?=$this->data['data']['message']?></span
+				</form>
+			</div>
+			<div class="user_folders">
+				<?php foreach($this->data['data']['users'] as $key=>$user): ?>
+					<div class="user_id">
+						<figure>
+							<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+						</figure>
+						<div class="inform_user">
+							<div class="salary_inform_user">
+								<span><?=$user['salary']?></span>
+								<span><?=$user['years_user']?></span>
+								<span><?=$user['date_registration']?></span>
+								<span>
+									<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
+										<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>
+									</a>
+								</span>
+							</div>
+							<div class="position"><?=$user['desired_position']?></div>
+							<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
+							<p>
+								Опыт работы<br><span><?=$user['sum_experience']?></span>
+							</p>
+							<p>
+								Последнее место работы<br>
+								<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+							</p>
+							<p>
+								<?=$user['last_place_work']['last_works']?>
+							</p>
+							<div class="conclusion" data-id-conclusion='<?=$user['id']?>'>
+								<?php if( $user['conclusion'] == ''): ?>
+									<h1>Заключение</h1>
+									<textarea class='conclusion_textarea' name="conclusion"></textarea>
+									<input type="hidden" name="admincontrol" value="admincontrol">
+									<input class="button_conclusion"  type="submit" name="updateConclusion" value="сохранить">
+									<div class="clear"></div>
+								<?php  else: ?>
+									<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
+									<div class="conclusion_text"><?=$user['conclusion']?></div>
+									<div class="clear"></div>
+								<?php endif; ?>
+							</div>
 						</div>
-						<div>
-							<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
-								<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>
-							</a></div>
-						<div class="position"><?=$user['desired_position']?></div>
-						<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
-						<p>
-							Опыт работы<br><span><?=$user['sum_experience']?></span>
-						</p>
-						<p>
-							Последнее место работы<br>
-							<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
-						</p>
-						<p>
-							<?=$user['last_place_work']['last_works']?>
-						</p>
-						<div class="conclusion" data-id-conclusion='<?=$user['id']?>'>
-							<?php if( $user['conclusion'] == ''): ?>
-								<h1>Заключение</h1>
-								<textarea class='conclusion_textarea' name="conclusion"></textarea>
-								<input type="hidden" name="admincontrol" value="admincontrol">
-								<input class="button_conclusion"  type="submit" name="updateConclusion" value="сохранить">
-								<div class="clear"></div>
-							<?php  else: ?>
-								<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
-								<div class="conclusion_text"><?=$user['conclusion']?></div>
-								<div class="clear"></div>
-							<?php endif; ?>
-						</div>
+						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>
-				</div>
-				<div class="clear"></div>
-			<?php endforeach; ?>
-		</div>
-		<div class="clear"></div>
-		<nav>
-			<?=$this->data['data']['pagination']?>
-		</nav>
+				<?php endforeach; ?>
+			</div>
+			<div class="clear"></div>
+			<nav>
+				<?=$this->data['data']['pagination']?>
+			</nav>
+		<?php else: ?>
+			<div class="choose_folders">Выберите папку</div>
+		<?php endif; ?>
 	</div>
 	<div class="clear"></div>
 </main>

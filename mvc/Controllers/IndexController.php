@@ -48,7 +48,7 @@ class IndexController extends IController{
 			$this->_db_user->updateConclusion('',$this->_id_user);
 		}
 
-		$this->headerLocation('index');
+		$this->headerLocation('index/#concl');
 	}
 
 	public  function indexAction(){

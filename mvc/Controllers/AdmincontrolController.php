@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 2,
+		$_count_view = 1,
 		$_page = null;
 
 	public function  __construct(){
@@ -69,14 +69,14 @@ class AdminControlController extends IController{
 			$this->_page = empty($page)?null:$page;
 
 			$folder_users = $this->_db_admin->searchFolderUsersProcedure($this->getParams('id'),$search[0], $this->_count_view, $this->_page);
-			$users['count'] = $this->getSessionParamsId('count_users_folders_search');
-
+			$count =$this->getSessionParamsId('count_users_folders_search');
+			$message =  "Найденных анкет: ".$count;
 		}elseif(!isset($search[0]) || (isset($search[0]) && empty($search[0]) && $this->getParams('id'))) {
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;
-
 			$folder_users  = $this->_db_admin->selectFolderUsersProcedure($this->getParams('id'), $this->_count_view, $this->_page);
-			$folder_users['count'] = $this->getSessionParamsId('count_users_folders');
+			$count = $this->getSessionParamsId('count_users_folders');
+			$message =  "Количество анкет: ".$count;
 		}
 
 		$folders_list  = $this->_db_admin->selectFolders();
@@ -88,6 +88,9 @@ class AdminControlController extends IController{
 				'id_folders_active'=>$this->getParams('id'),
 				'admin'=>$this->getSessionUserID('admin'),
 				'users'=> $folder_users['users'],
+				'count_users'=>$count,
+				'message'=>$message,
+				'search_folders_user'=>$search[0],
 				'helpers' => array(
 					'widget_admin' => 'admin_control/helpers/widget',
 					'widget_folders'=>'admin_control/helpers/widget_folders'),
@@ -96,8 +99,8 @@ class AdminControlController extends IController{
 				'users_count'=>$this->getSessionParamsId('count_users'),
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'pagination' => $this->_db_admin->printPagination(
-					ceil($folder_users['count'] / $this->_count_view), $this->_page, array(
-						'url'=>"folders/id/28/search/?search=")),
+					ceil($count / $this->_count_view), $this->_page, array(
+						'url'=>"folders/id/28/search/?search=$search[0]")),
 			),
 			'js'=>$this->_jsFolders()
 		));

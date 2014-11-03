@@ -250,7 +250,7 @@
 </div>
 <div class="clear"></div>
 <?php if(!empty($this->data['data']['admin'])): ?>
-	<div class="conclusion">
+	<div class="conclusion" id="concl">
 		<?php if( empty($this->data['data']['conclusion']) ): ?>
 			<h1>Заключение</h1>
 			<form  action="<?=BASE_URL."/index/conclusion" ?>" method="post">

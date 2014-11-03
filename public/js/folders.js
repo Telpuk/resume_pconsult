@@ -6,6 +6,7 @@
         this.$inout_text = $('#new_folder');
         this.$ajax_loader = $('.ajax_loader');
         this.$folders_list_li = $('#folders_list_li');
+        this.lastActive = 0;
     }
 
     Folders.prototype.addEventListenerHtml = function(){
@@ -26,11 +27,16 @@
     Folders.prototype.buildFoldersLI = function(folders){
         var li='',
             len=0,
-            i=0;
+            i= 0,
+            active;
         for(i = 0, len = folders.length; i<len; ++i){
+            active = '';
+            if(this.lastActive == folders[i]['id']){
+                active =  "class='folders_active'";
+            }
             li += '<li>' +
-            '<a href="'+BASE_URL+'/admincontrol/folders/delete/'+folders[i]['id']+'" ><img src="'+BASE_URL+'/public/img/folder_remove.png"></a>'+
-            '<a href="'+BASE_URL+'/admincontrol/folders/id/'+folders[i]['id']+'" >'+folders[i]['name']+'</a>' +
+            '<a href="'+BASE_URL+'/admincontrol/folders/delete/'+folders[i]['id']+'"><img src="'+BASE_URL+'/public/img/folder_remove.png" title="удалить"></a>'+
+            '<a '+active+' data-list-id="'+folders[i]['id']+'" href="'+BASE_URL+'/admincontrol/folders/id/'+folders[i]['id']+'" >'+folders[i]['name']+'</a>' +
             '</li>';
         }
         this.$folders_list_li.html(li);
@@ -58,6 +64,7 @@
                     if($.trim(text) !== '') {
                         event.data.self.$ajax_loader.show();
                         event.data.self.ajaxQuestion(text);
+                        event.data.self.lastActive =  $('a',event.data.self.$folders_list_li).filter( '.folders_active').data('listId');
                     }
                     event.stopPropagation();
                     break;
