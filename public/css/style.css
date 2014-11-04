@@ -80,11 +80,13 @@ body {
 }
 .resume .resume_header a.header_back{
     color: white;
-    background-color: rgba(255, 0, 0, 0.44);
+    background-color: red;
+    text-transform: uppercase;
     padding: 5px 10px 5px 10px;
-    font-weight: bold;
-    border-radius: 10px;
     font-size: .2em;
+    text-decoration: none;
+    letter-spacing:2px;
+
 }
 
 .resume .conclusion{
@@ -92,8 +94,8 @@ body {
     margin-top: 10px;
     padding: 5px;
     border-radius: 10px;
+    border: 1px solid rgba(102, 102, 102, 0.42);
     -moz-border-radius: 10px;
-    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -172,8 +174,8 @@ body {
     font-size: .6em;
     margin-left: 10px;
     border: none;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     color: white;
     background-color: rgba(198, 123, 55, 0.44);
     padding: 5px 10px 5px 10px;
@@ -199,9 +201,8 @@ body {
     display: block;
     padding: 10px;
     float: left;
-    width: 50%;
-    margin-left: 250px;
-    height: 35px;
+    width: 70%;
+    margin-left: 50px;
     resize: vertical;
     margin-bottom: 15px;
 }
@@ -1328,11 +1329,10 @@ main.authorization .helpers_message_authorization{
 .admin_control .left_admin_control .widget.admin p{
     width: 100%;
     padding: 5px 10px 5px 10px;
-    border-radius: 10px;
+    border-radius: 3px;
     border: 1px rgba(87, 171, 255, 0.50) dashed;
-    -moz-border-radius: 10px;
+    -moz-border-radius: 3px;
     font-size: 1.2em;
-    font-weight: bold;
     margin-top: 10px;
 }
 
@@ -1341,23 +1341,27 @@ main.authorization .helpers_message_authorization{
 }
 .admin_control .left_admin_control .widget.admin a{
     display: block;
-    font-weight: bold;
     width: 98%;
+    color: #4f80b1;
 }
 
 .admin_control .left_admin_control .widget.admin span{
     display: block;
     float: right;
     width: 3%;
-    color: gold;
+    color: #ad4a10;
 }
 
 .admin_control .left_admin_control .widget.admin .active{
     background-color: rgba(87, 171, 255, 0.50);
 }
 
+.admin_control .left_admin_control .widget.admin .active a{
+    color: #476b97;
+}
+
 .admin_control .left_admin_control p a:visited{
-    color: black;
+    color: #4f80b1;
 }
 
 .admin_control .right_admin_control{
@@ -1436,7 +1440,7 @@ main.authorization .helpers_message_authorization{
     border-radius: 10px;
     padding: 10px;
     -moz-border-radius: 10px;
-    box-shadow: 0 0 7px #666;
+    box-shadow: 0 0 10px rgba(87, 171, 255, 0.73);
     overflow:hidden;
 
 }
@@ -1597,11 +1601,11 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion{
     width: 100%;
-    padding: 10px;
     margin-top: 5px;
+    padding: 5px;
+    border: 1px solid rgba(102, 102, 102, 0.42);
     border-radius: 10px;
     -moz-border-radius: 10px;
-    box-shadow: 0 0 7px #666;
     background-color: white;
 }
 
@@ -1617,8 +1621,8 @@ main.authorization .helpers_message_authorization{
     font-size: .8em;
     margin-left: 5px;
     border: none;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     color: white  !important;
     background-color: rgba(198, 123, 55, 0.58);
     padding: 5px 10px 5px 10px  !important;
@@ -1645,8 +1649,8 @@ main.authorization .helpers_message_authorization{
     padding: 10px;
     float: left;
     width: 60%;
+    margin-bottom: 10px;
     margin-left: 60px;
-    height: 25px;
     resize: vertical;
 }
 .admin_control .conclusion button{
@@ -1819,13 +1823,14 @@ main.authorization .helpers_message_authorization{
 }
 .admin_control.folders .choose_folders{
     width: 75%;
+    color: #428bca;
     padding: 10px;
     margin-top: 60px;
     text-align: center;
     font-size: 1.4em;
     background:#fff;
     border-radius:4px;
-    box-shadow: 0 0 7px #666;
+    box-shadow: 0 0 7px #56a5f8;
     -moz-border-radius:4px;
 }
 
