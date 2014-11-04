@@ -273,9 +273,8 @@ body {
     -moz-border-radius: 10px;
     padding: 10px;
     font-size: .24em;
-    background-color: rgba(255, 86, 77, 0.04);
     border: 1px rgba(171, 171, 171, 0.46) solid;
-    color: #ff5d10;
+    color: #ad4a10;
     font-weight: bold;
 }
 
@@ -294,7 +293,6 @@ fieldset img{
 }
 fieldset legend{
     font-size: .9em;
-    color: #ff5d10;
 }
 
 .resume .resume_widget .form_comment{
@@ -1320,7 +1318,7 @@ main.authorization .helpers_message_authorization{
     background-color: rgba(255, 0, 0, 0.64);
 }
 .admin_control .left_admin_control .widget.admin{
-    background-color: rgba(175, 175, 175, 0.2);
+    box-shadow: 0 0 10px rgba(87, 171, 255, 0.50);
     border-radius: 10px;
     -moz-border-radius: 10px;
     padding: 10px;
@@ -1329,9 +1327,8 @@ main.authorization .helpers_message_authorization{
 .admin_control .left_admin_control .widget.admin p{
     width: 100%;
     padding: 5px 10px 5px 10px;
-    background-color: rgba(198, 123, 55, 0.37);
-    color: white;
     border-radius: 10px;
+    border: 1px rgba(87, 171, 255, 0.50) dashed;
     -moz-border-radius: 10px;
     font-size: 1.2em;
     font-weight: bold;
@@ -1339,16 +1336,15 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .left_admin_control .widget.admin p:hover{
-    background-color: rgba(198, 123, 55, 0.76);
+    background-color: rgba(87, 171, 255, 0.50);
+    color: #ffffff;
 }
 .admin_control .left_admin_control .widget.admin a{
     display: block;
     font-weight: bold;
-    color: white;
+    color: rgba(76, 140, 213, 0.50);
     width: 98%;
 }
-
-
 
 .admin_control .left_admin_control .widget.admin span{
     display: block;
@@ -1357,14 +1353,13 @@ main.authorization .helpers_message_authorization{
     color: gold;
 }
 
-
-
 .admin_control .left_admin_control .widget.admin .active{
-    background-color: rgba(198, 123, 55, 0.76);
+    background-color: rgba(87, 171, 255, 0.50);
+    color: #ffffff;
 }
 
 .admin_control .left_admin_control p a:visited{
-    color: white;
+    color: #ffffff;
 }
 
 .admin_control .right_admin_control{

@@ -43,13 +43,16 @@ class Excel{
 
 		$personal_data['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(
 			array(
-				'birth'=>$personal_data['birth'],
 				'sex'=>$personal_data['sex'],
 				'move'=>$personal_data['move'],
 				'city'=>$personal_data['city'],
 				'trip'=>$personal_data['trip']
 			)
 		);
+		$personal_data['experience_key_skills'] = str_replace(' ',', ',str_replace('&nbsp;','',
+			$personal_data['experience_key_skills']));
+
+		$personal_data['old'] = $this->_getOld(array('birth'=>$personal_data['birth']));
 
 		$personal_data['institutions']=$this->_getNamesInstitutionsNoHTML(
 			array(
@@ -163,7 +166,7 @@ class Excel{
 				$data[$key]['experience_getting_starteds'] = $starteds;
 
 				if($personal_data['experience_at_the_moments'][$key]=='true'){
-					$data[$key]['experience_getting_starteds'] .= " - по ностоящее время";
+					$data[$key]['experience_getting_starteds'] .= " - по настоящее время";
 					$data[$key]['experience_count'] =  $personal_data['experience_count'][$key];
 				}else{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
@@ -274,14 +277,14 @@ class Excel{
 		$call_me = array();
 		if($personal_data['mobile_phone']){
 			if($personal_data['preferred_communication']==1){
-				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}—желаемый способ связи";
+				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}(желаемый способ связи)";
 			}else{
 				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}";
 			}
 		}
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
-				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}—желаемый способ связи";
+				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}(желаемый способ связи)";
 			}else{
 				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}";
 			}
@@ -289,14 +292,14 @@ class Excel{
 		}
 		if($personal_data['work_phone']){
 			if($personal_data['preferred_communication']==3) {
-				$call_me[] = "рабочий — {$personal_data['work_phone']}{$personal_data['comment_work_phone']}—желаемый способ связи";
+				$call_me[] = "рабочий — {$personal_data['work_phone']}{$personal_data['comment_work_phone']}(желаемый способ связи)";
 			}else{
 				$call_me[] = "рабочий — {$personal_data['work_phone']}{$personal_data['comment_work_phone']}";
 			}
 		}
 		if($personal_data['email']){
 			if($personal_data['preferred_communication']==4) {
-				$call_me[] = "email — {$personal_data['email']}—желаемый способ связи";
+				$call_me[] = "email — {$personal_data['email']} (желаемый способ связи)";
 			}else{
 				$call_me[] = "email — {$personal_data['email']}";
 			}
@@ -374,17 +377,22 @@ class Excel{
 		return $date;
 	}
 
-	private function _getBerBirthSexCityMoveTrip($personal_data){
+	private function _getOld($personal_data){
 		$birth='';
 		if(trim($personal_data['birth'])!=='--'){
-			$birth_array = explode('-',$personal_data['birth']);
-			$birth_array[1] = $this->_month[$birth_array[1]];
-			$birth = implode($birth_array,' ');
+			$now = new DateTime(date("Y-m-d"));
+			$births = new DateTime($personal_data['birth']);
+
+			$interval = $now->diff($births);
+			$birth = $interval->format('%y года(лет)');
 		}
 
+		return " ({$birth})";
+	}
+
+	private function _getBerBirthSexCityMoveTrip($personal_data){
 		return sprintf(
-			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
-			$birth,
+			'<b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
 			$personal_data['sex'],
 			$personal_data['city'],
 			$personal_data['move'],

@@ -507,7 +507,7 @@ class User{
 				$data.="<tr>"
 					."<td>{$starteds}";
 				if($personal_data['experience_at_the_moments'][$key]=='true'){
-					$data.="&mdash; по ностоящее время<br>
+					$data.="&mdash; по настоящее время<br>
 					<span>{$personal_data['experience_count'][$key]}</span></td>";
 				}else{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
