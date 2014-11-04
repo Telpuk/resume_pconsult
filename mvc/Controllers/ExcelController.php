@@ -37,17 +37,20 @@ class ExcelController extends IController{
 
 			$section = $this->_word->createSection($sectionStyle);
 
-			//			$header = $section->addHeader();
-			//			$header->addImage(BASE_URL."/public/img/logo.jpg",
-			//				array(
-			//					'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-			//					'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
-			//					'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_MARGIN,
-			//					'marginRight' =>2,
-			//					'marginTop' => 1,
-			//					'width' => 70,
-			//					'height' => 70)
-			//			);
+			$header = $section->addHeader();
+			$header->addImage(BASE_URL."/public/img/logo.jpg",
+				array(
+					'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+					'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
+					'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_MARGIN,
+					'marginRight' =>2,
+					'marginTop' => 1,
+					'width' => 70,
+					'height' => 70)
+			);
+			$header->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center'));
+			$header->addLink("www.proconsult.by");
+			$header->addText("+375 44 779 03 94",array('align'=>'center'));
 
 			$section->addText('РЕЗЮМЕ', array('size'=>14),array('align'=>'center'));
 			$section->addText($personal_data['name'].$personal_data['old'], array('bold'=>true,'size'=>14), array('align'=>'center'));
@@ -56,19 +59,10 @@ class ExcelController extends IController{
 				$section->addText($value, array('align'=>'left'));
 			}
 			// ===================================опыт======================= //
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
-			$section->addText('Опыт:', array('size'=>16,'italic'=>true, 'color'=>'blue'),array('align'=>'center'));
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
+			$section->addText('Опыт:',
+				array('size'=>18,'italic'=>true, 'color'=>'blue'),
+				array('align'=>'center')
+			);
 
 			foreach($personal_data['experience_organizations'] as $key=>$value){
 				$section->addText($value['experience_organizations'].
@@ -86,19 +80,7 @@ class ExcelController extends IController{
 
 			// ===================================образование======================= //
 			$section = $this->_word->addSection($sectionStyle);
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText('Образование:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			foreach($personal_data['institutions'] as $key=>$value){
 				$section->addText($value['name_institution'], array('bold'=>true));
 				$section->addText("Факультет: {$value['faculties']}");
@@ -131,19 +113,7 @@ class ExcelController extends IController{
 
 			// ===================================навыки=============================== //
 			$section = $this->_word->addSection($sectionStyle);
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText('Навыки:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText($personal_data['experience_key_skills']);
 			$section->addTextBreak();
 
@@ -151,38 +121,14 @@ class ExcelController extends IController{
 
 
 			// ===================================Личностные качества============== //
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText('Личностные качества:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText($personal_data['experience_about_self']);
 			$section->addTextBreak();
 			// ===================================end Личностные качества======================= //
 
 
 			// ===================================Рекомендации============== //
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			$section->addText('Рекомендации:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
-			$section->addLine(array(
-				'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-				'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-				'positioning' => 'absolute'
-			));
 			if($personal_data['experience_recommend']){
 				foreach($personal_data['experience_recommend']['experience_recommend_names'] as $key=>$value){
 					$section->addText($personal_data['experience_recommend']['experience_recommend_organization'][$key],array('bold'=>true, 'size'=>16));
@@ -195,27 +141,18 @@ class ExcelController extends IController{
 
 			// ===================================Заключение============== //
 			if($personal_data['conclusion']){
-				$section->addLine(array(
-					'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-					'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-					'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-					'positioning' => 'absolute'
-				));
 				$section->addText('Заключение:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
-				$section->addLine(array(
-					'width' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-					'height' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(0),
-					'marginLeft' => \PhpOffice\PhpWord\Shared\Drawing::centimetersToPixels(10),
-					'positioning' => 'absolute'
-				));
 				$section->addText($personal_data['conclusion']);
 			}
 			// ===================================end Заключение======================= //
 
 
-			header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-			header('Content-Disposition: attachment;filename="document.docx"');
-			header('Cache-Control: max-age=0');
+			header("Content-Description: File Transfer");
+			header("Content-Disposition: attachment; filename={$personal_data['name']}.docx");
+			header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+			header("Content-Transfer-Encoding: binary");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Expires: 0");
 			$writer = \PhpOffice\PhpWord\IOFactory::createWriter($this->_word, 'Word2007');
 			$writer->save('php://output');
 

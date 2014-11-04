@@ -81,7 +81,7 @@ body {
 .resume .resume_header a.header_back{
     color: white;
     background-color: rgba(255, 0, 0, 0.44);
-    padding: 10px;
+    padding: 5px 10px 5px 10px;
     font-weight: bold;
     border-radius: 10px;
     font-size: .2em;
@@ -90,9 +90,9 @@ body {
 .resume .conclusion{
     width: 100%;
     margin-top: 10px;
-    padding: 20px;
-    border-radius: 20px;
-    -moz-border-radius: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
     box-shadow: 0 0 7px #666;
     background-color: white;
 }
@@ -102,7 +102,7 @@ body {
     text-align: center;
     color: rgba(198, 123, 55, 0.71);
     margin-bottom: 5px;
-    font-size: 0.3em !important;
+    font-size: 0.25em !important;
 }
 
 .resume .favorite{
@@ -201,27 +201,28 @@ body {
     float: left;
     width: 50%;
     margin-left: 250px;
-    height: 80px;
+    height: 35px;
     resize: vertical;
+    margin-bottom: 15px;
 }
 .resume .conclusion input[type=submit]{
     display: block;
     float: left;
-    height: 50px;
+    height: 25px;
     width: 150px;
     font-size: 18px;
     color: white;
     border: none;
     background-color: rgba(0, 128, 0, 0.57);
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     margin-left: 20px;
 }
 
 
 
 .resume  h1:first-child{
-    font-size: .35em;
+    font-size: .3em;
 }
 
 
@@ -271,7 +272,6 @@ body {
     width: 23%;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    padding: 10px;
     font-size: .24em;
     border: 1px rgba(171, 171, 171, 0.46) solid;
     color: #ad4a10;
@@ -292,12 +292,12 @@ fieldset img{
     height: 18px;
 }
 fieldset legend{
-    font-size: .9em;
+    font-size: .85em;
 }
 
 .resume .resume_widget .form_comment{
     margin-top: 20px;
-    padding: 19px;
+    padding: 10px;
     margin-bottom: 30px;
 }
 
@@ -1304,6 +1304,7 @@ main.authorization .helpers_message_authorization{
     width: 23%;
     margin-top: 10px;
     font-size: .17em;
+    color: black;
     /*border: 1px black solid;*/
 }
 
@@ -1312,9 +1313,9 @@ main.authorization .helpers_message_authorization{
     font-size: 1.3em;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    color: white;
     padding: 10px;
     text-align: center;
+    color: #ffffff;
     background-color: rgba(255, 0, 0, 0.64);
 }
 .admin_control .left_admin_control .widget.admin{
@@ -1337,12 +1338,10 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .left_admin_control .widget.admin p:hover{
     background-color: rgba(87, 171, 255, 0.50);
-    color: #ffffff;
 }
 .admin_control .left_admin_control .widget.admin a{
     display: block;
     font-weight: bold;
-    color: rgba(76, 140, 213, 0.50);
     width: 98%;
 }
 
@@ -1355,11 +1354,10 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .left_admin_control .widget.admin .active{
     background-color: rgba(87, 171, 255, 0.50);
-    color: #ffffff;
 }
 
 .admin_control .left_admin_control p a:visited{
-    color: #ffffff;
+    color: black;
 }
 
 .admin_control .right_admin_control{
@@ -1410,12 +1408,12 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id figure{
     display: block;
     float: left;
-    width: 25%;
+    width: 20%;
 }
 
 .admin_control .right_admin_control .user_id .inform_user{
     float: left;
-    width: 75%;
+    width: 80%;
 }
 
 .admin_control .right_admin_control .user_id .inform_user p{
@@ -1434,9 +1432,10 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
     float: right;
-    border-radius: 20px;
+    width: 30%;
+    border-radius: 10px;
     padding: 10px;
-    -moz-border-radius: 20px;
+    -moz-border-radius: 10px;
     box-shadow: 0 0 7px #666;
     overflow:hidden;
 
@@ -1600,8 +1599,8 @@ main.authorization .helpers_message_authorization{
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border-radius: 20px;
-    -moz-border-radius: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
     box-shadow: 0 0 7px #666;
     background-color: white;
 }
@@ -1647,20 +1646,20 @@ main.authorization .helpers_message_authorization{
     float: left;
     width: 60%;
     margin-left: 60px;
-    height: 40px;
+    height: 25px;
     resize: vertical;
 }
 .admin_control .conclusion button{
     display: block;
     float: left;
-    height: 40px;
+    height: 25px;
     width: 150px;
     font-size: 18px;
     color: white;
     border: none;
     background-color: rgba(0, 128, 0, 0.57);
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     margin-left: 20px;
 }
 

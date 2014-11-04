@@ -38,7 +38,7 @@
                 $element.parent().parent().html(
                     "<h1>Заключение <span class='editConclusion back'>отменить</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                     "<textarea class='conclusion_textarea' name='conclusion'>"+$textarea.text()+"</textarea>"+
-                    "<button class='button_conclusion'>Обновить</button>"+
+                    "<button class='button_conclusion'>обновить</button>"+
                     "<div class='clear'></div>"
                 );
 
@@ -61,7 +61,7 @@
                             $element.parent().parent().parent().html(
                                 "<h1>Заключение</h1>"+
                                 "<textarea class='conclusion_textarea' name='conclusion'></textarea>"+
-                                "<button class='button_conclusion'>Сохранить</button>"+
+                                "<button class='button_conclusion'>сохранить</button>"+
                                 "<div class='clear'></div>"
                             );
                         }

@@ -110,6 +110,7 @@ class IndexController extends IController{
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/jquery.printPage.js",
 				BASE_URL."/public/js/resume.js"
 			),
 		);
