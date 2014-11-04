@@ -23,7 +23,7 @@
 				<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
 					<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search_folders_user']?>">
 					<input type="submit"  value="искать в папке">
-					<span><?=$this->data['data']['message']?></span
+					<span><?=$this->data['data']['message']?></span>
 				</form>
 			</div>
 			<div class="user_folders">
@@ -62,7 +62,7 @@
 								<h1>Заключение</h1>
 								<textarea class='conclusion_textarea' name="conclusion"></textarea>
 								<input type="hidden" name="admincontrol" value="admincontrol">
-								<button class="button_conclusion">Сохранить</button>
+								<button class="button_conclusion">сохранить</button>
 								<div class="clear"></div>
 							<?php  else: ?>
 								<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>

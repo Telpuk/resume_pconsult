@@ -9,6 +9,7 @@
         this.lastActive = 0;
         this.$resume = $('.conclusion');
         this.conclusion_text;
+        this.cache = {};
     }
 
     Folders.prototype.addEventListenerHtml = function(){
@@ -112,12 +113,32 @@
                 var $textarea =  $element.parent().siblings(".conclusion_text");
                 event.data.self.conclusion_text = $textarea.text();
 
+                event.data.self.cache[$element.parent().parent().data('idConclusion')] = {
+                    element:$element.parent().parent(),
+                    text: event.data.self.conclusion_text
+                };
+
+                for(var i in  event.data.self.cache){
+                    if(i != $element.parent().parent().data('idConclusion')){
+                        event.data.self.cache[i]['element'].html(
+                            "<h1>Заключение <span class='editConclusion'>" +
+                            "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
+                            "<span class='deleteConclusion'><a class='a_deleteConclusion' href='#'>" +
+                            "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
+                            "<div class='conclusion_text'>"+event.data.self.cache[i]['text']+"</div>"+
+                            "<div class='clear'></div>"
+                        );
+                    }
+                }
+
                 $element.parent().parent().html(
                     "<h1>Заключение <span class='editConclusion back'>отменить</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                     "<textarea class='conclusion_textarea' name='conclusion'>"+$textarea.text()+"</textarea>"+
-                    "<button class='button_conclusion'>Обновить</button>"+
+                    "<button class='button_conclusion'>обновить</button>"+
                     "<div class='clear'></div>"
                 );
+
+
 
 
             }else if(event.target.className === 'editConclusion back'){
@@ -138,7 +159,7 @@
                             $element.parent().parent().parent().html(
                                 "<h1>Заключение</h1>"+
                                 "<textarea class='conclusion_textarea' name='conclusion'></textarea>"+
-                                "<button class='button_conclusion'>Сохранить</button>"+
+                                "<button class='button_conclusion'>сохранить</button>"+
                                 "<div class='clear'></div>"
                             );
                         }
@@ -148,7 +169,7 @@
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
 
-            return false;
+
         });
     }
 

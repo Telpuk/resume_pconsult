@@ -271,8 +271,9 @@ body {
 .resume .resume_widget{
     float: right;
     width: 23%;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     font-size: .24em;
     border: 1px rgba(171, 171, 171, 0.46) solid;
     color: #ad4a10;
@@ -1672,7 +1673,7 @@ main.authorization .helpers_message_authorization{
     border: 1px black solid;
 }
 .admin_control.folders .user_folders .inform_user {
-    width:  80%;
+    width:  84%;
 }
 
 
@@ -1798,7 +1799,7 @@ main.authorization .helpers_message_authorization{
 
 
 .admin_control.folders .user_folders figure{
-    width: 19%;
+    width: 16%;
 }
 
 
@@ -1806,17 +1807,6 @@ main.authorization .helpers_message_authorization{
     width: 100px;
     height: 100px;
 }
-
-.admin_control.folders .user_folders .conclusion{
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 20px;
-    -moz-border-radius: 20px;
-    box-shadow: 0 0 7px #666;
-    background-color: white;
-}
-
 
 .admin_control.folders .search_folders{
     padding: 10px;

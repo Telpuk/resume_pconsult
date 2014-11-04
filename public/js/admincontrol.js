@@ -4,7 +4,6 @@
         this.conclusion_text;
     }
 
-
     Resume.prototype.addEventListener = function(){
         this.$resume.on('click', {self:this}, function(event){
 

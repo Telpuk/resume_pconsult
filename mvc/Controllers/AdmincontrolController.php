@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 3,
+		$_count_view = 2,
 		$_page = null;
 
 	public function  __construct(){
@@ -100,7 +100,7 @@ class AdminControlController extends IController{
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'pagination' => $this->_db_admin->printPagination(
 					ceil($count / $this->_count_view), $this->_page, array(
-						'url'=>"folders/id/28/search/?search=$search[0]")),
+						'url'=>"folders/id/{$this->getParams('id')}/search/?search=$search[0]")),
 			),
 			'js'=>$this->_jsFolders()
 		));
