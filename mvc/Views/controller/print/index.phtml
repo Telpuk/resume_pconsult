@@ -1,19 +1,15 @@
 <div class="print_content">
 	<main class="resume">
-		<div class="resume_header">
-			<p><a class="header_back" href="<?=BASE_URL.'/index'?>">вернуться назад</a></p>
+		<div class="checkbox_print">
+			<?php if(count($this->data['data']['comments'])): ?>
+				<p><input id="without_comments" type="checkbox" value="">Без комментариев</p>
+			<?php endif ?>
+			<?php if(!empty($this->data['data']['conclusion'])): ?>
+				<p><input id="without_conclusion" type="checkbox" value="">Без заключения</p>
+			<?php endif ?>
+			<p><button id="button">Распечатать</button></p>
+			<p><a class="back" href="<?=BASE_URL.'/index'?>">вернуться назад</a></p>
 		</div>
-		<?php if(!empty($this->data['data']['comments']) || count($this->data['data']['comments'])): ?>
-			<div class="checkbox_print">
-				<?php if(count($this->data['data']['comments'])): ?>
-					<p><input type="checkbox" value="">Без комментариев</p>
-				<?php endif ?>
-				<?php if(!empty($this->data['data']['conclusion'])): ?>
-					<p><input type="checkbox" value="">С заключением</p>
-				<?php endif ?>
-				<p><button class="button">Распечатать</button></p>
-			</div>
-		<?php endif ?>
 		<section class="photo_personal_contacts">
 			<div class="right">
 				<figure>
@@ -111,13 +107,13 @@
 		<?php endif; ?>
 		<div id="conclusion">
 			<?php if(!empty($this->data['data']['conclusion'])): ?>
-				<h6>Заключение</h6>
+				<h6>Заключение:</h6>
 				<p><?=$this->data['data']['conclusion']?></p>
 			<?php endif;?>
 		</div>
 		<div id="comments">
 			<?php if(count($this->data['data']['comments'])): ?>
-				<h6>Коментарии</h6>
+				<h6>Коментарии:</h6>
 				<?php foreach($this->data['data']['comments'] as $value): ?>
 					<p class="text_comment"><?=$value['comment']?></p>
 					<p><?=$value['name']?> <?=$value['date']?></p>

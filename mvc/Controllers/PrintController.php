@@ -21,7 +21,8 @@ class PrintController extends IController{
 //			print_r($select_personal_data);
 			return $this->_view->render(array(
 				'view'=>'print/index',
-				'data' => $select_personal_data
+				'data' => $select_personal_data,
+				'js'=>$this->_jsPrint()
 			));
 		}else{
 			$this->headerLocation('index');
@@ -30,5 +31,13 @@ class PrintController extends IController{
 
 	}
 
-
+	private function _jsPrint(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery.printPage.js",
+				BASE_URL."/public/js/print.js"
+			),
+		);
+	}
 }

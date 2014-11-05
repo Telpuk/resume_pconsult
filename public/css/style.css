@@ -59,13 +59,19 @@ body {
     padding: 10px;
     top:0;
     left: 0;
-    font-size: 1.1em;
+    font-size: 1em;
     width: 100%;
 }
 
 .print_content .resume .right{
-    width: 15%;
+    width: 150px;
     border: none;
+}
+.print_content .resume .left{
+    width: 75%;
+}
+.print_content .resume .right figure{
+    width: 150px;
 }
 .print_content .resume .header_back{
   margin-top: 0 !important;
@@ -93,22 +99,26 @@ body {
     margin-top: 10px;
 }
 
-.print_content .resume .left{
-    margin-top: 30px;
-    width: 80%;
-}
-.checkbox_print{
+.print_content .checkbox_print{
     width: 250px;
     padding: 10px;
-    background-color: rgba(255, 255, 0, 0.38);
+    background-color: rgba(255, 255, 0, 0.21);
     font-size: 0.2em;
 }
-.checkbox_print p{
+.print_content .checkbox_print p{
     margin-top: 5px;
 }
 
-
-
+.print_content .checkbox_print .back{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: red;
+    padding: 5px;
+    color: #ffffff;
+    font-size: 1.1em;
+}
 /*============end print==========*/
 
 .no-page{
@@ -322,7 +332,6 @@ body {
     width: 15%;
     height: 150px;
     margin-right: 20px;
-    margin-top: 30px;
 }
 
 .photo_personal_contacts figure img{
@@ -480,6 +489,7 @@ fieldset legend{
 
 .resume .salary_position .salary_position_add,
 .resume .education_add{
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -535,9 +545,7 @@ fieldset legend{
 .resume .salary_position{
     width: 100%;
 }
-.resume .salary_position{
-    margin-top: 30px;
-}
+
 .resume .salary_position  h1,
 .resume .education_language h1,
 .resume .experience h1,
@@ -549,6 +557,7 @@ fieldset legend{
 }
 .resume .education_language{
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -674,7 +683,7 @@ fieldset legend{
 .resume .education_add,
 .resume .experience_add{
     width: 100%;
-    margin-top: 30px;
+    margin-bottom: 30px;
     border: 1px #bbbbbb dashed;
     border-radius: 10px;
     -moz-border-radius: 10px;
