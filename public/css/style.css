@@ -68,6 +68,7 @@ body {
     border: none;
 }
 .print_content .resume .left{
+    float: left;
     width: 75%;
 }
 .print_content .resume .right figure{
@@ -332,7 +333,12 @@ body {
     -moz-border-radius: 10px;
     width: 15%;
     height: 150px;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.left{
+    float: right;
+    width: 82%;
 }
 
 .photo_personal_contacts figure img{
@@ -373,6 +379,7 @@ body {
     -moz-border-radius: 5px;
     font-size: .24em;
     border: 1px rgba(171, 171, 171, 0.46) solid;
+    margin-top: 10px;
     color: #ad4a10;
     font-weight: bold;
 }
@@ -494,10 +501,6 @@ fieldset legend{
     width: 100%;
 }
 
-.left{
-    float: left;
-    width: 82%;
-}
 .left_40{
     margin-top: 10px;
     float: left;
@@ -1371,17 +1374,11 @@ main.authorization p input[type=password]{
     float: left;
 }
 main.authorization p input[type=submit]{
-    text-transform: uppercase;
-    font-weight: bold;
-    color: white;
-    border: none;
-    background-color: #ff564d;
+    padding-left: 5px;
     display: block;
     height: 30px;
     width: 30%;
-    margin-right: 38.5%;
-    float: right;
-    margin-bottom: 10px;
+    float: left;
 }
 
 main.authorization .helpers_message_authorization{
