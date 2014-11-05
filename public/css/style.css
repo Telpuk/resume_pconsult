@@ -151,7 +151,13 @@ body {
     font-size: .95em;
     /*border: 1px black solid;*/
 }
-.resume .resume_header a.header_back{
+
+.resume .resume_header a.header_back,
+.resume .resume_header a.out{
+    display: block;
+    text-align: center;
+    float: left;
+    width: 20%;
     color: white;
     background-color: red;
     text-transform: uppercase;
@@ -159,6 +165,14 @@ body {
     font-size: .2em;
     text-decoration: none;
     letter-spacing:2px;
+    margin-bottom: 20px;
+
+}
+
+.resume .resume_header a.out{
+    display: block;
+    float: right;
+    width: 10%;
 
 }
 
@@ -333,14 +347,14 @@ body {
     border: 1px #bbbbbb dashed;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    width: 15%;
+    width: 17%;
     height: 150px;
     margin-right: 10px;
 }
 
 .left{
     float: right;
-    width: 82%;
+    width: 80%;
 }
 
 .photo_personal_contacts figure img{
