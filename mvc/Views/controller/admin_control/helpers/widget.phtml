@@ -10,7 +10,7 @@
 	<?php if($this->data['data']['admin'] === 'main'):?>
 		<p class='<?php if($this->data['data']['active_manager']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/managers"?>">менеджеры</a></p>
 	<?php endif; ?>
-	<?php if($this->data['data']['admin'] === 'main'):?>
-		<p class='<?php if($this->data['data']['folder']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/folders"?>">отобранные</a></p>
-	<?php endif; ?>
+
+	<p class='<?php if($this->data['data']['folder']) echo 'active'?>' ><a  href="<?=BASE_URL."/admincontrol/folders"?>">отобранные</a></p>
+
 </div>
