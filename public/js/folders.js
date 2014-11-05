@@ -7,16 +7,35 @@
         this.$ajax_loader = $('.ajax_loader');
         this.$folders_list_li = $('#folders_list_li');
         this.lastActive = 0;
-        this.$resume = $('.conclusion');
+        this.$conclusion = $('.conclusion');
         this.conclusion_text;
         this.cache = {};
     }
+
+    Folders.prototype.conclusionClose = function($element){
+        for(var i in  this.cache){
+            if(i != $element.parent().parent().data('idConclusion')){
+                this.cache[i]['element'].html(
+                    "<h1>Заключение <span class='editConclusion'>" +
+                    "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
+                    "<span class='deleteConclusion'><a class='a_deleteConclusion' href='#'>" +
+                    "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
+                    "<div class='conclusion_text'>"+this.cache[i]['text']+"</div>"+
+                    "<div class='clear'></div>"
+                );
+            }
+        }
+    };
 
     Folders.prototype.addEventListenerHtml = function(){
         this.$html.on('click',{self:this},function(event){
             event.data.self.$input_new_folder_block.hide();
             event.data.self.$addFolder.show();
             event.data.self.$inout_text.val('');
+            event.data.self.conclusionClose($(event.target));
+            if(event.target.className === 'delete_folder'){
+                return confirm("Вы действительно хатите удалить?");
+            }
         });
     };
 
@@ -38,8 +57,8 @@
                 active =  "class='folders_active'";
             }
             li += '<li>' +
-            '<a href="'+BASE_URL+'/admincontrol/folders/delete/'+folders[i]['id']+'"><img src="'+BASE_URL+'/public/img/folder_remove.png" title="удалить"></a>'+
-            '<a '+active+' data-list-id="'+folders[i]['id']+'" href="'+BASE_URL+'/admincontrol/folders/id/'+folders[i]['id']+'" >'+folders[i]['name']+'</a>' +
+            '<a class="delete_folder" href="'+BASE_URL+'/admincontrol/folders/delete/'+folders[i]['id']+'"><img class="delete_folder" src="'+BASE_URL+'/public/img/folder_remove.png" title="удалить"></a>'+
+            ' <a '+active+' data-list-id="'+folders[i]['id']+'" href="'+BASE_URL+'/admincontrol/folders/id/'+folders[i]['id']+'" >'+folders[i]['name']+'</a>' +
             '</li>';
         }
         this.$folders_list_li.html(li);
@@ -71,20 +90,19 @@
                     }
                     event.stopPropagation();
                     break;
-                }
+                };
                 case 'new_folder':{
                     event.stopPropagation();
                     break
-                }
+                };
             }
-
 
         });
     };
 
 
     Folders.prototype.addEventListenerConclusion = function(){
-        this.$resume.on('click', {self:this}, function(event){
+        this.$conclusion.on('click', {self:this}, function(event){
 
             if(event.target.className === 'button_conclusion'){
                 var $button = $(event.target);
@@ -101,12 +119,15 @@
                         }).done(function( data ) {
                             if (data === 'true') {
                                 $textarea.parent().html(
-                                    "<h1>Заключение <span class='editConclusion'><img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
+                                    "<h1>Заключение <span class='editConclusion'>" +
+                                    "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
+                                    "<span class='deleteConclusion'>" +
+                                    "<a class='a_deleteConclusion' href=''>" + "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                                     "<div class='conclusion_text'>"+$textarea.val()+"</div>"+
                                     "<div class='clear'></div>"
                                 );
                             }
-                        })
+                        });
                 }
             }else if(event.target.className === 'editConclusion'){
                 var $element = $(event.target);
@@ -118,18 +139,7 @@
                     text: event.data.self.conclusion_text
                 };
 
-                for(var i in  event.data.self.cache){
-                    if(i != $element.parent().parent().data('idConclusion')){
-                        event.data.self.cache[i]['element'].html(
-                            "<h1>Заключение <span class='editConclusion'>" +
-                            "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
-                            "<span class='deleteConclusion'><a class='a_deleteConclusion' href='#'>" +
-                            "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
-                            "<div class='conclusion_text'>"+event.data.self.cache[i]['text']+"</div>"+
-                            "<div class='clear'></div>"
-                        );
-                    }
-                }
+                event.data.self.conclusionClose($element);
 
                 $element.parent().parent().html(
                     "<h1>Заключение <span class='editConclusion back'>отменить</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
@@ -137,10 +147,6 @@
                     "<button class='button_conclusion'>обновить</button>"+
                     "<div class='clear'></div>"
                 );
-
-
-
-
             }else if(event.target.className === 'editConclusion back'){
                 $(event.target).parent().parent().html(
                     "<h1>Заключение <span class='editConclusion'><img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
@@ -163,15 +169,14 @@
                                 "<div class='clear'></div>"
                             );
                         }
-                    })
-
+                    });
             }else{
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
-
-
+            event.preventDefault();
+            event.stopPropagation();
         });
-    }
+    };
 
 
 

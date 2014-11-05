@@ -70,6 +70,7 @@ class IndexController extends IController{
 				'view' => 'index/index',
 				'data' =>@array_merge(array(
 						'helpers'=> $widget,
+						'id_user'=>$this->getSessionUserID('user'),
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
 						'type_admin_rus'=>$this->_type_admin),

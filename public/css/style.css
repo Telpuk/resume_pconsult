@@ -49,9 +49,67 @@ body {
     max-width:  1200px;
     margin: 40px auto;
     background-color: white;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     padding: 10px;
 }
+
+/*============print==========*/
+.print_content{
+    position: absolute;
+    padding: 10px;
+    top:0;
+    left: 0;
+    font-size: 1.1em;
+    width: 100%;
+}
+
+.print_content .resume .right{
+    width: 15%;
+    border: none;
+}
+.print_content .resume .header_back{
+  margin-top: 0 !important;
+}
+.print_content .resume .right:hover{
+    border: none;
+}
+
+.print_content .resume #conclusion,
+.print_content .resume #comments{
+    margin-top: 10px;
+    font-size: .2em;
+}
+
+.print_content .resume #conclusion h6,
+.print_content .resume #comments h6{
+    font-size: 1.2em;
+}
+.print_content .resume #comments p,
+.print_content .resume #conclusion p{
+    padding-left: 20px;
+}
+
+.print_content .resume #comments .text_comment{
+    margin-top: 10px;
+}
+
+.print_content .resume .left{
+    margin-top: 30px;
+    width: 80%;
+}
+.checkbox_print{
+    width: 250px;
+    padding: 10px;
+    background-color: rgba(255, 255, 0, 0.38);
+    font-size: 0.2em;
+}
+.checkbox_print p{
+    margin-top: 5px;
+}
+
+
+
+/*============end print==========*/
 
 .no-page{
     width: 40%;
@@ -77,6 +135,7 @@ body {
 }
 .resume{
     font-size: .95em;
+    /*border: 1px black solid;*/
 }
 .resume .resume_header a.header_back{
     color: white;
@@ -107,11 +166,39 @@ body {
     font-size: 0.25em !important;
 }
 
+.resume .print{
+    float: left;
+    width: 200px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: .15em;
+}
+.resume .print a{
+    text-decoration: none;
+    color: black;
+}
+.resume .print a:visited{
+    color: black;
+}
+.resume .print a:hover{
+    color: red;
+}
+.resume .print img{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+
 .resume .favorite{
-    width: 300px;
+    float: left;
     position: relative;
+    width: 200px;
     margin-top: 5px;
     font-size: .15em;
+}
+
+.resume .favorite:hover{
+    color: red;
 }
 .resume .favorite p.header_favorite:hover{
     cursor: pointer;
@@ -122,11 +209,11 @@ body {
     position: absolute;
     margin-top: 10px;
     margin-left: 15px;
-    font-size: .15em;
+    color: black;
     padding: 10px;
     overflow: auto;
     width: 250px;
-    height: 200px;
+    height: 250px;
     box-shadow: 0 0 7px #666;
     background-color: white;
 }

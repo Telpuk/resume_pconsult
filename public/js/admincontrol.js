@@ -1,11 +1,36 @@
 (function($, BASE_URL,window){
     function Resume(){
-        this.$resume = $('.conclusion');
+        this.$html = $('html');
+        this.$conclusion = $('.conclusion');
         this.conclusion_text;
+        this.cache = {};
     }
 
-    Resume.prototype.addEventListener = function(){
-        this.$resume.on('click', {self:this}, function(event){
+    Resume.prototype.conclusionClose = function($element){
+        for(var i in  this.cache){
+            if(i != $element.parent().parent().data('idConclusion')){
+                this.cache[i]['element'].html(
+                    "<h1>Заключение <span class='editConclusion'>" +
+                    "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
+                    "<span class='deleteConclusion'><a class='a_deleteConclusion' href='#'>" +
+                    "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
+                    "<div class='conclusion_text'>"+this.cache[i]['text']+"</div>"+
+                    "<div class='clear'></div>"
+                );
+            }
+        }
+    };
+
+    Resume.prototype.addEventListenerBody = function(){
+        this.$html.on('click',{self:this},function(event){
+            event.data.self.conclusionClose($(event.target));
+        });
+    };
+
+
+
+    Resume.prototype.addEventListenerConclusion = function(){
+        this.$conclusion.on('click', {self:this}, function(event){
 
             if(event.target.className === 'button_conclusion'){
                 var $button = $(event.target);
@@ -22,17 +47,27 @@
                         }).done(function( data ) {
                             if (data === 'true') {
                                 $textarea.parent().html(
-                                    "<h1>Заключение <span class='editConclusion'><img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
+                                    "<h1>Заключение <span class='editConclusion'>" +
+                                    "<img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span>" +
+                                    "<span class='deleteConclusion'>" +
+                                    "<a class='a_deleteConclusion' href=''>" + "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                                     "<div class='conclusion_text'>"+$textarea.val()+"</div>"+
                                     "<div class='clear'></div>"
                                 );
                             }
-                        })
+                        });
                 }
             }else if(event.target.className === 'editConclusion'){
                 var $element = $(event.target);
                 var $textarea =  $element.parent().siblings(".conclusion_text");
                 event.data.self.conclusion_text = $textarea.text();
+
+                event.data.self.cache[$element.parent().parent().data('idConclusion')] = {
+                    element:$element.parent().parent(),
+                    text: event.data.self.conclusion_text
+                };
+
+                event.data.self.conclusionClose($element);
 
                 $element.parent().parent().html(
                     "<h1>Заключение <span class='editConclusion back'>отменить</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
@@ -40,8 +75,6 @@
                     "<button class='button_conclusion'>обновить</button>"+
                     "<div class='clear'></div>"
                 );
-
-
             }else if(event.target.className === 'editConclusion back'){
                 $(event.target).parent().parent().html(
                     "<h1>Заключение <span class='editConclusion'><img src='"+BASE_URL+"/public/img/edit.png'>редактировать</span><span class='deleteConclusion'><a class='a_deleteConclusion' href='#'><img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
@@ -64,17 +97,18 @@
                                 "<div class='clear'></div>"
                             );
                         }
-                    })
-
+                    });
             }else{
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
-
-            return false;
+            event.preventDefault();
+            event.stopPropagation();
         });
-    }
+    };
+
     Resume.prototype.init = function(){
-        this.addEventListener();
+        this.addEventListenerConclusion();
+        this.addEventListenerBody();
     };
 
     var resume = new Resume();

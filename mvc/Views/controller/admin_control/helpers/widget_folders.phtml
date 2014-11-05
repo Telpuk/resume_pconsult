@@ -11,7 +11,7 @@
 	<ul id="folders_list_li">
 		<?php foreach($this->data['data']['folders'] as $value): ?>
 			<li>
-				<a href='<?=BASE_URL."/admincontrol/folders/delete/{$value['id']}"?>'><img src="<?=BASE_URL ."/public/img/folder_remove.png"?>" title="удалить"></a>
+				<a class="delete_folder" href='<?=BASE_URL."/admincontrol/folders/delete/{$value['id']}"?>'><img class="delete_folder" src="<?=BASE_URL."/public/img/folder_remove.png"?>" title="удалить"></a>
 				<a data-list-id ='<?=$value['id']?>' <?php if($value['id']==$this->data['data']['id_folders_active'])echo"class='folders_active'"?> href='<?=BASE_URL ."/admincontrol/folders/id/{$value['id']}"?>'><?=$value['name']?></a>
 			</li>
 		<?php endforeach; ?>

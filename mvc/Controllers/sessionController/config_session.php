@@ -6,6 +6,7 @@
 		)),
 		'admin'=>array('controllers'=>array(
 			'AdmincontrolController',
-			'ExcelController'
+			'ExcelController',
+			'PrintController'
 		))
 	);
