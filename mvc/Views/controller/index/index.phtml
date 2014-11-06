@@ -23,6 +23,10 @@
 	<div class="print">
 		<p><a href="<?=BASE_URL."/print/index/id/{$this->data['data']['id_user']}"?>"><img src='<?=BASE_URL."/public/img/print.png"?>'>Распечатать</a></p>
 	</div>
+	<div class="print">
+		<p><a href="<?= BASE_URL . "/excel/index/id/{$this->data['data']['id_user']}" ?>"><img
+					src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме</a></p>
+	</div>
 	<div class="clear"></div>
 <?php else: ?>
 	<h1>Создать резюме за несколько минут</h1>

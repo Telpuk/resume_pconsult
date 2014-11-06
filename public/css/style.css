@@ -117,7 +117,7 @@ body {
     margin-top: 10px;
     background-color: red;
     color: #ffffff;
-    font-size: 1.1em;
+    font-size: 0.75em;
     text-transform: uppercase;
     padding: 5px 10px 5px 10px;
     text-decoration: none;
@@ -162,7 +162,7 @@ body {
     background-color: red;
     text-transform: uppercase;
     padding: 5px 10px 5px 10px;
-    font-size: .2em;
+    font-size: .15em;
     text-decoration: none;
     letter-spacing:2px;
     margin-bottom: 20px;
@@ -196,7 +196,7 @@ body {
 
 .resume .print{
     float: left;
-    width: 200px;
+    width: 150px;
     margin-top: 5px;
     margin-left: 10px;
     font-size: .15em;
@@ -241,7 +241,7 @@ body {
     padding: 10px;
     overflow: auto;
     width: 250px;
-    height: 250px;
+    max-height: 350px;
     box-shadow: 0 0 7px #666;
     background-color: white;
 }
