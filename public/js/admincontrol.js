@@ -9,6 +9,15 @@
         this.$download_content = $('.download_content');
     }
 
+    Resume.prototype.resetChecked = function(){
+        $('input[type=checkbox]',this.$download_content).each(function () {
+            var $self = $(this);
+            if ($self.filter(":checkbox:checked").length !== 0) {
+                $self.prop('checked', false);
+            }
+        });
+    };
+
     Resume.prototype.conclusionClose = function($element){
         for(var i in  this.cache){
             if(i != $element.parent().parent().data('idConclusion')){
@@ -27,12 +36,15 @@
     Resume.prototype.addEventListenerBody = function(){
         this.$html.on('click',{self:this},function(event){
             event.data.self.conclusionClose($(event.target));
+            event.data.self.$download_content.hide();
+            event.data.self.resetChecked();
         });
     };
 
 
     Resume.prototype.addEventListenerConclusion = function(){
         this.$conclusion.on('click', {self:this}, function(event){
+            var $self = $(this);
 
             if(event.target.className === 'button_conclusion'){
                 var $button = $(event.target);
@@ -55,6 +67,9 @@
                                     "<a class='a_deleteConclusion' href=''>" + "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                                     "<div class='conclusion_text'>"+$textarea.val()+"</div>"+
                                     "<div class='clear'></div>"
+                                );
+                                $('.download_content',$self.parent()).prepend(
+                                    "<p><input type='checkbox' class='without_conclusion' value='conclusion'>Без заключения</p>"
                                 );
                             }
                         });
@@ -98,11 +113,14 @@
                                 "<button class='button_conclusion'>сохранить</button>"+
                                 "<div class='clear'></div>"
                             );
+                            $('.without_conclusion',$self.parent()).parent().remove();
                         }
                     });
+
             }else{
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
+            event.data.self.$download_content.hide();
             event.preventDefault();
             event.stopPropagation();
         });
@@ -117,11 +135,11 @@
 
 
     Resume.prototype.addEventListenerDownloadContent = function () {
-        this.$download_content.on('click', {self: this, id: this.$download_content.data('idUser')}, function (event) {
+        this.$download_content.on('click', {self: this}, function (event) {
             var checkbox = {},
-                href_export = '/id/' + event.data.id;
-            if (event.target.id.toLocaleLowerCase() === 'button') {
-                $('input[type=checkbox]',(this)).each(function () {
+                href_export = '/id/' + $(this).data('idUser');
+            if (event.target.className.toLocaleLowerCase() === 'button') {
+                $('input[type=checkbox]',$(this)).each(function () {
                     var $self = $(this);
                     if ($self.filter(":checkbox:checked").length !== 0) {
                         checkbox[$self.val()] = $self.val();
@@ -135,13 +153,7 @@
                 }
                 location.href = BASE_URL + "/excel/index" + href_export;
                 event.data.self.$download_content.hide();
-
-                $('#download_content input[type=checkbox]').each(function () {
-                    var $self = $(this);
-                    if ($self.filter(":checkbox:checked").length !== 0) {
-                        $self.prop('checked', false);
-                    }
-                });
+                event.data.self.resetChecked();
             }
             event.stopPropagation();
         });

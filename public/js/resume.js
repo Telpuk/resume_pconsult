@@ -119,7 +119,7 @@
             var checkbox = {},
                 href_export = '/id/' + event.data.id;
             if (event.target.id.toLocaleLowerCase() === 'button') {
-                $('#download_content input[type=checkbox]').each(function () {
+                $('input[type=checkbox]',$(this)).each(function () {
                     var $self = $(this);
                     if ($self.filter(":checkbox:checked").length !== 0) {
                         checkbox[$self.val()] = $self.val();

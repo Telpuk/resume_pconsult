@@ -10,7 +10,19 @@
         this.$conclusion = $('.conclusion');
         this.conclusion_text;
         this.cache = {};
+
+        this.$download = $('.download');
+        this.$download_content = $('.download_content');
     }
+
+    Folders.prototype.resetChecked = function(){
+        $('input[type=checkbox]',this.$download_content).each(function () {
+            var $self = $(this);
+            if ($self.filter(":checkbox:checked").length !== 0) {
+                $self.prop('checked', false);
+            }
+        });
+    };
 
     Folders.prototype.conclusionClose = function($element){
         for(var i in  this.cache){
@@ -33,6 +45,8 @@
             event.data.self.$addFolder.show();
             event.data.self.$inout_text.val('');
             event.data.self.conclusionClose($(event.target));
+            event.data.self.$download_content.hide();
+            event.data.self.resetChecked();
             if(event.target.className === 'delete_folder'){
                 return confirm("Вы действительно хатите удалить?");
             }
@@ -43,6 +57,8 @@
         this.$addFolder.on('click',{self:this},function(event){
             event.data.self.$input_new_folder_block.show();
             $(this).hide();
+            event.data.self.$download_content.hide();
+            event.data.self.resetChecked();
             event.stopPropagation();
         });
     };
@@ -96,6 +112,8 @@
                     break
                 };
             }
+            event.data.self.$download_content.hide();
+            event.data.self.resetChecked();
 
         });
     };
@@ -103,6 +121,7 @@
 
     Folders.prototype.addEventListenerConclusion = function(){
         this.$conclusion.on('click', {self:this}, function(event){
+            var $self = $(this);
 
             if(event.target.className === 'button_conclusion'){
                 var $button = $(event.target);
@@ -125,6 +144,9 @@
                                     "<a class='a_deleteConclusion' href=''>" + "<img src='"+BASE_URL+"/public/img/delete.png'>удалить</a></span></h1>"+
                                     "<div class='conclusion_text'>"+$textarea.val()+"</div>"+
                                     "<div class='clear'></div>"
+                                );
+                                $('.download_content',$self.parent()).prepend(
+                                    "<p><input type='checkbox' class='without_conclusion' value='conclusion'>Без заключения</p>"
                                 );
                             }
                         });
@@ -168,12 +190,55 @@
                                 "<button class='button_conclusion'>сохранить</button>"+
                                 "<div class='clear'></div>"
                             );
+                            $('.without_conclusion',$self.parent()).parent().remove();
                         }
                     });
             }else{
                 $('textarea', event.data.self.$resume).css({border: '1px solid black'});
             }
+            event.data.self.$download_content.hide();
+            event.data.self.resetChecked();
             event.preventDefault();
+            event.stopPropagation();
+        });
+    };
+
+
+    Folders.prototype.addEventListenerDownloadWord = function () {
+        this.$download.on('click', {self: this}, function (event) {
+            $('.download_content',$(this)).toggle();
+            event.stopPropagation();
+        });
+    };
+
+
+    Folders.prototype.addEventListenerDownloadContent = function () {
+        this.$download_content.on('click', {self: this}, function (event) {
+            var checkbox = {},
+                href_export = '/id/' + $(this).data('idUser');
+            if (event.target.className.toLocaleLowerCase() === 'button') {
+                $('input[type=checkbox]',$(this)).each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        checkbox[$self.val()] = $self.val();
+                    }
+                });
+
+                for (var i  in checkbox) {
+                    if (checkbox.hasOwnProperty(i)) {
+                        href_export += "/" + checkbox[i] + "/false";
+                    }
+                }
+                location.href = BASE_URL + "/excel/index" + href_export;
+                event.data.self.$download_content.hide();
+
+                $('input[type=checkbox]',$(this)).each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        $self.prop('checked', false);
+                    }
+                });
+            }
             event.stopPropagation();
         });
     };
@@ -181,6 +246,8 @@
 
 
     Folders.prototype.init = function(){
+        this.addEventListenerDownloadWord();
+        this.addEventListenerDownloadContent();
         this.addEventListenerHtml();
         this.addEventListenerAddFolder();
         this.addEventListenerConclusion();

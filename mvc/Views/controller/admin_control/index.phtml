@@ -37,7 +37,7 @@
 										<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
 									</p>
 									<div data-id-user="<?=$user['id']?>" class="download_content">
-										<?php if (count($user['comments'])): ?>
+										<?php if ($user['comments_count']): ?>
 											<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
 										<?php endif; ?>
 										<?php if (!empty($user['conclusion'])): ?>

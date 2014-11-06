@@ -79,7 +79,7 @@
 						<option value='<?=$d?>'<?php if($this->data['data']['inputs']['getting_starteds']['value'][$i]['year']==$d) echo'selected'?>><?=$d?></option>
 					<?php endfor; ?>
 				</select>
-				<input type="checkbox" name="at_the_moments[<?=$i?>]" <?php if($this->data['data']['inputs']['at_the_moments']['value'][$i]==='true') echo'checked'?> value="true">Понастоящее время
+				<input type="checkbox" name="at_the_moments[<?=$i?>]" <?php if ($this->data['data']['inputs']['at_the_moments']['value'][$i]==='true') echo'checked'?> value="true">По настоящее время
 				<div class="message"><?=$this->data['data']['inputs']['getting_starteds']['val'][$i]['message']?></div>
 			</td>
 		</tr>

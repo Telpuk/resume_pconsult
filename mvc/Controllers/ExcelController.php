@@ -174,10 +174,7 @@ class ExcelController extends IController{
 
 
 		}
-
-
-
-
+		$this->headerLocation('admincontrol');
 
 	}
 }
