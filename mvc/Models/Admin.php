@@ -74,9 +74,7 @@ class Admin{
 		if (is_null($page)) {
 			$count_user = count($data);
 			$_SESSION['params']['count_users_folders'] = $count_user;
-			for ($i = $count_view; $i < $count_user; ++$i) {
-				unset($data[$i]);
-			}
+			$data = array_slice($data, 0, $count_view);
 		}
 
 		return $this->_getResumeFormat($data, $count_user);
@@ -99,9 +97,7 @@ class Admin{
 		if (is_null($page)) {
 			$count_user = count($search_data);
 			$_SESSION['params']['count_users_folders_search'] = $count_user;
-			for ($i = $count_view; $i < $count_user; ++$i) {
-				unset($search_data[$i]);
-			}
+			$search_data = array_slice($search_data, 0, $count_view);
 		}
 
 		return $this->_getResumeFormat($search_data, $count_user);
@@ -290,11 +286,7 @@ class Admin{
 		if (is_null($page)) {
 			$count_user = count($data);
 			$_SESSION['params']['count_view_admin_resume'] = $count_user;
-			foreach($data as $key=>$user) {
-				if ($key >= $count_view) {
-					unset($data[$key]);
-				}
-			}
+			$data = array_slice($data, 0, $count_view);
 		}
 
 		return $this->_getResumeFormat($data, $count_user);
@@ -345,9 +337,8 @@ class Admin{
 		if (is_null($page)) {
 			$count_user = count($search_data);
 			$_SESSION['params']['count_users_search'] = $count_user;
-			for ($i = $count_view; $i < $count_user; ++$i) {
-				unset($search_data[$i]);
-			}
+
+			$search_data = array_slice($search_data, 0, $count_view);
 		}
 
 		return $this->_getResumeFormat($search_data, $count_user);

@@ -170,11 +170,8 @@ class ExcelController extends IController{
 			header("Expires: 0");
 			$writer = \PhpOffice\PhpWord\IOFactory::createWriter($this->_word, 'Word2007');
 			$writer->save('php://output');
-
-
-
+			exit;
 		}
 		$this->headerLocation('admincontrol');
-
 	}
 }
