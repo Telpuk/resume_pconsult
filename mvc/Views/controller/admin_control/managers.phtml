@@ -1,15 +1,7 @@
 <main class="admin_control managers">
-	<div class="out">
-		<a href='<?=BASE_URL."/admin/out/"?>'>Выход</a>
-		<div class="clear"></div>
+	<div class="header">
+		<?=$this->data['helpers']['header']?>
 	</div>
-	<form  action='<?=BASE_URL."/admincontrol/index/search/"?>' method="get">
-		<div class="search">
-			<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
-			<input type="submit" value="найти">
-			<div class="clear"></div>
-		</div>
-	</form>
 	<div class="left_admin_control">
 		<?=$this->data['helpers']['widget_admin']?>
 	</div>

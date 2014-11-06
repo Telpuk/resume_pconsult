@@ -1,0 +1,14 @@
+<div class="start_page">
+	<a href='<?=BASE_URL."/admincontrol"?>'>главная</a>
+</div>
+<div class="out">
+	<a href='<?=BASE_URL."/admin/out"?>'>выход</a>
+	<div class="clear"></div>
+</div>
+<form  action='<?=BASE_URL."/admincontrol/index/search/"?>' method="get">
+	<div class="search">
+		<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
+		<input type="submit" value="найти">
+		<div class="clear"></div>
+	</div>
+</form>

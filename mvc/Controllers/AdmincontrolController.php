@@ -92,6 +92,7 @@ class AdminControlController extends IController{
 				'message'=>$message,
 				'search_folders_user'=>$search[0],
 				'helpers' => array(
+					'header'=> 'admin_control/helpers/header',
 					'widget_admin' => 'admin_control/helpers/widget',
 					'widget_folders'=>'admin_control/helpers/widget_folders'),
 				'folder'=>true,
@@ -208,6 +209,7 @@ class AdminControlController extends IController{
 				'active_manager'=>true,
 				'managers'=>$managers,
 				'helpers' =>array(
+					'header'=> 'admin_control/helpers/header',
 					'widget_admin' => 'admin_control/helpers/widget'
 				),
 				'users_count'=>$this->getSessionParamsId('count_users'),
@@ -232,7 +234,10 @@ class AdminControlController extends IController{
 				'js'=>$this->_jsAdminControl(),
 				'data' => array(
 					'admin'=>$this->getSessionUserID('admin'),
-					'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+					'helpers' => array(
+						'header'=> 'admin_control/helpers/header',
+						'widget_admin' => 'admin_control/helpers/widget'
+					),
 					'active_all_no_view'=>true,
 					'users' => $users['users'] ? $users['users']  : '',
 					'users_count'=>$this->getSessionParamsId('count_users'),
@@ -271,7 +276,10 @@ class AdminControlController extends IController{
 			'js'=>$this->_jsAdminControl(),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
-				'helpers' => array('widget_admin' => 'admin_control/helpers/widget'),
+				'helpers' => array(
+					'header'=> 'admin_control/helpers/header',
+					'widget_admin' => 'admin_control/helpers/widget'
+				),
 				'active_all_resume'=>true,
 				'users' => $users['users'] ? $users['users']  : '',
 				'users_count' =>$this->getSessionParamsId('count_users'),

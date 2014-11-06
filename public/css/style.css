@@ -1614,16 +1614,27 @@ main.authorization .helpers_message_authorization{
 }
 
 
-.admin_control .out{
+.admin_control .out,
+.admin_control .start_page{
     width: 100%;
     font-size: .15em;
     margin-bottom: 10px;
 }
+
 .admin_control .out a{
     display: block;
     float: right;
-    text-align: center;
     width: 100px;
+}
+
+.admin_control .start_page a{
+    display: block;
+    float: left;
+    width: 100px;
+}
+.admin_control .out a,
+.admin_control .start_page a{
+    text-align: center;
     background-color: red;
     padding: 5px 10px 5px 10px;
     text-transform: uppercase;
