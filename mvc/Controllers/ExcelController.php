@@ -20,9 +20,13 @@ class ExcelController extends IController{
 
 	public function indexAction(){
 		$this->_id_user = $this->getParams('id');
-		if($this->getParams('id')){
+		if(is_numeric($this->getParams('id'))){
 
 			$personal_data = $this->_db_excel->excelExport($this->_id_user);
+
+			if($this->getParams('comments') !== 'false'){
+				$comments = $this->_db_excel->selectCommetsExport($this->_id_user);
+			}
 
 			$this->_word->setDefaultFontName('Times New Roman');
 			$this->_word->setDefaultFontSize(14);
@@ -38,7 +42,7 @@ class ExcelController extends IController{
 			$section = $this->_word->createSection($sectionStyle);
 
 			$header = $section->addHeader();
-			$header->addImage(BASE_URL."/public/img/logo.jpg",
+			$header->addWatermark(BASE_URL."/public/img/logo.jpg",
 				array(
 					'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
 					'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
@@ -48,9 +52,9 @@ class ExcelController extends IController{
 					'width' => 70,
 					'height' => 70)
 			);
-			$header->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center'));
+			$header->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center','size'=>8));
 			$header->addLink("www.proconsult.by");
-			$header->addText("+375 44 779 03 94",array('align'=>'center'));
+			$header->addText("+375 44 779 03 94",array('align'=>'center', 'size'=>8));
 
 			$section->addText('РЕЗЮМЕ', array('size'=>14),array('align'=>'center'));
 			$section->addText($personal_data['name'].$personal_data['old'], array('bold'=>true,'size'=>14), array('align'=>'center'));
@@ -140,11 +144,22 @@ class ExcelController extends IController{
 
 
 			// ===================================Заключение============== //
-			if($personal_data['conclusion']){
+			if($personal_data['conclusion'] && $this->getParams('conclusion') !== 'false'){
 				$section->addText('Заключение:', array('size'=>16,'italic'=>true, 'color'=>'blue'), array('align'=>'center'));
 				$section->addText($personal_data['conclusion']);
 			}
 			// ===================================end Заключение======================= //
+
+			// ===================================Комментарии============== //
+			if(count($comments) && $this->getParams('comments') !== 'false'){
+				$section->addText('Комментарии:', array('size'=>16,'italic'=>true, 'color'=>'blue'),
+					array('align'=>'center'));
+				foreach($comments as $value) {
+					$section->addText($value['name'] . "({$value['date']})", array('bold' => true));
+					$section->addText($value['comment'],array('tabs' => true));
+				}
+			}
+			// ===================================end Комментарии======================= //
 
 
 			header("Content-Description: File Transfer");

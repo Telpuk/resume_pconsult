@@ -282,16 +282,23 @@ body {
     margin-right: 10px;
 }
 
-.resume #download {
+.resume #download,
+.admin_control .download {
     position: relative;
 }
+.admin_control .download img{
+    margin-right: 10px;
+}
 
-.resume #download:hover {
+
+.resume #download p.active_download:hover,
+.admin_control .download p.active_download:hover{
     cursor: pointer;
     color: red;
 }
 
-.resume #download_content {
+.resume #download_content,
+.admin_control .download_content{
     display: none;
     position: absolute;
     margin-top: 10px;
@@ -305,7 +312,8 @@ body {
     background-color: white;
 }
 
-.resume #download_content p {
+.resume #download_content p,
+.admin_control .download_content p{
     margin-bottom: 5px;
 }
 
@@ -1555,8 +1563,14 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id .inform_user{
     float: left;
     width: 80%;
+    margin-bottom: 5px;
 }
 
+
+.admin_control .right_admin_control .user_id .person_inform{
+    float: right;
+    width: 70%;
+}
 .admin_control .right_admin_control .user_id .inform_user p{
     margin-top: 5px;
 }
@@ -1575,10 +1589,10 @@ main.authorization .helpers_message_authorization{
     float: right;
     width: 30%;
     border-radius: 10px;
+    margin-bottom: 5px;
     padding: 10px;
     -moz-border-radius: 10px;
     box-shadow: 0 0 10px rgba(87, 171, 255, 0.73);
-    overflow:hidden;
 
 }
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
@@ -1589,18 +1603,13 @@ main.authorization .helpers_message_authorization{
 }
 
 
-.admin_control .right_admin_control .user_id .inform_user .word{
-    width: 32px;
-    height: 32px;
-}
-
 .admin_control .right_admin_control .user_id .inform_user .name_user_inform{
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 
-.admin_control .right_admin_control .user_id img{
+.admin_control .right_admin_control .user_id figure img{
     width: 150px;
     height: 150px;
 }

@@ -4,6 +4,9 @@
         this.$conclusion = $('.conclusion');
         this.conclusion_text;
         this.cache = {};
+
+        this.$download = $('.download');
+        this.$download_content = $('.download_content');
     }
 
     Resume.prototype.conclusionClose = function($element){
@@ -26,7 +29,6 @@
             event.data.self.conclusionClose($(event.target));
         });
     };
-
 
 
     Resume.prototype.addEventListenerConclusion = function(){
@@ -106,7 +108,48 @@
         });
     };
 
+    Resume.prototype.addEventListenerDownloadWord = function () {
+        this.$download.on('click', {self: this}, function (event) {
+            $('.download_content',$(this)).toggle();
+            event.stopPropagation();
+        });
+    };
+
+
+    Resume.prototype.addEventListenerDownloadContent = function () {
+        this.$download_content.on('click', {self: this, id: this.$download_content.data('idUser')}, function (event) {
+            var checkbox = {},
+                href_export = '/id/' + event.data.id;
+            if (event.target.id.toLocaleLowerCase() === 'button') {
+                $('input[type=checkbox]',(this)).each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        checkbox[$self.val()] = $self.val();
+                    }
+                });
+
+                for (var i  in checkbox) {
+                    if (checkbox.hasOwnProperty(i)) {
+                        href_export += "/" + checkbox[i] + "/false";
+                    }
+                }
+                location.href = BASE_URL + "/excel/index" + href_export;
+                event.data.self.$download_content.hide();
+
+                $('#download_content input[type=checkbox]').each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        $self.prop('checked', false);
+                    }
+                });
+            }
+            event.stopPropagation();
+        });
+    };
+
     Resume.prototype.init = function(){
+        this.addEventListenerDownloadWord();
+        this.addEventListenerDownloadContent();
         this.addEventListenerConclusion();
         this.addEventListenerBody();
     };

@@ -418,7 +418,7 @@ class Admin{
 			}
 			$data = explode('-',$temp->format("Y-m"));
 			if($data_user['experience_at_the_moments'][$key] == 'true'){
-				$data_f = $this->_month[(int)$data[1]]." ".$data[0]."&mdash;по ностоящее время";
+				$data_f = $this->_month[(int)$data[1]]." ".$data[0]."&mdash;по настоящее время";
 			}else{
 				$data_f= $this->_month[(int)$data[1]]." ".$data[0];
 			}

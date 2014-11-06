@@ -32,23 +32,38 @@
 							<span><?=$user['years_user']?></span>
 							<span><?=$user['date_registration']?></span>
 							<span>
-								<a href='<?=BASE_URL."/excel/index/id/{$user['id']}"?>'>
-									<img class="word" src='<?=BASE_URL."/public/img/word.png"?>'>
-								</a>
+								<div class="download">
+									<p class="active_download">
+										<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
+									</p>
+									<div data-id-user="<?=$user['id']?>" class="download_content">
+										<?php if (count($user['comments'])): ?>
+											<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
+										<?php endif; ?>
+										<?php if (!empty($user['conclusion'])): ?>
+											<p><input type="checkbox" class="without_conclusion" value="conclusion">Без заключения</p>
+										<?php endif; ?>
+										<p>
+											<button class="button">Скачать</button>
+										</p>
+									</div>
+								</div>
 							</span>
 						</div>
-						<div class="position"><?=$user['desired_position']?></div>
-						<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
-						<p>
-							Опыт работы<br><span><?=$user['sum_experience']?></span>
-						</p>
-						<p>
-							Последнее место работы<br>
-							<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
-						</p>
-						<p>
-							<?=$user['last_place_work']['last_works']?>
-						</p>
+						<div class="person_inform">
+							<div class="position"><?=$user['desired_position']?></div>
+							<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
+							<p>
+								Опыт работы<br><span><?=$user['sum_experience']?></span>
+							</p>
+							<p>
+								Последнее место работы<br>
+								<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+							</p>
+							<p>
+								<?=$user['last_place_work']['last_works']?>
+							</p>
+						</div>
 					</div>
 					<div class="clear"></div>
 					<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>

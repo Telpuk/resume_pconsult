@@ -7,6 +7,32 @@ class Excel{
 		$this->_dbc = Model::getInstance()->getDbh();
 	}
 
+
+	public function  selectCommetsExport($id_user){
+		try {
+			$stmt = $this->_dbc->prepare ("SELECT
+												comments.id,
+												comments.comment,
+												comments.id_admin,
+												DATE_FORMAT(comments.date,'%Y-%m-%d %H:%i')as 'date',
+												users.type_user,
+												CONCAT_WS(' ', name_second, name_first, patronymic) as 'name'
+						                	FROM
+						                    	comments,
+						                    	users
+                                        	WHERE
+                                        		comments.id_admin = users.id
+                                        	AND
+                                        		comments.id_user = :id_user ORDER BY date DESC");
+			$stmt->execute(array(':id_user'=>$id_user));
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $data;
+	}
+
+
 	public function excelExport($id_user){
 		try {
 			$stmt = $this->_dbc->prepare("CALL selectPersonalData(:id_user)");

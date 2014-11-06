@@ -128,13 +128,13 @@
 
                 for (var i  in checkbox) {
                     if (checkbox.hasOwnProperty(i)) {
-                        href_export += "/" + checkbox[i] + "/true";
+                        href_export += "/" + checkbox[i] + "/false";
                     }
                 }
                 location.href = BASE_URL + "/excel/index" + href_export;
                 event.data.self.$download_content.hide();
 
-                $('#download_content input[type=checkbox]').each(function () {
+                $('input[type=checkbox]',$(this)).each(function () {
                     var $self = $(this);
                     if ($self.filter(":checkbox:checked").length !== 0) {
                         $self.prop('checked', false);
