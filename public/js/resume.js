@@ -8,6 +8,10 @@
         this.$checkbox_list_ul = $('#checkbox_list');
         this.$ajax_loader = $('#ajax_loader');
         this.$conclusion_text = $('.conclusion_text');
+
+        this.$download = $('#download');
+        this.$download_content = $('#download_content');
+
     }
 
 
@@ -28,8 +32,8 @@
                 event.data.self.$conclusion_text.text(text);
             }
 
-            event.data.self.$favorite_folds.toggle();
             event.data.self.$favorite_folds.hide();
+            event.data.self.$download_content.hide();
 
         });
     };
@@ -110,8 +114,47 @@
         });
 
     };
+    Resume.prototype.addEventListenerDownloadContent = function () {
+        this.$download_content.on('click', {self: this, id: this.$download_content.data('idUser')}, function (event) {
+            var checkbox = {},
+                href_export = '/id/' + event.data.id;
+            if (event.target.id.toLocaleLowerCase() === 'button') {
+                $('#download_content input[type=checkbox]').each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        checkbox[$self.val()] = $self.val();
+                    }
+                });
+
+                for (var i  in checkbox) {
+                    if (checkbox.hasOwnProperty(i)) {
+                        href_export += "/" + checkbox[i] + "/true";
+                    }
+                }
+                location.href = BASE_URL + "/excel/index" + href_export;
+                event.data.self.$download_content.hide();
+
+                $('#download_content input[type=checkbox]').each(function () {
+                    var $self = $(this);
+                    if ($self.filter(":checkbox:checked").length !== 0) {
+                        $self.prop('checked', false);
+                    }
+                });
+            }
+            event.stopPropagation();
+        });
+    };
+
+    Resume.prototype.addEventListenerDownloadWord = function () {
+        this.$download.on('click', {self: this}, function (event) {
+            event.data.self.$download_content.toggle();
+            event.stopPropagation();
+        });
+    };
 
     Resume.prototype.init = function(){
+        this.addEventListenerDownloadWord();
+        this.addEventListenerDownloadContent()
         this.addEventListener();
         this.addEventListenerFavoriteFolds();
         this.addEventListenerFavorite();

@@ -216,7 +216,6 @@ body {
     margin-right: 10px;
 }
 
-
 .resume .favorite{
     float: left;
     position: relative;
@@ -283,6 +282,32 @@ body {
     margin-right: 10px;
 }
 
+.resume #download {
+    position: relative;
+}
+
+.resume #download:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.resume #download_content {
+    display: none;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+    color: black;
+    padding: 10px;
+    overflow: auto;
+    width: 250px;
+    max-height: 350px;
+    box-shadow: 0 0 7px #666;
+    background-color: white;
+}
+
+.resume #download_content p {
+    margin-bottom: 5px;
+}
 
 .resume .conclusion .editConclusion,
 .resume .conclusion .deleteConclusion a{

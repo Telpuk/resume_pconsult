@@ -4,7 +4,8 @@
 		<p>
 			<a class="header_back" href="<?=BASE_URL.'/admincontrol'?>">панель управления</a>
 			<a class="out" href='<?=BASE_URL."/admin/out/"?>'>Выход</a>
-			<div class="clear"></div>
+
+		<div class="clear"></div>
 		</p>
 	</div>
 	<div class="favorite">
@@ -21,11 +22,27 @@
 		</div>
 	</div>
 	<div class="print">
-		<p><a href="<?=BASE_URL."/print/index/id/{$this->data['data']['id_user']}"?>"><img src='<?=BASE_URL."/public/img/print.png"?>'>Распечатать</a></p>
+		<p>
+			<a href="<?= BASE_URL . "/print/index/id/{$this->data['data']['id_user']}" ?>"><img
+					src='<?= BASE_URL . "/public/img/print.png" ?>'>Распечатать</a>
+		</p>
 	</div>
-	<div class="print">
-		<p><a href="<?= BASE_URL . "/excel/index/id/{$this->data['data']['id_user']}" ?>"><img
-					src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме</a></p>
+	<div class="print" id="download">
+		<p>
+			<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
+		</p>
+
+		<div data-id-user="<?= $this->data['data']['id_user'] ?>" id="download_content">
+			<?php if (count($this->data['data']['comments'])): ?>
+				<p><input type="checkbox" id="without_comments" value="comments">Без комментариев</p>
+			<?php endif; ?>
+			<?php if (!empty($this->data['data']['conclusion'])): ?>
+				<p><input type="checkbox" id="without_conclusion" value="conclusion">Без заключения</p>
+			<?php endif; ?>
+			<p>
+				<button id="button">Скачать</button>
+			</p>
+		</div>
 	</div>
 	<div class="clear"></div>
 <?php else: ?>
