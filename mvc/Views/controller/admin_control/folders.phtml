@@ -26,27 +26,27 @@
 						</figure>
 						<div class="inform_user">
 							<div class="salary_inform_user">
-								<span><?=$user['salary']?></span>
-								<span><?=$user['years_user']?></span>
-								<span><?=$user['date_registration']?></span>
-							<span>
-								<div class="download">
-									<p class="active_download">
-										<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
-									</p>
-									<div data-id-user="<?=$user['id']?>" class="download_content">
-										<?php if ($user['comments_count']): ?>
-											<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
-										<?php endif; ?>
-										<?php if (!empty($user['conclusion'])): ?>
-											<p><input type="checkbox" class="without_conclusion" value="conclusion">Без заключения</p>
-										<?php endif; ?>
-										<p>
-											<button class="button">Скачать</button>
+								<span>Зарплата: <span class="inform-user-left"><?=$user['salary']?></span></span>
+								<span>Возраст: <span class="inform-user-left"><?=$user['years_user']?></span></span>
+								<span>Дата: <span class="inform-user-left"><?=$user['date_registration']?></span></span>
+								<span>
+									<div class="download">
+										<p class="active_download">
+											<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
 										</p>
+										<div data-id-user="<?=$user['id']?>" class="download_content">
+											<?php if ($user['comments_count']): ?>
+												<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
+											<?php endif; ?>
+											<?php if (!empty($user['conclusion'])): ?>
+												<p><input type="checkbox" class="without_conclusion" value="conclusion">Без заключения</p>
+											<?php endif; ?>
+											<p>
+												<button class="button">Скачать</button>
+											</p>
+										</div>
 									</div>
-								</div>
-							</span>
+								</span>
 							</div>
 							<div class="person_inform">
 								<div class="position"><?=$user['desired_position']?></div>

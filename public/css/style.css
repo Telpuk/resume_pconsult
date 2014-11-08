@@ -1569,7 +1569,7 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control .user_id .person_inform{
     float: right;
-    width: 70%;
+    width: 65%;
 }
 .admin_control .right_admin_control .user_id .inform_user p{
     margin-top: 5px;
@@ -1587,12 +1587,16 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
     float: right;
-    width: 30%;
-    font-size: 0.8em;
+    width: 35%;
     border-radius: 10px;
     padding: 5px;
     -moz-border-radius: 10px;
     box-shadow: 0 0 10px rgba(87, 171, 255, 0.73);
+
+}
+
+.admin_control.folders .right_admin_control .user_id .inform_user .salary_inform_user{
+   font-size: 0.85em;
 
 }
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
@@ -1625,6 +1629,11 @@ main.authorization .helpers_message_authorization{
     display: block;
     float: right;
     width: 100px;
+}
+
+.admin_control .inform_user .inform-user-left{
+    float: right;
+    clear: both;
 }
 
 .admin_control .start_page a{
