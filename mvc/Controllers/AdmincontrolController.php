@@ -11,6 +11,10 @@ class AdminControlController extends IController{
 		$this->_view = new View();
 		$this->_db_admin = new Admin();
 		$this->_db_user = new User();
+
+		if($this->getSessionUserID('user')){
+			$this->sessionDeleteIdUser('user');
+		}
 	}
 
 	public function delmanagerAction(){
