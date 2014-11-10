@@ -13,19 +13,18 @@ class IndexController extends IController{
 		$this->_db_admin = new Admin();
 
 		$this->_admin = $this->getSessionUserID('admin');
+		$this->_id_user = $this->getSessionUserID('user');
 
 		if($this->_admin === 'main' || $this->_admin === 'manager'){
 			if(is_numeric($this->getParams('id'))) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));
-			}elseif(is_numeric($this->getSessionUserID('user'))){
-				$this->_id_user = $this->getSessionUserID('user');
 			}else{
 				$this->headerLocation('admincontrol');
 			}
 		}
 
-		if(!$this->_id_user && !$this->_admin){
+		if(!is_numeric($this->_id_user) && !$this->_admin){
 			$this->_db_user->setIdUser();
 			$this->_id_user = $this->_db_user->getIdUser();
 			$this->setSessionUsers(array('user' => $this->_id_user));
@@ -74,7 +73,7 @@ class IndexController extends IController{
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
 						'type_admin_rus'=>$this->_type_admin),
-						((array)$select_personal_data)
+					((array)$select_personal_data)
 				),
 				'js'=>$this->_jsIndex()
 			));
