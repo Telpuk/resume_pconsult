@@ -3,6 +3,7 @@
         this.$checkbox_print = $('.checkbox_print');
         this.$conclusion = $('#conclusion');
         this.$comments = $('#comments');
+        $('.page-wrapper').hide();
     }
 
     Print.prototype.init = function(){

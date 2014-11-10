@@ -12,9 +12,7 @@ time, mark, audio, video {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body {
-    line-height: 1.2;
-}
+
 ol {
     padding-left: 1.4em;
     list-style: decimal;
@@ -33,26 +31,725 @@ html {
     margin: 0;
     padding: 0;
 }
-* {
+
+*{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-/* reset styles */
-html {
-    font-family: PTSans, Arial, sans-serif;
-    font-size: 5em;
 
+@font-face {
+    font-family: 'RobotoCondensed-Italic';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+@font-face {
+    font-family: 'RobotoCondensed-Bold';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoCondensed-Regular';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoCondensed-Light';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans-Italic';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans-SemiboldItalic';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.eot');
+    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+html {
+    font-size: 62.5%;
+}
+
+pre,
+code {
+    font-family: "DejaVu Sans Mono", Menlo, Consolas, monospace;
+}
+
+hr {
+    border: 0 solid #ccc;
+    border-top-width: 1px;
+    clear: both;
+    height: 0;
+}
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+    font: 'RobotoCondensed-Regular';
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+h3 {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+h4 {
+    font-size: 13px;
+    line-height: 18px;
+}
+
+h5 {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+h6 {
+    font-size: 11px;
+    line-height: 18px;
+}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+li {
+    margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset,
+figure {
+    margin-bottom: 20px;
+}
+
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {/* */
+    border: none;
+}
+
+a {
+    outline: none; /* Убираем границу вокруг ссылок  */
+}
+
+button:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="submit"]:focus,
+input[type="file"] > input[type="button"]:focus {
+    outline: none;
+}
+
+
+button:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="submit"]:hover,
+input[type="file"] > input[type="button"]:hover {
+    cursor: pointer;
+}
+
+/* reset styles */
+
 body {
+     color: #383838;
+     font-size: 16px;
+     line-height: 18px;
+     font-family: 'RobotoCondensed-Regular', 'OpenSans-Regular', "Open Sans", Arial, "Helvetica Neue", "Liberation Sans", FreeSans, sans-serif;
+}
+
+/*=========================*/
+#page-wrapper {
+    min-height: 2% !important;
+}
+
+
+
+#page-wrapper{
+    min-height: 100%;
+}
+#page-wrapper .main-wrapper {
+    margin: 0 auto 20px;
+    padding: 0 0 40px;
+    width: 960px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#webform-component-url,
+#webform-component-utm{
+    display: none;
+}
+#header > .section {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.logo-and-slogan-wrapper {
+    float: left;
+    margin: 30px 5px 15px 0;
+    position: relative;
+    z-index: 15;
+}
+#site-slogan {
+    font: 12px/15px 'RobotoCondensed-Italic';
+    margin-left: 88px;
+    margin-top: -15px;
+}
+
+.order-btns-block {
+    width: 300px;
+    height: 150px;
+    padding: 20px 0;
+    margin: 0 10px 0 -15px;
+    float: left;
+    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/order-btns-block-bg.png) no-repeat 0 0;
+    position: relative;
+}
+.order-btns-block .header-btn {
+    display: block;
+    color: #fff;
+    text-align: center;
+    font: 14px/15px 'RobotoCondensed-Italic' ;
+    position: absolute;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px;
+    width: 164px;
+}
+.order-btns-block .header-btn:hover {
+    text-decoration: underline;
+}
+.order-btns-block .header-btn.order-call-btn {
+    right: 40px;
+    top: 35px;
+}
+.order-btns-block .header-btn.offer-btn {
+    right: 61px;
+    top: 85px;
+    padding: 2px 10px 3px;
+}
+.order-btns-block .header-btn.offer-btn span {
+    margin-left: 20px;
+}
+
+.header-contacts-block {
+    float: right;
+    text-align: right;
+    max-width: 345px;
+    padding-top: 25px;
+}
+.header-contacts-block .header-adress-wrapper {
+    color: #0064c9;
+    font: 14px/20px 'OpenSans-Italic';
+    margin-bottom: 5px;
+}
+.header-contacts-block .header-phones-wrapper {
+    color: #ec9595;
+    font: 19px/21px 'OpenSans-SemiboldItalic';
+    margin-bottom: 5px;
+}
+.header-contacts-block .header-phones-wrapper .header-phone-wrapper:last-child {
+    margin-left: 15px;
+}
+.header-contacts-block .header-phones-wrapper .header-phone-wrapper strong {
+    color: #e70000;
+}
+.header-contacts-block .header-mail-wrapper a {
+    color: #0064c9;
+    font: 14px/21px 'OpenSans-Regular';
+    text-decoration: none;
+}
+.header-contacts-block .header-mail-wrapper a:hover {
+    text-decoration: underline;
+}
+
+
+/*--- MAIN MENU ---*/
+a{
+    font-family: "Open Sans",Arial, Tahoma, Verdana, sans-serif;
+    color: #0462cf;
+}
+#main-menu > .section {
+    background-color: #3254c5;
+    margin-bottom: 20px;
+    width: 100%;
+}
+#main-menu > .section .region {
+    width: 960px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.main-menu-block {
+    text-align: center;
+}
+.main-menu-block ul.nice-menu-main-menu {
+    margin: 0 auto;
+    float: none;
+}
+.main-menu-block ul.nice-menu-main-menu li {
+    border: 0;
+    background-color: transparent;
+}
+.main-menu-block ul.nice-menu-main-menu li a {
+    color: #fff;
+    font: 20px/24px 'RobotoCondensed-Bold';
+    padding: 13px 25px;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+    text-transform: uppercase;
+}
+.main-menu-block ul.nice-menu-main-menu li:hover{
+    background-color: #fff;
+}
+.main-menu-block ul.nice-menu-main-menu li a:hover {
+    color: #3254C5;
+}
+
+.main-menu-block ul.nice-menu-main-menu .menuparent ul{
+    border: 1px solid #e2e2e2;
+    margin-top: 21px;
+}
+.main-menu-block ul.nice-menu-main-menu .menuparent ul li{
+    background-color: #3254c5;
+}
+.main-menu-block ul.nice-menu-main-menu .menuparent ul li:hover{
+    background-color: #fff;
+}
+.main-menu-block ul.nice-menu-main-menu .menuparent ul li:hover > a{
+    color: #3254c5;
+}
+.main-menu-block ul.nice-menu-down li.menuparent:hover{
+    background-image: none;
+    background-color: #fff;
+}
+.main-menu-block ul.nice-menu-down li.menuparent:hover > a{
+    color: #3254c5;
+}
+.block-nice-menus {
+    line-height: normal;
+    z-index: 10;
+}
+
+ul.nice-menu,
+ul.nice-menu ul {
+    z-index: 5;
+    position: relative;
+}
+
+ul.nice-menu li {
+    position: relative;
+}
+
+ul.nice-menu a {
+    display: block;
+    /*Default to Blue, but override as necessary*/
+    color: #027ac6;
+}
+
+ul.nice-menu ul,
+    /* For Garland header. */
+#header-region ul.nice-menu ul {
+    position: absolute;
+    visibility: hidden;
+}
+
+ul.nice-menu li.over ul {
+    visibility: visible;
+}
+
+ul.nice-menu ul li {
+    display: block;
+}
+
+ul.nice-menu:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* Show submenus when over their parents. */
+ul.nice-menu li:hover ul,
+ul.nice-menu li.menuparent li:hover ul,
+ul.nice-menu li.menuparent li.menuparent li:hover ul,
+ul.nice-menu li.menuparent li.menuparent li.menuparent li:hover ul,
+ul.nice-menu li.over ul,
+ul.nice-menu li.menuparent li.over ul,
+ul.nice-menu li.menuparent li.menuparent li.over ul,
+ul.nice-menu li.menuparent li.menuparent li.menuparent li.over ul,
+    /* Repeat all this stuff just for Garland headers. */
+#header-region ul.nice-menu li:hover ul,
+#header-region ul.nice-menu li.menuparent li:hover ul,
+#header-region ul.nice-menu li.menuparent li.menuparent li:hover ul,
+#header-region ul.nice-menu li.over ul,
+#header-region ul.nice-menu li.menuparent li.over ul,
+#header-region ul.nice-menu li.menuparent li.menuparent li.over ul {
+    visibility: visible;
+}
+
+/* Hide sub-menus initially. */
+ul.nice-menu li:hover ul ul,
+ul.nice-menu li:hover ul ul ul,
+ul.nice-menu li:hover li:hover ul ul,
+ul.nice-menu li:hover li:hover ul ul ul,
+ul.nice-menu li:hover li:hover li:hover ul ul,
+ul.nice-menu li:hover li:hover li:hover ul ul ul,
+ul.nice-menu li.over ul ul,
+ul.nice-menu li.over ul ul ul,
+ul.nice-menu li.over li.over ul ul,
+ul.nice-menu li.over li.over ul ul ul,
+ul.nice-menu li.over li.over li.over ul ul,
+ul.nice-menu li.over li.over li.over ul ul ul,
+    /* Repeat all this stuff just for Garland headers. */
+#header-region ul.nice-menu li:hover ul ul,
+#header-region ul.nice-menu li:hover ul ul ul,
+#header-region ul.nice-menu li:hover li:hover ul ul,
+#header-region ul.nice-menu li:hover li:hover ul ul ul,
+#header-region ul.nice-menu li:hover li:hover li:hover ul ul,
+#header-region ul.nice-menu li:hover li:hover li:hover ul ul ul,
+#header-region ul.nice-menu li.over ul ul,
+#header-region ul.nice-menu li.over ul ul ul,
+#header-region ul.nice-menu li.over li.over ul ul,
+#header-region ul.nice-menu li.over li.over ul ul ul,
+#header-region ul.nice-menu li.over li.over li.over ul ul,
+#header-region ul.nice-menu li.over li.over li.over ul ul ul {
+    visibility: hidden;
+}
+
+/***************
+ IE 6 Fixes
+***************/
+
+/* Iframe to fix z-index bug when menu hovers over <select> fields. */
+ul.nice-menu li.menuparent ul,
+    /* For Garland header. */
+#header-region ul.nice-menu li.menuparent ul {
+    overflow: visible !important;
+}
+
+ul.nice-menu li.menuparent ul iframe,
+    /* For Garland header. */
+#header-region ul.nice-menu li.menuparent ul iframe {
+    display: none;
+    display/**/: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: mask();
+    width: 20px;
+    height: 20px;
+}
+/*
+  This is the default layout template for nice menus, and will provide
+  a starting point for the look of your menus. To customize, it's
+  recommended to create a custom CSS file using this file as a template,
+  then configure the module to use your custom CSS file
+  (this is done in the global settings tab of the theme administration.)
+
+  See README.txt and the handbook page (http://drupal.org/node/185543)
+  for more information on using the CSS.
+*/
+
+/******************************
+ Global CSS for ALL menu types
+******************************/
+
+ul.nice-menu,
+ul.nice-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #ccc;
+}
+
+ul.nice-menu li {
+    border: 1px solid #ccc;
+    border-top: 0;
+    float: left; /* LTR */
+    background-color: #eee;
+}
+
+ul.nice-menu a {
+    padding: 0.3em 5px 0.3em 5px;
+}
+
+ul.nice-menu ul {
+    top: 1.8em;
+    left: -1px; /* LTR */
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-right: 0; /* LTR */
+}
+
+ul.nice-menu ul li {
+    width: 12.5em;
+}
+
+/******************************
+ VERTICAL (left/right) menus
+******************************/
+
+/* This is the default width of all vertical menus. */
+ul.nice-menu-right,
+ul.nice-menu-left,
+ul.nice-menu-right li,
+ul.nice-menu-left li {
+    width: 12.5em;
+}
+
+/* VERTICAL menus where submenus pop RIGHT (default). */
+ul.nice-menu-right ul {
+    width: 12.5em;
+    left: 12.5em;
+    top: -1px;
+}
+
+ul.nice-menu-right ul ul {
+    width: 12.5em;
+    left: 12.5em;
+    top: -1px;
+}
+
+ul.nice-menu-right li.menuparent,
+ul.nice-menu-right li li.menuparent {
+    background: #eee url("../images/arrow-right.png") right center no-repeat;
+}
+
+ul.nice-menu-right li.menuparent:hover,
+ul.nice-menu-right li li.menuparent:hover {
+    background: #ccc url("../images/arrow-right.png") right center no-repeat;
+}
+
+/* VERTICAL menus where submenus pop LEFT. */
+ul.nice-menu-left li ul {
+    width: 12.5em;
+    left: -12.65em;
+    top: -1px;
+}
+
+ul.nice-menu-left li ul li ul {
+    width: 12.5em;
+    left: -12.65em;
+    top: -1px;
+}
+
+ul.nice-menu-left li.menuparent,
+ul.nice-menu-left li li.menuparent {
+    background: #eee url("../images/arrow-left.png") left center no-repeat;
+}
+
+ul.nice-menu-left li.menuparent:hover,
+ul.nice-menu-left li li.menuparent:hover {
+    background: #ccc url("../images/arrow-left.png") left center no-repeat;
+}
+
+ul.nice-menu-left a,
+ul.nice-menu-left ul a {
+    padding-left: 14px;
+}
+
+/******************************
+ HORIZONTAL (down) menus
+******************************/
+
+ul.nice-menu-down {
+    float: left; /* LTR */
+    border: 0;
+}
+
+ul.nice-menu-down li {
+    border-top: 1px solid #ccc;
+}
+
+ul.nice-menu-down li li {
+    border-top: 0;
+}
+
+ul.nice-menu-down ul {
+    left: 0; /* LTR */
+}
+
+ul.nice-menu-down ul li {
+    clear: both;
+}
+
+ul.nice-menu-down li ul li ul {
+    left: 12.5em; /* LTR */
+    top: -1px;
+}
+
+ul.nice-menu-down .menuparent a {
+    padding-right: 15px; /* LTR */
+}
+
+ul.nice-menu-down li.menuparent {
+    background: #eee url("../images/arrow-down.png") right center no-repeat; /* LTR */
+}
+
+ul.nice-menu-down li.menuparent:hover {
+    background: #ccc url("../images/arrow-down.png") right center no-repeat; /* LTR */
+}
+
+ul.nice-menu-down li li.menuparent {
+    background: #eee url("../images/arrow-right.png") right center no-repeat; /* LTR */
+}
+
+ul.nice-menu-down li li.menuparent:hover {
+    background: #ccc url("../images/arrow-right.png") right center no-repeat; /* LTR */
+}
+
+/******************************
+ Garland-specific CSS
+******************************/
+
+/**
+ * Global CSS for ALL menu types
+ */
+ul.nice-menu li {
+    margin: 0;
+    padding-left: 0; /* LTR */
+    background-image: none;
+}
+
+#header-region ul.nice-menu li {
+    margin: 0;
+    /* Padding rules are needed to deal with Garland's header line-height. */
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    background: #eee;
+}
+
+#header-region ul.nice-menu ul {
+    top: 1.8em;
+    left: -1px; /* LTR */
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-right: 0; /* LTR */
+}
+
+#header-region ul.nice-menu ul {
+    top: 1.7em;
+}
+
+/******************************
+ Bartik-specific CSS
+******************************/
+/**
+ * Global CSS for ALL menu types
+ */
+.block ul.nice-menu,
+.block ul.nice-menu ul {
+    padding: 0;
+}
+
+/**
+ * HORIZONTAL (down) menus
+ */
+#header-region ul.nice-menu-down li ul li ul {
+    left: 12.5em; /* LTR */
+    top: -1px;
+}
+
+#header-region ul.nice-menu-down li.menuparent {
+    background: #eee url("../images/arrow-down.png") right center no-repeat; /* LTR */
+}
+
+#header-region ul.nice-menu-down li.menuparent:hover {
+    background: #ccc url("../images/arrow-down.png") right center no-repeat; /* LTR */
+}
+
+#header-region ul.nice-menu-down li li.menuparent {
+    background: #eee url("../images/arrow-right.png") right center no-repeat; /* LTR */
+}
+
+#header-region ul.nice-menu-down li li.menuparent:hover {
+    background: #ccc url("../images/arrow-right.png") right center no-repeat; /* LTR */
+}
+
+
+
+
+/*=========================*/
+
+.wrapper_resume{
+    box-sizing: border-box;
+    font-size: 5em;
     min-width: 750px;
     max-width:  1200px;
-    margin: 40px auto;
+    margin: 0 auto;
     background-color: white;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     padding: 10px;
 }
-
 /*============print==========*/
 .print_content{
     position: absolute;
@@ -324,6 +1021,7 @@ body {
     border: none;
     border-radius: 5px;
     -moz-border-radius: 5px;
+    letter-spacing: 2px;
     color: white;
     background-color: rgba(198, 123, 55, 0.44);
     padding: 5px 10px 5px 10px;
@@ -518,7 +1216,7 @@ fieldset legend{
 .resume .experience .skills h2,
 .resume .left_40 h2,
 .resume .right_60 h2{
-    font-size: .23em;
+    font-size: .25em;
 }
 
 .resume .personal_data header h1 img,
@@ -536,7 +1234,9 @@ fieldset legend{
 .resume .nationality_workpermit h1 img{
     margin-left: 10px;
     margin-right: 10px;
+    width: 10px;
 }
+
 
 .resume .contacts_data section span{
     margin-left: 10px;
@@ -580,12 +1280,17 @@ fieldset legend{
 .resume .left_40 h2 a,
 .resume .right_60 h2 a,
 .resume .nationality_workpermit h1 a{
+    display: inline-block;
     font-size: .55em;
     font-weight: normal;
-    text-decoration: none;
     color: #c67b37;
     border: none;
-    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px rgba(233, 100, 26, 0.30) dashed;
+    padding: 2px 10px 2px 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
 }
 
 .resume .personal_data section p,
@@ -621,11 +1326,11 @@ fieldset legend{
 
 .resume .salary_position  h2{
     margin-top: 10px;
-    font-size: 0.3em;
+    font-size: .25em;
 }
 .resume .salary_position  h3{
     margin-top: 10px;
-    font-size: 0.3em;
+    font-size: .25em;
     font-weight: normal;
     margin-bottom: 10px;
 }
@@ -735,6 +1440,7 @@ fieldset legend{
 .resume .salary_position_add,
 .resume .education_add,
 .resume .experience_add{
+    padding-top: 10px;
     width: 100%;
     margin-bottom: 30px;
     border: 1px #bbbbbb dashed;
@@ -942,11 +1648,18 @@ a.addPhoto span:last-child,
 }
 
 /*personal*/
+.personal {
+    margin-right: 50px;
+}
 
 .personal table{
     margin-top: 50px;
-    width: 800px;
+    width: 100%;
     font-size: .2em;
+}
+
+.personal table td:first-child{
+    width: 30%;
 }
 
 .personal table td{
@@ -1187,6 +1900,7 @@ input[type=email]{
 }
 
 /*experience*/
+
 #key_skill{
     width: 250px;
 }
@@ -1202,20 +1916,24 @@ input[type=email]{
     margin-right: 20px;
 }
 
+
 .add_skills_hid{
     font-weight: normal;
 }
 
 .add_skills_hid span{
+    display: inline-block;
     border-radius: 4px;
     text-align: center;
     background-color: rgba(175, 175, 175, .3);
     padding: 5px;
+    margin-bottom: 10px;
     margin-left: 5px;
 }
 
 .add_skills_hid span img{
     margin-left: 15px;
+    width: 12px;
     margin-right: 2px;
 }
 
@@ -1352,9 +2070,7 @@ table.recommendations tr:first-child{
     font-weight: bold;
     font-size: 1.3em;
 }
-.about_self{
-    font-size: .7em;
-}
+
 /**/
 .personal.education .level{
     width: 100%;
@@ -1596,7 +2312,7 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control.folders .right_admin_control .user_id .inform_user .salary_inform_user{
-   font-size: 0.85em;
+    font-size: 0.85em;
 
 }
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user span{
@@ -1785,13 +2501,14 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion .editConclusion,
 .admin_control .conclusion .deleteConclusion a{
-    font-size: .8em;
+    font-size: .65em;
     margin-left: 5px;
     border: none;
     border-radius: 5px;
     -moz-border-radius: 5px;
+    letter-spacing: 2px;
     color: white  !important;
-    background-color: rgba(198, 123, 55, 0.58);
+    background-color: rgba(198, 123, 55, 0.36);
     padding: 5px 10px 5px 10px  !important;
     text-decoration: underline;
 }
@@ -1849,7 +2566,7 @@ main.authorization .helpers_message_authorization{
     padding: 5px;
     margin-bottom: 10px;
     float: right;
-    margin-top: 40px;
+    margin-top: 10px;
     font-size: .6em;
     border: 1px solid #bbbbbb;
     width: 24%;
@@ -1976,7 +2693,7 @@ main.authorization .helpers_message_authorization{
     width: 75%;
     color: #428bca;
     padding: 10px;
-    margin-top: 60px;
+    margin-top: 10px;
     text-align: center;
     font-size: 1.4em;
     background:#fff;

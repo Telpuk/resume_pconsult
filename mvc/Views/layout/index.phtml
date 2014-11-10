@@ -1,18 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="http://www.proconsult.by/sites/all/themes/pro_consult/favicon.ico" type="image/vnd.microsoft.icon" />
+	<meta about="/glavnaya-stranica" property="sioc:num_replies" content="0" datatype="xsd:integer" />
+	<meta content="Главная страница" about="/glavnaya-stranica" property="dc:title" />
+	<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+	<link rel="canonical" href="http://www.proconsult.by/" />
+	<link rel="shortlink" href="http://www.proconsult.by/" />
 	<title>КОНСАЛТИНГОВЫЙ ЦЕНТР &quot;PRO-CONSULT&quot; | Бизнес-обучение и подбор персонала в РБ и РФ</title>
-	<link rel="shortcut icon" href="http://www.proconsult.by/sites/all/themes/pro_consult/favicon.ico" type="image/vnd.microsoft.icon">
-	<meta about="/glavnaya-stranica" property="sioc:num_replies" content="0" datatype="xsd:integer">
-	<meta content="Главная страница" about="/glavnaya-stranica" property="dc:title">
-	<link rel="canonical" href="./КОНСАЛТИНГОВЫЙ ЦЕНТР  PRO-CONSULT    Бизнес-обучение и подбор персонала в РБ и РФ_files/КОНСАЛТИНГОВЫЙ ЦЕНТР  PRO-CONSULT    Бизнес-обучение и подбор персонала в РБ и РФ.html">
-	<link rel="shortlink" href="./КОНСАЛТИНГОВЫЙ ЦЕНТР  PRO-CONSULT    Бизнес-обучение и подбор персонала в РБ и РФ_files/КОНСАЛТИНГОВЫЙ ЦЕНТР  PRO-CONSULT    Бизнес-обучение и подбор персонала в РБ и РФ.html">
-	<title>КОНСАЛТИНГОВЫЙ ЦЕНТР "PRO-CONSULT" | Бизнес-обучение и подбор персонала в РБ и РФ</title>
+	<link href="http://allfont.ru/css/?fonts=roboto-condensed-italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="<?=BASE_URL?>/public/css/style.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<div class="wrapper">
+<div class="page-wrapper" id="page-wrapper">
+	<div class="page" id="page">
+		<!-- header -->
+		<div class="header-wrapper" id="header">
+			<div class="section clearfix">
+
+				<div id="logo-and-slogan" class="logo-and-slogan-wrapper">
+					<div class="logo-wrapper site-logo">
+						<a href="http://www.proconsult.by/" title="Главная" rel="home" id="logo">
+							<img src="http://www.proconsult.by/sites/all/themes/pro_consult/logo.png" alt="Главная"/>
+						</a>
+					</div>
+					<div class="slogan-wrapper">
+						<div id="site-slogan">
+							Бизнес-обучение и подбор персонала в РБ и РФ
+						</div>
+					</div> <!-- /.slogan-wrapper -->
+				</div>
+				<div id="header_section" class="h_section section clearfix">
+					<div class="region region-header">
+						<div id="block-block-4" class="block block-block order-btns-block">
+							<div class="content">
+								<div class="order-call-btn-wrapper"><a href="/node/11?height=500&amp;width=600" class="colorbox-node order-call-btn header-btn">Обратный звонок</a></div>
+								<div class="offer-btn-wrapper"><a href="/node/12?height=450&amp;width=600" class="colorbox-node offer-btn header-btn">Коммерческое <span>предложение</span></a></div>
+							</div>
+						</div>
+						<div id="block-block-5" class="block block-block header-contacts-block">
+							<div class="content">
+								<div class="header-adress-wrapper">220017, Республика Беларусь,<br />
+									г. Минск, ул. Дунина-Марцинкевича 2/1 оф.206</div>
+								<div class="header-phones-wrapper"><span class="header-phone-wrapper">+375 29 <strong>678 32 35</strong></span><span class="header-phone-wrapper">+375 17 <strong>202 21 52</strong></span></div>
+								<div class="header-mail-wrapper"><a href="mailto:info@proconsult.by">info@proconsult.by</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="main-menu" class="main-menu">
+				<div class="section clearfix">
+					<div class="region region-main-menu">
+						<div id="block-nice-menus-1" class="block block-nice-menus main-menu-block">
+							<div class="content">
+								<ul class="nice-menu nice-menu-down nice-menu-main-menu nice-menus-processed sf-js-enabled sf-arrows" id="nice-menu-1">
+									<li class="menu-224 menu-path-front first odd"><a href="http://www.proconsult.by/" title="" class="active">Вернуться к сайту</a></li>
+									<li class="menu-578 menu-path-node-3  even"><a href="http://www.proconsult.by/o-kompanii">О компании</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- /.section, /.main-menu -->
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+
+<div class="wrapper_resume">
 	<div class="helpers"><?=$this->_helpers_menu?></div>
 	<div class="content"><?=$this->_content?></div>
 </div>
@@ -20,6 +78,7 @@
 <script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
 <?=$this->_javascript?>
 <script id="table-template-experience" type="text/x-handlebars-template">
+	<hr data-table-experience-id='{{i}}'>
 	<div class="delete experience" data-table-experience-id="{{i}}">
 		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table data-table-experience-id="{{i}}">
@@ -105,6 +164,7 @@
 </script>
 
 <script id="table-template-recommendations" type="text/x-handlebars-template">
+	<hr data-table-recommendations-id='{{i}}'>
 	<div class="delete recommendations" data-table-recommendations-id='{{i}}'>
 		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table data-table-recommendations-id='{{i}}' class="recommendations">
@@ -189,6 +249,7 @@
 </script>
 
 <script id="table_training_courses" type="text/x-handlebars-template">
+	<hr data-table-training-courses-id='{{i}}'>
 	<div class="delete training courses" data-table-training-courses-id='{{i}}'>
 		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="training_courses" data-table-training-courses-id='{{i}}'>
@@ -237,6 +298,7 @@
 </script>
 
 <script id="table_tests_exams" type="text/x-handlebars-template">
+	<hr data-table-tests-exams-id='{{i}}'>
 	<div class="delete test_exam" data-table-tests-exams-id='{{i}}'>
 		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="tests_exams" data-table-tests-exams-id='{{i}}'>
@@ -285,6 +347,7 @@
 </script>
 
 <script id="table_electronic_certificates" type="text/x-handlebars-template">
+	<hr data-table-electronic-certificates-id='{{i}}'>
 	<div class="delete electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
 		<img src='{{BASE_URL}}/public/img/delete.png'>Удалить</div>
 	<table class="electronic_certificates" data-table-electronic-certificates-id='{{i}}'>

@@ -148,48 +148,48 @@
 			</h1>
 			<?=$this->data['data']['institutions']?>
 			<div class="languages">
-				<h4>Знание языков <a href='<?=BASE_URL.'/side/education#lang'?>'>
+				<h2>Знание языков <a href='<?=BASE_URL.'/side/education#lang'?>'>
 						<?php if($this->data['data']['admin'] === 'manager'): ?>
 							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
 						<?php else: ?>
 							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
 						<?php endif; ?>
-					</a></h4>
+					</a></h2>
 				<?=$this->data['data']['languages']?>
 			</div>
 			<?php if($this->data['data']['courses_names']): ?>
 				<div class="courses">
-					<h4>Повышение квалификации, курсы <a href='<?=BASE_URL.'/side/education#cours'?>'>
+					<h2>Повышение квалификации, курсы <a href='<?=BASE_URL.'/side/education#cours'?>'>
 							<?php if($this->data['data']['admin'] === 'manager'): ?>
 								<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
 							<?php else: ?>
 								<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
 							<?php endif; ?>
-						</a></h4>
+						</a></h2>
 					<?=$this->data['data']['courses_names']?>
 				</div>
 			<?php endif; ?>
 			<?php if($this->data['data']['tests_exams_names']): ?>
 				<div class="courses">
-					<h4>Тесты, экзамены <a href='<?=BASE_URL.'/side/education#tests'?>'>
+					<h2>Тесты, экзамены <a href='<?=BASE_URL.'/side/education#tests'?>'>
 							<?php if($this->data['data']['admin'] === 'manager'): ?>
 								<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
 							<?php else: ?>
 								<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
 							<?php endif; ?>
-						</a></h4>
+						</a></h2>
 					<?=$this->data['data']['tests_exams_names']?>
 				</div>
 			<?php endif; ?>
 			<?php if($this->data['data']['electronic_certificates_names']): ?>
 				<div class="courses">
-					<h4>Электронные сертификаты <a href='<?=BASE_URL.'/side/education#sert'?>'>
+					<h2>Электронные сертификаты <a href='<?=BASE_URL.'/side/education#sert'?>'>
 							<?php if($this->data['data']['admin'] === 'manager'): ?>
 								<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
 							<?php else: ?>
 								<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
 							<?php endif; ?>
-						</a></h4>
+						</a></h2>
 					<?=$this->data['data']['electronic_certificates_names']?>
 				</div>
 			<?php endif; ?>
