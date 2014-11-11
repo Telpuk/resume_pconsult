@@ -150,9 +150,6 @@ ul {
     list-style: disc;
 }
 
-li {
-    margin-left: 30px;
-}
 
 p,
 dl,
@@ -2434,10 +2431,10 @@ main.authorization .helpers_message_authorization{
 .admin_control .form_manager p{
     position: relative;
     clear: both;
-    padding: 5px;
 }
 .admin_control .form_manager label{
     display: block;
+    text-align: left;
     float: left;
     font-size: 1.2em;
     width: 20%;
@@ -2460,6 +2457,9 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .form_manager .error{
     text-align: center;
+}
+.admin_control .form_manager input.error{
+    text-align: left;
 }
 .admin_control .message{
     clear: both;

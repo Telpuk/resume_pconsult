@@ -15,14 +15,15 @@ class IndexController extends IController{
 		$this->_admin = $this->getSessionUserID('admin');
 		$this->_id_user = $this->getSessionUserID('user');
 
-		if($this->_admin === 'main' || $this->_admin === 'manager'){
-			if(is_numeric($this->getParams('id'))) {
+		if(($this->_admin === 'main' || $this->_admin === 'manager') && !$this->_id_user){
+			if(is_numeric($this->getParams('id')) &&  $this->_db_user->checkId($this->getParams('id'))) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));
 			}else{
 				$this->headerLocation('admincontrol');
 			}
 		}
+
 
 		if(!is_numeric($this->_id_user) && !$this->_admin){
 			$this->_db_user->setIdUser();

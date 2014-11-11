@@ -89,6 +89,19 @@ class User{
 		return $str2;
 	}
 
+	public function checkId($id){
+		try {
+			$stmt = $this->_dbc->prepare("SELECT id FROM profile WHERE id = :id");
+			$stmt->execute(array(
+				':id'=>$id));
+			$id = $stmt->fetch(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $id['id'] > 0 ? true:false;
+
+	}
+
 	public function selectAutocompleteExperence(){
 		$stmt = $this->_dbc->query("SELECT DISTINCT
 												organizations,
@@ -305,7 +318,7 @@ class User{
 			)
 		);
 
-		$personal['sum_experience'] = $experience_count['sum'];
+		$personal['sum_experience'] = isset($experience_count['sum']) ? $experience_count['sum']: '';
 
 		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
 			array(

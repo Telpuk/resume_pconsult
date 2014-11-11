@@ -174,7 +174,7 @@ class AdminControlController extends IController{
 			if(empty($var)){
 				return  array('message'=>'Необходимо заполнить');
 			}elseif(!preg_match('/^[a-zA-Z][a-zA-Z0-9-_\.\@]{3,60}$/',$var)){
-				return  array('message'=>'Указано некорректно(мининимум 4 символа, на кирилице)');
+				return  array('message'=>'Указано некорректно(мининимум 4 символа, на латинице)');
 			}
 		}, $login_manager);
 
