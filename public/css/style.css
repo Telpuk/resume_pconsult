@@ -1020,7 +1020,7 @@ ul.nice-menu li {
 .resume .conclusion h1{
     width: 100%;
     text-align: center;
-    color: rgba(198, 123, 55, 0.71);
+    color: rgba(198, 123, 55, 0.71) !important;
     margin-bottom: 5px;
     font-size: 0.25em !important;
 }

@@ -4,6 +4,7 @@
         this.$conclusion = $('#conclusion');
         this.$comments = $('#comments');
         $('.page-wrapper').hide();
+        $('.footer-wrapper').hide();
     }
 
     Print.prototype.init = function(){
