@@ -112,6 +112,7 @@ hr {
 h1 {
     font: 'RobotoCondensed-Regular';
     font-weight: bold;
+    color: #0050a3;
 }
 
 h2 {
@@ -755,6 +756,118 @@ ul.nice-menu li {
 #header-region ul.nice-menu-down li li.menuparent:hover {
     background: #ccc url("http://www.proconsult.by/sites/all/modules/nice_menus/images/arrow-right.png") right center no-repeat; /* LTR */
 }
+/*--- FOOTER ---*/
+.footer-wrapper {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    background-color: #3254c5;
+    color: #fff;
+    height: 200px;
+}
+.footer-container {
+    border-top: 1px solid #0050a3;
+    -webkit-box-shadow: inset 0px 1px 0px 0px rgba(25, 191, 255, 0.75);
+    -moz-box-shadow: inset 0px 1px 0px 0px rgba(25, 191, 255, 0.75);
+    box-shadow: inset 0px 1px 0px 0px rgba(25, 191, 255, 0.75);
+}
+.footer-box {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 auto;
+    padding: 25px 20px;
+    position: relative;
+    width: 960px;
+}
+.footer .region{
+    float: left;
+}
+.footer-box .block > h2 {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    color: #fff;
+    font: 20px/24px 'RobotoCondensed-Bold';
+    text-transform: uppercase;
+}
+.footer-contacts-block {
+    width: 370px;
+    margin-right: 10px;
+    text-align: center;
+}
+.footer-contacts-block .footer-adress-wrapper {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.footer-contacts-block .footer-phones-wrapper {
+    margin-bottom: 5px;
+    font-family: 'RobotoCondensed-Light';
+    font-size: 23px;
+    line-height: 24px;
+}
+.footer-contacts-block .footer-phones-wrapper .footer-phone-wrapper:first-child {
+    margin-right: 15px;
+}
+.footer-contacts-block .footer-phones-wrapper .footer-phone-wrapper strong {
+    font-family: 'RobotoCondensed-Regular';
+    font-weight: normal;
+}
+.footer-contacts-block .footer-mail-wrapper a {
+    color: #fff;
+    font-size: 16px;
+    font-family: 'RobotoCondensed-Regular';
+    text-decoration: none;
+}
+.footer-contacts-block .footer-mail-wrapper a:hover {
+    text-decoration: underline;
+}
+
+.footer-social-block {
+    width: 300px;
+    margin-right: 10px;
+}
+.footer-social-block > h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.footer-social-block .content a.social-link {
+    display: block;
+    width: 40%;
+    margin: 5px 5%;
+    height: 30px;
+    float: left;
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.footer-social-block .content a.social-link-twitter {
+    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/twitter-icon.png) no-repeat center center;
+}
+.footer-social-block .content a.social-link-facebook {
+    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/facebook-icon.png) no-repeat center center;
+}
+.footer-social-block .content a.social-link-vkontakte {
+    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/vk-icon.png) no-repeat center center;
+}
+.footer-social-block .content a.social-link-youtube {
+    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/youtube-icon.png) no-repeat center center;
+}
+.footer-info-block .info-link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 18px;
+}
+.footer-info-block{
+    width: 230px;
+    margin-left: 40px;
+}
+.footer-info-block .info-links-wrapper .link-box{
+    margin-bottom: 10px;
+}
 
 
 
@@ -766,7 +879,7 @@ ul.nice-menu li {
     font-size: 5em;
     min-width: 750px;
     max-width:  1200px;
-    margin: 0 auto;
+    margin: 10px auto 60px ;
     background-color: white;
     /*border: 1px black solid;*/
     padding: 10px;
@@ -1090,13 +1203,14 @@ ul.nice-menu li {
 
 
 .resume  h1:first-child{
-    font-size: .3em;
+    color: #0050a3;
+    font-size: .45em;
 }
 
 
 .resume .right{
     float: left;
-    border: 1px #bbbbbb dashed;
+    border: 1px #4c8cd5 dashed;
     border-radius: 10px;
     -moz-border-radius: 10px;
     width: 17%;
@@ -1146,9 +1260,9 @@ ul.nice-menu li {
     border-radius: 5px;
     -moz-border-radius: 5px;
     font-size: .24em;
-    border: 1px rgba(171, 171, 171, 0.46) solid;
+    border: 1px rgba(76, 140, 213, 0.54) solid;
     margin-top: 10px;
-    color: #ad4a10;
+    color: #0050a3;
     font-weight: bold;
 }
 
@@ -1195,7 +1309,7 @@ fieldset legend{
     height: 60px;
     padding: 5px;
     width: 100%;
-    border:  1px #5e5e5e dashed;
+    border:  1px  #4c8cd5  dashed;
 }
 .resume .resume_widget input[type=submit]{
     display: block;
@@ -1332,7 +1446,7 @@ fieldset legend{
     margin-top: 10px;
     border-bottom: 1px #bbbbbb ridge;
     font-size: 0.3em;
-    color: #bbbbbb;
+    color: #0050a3;
 }
 .resume .education_language{
     margin-top: 10px;
@@ -1464,7 +1578,7 @@ fieldset legend{
     padding-top: 10px;
     width: 100%;
     margin-bottom: 30px;
-    border: 1px #bbbbbb dashed;
+    border: 1px #4c8cd5 dashed;
     border-radius: 10px;
     -moz-border-radius: 10px;
     font-size: 0.25em;
@@ -1500,7 +1614,6 @@ a.addPhoto span:first-child,
 .resume .education_add a span:first-child,
 .resume .experience_add a span:first-child{
     font-size: 1.4em;
-    color: #bbbbbb;
 }
 
 a.addPhoto span:last-child,
@@ -2136,43 +2249,36 @@ table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
 /*authorization*/
 main.authorization{
     margin:  0 auto;
-    width: 60%;
+    width: 20%;
 }
 
-main.authorization p{
-    padding: 20px;
-}
+
 main.authorization p label{
+    color: #0050a3;
     display: block;
-    margin-right: 10px;
-    float: left;
-    font-size: .3em;
-    text-align: right;
-    width: 30%;
+    font-size: .25em;
+    text-align: left;
+    width: 100%;
 }
 
 main.authorization p input[type=text],
 main.authorization p input[type=password]{
-    padding-left: 5px;
     display: block;
     height: 30px;
-    width: 30%;
-    float: left;
+    width: 100%;
 }
 main.authorization p input[type=submit]{
-    padding-left: 5px;
     display: block;
     height: 30px;
-    width: 30%;
-    float: left;
+    width: 100%;
 }
 
 main.authorization .helpers_message_authorization{
     border: 1px red dashed;
     padding: 10px;
     text-align: center;
-    margin: 0 auto;
     color: red;
+    margin-bottom: 10px;
     font-size: .2em;
 }
 /*admin_control*/
@@ -2479,7 +2585,6 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.managers .table_managers{
     margin-top: 10px;
-    font-size: 1.2em;
     width: 100%;
 }
 
@@ -2488,8 +2593,8 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control.managers .table_managers table th{
-    background-color: rgba(187, 187, 187, 0.52);
-    border: 1px rgba(187, 187, 187, 0.34) dashed;
+    background-color: rgba(87, 171, 255, 0.52);
+    border: 1px rgb(76, 140, 213) dashed;
     color: white;
     font-weight: bold;
     padding: 10px;
@@ -2502,7 +2607,7 @@ main.authorization .helpers_message_authorization{
 
 .admin_control.managers .table_managers table td{
     text-align: center;
-    border: 1px rgba(187, 187, 187, 0.56) dashed;
+    border: 1px rgb(76, 140, 213) dashed;
     padding: 20px;
 }
 
@@ -2510,7 +2615,7 @@ main.authorization .helpers_message_authorization{
     width: 100%;
     margin-top: 5px;
     padding: 5px;
-    border: 1px solid rgba(102, 102, 102, 0.42);
+    border: 1px solid rgba(87, 171, 255, 0.42);
     border-radius: 10px;
     -moz-border-radius: 10px;
     background-color: white;
@@ -2592,7 +2697,7 @@ main.authorization .helpers_message_authorization{
     float: right;
     margin-top: 10px;
     font-size: .6em;
-    border: 1px solid #bbbbbb;
+    border: 1px solid rgba(0, 80, 163, 0.48);
     width: 24%;
 }
 
@@ -2614,7 +2719,7 @@ main.authorization .helpers_message_authorization{
 .admin_control.folders .right_admin_control .folders_list p{
     margin-top: 10px;
     padding-left: 10px;
-    color: #bbbbbb;
+    color: #0050a3;
     width: 100%;
     font-size: 1.3em;
 }
@@ -2722,13 +2827,13 @@ main.authorization .helpers_message_authorization{
     font-size: 1.4em;
     background:#fff;
     border-radius:4px;
-    box-shadow: 0 0 7px #56a5f8;
+    border: 1px solid rgba(0, 80, 163, 0.54);
     -moz-border-radius:4px;
 }
 
 .admin_control.folders .search_folders span{
     margin-left: 10px;
-    color: #4a4a4a;
+    color: #0050a3;
 }
 
 .admin_control.folders .search_folders form input[type=search]{
