@@ -32,6 +32,30 @@ class IndexController extends IController{
 		}
 	}
 
+
+	public function ajaxfoldersusersAction(){
+		if(isset($_POST['ajax'])) {
+			$obj_folders = new Folders($this->getSessionUserID('user'));
+			if(!isset($_POST['all_checkbox'])){
+				$folders = isset($_POST['folders'])?$_POST['folders']:array();
+				$obj_folders->insertFolders($folders);
+			}
+			$ajax =  $obj_folders->getAjaxPost();
+			echo($ajax);
+		}
+		exit;
+	}
+
+	public function ajaxfoldersAction(){
+		if(isset($_POST['ajax']) && !empty($_POST['folder_name'])) {
+			$obj_folders = new Folders();
+			if($obj_folders->insertFolder($_POST['folder_name'])){
+				echo($obj_folders->getFolders());
+			}
+		}
+		exit;
+	}
+
 	public function dcommentAction(){
 		$id = $this->getParams('comment_id');
 		if($id){

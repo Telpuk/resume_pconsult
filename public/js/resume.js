@@ -80,7 +80,7 @@
         });
 
         self.$ajax_loader.css('visibility', 'visible');
-        $.post(BASE_URL + "/admincontrol/ajaxfoldersusers", {'ajax': "ajax", 'folders': folders})
+        $.post(BASE_URL + "/index/ajaxfoldersusers", {'ajax': "ajax", 'folders': folders})
             .done(function (data) {
                 self.$ajax_loader.css('visibility', 'hidden');
                 data = $.parseJSON(data);
@@ -102,7 +102,7 @@
         this.$favorite.on('click', {self:this}, function(event){
             event.data.self.$favorite_folds.toggle();
             if(event.data.self.$favorite_folds.is(':visible')){
-                $.post(BASE_URL + "/admincontrol/ajaxfoldersusers", {'ajax': "ajax",'all_checkbox':'true'})
+                $.post(BASE_URL + "/index/ajaxfoldersusers", {'ajax': "ajax",'all_checkbox':'true'})
                     .done(function (data) {
                         event.data.self.$ajax_loader.css('visibility', 'hidden');
                         data = $.parseJSON(data);
