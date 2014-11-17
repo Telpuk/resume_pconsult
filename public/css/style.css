@@ -168,7 +168,7 @@ table,
 address,
 fieldset,
 figure {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 
@@ -1387,18 +1387,17 @@ fieldset legend{
 .left_40{
     margin-top: 10px;
     float: left;
-    width: 40%;
+    width: 50%;
 }
 
 .right_60{
     margin-top: 10px;
     float: left;
-    width: 60%;
+    width: 50%;
 }
 
 .resume .left_40 p,
 .resume .right_60 p{
-    padding: 10px;
     font-size: .23em;
 }
 
@@ -1673,8 +1672,8 @@ a.addPhoto span:last-child,
     width: 300px;
     font-size: .20em;
     text-decoration: none;
-    color: #bbbbbb;
-    background-color: rgba(186, 186, 186, 0.3);
+    color: #ffffff;
+    background-color:  #4c8cd5;
 }
 .photo section,
 .personal section{
@@ -1689,13 +1688,12 @@ a.addPhoto span:last-child,
     width: 0;
     height: 0;
     border: 20px solid transparent;
-    border-right-color: rgba(186, 186, 186, 0.3);
+    border-right-color:  #4c8cd5;
     border-left: 0;
 }
 .photo .no-save:hover,
 .personal .no-save:hover{
     cursor: pointer;
-    background-color: rgba(186, 186, 186, 0.3);
     color: red;
 }
 
@@ -1924,6 +1922,41 @@ table.foot_table  tr td{
     width: 90%;
     padding: 30px;
 }
+.personal.contacts #add_connect_user{
+    position: relative;
+    color: green;
+    padding: 10px;
+}
+.personal.contacts #add_connect_user:hover{
+    color: red;
+    cursor: pointer;
+}
+.personal.contacts #add_connect_user img{
+    margin-right: 10px;
+}
+.personal.contacts #connect{
+    display: none;
+    position: absolute;
+    margin-top: -70px;
+    margin-left: 200px;
+    width: 40%;
+    padding: 10px;
+    color: black;
+    background-color: #ffffff;
+    border: 1px #0050a3 solid;
+}
+.personal.contacts #connect p{
+    margin-bottom: 10px;
+}
+.personal.contacts #connect p:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.personal.contacts #connect img{
+    margin-right: 10px;
+}
+
 
 .personal.contacts .message{
     padding: 10px;

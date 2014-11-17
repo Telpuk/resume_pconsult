@@ -266,11 +266,10 @@
                 self.autocompFieldActivities(JSON.parse(data['field_activities']));
             });
     };
-    Personal.prototype.addEventListenerMessage = function(){
+    Personal.prototype.messageColor = function(){
        $('div.message',this.$form).filter(function(){
             return $(this).text()
         }).siblings("input").css('border', '1px red solid');
-        console.log( $('div.message',this.$form).filter("text").css({"border": "1px  red solid"}));
     };
 
 
@@ -279,7 +278,7 @@
         this.autocompletePost();
         this.addEventListenerSkills();
         this.addEventListenerFORM();
-        this.addEventListenerMessage();
+        this.messageColor();
     };
 
     var personal = new Personal();

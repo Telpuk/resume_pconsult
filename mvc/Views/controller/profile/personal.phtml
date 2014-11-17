@@ -10,14 +10,14 @@
 					<table>
 						<tbody>
 						<tr>
-							<td><label for="surname">Фамилия<span class="required">*</span></label></td>
+							<td><label for="surname">Фамилия<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
 								<input type="text"  id="surname" name="surname" value='<?=$this->data['data']['inputs']['surname']['value']?>'>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['surname']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
-							<td><label for="first_name">Имя<span class="required">*</span></label></td>
+							<td><label for="first_name">Имя<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
 								<input type="text" name="first_name" value='<?=$this->data['data']['inputs']['first_name']['value']?>'>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['first_name']['val']['message']?></span></div>
@@ -81,7 +81,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="city">Город проживания<span class="required">*</span></label></td>
+							<td><label for="city">Город проживания<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
 								<p class="example">Например: <span id="city_example">Минск</span></p>
 								<input name="city" id="city" type="text" value='<?=$this->data['data']['inputs']['city']['value']?>'>

@@ -373,6 +373,7 @@ class ProfileController extends IController{
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/handlebars-v2.0.0.js",
 				BASE_URL."/public/js/contacts.js"
 			),
 		);

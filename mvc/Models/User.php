@@ -535,7 +535,8 @@ class User{
 		}
 
 		return sprintf(
-			'<b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
+			'<p><b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> </p>
+				<p>  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b></p>',
 			$birth,
 			$personal_data['sex'],
 			$personal_data['city'],
@@ -673,13 +674,13 @@ class User{
 			$call_me .= "<p><a href='skype:{$personal_data['skype']}'><img src='".BASE_URL."/public/img/skype.png'>{$personal_data['skype']}</a></p>";
 		}
 		if($personal_data['free_lance']){
-			$call_me .= "<p><img src='".BASE_URL."/public/img/freelance.png'>{$personal_data['free_lance']}</p>";
+			$call_me .= "<p><img src='".BASE_URL."/public/img/free_lance.png'>{$personal_data['free_lance']}</p>";
 		}
 		if($personal_data['my_circle']){
 			$call_me .= "<p><img src='".BASE_URL."/public/img/moykrug.png'>{$personal_data['my_circle']}</p>";
 		}
 		if($personal_data['linkedln']){
-			$call_me .= "<p><img src='".BASE_URL."/public/img/linkedin.png'>{$personal_data['linkedln']}</p>";
+			$call_me .= "<p><img src='".BASE_URL."/public/img/linkedln.png'>{$personal_data['linkedln']}</p>";
 		}
 		if($personal_data['facebook']){
 			$call_me .= "<p><img src='".BASE_URL."/public/img/facebook.png'>{$personal_data['facebook']}</p>";
@@ -688,7 +689,7 @@ class User{
 			$call_me .= "<p><img src='".BASE_URL."/public/img/livejournal.png'>{$personal_data['live_journal']}</p>";
 		}
 		if($personal_data['other_site']){
-			$call_me .= "<p>{$personal_data['other_site']}</p>";
+			$call_me .= "<p><img src='".BASE_URL."/public/img/other_site.png'>{$personal_data['other_site']}</p>";
 		}
 
 
