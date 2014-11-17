@@ -603,12 +603,12 @@ ul.nice-menu-right ul ul {
 
 ul.nice-menu-right li.menuparent,
 ul.nice-menu-right li li.menuparent {
-    background: #eee url("../images/arrow-right.png") right center no-repeat;
+    background: #eee url("../../images/arrow-right.png") right center no-repeat;
 }
 
 ul.nice-menu-right li.menuparent:hover,
 ul.nice-menu-right li li.menuparent:hover {
-    background: #ccc url("../images/arrow-right.png") right center no-repeat;
+    background: #ccc url("../../images/arrow-right.png") right center no-repeat;
 }
 
 /* VERTICAL menus where submenus pop LEFT. */
@@ -1323,7 +1323,6 @@ fieldset legend{
     margin-top: 10px;
 }
 
-
 .resume .resume_widget p{
     font-size: .9em;
 }
@@ -1414,7 +1413,7 @@ fieldset legend{
 .resume .right_60 h2 a,
 .resume .nationality_workpermit h1 a{
     display: inline-block;
-    font-size: .55em;
+    font-size: .4em;
     font-weight: normal;
     color: #c67b37;
     border: none;
@@ -1694,7 +1693,6 @@ a.addPhoto span:last-child,
 .photo .no-save:hover,
 .personal .no-save:hover{
     cursor: pointer;
-    color: red;
 }
 
 .photo section h1,
