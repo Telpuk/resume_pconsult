@@ -21,12 +21,7 @@ class User{
 
 	public function viewAdmin($id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													view_admin = 'yes'
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare ("UPDATE profile SET view_admin = 'yes' WHERE id = :id_user");
 			$stmt->execute(array(':id_user'=>$id_user));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -35,12 +30,7 @@ class User{
 
 	public function updateConclusion($conclusion,$id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													conclusion = :conclusion
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare ("UPDATE profile SET conclusion = :conclusion WHERE id = :id_user");
 			$stmt->execute(array(':conclusion'=>$conclusion,':id_user'=>$id_user));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -50,13 +40,8 @@ class User{
 
 	public function finishResume($id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													registered_user = 'yes',
-													date  = NOW()
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare("UPDATE profile SET registered_user = 'yes',".
+				"date  = NOW() WHERE id = :id_user");
 			$stmt->execute(array(':id_user'=>$id_user));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -65,12 +50,8 @@ class User{
 
 	public function addComment($comment, $id_user, $id_admin){
 		try {
-			$stmt = $this->_dbc->prepare ("INSERT INTO
-													comments(id_user, comment, id_admin)
-												VALUES(
-													:id_user,
-													:comment,
-													:id_admin)");
+			$stmt = $this->_dbc->prepare ("INSERT INTO comments(id_user, comment, id_admin)".
+				"VALUES(:id_user, :comment, :id_admin)");
 			$stmt->execute(array(
 				':comment'=>$comment,
 				':id_user'=>$id_user,
@@ -103,15 +84,7 @@ class User{
 	}
 
 	public function selectAutocompleteExperence(){
-		$stmt = $this->_dbc->query("SELECT DISTINCT
-												organizations,
-												key_skills,
-												regions,
-												positions,
-												field_activities
-											FROM
-												experience"
-		);
+		$stmt = $this->_dbc->query("SELECT DISTINCT organizations, key_skills, regions, positions, field_activities FROM experience");
 		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		foreach ($autocomplete as $key => $value) {

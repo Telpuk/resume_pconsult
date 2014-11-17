@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 2,
+		$_count_view = 7,
 		$_page = null;
 
 	public function  __construct(){

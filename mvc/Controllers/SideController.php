@@ -600,6 +600,9 @@ class SideController extends IController{
 		}
 
 		$key_skills = $post['skills_hidden'];
+		if(!empty($post['key_skills'])){
+			$key_skills[] = $post['key_skills'];
+		}
 
 		$key_skills_val = call_user_func(function($key_skills){
 			return count($key_skills)!==0?true: array('message'=>'Необходимо заполнить');

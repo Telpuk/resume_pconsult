@@ -207,10 +207,10 @@ input[type="file"] > input[type="button"]:hover {
 /* reset styles */
 
 body {
-     color: #383838;
-     font-size: 16px;
-     line-height: 18px;
-     font-family: 'RobotoCondensed-Regular', 'OpenSans-Regular', "Open Sans", Arial, "Helvetica Neue", "Liberation Sans", FreeSans, sans-serif;
+    color: #383838;
+    font-size: 16px;
+    line-height: 18px;
+    font-family: 'RobotoCondensed-Regular', 'OpenSans-Regular', "Open Sans", Arial, "Helvetica Neue", "Liberation Sans", FreeSans, sans-serif;
 }
 
 /*=========================*/
@@ -613,30 +613,30 @@ ul.nice-menu-right li li.menuparent:hover {
 
 /* VERTICAL menus where submenus pop LEFT. */
 /*ul.nice-menu-left li ul {*/
-    /*width: 12.5em;*/
-    /*left: -12.65em;*/
-    /*top: -1px;*/
+/*width: 12.5em;*/
+/*left: -12.65em;*/
+/*top: -1px;*/
 /*}*/
 
 /*ul.nice-menu-left li ul li ul {*/
-    /*width: 12.5em;*/
-    /*left: -12.65em;*/
-    /*top: -1px;*/
+/*width: 12.5em;*/
+/*left: -12.65em;*/
+/*top: -1px;*/
 /*}*/
 
 /*ul.nice-menu-left li.menuparent,*/
 /*ul.nice-menu-left li li.menuparent {*/
-    /*background: #eee url("../images/arrow-left.png") left center no-repeat;*/
+/*background: #eee url("../images/arrow-left.png") left center no-repeat;*/
 /*}*/
 
 /*ul.nice-menu-left li.menuparent:hover,*/
 /*ul.nice-menu-left li li.menuparent:hover {*/
-    /*background: #ccc url("../images/arrow-left.png") left center no-repeat;*/
+/*background: #ccc url("../images/arrow-left.png") left center no-repeat;*/
 /*}*/
 
 /*ul.nice-menu-left a,*/
 /*ul.nice-menu-left ul a {*/
-    /*padding-left: 14px;*/
+/*padding-left: 14px;*/
 /*}*/
 
 /******************************
@@ -1155,7 +1155,6 @@ ul.nice-menu li {
     border: none;
     border-radius: 5px;
     -moz-border-radius: 5px;
-    letter-spacing: 2px;
     color: white;
     background-color: rgba(198, 123, 55, 0.44);
     padding: 5px 10px 5px 10px;
@@ -1512,6 +1511,12 @@ fieldset legend{
     color: red;
     margin-left: 3px;
 }
+.required.input, table.key_skills .required.input{
+    text-align: left;
+    font-size: 0.7em;
+    display: block;
+    font-weight: normal;
+}
 
 .resume .end_resume{
     margin-top: 10px;
@@ -1815,7 +1820,7 @@ a.addPhoto span:last-child,
 
 input.error, textarea.error{
     outline: none;
-    border: 2px red solid;
+    border: 1px red solid;
 }
 
 table.foot_table  tr td{
@@ -2034,17 +2039,11 @@ input[type=email]{
 }
 
 /*experience*/
-
 #key_skill{
     width: 250px;
+    position: relative;
 }
-.ui-tooltip {
-    background: #4a4a4a;
-    color: #96f226;
-    border: 2px solid #454545;
-    border-radius: 0px;
-    box-shadow: 0 0;
-}
+
 .delete_skills{
     margin-left: 5px;
     margin-right: 20px;
@@ -2073,21 +2072,6 @@ input[type=email]{
 
 .delete_skills:hover{
     cursor: pointer;
-}
-.ui-autocomplete{
-    width: 100px;
-    font-size: 0.2em !important;
-    background: #4a4a4a;
-    border-radius: 0px;
-}
-.ui-autocomplete.source:hover {
-    background: #454545;
-}
-
-.ui-menu .ui-menu-item a{
-    color: #96f226;
-    border-radius: 0px;
-    border: 1px solid #454545;
 }
 
 .button_skill{
@@ -2193,7 +2177,6 @@ table.electronic_certificates  tbody td:nth-child(2) {
     border-top:1px  dotted #bababa;
 }
 table.key_skills tr:first-child{
-    font-size: 1.2em;
     color: black;
     font-weight: bold;
 }
@@ -2202,7 +2185,6 @@ table.key_skills tr:first-child{
 table.recommendations tr:first-child{
     color: black;
     font-weight: bold;
-    font-size: 1.3em;
 }
 
 /**/
@@ -2635,7 +2617,6 @@ main.authorization .helpers_message_authorization{
     border: none;
     border-radius: 5px;
     -moz-border-radius: 5px;
-    letter-spacing: 2px;
     color: white  !important;
     background-color: rgba(198, 123, 55, 0.36);
     padding: 5px 10px 5px 10px  !important;

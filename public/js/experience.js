@@ -201,16 +201,20 @@
             switch (event.target.className){
                 case 'button_skill':{
                     if(event.data.self.$key_skill.val()){
+                        $('.message',event.data.self.$skills_td).text('');
                         var val_h = event.data.self.$key_skill.val();
-                        event.data.self.$key_skill.
-                            append("<input type='hidden' name='skills_hidden[]' value='"+val_h+"'>");
                         event.data.self.$key_skill.val('');
-                        event.data.self.$add_skills_hid.append('<span>'+val_h+'<img class="delete_skills" src="http://10.10.0.176/resume_pconsult/public/img/remove.png"></span>');
+                        event.data.self.$add_skills_hid.append(
+                            "<span><input type='hidden' name='skills_hidden[]' value='"+val_h+"'>"+val_h+"<img class='delete_skills' src='"+BASE_URL+"/public/img/remove.png'></span>");
                     }
                     break;
                 }
                 case 'delete_skills':{
+                    var value =  $(event.target).parent().text();
                     $(event.target).parent().remove();
+                    if($('span',event.data.self.$add_skills_hid).length === 0 && !event.data.self.$key_skill.val()){
+                        $('.message',event.data.self.$skills_td).text('Обязательно для заполнения');
+                    }
                     break;
                 }
             }
@@ -262,12 +266,20 @@
                 self.autocompFieldActivities(JSON.parse(data['field_activities']));
             });
     };
+    Personal.prototype.addEventListenerMessage = function(){
+       $('div.message',this.$form).filter(function(){
+            return $(this).text()
+        }).siblings("input").css('border', '1px red solid');
+        console.log( $('div.message',this.$form).filter("text").css({"border": "1px  red solid"}));
+    };
+
 
     Personal.prototype.init = function(){
         this.validateForm();
         this.autocompletePost();
         this.addEventListenerSkills();
         this.addEventListenerFORM();
+        this.addEventListenerMessage();
     };
 
     var personal = new Personal();
