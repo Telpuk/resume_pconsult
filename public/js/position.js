@@ -33,10 +33,32 @@
             }
         });
     };
+    Personal.prototype.messageColor = function(){
+
+        console.log(  $('div.message').filter(function(){
+            return $(this).text()
+        }));
+        $('div.message').filter(function(){
+            return $(this).text()
+        }).parent().css({
+            'border':'1px red solid',
+            'padding':'20px',
+            'marginBottom': '30px',
+            'color':'red'
+        });
+
+
+    };
+
+
 
     Personal.prototype.init = function(){
+        this.messageColor();
         this.validateForm();
     };
+
+
+
 
 
     var personal = new Personal();
