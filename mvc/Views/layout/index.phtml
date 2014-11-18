@@ -257,21 +257,21 @@
 	<table class="base_education" data-table-base-education-id='{{i}}'>
 		<tbody>
 		<tr>
-			<td><label>Название учебного заведения<span class="required">*</span></label></td>
+			<td><label>Название учебного заведения<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text"  name="names_institutions[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label>Факультет<span class="required">*</span></label></td>
+			<td><label>Факультет<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text"  name="faculties[{{i}}]" value=''>
 				<div class="message"></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label>Cпециализация / специальность<span class="required">*</span></label></td>
+			<td><label>Cпециализация / специальность<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text" name="specialties_specialties[{{i}}]" value=''>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
@@ -279,7 +279,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label>Год окончания<span class="required">*</span></label></td>
+			<td><label>Год окончания<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<select name="years_graduations[{{i}}]">
 					{{#years}}

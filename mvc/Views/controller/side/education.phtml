@@ -37,21 +37,21 @@
 	<table class="base_education" data-table-base-education-id='<?=$i?>'>
 		<tbody>
 		<tr>
-			<td><label for="names_institutions">Название учебного заведения<span class="required">*</span></label></td>
+			<td><label for="names_institutions">Название учебного заведения<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text" id="names_institutions" name="names_institutions[<?=$i?>]" value='<?=$this->data['data']['inputs']['names_institutions']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['names_institutions']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="faculties">Факультет<span class="required">*</span></label></td>
+			<td><label for="faculties">Факультет<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text"  id="faculties"  name="faculties[<?=$i?>]" value='<?=$this->data['data']['inputs']['faculties']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['faculties']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="specialty_specialty">Cпециализация / специальность<span class="required">*</span></label></td>
+			<td><label for="specialty_specialty">Cпециализация / специальность<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text"  id="specialty_specialty"  name="specialties_specialties[<?=$i?>]" value='<?=$this->data['data']['inputs']['specialties_specialties']['value'][$i]?>'>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
@@ -59,7 +59,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="year_graduation">Год окончания<span class="required">*</span></label></td>
+			<td><label for="year_graduation">Год окончания<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<select name="years_graduations[<?=$i?>]">
 					<option value="0"></option>
@@ -244,7 +244,7 @@
 	</thead>
 	<tbody>
 	<tr>
-		<td><label for="native_language">родной язык</label></td>
+		<td><label for="native_language">родной язык<span class="required input">Обязательно для заполнения</span></label></td>
 		<td>
 			<select id="native_language" name="native_language">
 				<option value=""></option>

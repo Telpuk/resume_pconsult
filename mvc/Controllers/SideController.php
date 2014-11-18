@@ -505,66 +505,70 @@ class SideController extends IController{
 	}
 
 	private function _checkFormExperience($post){
-		$organizations_key=0;
 
-		foreach($post['organizations'] as $key=>$organization){
+		$no_experience = isset($post['no_experience']) && $post['no_experience'] === 'yes'? false: true;
 
-			$organizations[$organizations_key] = trim(strip_tags($organization));
+		if($no_experience) {
+			$organizations_key=0;
 
-			$organizations_val[$organizations_key] = call_user_func(function($organization){
-				return !empty($organization)?true: array('message'=>'Необходимо заполнить');
-			}, $organizations[$organizations_key]);
+			foreach ($post['organizations'] as $key => $organization) {
 
+				$organizations[$organizations_key] = trim(strip_tags($organization));
 
-			$regions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['regions'][$key])));
-
-			$regions_val[$organizations_key]=call_user_func(function($regions){
-				return !empty($regions)?true: array('message'=>'Необходимо заполнить');
-			}, $regions[$organizations_key]);
-
-			$sites[$organizations_key] = trim(strip_tags($post['sites'][$key]));
-
-			$field_activities[$organizations_key] = trim(strip_tags($post['field_activities'][$key]));
-
-			$positions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]','', $post['positions'][$key])));
-
-			$functions[$organizations_key] = trim(strip_tags($post['functions'][$key]));
-
-			$functions_val[$organizations_key]=call_user_func(function($position){
-				return !empty($position)?true: array('message'=>'Необходимо заполнить');
-			}, $functions[$organizations_key]);
-
-			$positions_val[$organizations_key] = call_user_func(function($position){
-				return !empty($position)?true: array('message'=>'Необходимо заполнить');
-			}, $positions[$organizations_key]);
+				$organizations_val[$organizations_key] = call_user_func(function ($organization) {
+					return !empty($organization) ? true : array('message' => 'Необходимо заполнить');
+				}, $organizations[$organizations_key]);
 
 
-			$getting_starteds[$organizations_key]=$post['getting_starteds'][$key];
-			$getting_starteds_val[$organizations_key] = call_user_func(function($getting_started){
-				if($getting_started['year'] == 0){
-					return array('message'=>'Необходимо заполнить');
-				}elseif($getting_started['year'] > date('Y')){
-					return array('message'=>'Слишком поздно');
-				}
+				$regions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]', '', $post['regions'][$key])));
 
-			}, $getting_starteds[$organizations_key]);
+				$regions_val[$organizations_key] = call_user_func(function ($regions) {
+					return !empty($regions) ? true : array('message' => 'Необходимо заполнить');
+				}, $regions[$organizations_key]);
+
+				$sites[$organizations_key] = trim(strip_tags($post['sites'][$key]));
+
+				$field_activities[$organizations_key] = trim(strip_tags($post['field_activities'][$key]));
+
+				$positions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]', '', $post['positions'][$key])));
+
+				$functions[$organizations_key] = trim(strip_tags($post['functions'][$key]));
+
+				$functions_val[$organizations_key] = call_user_func(function ($position) {
+					return !empty($position) ? true : array('message' => 'Необходимо заполнить');
+				}, $functions[$organizations_key]);
+
+				$positions_val[$organizations_key] = call_user_func(function ($position) {
+					return !empty($position) ? true : array('message' => 'Необходимо заполнить');
+				}, $positions[$organizations_key]);
 
 
-			$at_the_moments[$organizations_key] = isset($post['at_the_moments'][$key])?$post['at_the_moments'][$key]:'false';
+				$getting_starteds[$organizations_key] = $post['getting_starteds'][$key];
+				$getting_starteds_val[$organizations_key] = call_user_func(function ($getting_started) {
+					if ($getting_started['year'] == 0) {
+						return array('message' => 'Необходимо заполнить');
+					} elseif ($getting_started['year'] > date('Y')) {
+						return array('message' => 'Слишком поздно');
+					}
 
-			$closing_works[$organizations_key] = $at_the_moments[$organizations_key]==='false'?$post['closing_works'][$key]:array('month' => 1, 'year' => 0);
+				}, $getting_starteds[$organizations_key]);
 
 
-			$closing_works_val[$organizations_key] = call_user_func(function($closing_work, $getting_started, $at_the_moments){
-				if($at_the_moments === 'false' && $closing_work['year']==0){
-					return array('message'=>'Необходимо заполнить');
-				}elseif(($closing_work['year'] < $getting_started['year'] && $at_the_moments === 'false')||
-					($closing_work['year'] === $getting_started['year'] && $closing_work['month']<$getting_started['month'])){
-					return array('message'=>'Дата окончания ранее даты начала');
-				}
+				$at_the_moments[$organizations_key] = isset($post['at_the_moments'][$key]) ? $post['at_the_moments'][$key] : 'false';
 
-			}, $closing_works[$organizations_key], $getting_starteds[$organizations_key], $at_the_moments[$organizations_key]);
-			++$organizations_key;
+				$closing_works[$organizations_key] = $at_the_moments[$organizations_key] === 'false' ? $post['closing_works'][$key] : array('month' => 1, 'year' => 0);
+
+
+				$closing_works_val[$organizations_key] = call_user_func(function ($closing_work, $getting_started, $at_the_moments) {
+					if ($at_the_moments === 'false' && $closing_work['year'] == 0) {
+						return array('message' => 'Необходимо заполнить');
+					} elseif (($closing_work['year'] < $getting_started['year'] && $at_the_moments === 'false') || ($closing_work['year'] === $getting_started['year'] && $closing_work['month'] < $getting_started['month'])) {
+						return array('message' => 'Дата окончания ранее даты начала');
+					}
+
+				}, $closing_works[$organizations_key], $getting_starteds[$organizations_key], $at_the_moments[$organizations_key]);
+				++$organizations_key;
+			}
 		}
 
 
@@ -611,6 +615,9 @@ class SideController extends IController{
 		$about_self = $post['about_self'];
 
 		return array(
+			'no_experience'=>array(
+				'value'=>$no_experience
+			),
 			'organizations'=>array(
 				'val'=>$organizations_val,
 				'value'=>$organizations
@@ -628,7 +635,9 @@ class SideController extends IController{
 				'val'=>$closing_works_val,
 				'value'=>$closing_works
 			),
-			'at_the_moments'=>array('value'=>$at_the_moments),
+			'at_the_moments'=>array(
+				'value'=>$at_the_moments
+			),
 			'regions'=>array(
 				'val'=>$regions_val,
 				'value'=>$regions

@@ -1,112 +1,16 @@
 (function($, BASE_URL, Handlebars ,window){
-    function Personal(){
+    function Experience(){
         this.$form = $('.personal.experience .form');
         this.count_table_experience = $('*[data-table-experience-id]:last').data()['tableExperienceId'];
         this.count_table_recommendations = $('*[data-table-recommendations-id]:last').data()['tableRecommendationsId'];
         this.$key_skill = $('#key_skill');
         this.$skills_td = $('.skills_td');
+        this.$table_organizations = $('#table_organizations');
+        this.$no_experience = $('#no_experience input[type=checkbox]');
         this.$add_skills_hid = $('.add_skills_hid');
     }
 
-    Personal.prototype.validateForm = function(){
-
-        $("#experience_form").validate({
-
-            rules: {
-
-                'organizations[0]': {
-                    required: true
-                },
-                'organizations[1]': {
-                    required: true
-                },
-                'organizations[2]': {
-                    required: true
-                },
-
-                'regions[0]': {
-                    required: true
-                },
-                'regions[1]': {
-                    required: true
-                },
-                'regions[2]': {
-                    required: true
-                },
-
-                'functions[0]': {
-                    required: true
-                },
-                'functions[1]': {
-                    required: true
-                },
-                'functions[2]': {
-                    required: true
-                },
-
-                'positions[0]':{
-                    required: true
-                },
-                'positions[1]':{
-                    required: true
-                },
-                'positions[2]':{
-                    required: true
-                },
-                'positions[3]':{
-                    required: true
-                },
-                'getting_starteds[0][year]':{
-                    required: true
-                }
-
-            },
-            messages: {
-
-                'organizations[0]': {
-                    required: "Это поле обязательно для заполнения"
-                }, 'organizations[1]': {
-                    required: "Это поле обязательно для заполнения"
-                }, 'organizations[2]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'regions[0]': {
-                    required: "Это поле обязательно для заполнения"
-                }, 'regions[1]': {
-                    required: "Это поле обязательно для заполнения"
-                }, 'regions[2]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-
-                'functions[0]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'functions[1]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'functions[2]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'positions[0]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'positions[1]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-                'positions[2]': {
-                    required: "Это поле обязательно для заполнения"
-                },
-
-                'getting_starteds[0][year]':{
-                    required: "Это поле обязательно для заполнения"
-                }
-            }
-        });
-
-    };
-
-
-    Personal.prototype.tableTemplatePosition = function(){
+    Experience.prototype.tableTemplatePosition = function(){
 
         var source = $("#table-template-experience").html();
 
@@ -157,14 +61,14 @@
         return template({'i':++this.count_table_experience,'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.tableTemplateRecommendations = function(){
+    Experience.prototype.tableTemplateRecommendations = function(){
         var source = $("#table-template-recommendations").html();
         var template = Handlebars.compile(source);
         return template({'i':++this.count_table_recommendations,'BASE_URL':BASE_URL});
 
     };
 
-    Personal.prototype.addEventListenerFORM = function() {
+    Experience.prototype.addEventListenerFORM = function() {
         this.$form.on('click', {self:this}, function(event){
             switch (event.target.className){
                 case 'add_position':{
@@ -195,7 +99,7 @@
 
         });
     };
-    Personal.prototype.addEventListenerSkills = function(){
+    Experience.prototype.addEventListenerSkills = function(){
         this.$skills_td.on('click', {self:this}, function(event) {
 
             switch (event.target.className){
@@ -224,36 +128,36 @@
     };
 
 
-    Personal.prototype.autocompSkills = function(data){
+    Experience.prototype.autocompSkills = function(data){
         this.$key_skill.autocomplete({
             source: data
         });
     };
 
-    Personal.prototype.autocompRegions = function(data){
+    Experience.prototype.autocompRegions = function(data){
         $('.regions').autocomplete({
             source: data
         });
     };
 
-    Personal.prototype.autocompOrganization = function(data){
+    Experience.prototype.autocompOrganization = function(data){
         $('.organizations').autocomplete({
             source: data
         });
     };
-    Personal.prototype.autocomPositions = function(data){
+    Experience.prototype.autocomPositions = function(data){
         $('.positions').autocomplete({
             source: data
         });
     };
 
-    Personal.prototype.autocompFieldActivities = function(data){
+    Experience.prototype.autocompFieldActivities = function(data){
         $('.field_activities').autocomplete({
             source: data
         });
     };
 
-    Personal.prototype.autocompletePost = function(){
+    Experience.prototype.autocompletePost = function(){
         var self = this;
         $.post( BASE_URL+"/side/autocomplete",
             { autocomplete: "autocomplete"})
@@ -266,23 +170,42 @@
                 self.autocompFieldActivities(JSON.parse(data['field_activities']));
             });
     };
-    Personal.prototype.messageColor = function(){
-       $('div.message',this.$form).filter(function(){
+    Experience.prototype.messageColor = function(){
+        $('div.message',this.$form).filter(function(){
             return $(this).text()
         }).siblings("input").css('border', '1px red solid');
+        $('div.message',this.$form).filter(function(){
+            return $(this).text()
+        }).siblings("select").css('border', '1px red solid');
     };
 
+    Experience.prototype.addEventListenerNoExperience = function(){
+        this.$no_experience.on('click', {self:this}, function(event) {
+            if($(this).prop('checked') === true){
+                event.data.self.$table_organizations.hide();
+            }else{
+                event.data.self.$table_organizations.show();
+            }
+        });
+    };
 
-    Personal.prototype.init = function(){
-        this.validateForm();
+    Experience.prototype.checkNoExperienceChecked = function(){
+        if(this.$no_experience.prop('checked') === true){
+            this.$table_organizations.hide();
+        }
+    };
+
+    Experience.prototype.init = function(){
+        this.checkNoExperienceChecked();
         this.autocompletePost();
         this.addEventListenerSkills();
+        this.addEventListenerNoExperience();
         this.addEventListenerFORM();
         this.messageColor();
     };
 
-    var personal = new Personal();
-    personal.init();
+    var experience = new Experience();
+    experience.init();
 
 })(jQuery, BASE_URL, Handlebars ,window)
 

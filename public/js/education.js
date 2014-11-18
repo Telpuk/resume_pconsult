@@ -1,6 +1,7 @@
 (function($, BASE_URL,Handlebars ,window){
-    function Personal(){
+    function Education(){
         this.$form = $('.personal.education .form');
+        this.$level = $('#level');
         this.count_base_education = $('*[data-table-base-education-id]:last').data()['tableBaseEducationId'];
         this.count_traning_course = $('*[data-table-training-courses-id]:last').data()['tableTrainingCoursesId'];
         this.count_tests_exams = $('*[data-table-tests-exams-id]:last').data()['tableTestsExamsId'];
@@ -9,7 +10,7 @@
 
     }
 
-    Personal.prototype.tableTemplateBaseEducation= function(){
+    Education.prototype.tableTemplateBaseEducation= function(){
 
         var source = $("#table-base-education").html();
 
@@ -27,7 +28,7 @@
         return template({'i':++this.count_base_education,'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.tableTemplateTrainingCourse = function(){
+    Education.prototype.tableTemplateTrainingCourse = function(){
         var source = $("#table_training_courses").html();
 
         Handlebars.registerHelper('years', function() {
@@ -44,7 +45,7 @@
         return template({'i':++this.count_traning_course,'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.tableTemplateTestsExams = function(){
+    Education.prototype.tableTemplateTestsExams = function(){
         var source = $("#table_tests_exams").html();
 
         Handlebars.registerHelper('years', function() {
@@ -61,7 +62,7 @@
         return template({'i':++this.count_tests_exams,'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.tableTemplateElectronicCertificates = function(){
+    Education.prototype.tableTemplateElectronicCertificates = function(){
         var source = $("#table_electronic_certificates").html();
 
         Handlebars.registerHelper('years', function() {
@@ -78,7 +79,7 @@
         return template({'i':++this.count_electronic_certificates,'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.tableTemplateTrLanguage = function(){
+    Education.prototype.tableTemplateTrLanguage = function(){
         var source = $("#tr_language_further").html();
         var languages = ['абхазский',
             'аварский',
@@ -196,7 +197,7 @@
         return template({'i':++this.count_tr_language, 'BASE_URL':BASE_URL});
     };
 
-    Personal.prototype.addEventListenerFORM = function() {
+    Education.prototype.addEventListenerFORM = function() {
         this.$form.on('click', {self:this}, function(event){
             switch (event.target.className){
                 case 'add_education':{
@@ -261,12 +262,23 @@
 
         });
     };
+    Education.prototype.messageColor = function(){
+        $('div.message',this.$personal_contacts).filter(function(){
+            return $(this).text();
+        }).parent().find("input[type=text]").css('border', '1px red solid');
 
-    Personal.prototype.init = function(){
+        $('div.message',this.$personal_contacts).filter(function(){
+            return $(this).text();
+        }).parent().find("select").css('border', '1px red solid');
+    };
+
+
+    Education.prototype.init = function(){
+        this.messageColor();
         this.addEventListenerFORM();
     };
 
-    var personal = new Personal();
-    personal.init();
+    var education = new Education();
+    education.init();
 
 })(jQuery, BASE_URL,Handlebars ,window)

@@ -1177,18 +1177,20 @@ class User{
 	}
 
 	public function updateExperience($inputs, $id_user){
-
-		foreach($inputs['getting_starteds']['value'] as $key=>$value){
-			$getting_starteds[$key] = $value['year'].'-'.$value['month'];
-		}
-		foreach($inputs['closing_works']['value'] as $key=>$value){
-			$closing_works[$key] = $value['year'].'-'.$value['month'];
+		if(is_array($inputs['getting_starteds']['value'])) {
+			foreach ($inputs['getting_starteds']['value'] as $key => $value) {
+				$getting_starteds[$key] = $value['year'] . '-' . $value['month'];
+			}
+			foreach ($inputs['closing_works']['value'] as $key => $value) {
+				$closing_works[$key] = $value['year'] . '-' . $value['month'];
+			}
 		}
 
 		try {
 			$stmt = $this->_dbc->prepare ("UPDATE
 													experience
 												SET
+													no_experience = :no_experience,
 													organizations = :organizations,
 													positions = :positions,
 													regions = :regions,
@@ -1207,21 +1209,22 @@ class User{
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
-				':organizations'=>implode('[@!-#-!@]',$inputs['organizations']['value']),
-				':positions'=>implode('[@!-#-!@]',$inputs['positions']['value']),
-				':regions'=>implode('[@!-#-!@]',$inputs['regions']['value']),
-				':sites'=>implode('[@!-#-!@]',$inputs['sites']['value']),
-				':field_activities'=>implode('[@!-#-!@]',$inputs['field_activities']['value']),
-				':getting_starteds'=>implode('[@!-#-!@]',$getting_starteds),
-				':closing_works'=>implode('[@!-#-!@]',$closing_works),
-				':at_the_moments'=>implode('[@!-#-!@]',$inputs['at_the_moments']['value']),
-				':functions'=>implode('[@!-#-!@]',$inputs['functions']['value']),
-				':key_skills'=>implode('[@!-#-!@]',$inputs['key_skills']['value']),
+				':no_experience'=>$inputs['no_experience']['value'],
+				':organizations'=>implode('[@!-#-!@]',(array)$inputs['organizations']['value']),
+				':positions'=>implode('[@!-#-!@]',(array)$inputs['positions']['value']),
+				':regions'=>implode('[@!-#-!@]',(array)$inputs['regions']['value']),
+				':sites'=>implode('[@!-#-!@]',(array)$inputs['sites']['value']),
+				':field_activities'=>implode('[@!-#-!@]',(array)$inputs['field_activities']['value']),
+				':getting_starteds'=>implode('[@!-#-!@]',(array)$getting_starteds),
+				':closing_works'=>implode('[@!-#-!@]',(array)$closing_works),
+				':at_the_moments'=>implode('[@!-#-!@]',(array)$inputs['at_the_moments']['value']),
+				':functions'=>implode('[@!-#-!@]',(array)$inputs['functions']['value']),
+				':key_skills'=>implode('[@!-#-!@]',(array)$inputs['key_skills']['value']),
 				':about_self'=>$inputs['about_self']['value'],
-				':recommend_names'=>implode('[@!-#-!@]',$inputs['recommend_names']['value']),
-				':recommend_position'=>implode('[@!-#-!@]',$inputs['recommend_position']['value']),
-				':recommend_organization'=>implode('[@!-#-!@]',$inputs['recommend_organization']['value']),
-				':recommend_phone'=>implode('[@!-#-!@]',$inputs['recommend_phone']['value']),
+				':recommend_names'=>implode('[@!-#-!@]',(array)$inputs['recommend_names']['value']),
+				':recommend_position'=>implode('[@!-#-!@]',(array)$inputs['recommend_position']['value']),
+				':recommend_organization'=>implode('[@!-#-!@]',(array)$inputs['recommend_organization']['value']),
+				':recommend_phone'=>implode('[@!-#-!@]',(array)$inputs['recommend_phone']['value']),
 				':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
@@ -1232,6 +1235,7 @@ class User{
 	public function selectExperience($id_user){
 		try {
 			$stmt = $this->_dbc->prepare("SELECT
+													no_experience,
 													organizations,
 													regions,
 													positions,
@@ -1259,6 +1263,7 @@ class User{
 
 
 		$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
+		$no_experience = $experience_data['no_experience'];
 		$closing_work = explode('[@!-#-!@]',$experience_data['closing_works']);
 
 		foreach($getting_start as $key=>$value){
@@ -1275,6 +1280,10 @@ class User{
 
 
 		return array(
+			'no_experience'=>array(
+				'val'=>true,
+				'value'=>$no_experience
+			),
 			'organizations'=>array(
 				'val'=>true,
 				'value'=>explode('[@!-#-!@]',$experience_data['organizations'])
