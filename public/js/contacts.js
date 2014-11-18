@@ -56,12 +56,21 @@
     Personal.prototype.addEventListenerList = function(){
         this.$connect_list.on('click',{self:this},function(event){
             var name = $(event.target).data('connect');
-            $(event.target).remove();
-            var source = $("#contacts_list").html();
 
-            var template = Handlebars.compile(source);
-            var html  = template({'name': name,'label':event.data.self.connectLabel[name], 'BASE_URL':BASE_URL});
-            event.data.self.$add_connect_user.parent().before(html);
+            if(event.data.self.connectLabel[name]) {
+                $(event.target).remove();
+                var source = $("#contacts_list").html();
+
+                var template = Handlebars.compile(source);
+                var html = template({'name': name, 'label': event.data.self.connectLabel[name], 'BASE_URL': BASE_URL});
+                event.data.self.$add_connect_user.parent().before(html);
+                delete event.data.self.connectLabel[name];
+                if(Object.keys(event.data.self.connectLabel).length === 0){
+                    event.data.self.$add_connect_user.remove();
+                }
+            }else{
+                event.stopPropagation();
+            }
         });
     };
 

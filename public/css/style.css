@@ -1920,16 +1920,15 @@ table.foot_table  tr td{
     width: 90%;
     padding: 30px;
 }
-.personal.contacts #add_connect_user{
+.personal.contacts #add{
     position: relative;
     color: green;
-    padding: 10px;
 }
-.personal.contacts #add_connect_user:hover{
+.personal.contacts #add:hover{
     color: red;
     cursor: pointer;
 }
-.personal.contacts #add_connect_user img{
+.personal.contacts #add img{
     margin-right: 10px;
 }
 .personal.contacts #connect{
@@ -1937,14 +1936,14 @@ table.foot_table  tr td{
     position: absolute;
     margin-top: -70px;
     margin-left: 200px;
-    width: 40%;
+    width: 200px;
     padding: 10px;
     color: black;
     background-color: #ffffff;
     border: 1px #0050a3 solid;
 }
 .personal.contacts #connect p{
-    margin-bottom: 10px;
+    width: 100%;
 }
 .personal.contacts #connect p:hover{
     cursor: pointer;
