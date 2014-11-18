@@ -197,14 +197,14 @@
 	<?php endif; ?>
 </div>
 <div class="experience">
-	<?php if(!$this->data['data']['experience_organizations']): ?>
+	<?php if(!$this->data['data']['experience_key_skills']): ?>
 		<div class="experience_add">
 			<a href='<?=BASE_URL.'/side/experience'?>'><span>Опыт работы</span><span>Добавить...</span></a>
 		</div>
 	<?php else: ?>
 		<section>
 			<h1>
-				Опыт работы (<?=$this->data['data']['sum_experience']?>)<a href='<?=BASE_URL.'/side/experience'?>'>
+				Опыт работы <?=$this->data['data']['sum_experience']?><a href='<?=BASE_URL.'/side/experience'?>'>
 					<?php if($this->data['data']['admin'] === 'manager'): ?>
 						<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
 					<?php else: ?>

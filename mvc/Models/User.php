@@ -291,7 +291,7 @@ class User{
 			)
 		);
 
-		$personal['sum_experience'] = isset($experience_count['sum']) ? $experience_count['sum']: '';
+		$personal['sum_experience'] = isset($experience_count['sum']) ? $experience_count['sum']: 'Ранее не работал';
 
 		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
 			array(
@@ -519,6 +519,8 @@ class User{
 
 			$data .="</table>";
 
+		}else{
+			$data = "<div style='font-size: 0.3em; padding:10px'>Ранее не работал</div>";
 		}
 
 		return $data;

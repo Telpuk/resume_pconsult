@@ -177,6 +177,9 @@
         $('div.message',this.$form).filter(function(){
             return $(this).text()
         }).siblings("select").css('border', '1px red solid');
+        $('div.message',this.$form).filter(function(){
+            return $(this).text()
+        }).siblings("textarea").css('border', '1px red solid');
     };
 
     Experience.prototype.addEventListenerNoExperience = function(){

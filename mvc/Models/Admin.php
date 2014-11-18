@@ -354,7 +354,7 @@ class Admin{
 					'experience_at_the_moments'=>explode('[@!-#-!@]',$data['experience_at_the_moments'])
 				)
 			);
-			$search_data[$key]['sum_experience'] = $experience_count[$key]['sum'];
+			$search_data[$key]['sum_experience'] = isset($experience_count[$key]['sum'])?$experience_count[$key]['sum']:"Ранее не работал";
 			$search_data[$key]['salary'] = $data['salary'] ? $data['salary']." ".$data['currency'] : '';
 
 			$search_data[$key]['years_user'] = $this->_getYearsUser($data['birth']);
