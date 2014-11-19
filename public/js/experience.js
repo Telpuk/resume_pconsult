@@ -185,10 +185,11 @@
     Experience.prototype.addEventListenerNoExperience = function(){
         this.$no_experience.on('click', {self:this}, function(event) {
             if($(this).prop('checked') === true){
-                event.data.self.$table_organizations.hide();
+                event.data.self.$table_organizations.slideUp(200);
             }else{
-                event.data.self.$table_organizations.show();
+                event.data.self.$table_organizations.slideDown(200);
             }
+
         });
     };
 
