@@ -2230,7 +2230,7 @@ table.electronic_certificates  tbody td:nth-child(2) {
 
 .personal.experience hr,
 .personal.education hr{
-    border-top:1px  dotted #bababa;
+    border-top:1px  dotted #0050a3;
 }
 table.key_skills tr:first-child{
     color: black;
