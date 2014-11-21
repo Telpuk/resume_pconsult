@@ -2124,7 +2124,28 @@ input[type=email]{
     font-size: 0.23em;
 }
 
+.personal.experience #no_experience input[type=checkbox]{
+    margin-left: 40px;
+    width: 15px;
+    height:15px;
+    background-color: #ffffff;
+}
 
+.block_no_experience {
+    background: #ffffff;
+    border: 1px green dashed;
+    color: #0050a3;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+}
+.block_no_experience::after {
+    content: '';
+    position: absolute; /* Абсолютное позиционирование */
+    left: 20px; bottom: -20px; /* Положение треугольника */
+    border: 10px solid transparent; /* Прозрачные границы */
+    border-top: 10px solid green; /* Добавляем треугольник */
+}
 
 .personal.experience table td{
     padding-top: 5px;
@@ -2266,7 +2287,7 @@ table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
 /*authorization*/
 main.authorization{
     margin:  0 auto;
-    width: 20%;
+    width: 300px;
 }
 
 
