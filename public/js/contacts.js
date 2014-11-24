@@ -6,7 +6,7 @@
         this.$add_connect_user = $('#add_connect_user', this.$personal_contacts);
         this.$connect_list = $('#connect', this.$personal_contacts);
 
-        this.connectLabel = {
+        this.connectLabelFull = {
             skype: "Skype",
             icq:"ICQ",
             free_lance:"Free-lance",
@@ -16,7 +16,18 @@
             live_journal:"LiveJournal",
             other_site:"Другой сайт"
         }
+
+        this.connectLabel = {}
     }
+
+    Personal.prototype.setConnectionLabel = function(){
+        var self = this;
+        $('p[data-connect]',this.$add_connect_user).each(function(o,element){
+            if($(element).data('connect') in self.connectLabelFull){
+                self.connectLabel[$(element).data('connect')] = self.connectLabelFull[$(element).data('connect')];
+            }
+        });
+    };
 
     Personal.prototype.validateForm = function(){
         $("#personal_contacts").validate({
@@ -39,9 +50,9 @@
             return $(this).text();
         }).parent().parent().find("input[type=tel]").css('border', '1px red solid');
     };
-    Personal.prototype.addEventListenerAddConnect = function(event){
+    Personal.prototype.addEventListenerAddConnect = function(){
         this.$add.on('click',{self:this},function(event){
-            event.data.self.$connect_list.toggle();
+            event.data.self.$connect_list.slideToggle(200);
             event.stopPropagation();
         });
 
@@ -75,6 +86,7 @@
     };
 
     Personal.prototype.init = function(){
+        this.setConnectionLabel();
         this.validateForm();
         this.addEventListenerConnect();
         this.addEventListenerAddConnect();
