@@ -37,9 +37,9 @@
 		<div class="salary_position">
 			<header>
 				<h1>Желаемая должность и зарплата</h1>
-				<h2><?=$this->data['data']['desired_position']?></h2>
-				<h3><?=$this->data['data']['salary']?></h3>
 			</header>
+			<p><strong><?=$this->data['data']['desired_position']?></strong></p>
+			<p><strong><?=$this->data['data']['salary']?></strong></p>
 			<p><?=$this->data['data']['professional_area']?></p>
 			<p><?=$this->data['data']['employment']?></p>
 			<p><?=$this->data['data']['schedule']?></p>
@@ -50,7 +50,7 @@
 				<h1>Образование</h1>
 				<?=$this->data['data']['institutions']?>
 				<div class="languages">
-					<h4>Знание языков</h4>
+					<h2>Знание языков</h2>
 					<?=$this->data['data']['languages']?>
 				</div>
 				<?php if($this->data['data']['courses_names']): ?>

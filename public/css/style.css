@@ -1487,11 +1487,16 @@ fieldset p{
     margin-bottom: 10px;
 }
 
-.resume .salary_position p,
+.resume .salary_position p{
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 0.2em;
+}
+
 .resume .nationality_workpermit p{
     margin-top: 10px;
-    margin-left: 20px;
     font-size: 0.2em;
+    margin-left: 20px;
 }
 .resume .education_language table,
 .resume .experience table{
