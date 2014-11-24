@@ -40,50 +40,50 @@ html {
 
 @font-face {
     font-family: 'RobotoCondensed-Italic';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Italic.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Bold';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Bold.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Bold.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Regular';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Regular.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Light';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Light.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Light.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-Italic';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-Italic.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-SemiboldItalic';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-SemiboldItalic.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-Regular';
-    src: url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.eot');
-    src: local('☺'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.svg') format('svg');
+    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-Regular.eot');
+    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -209,7 +209,7 @@ input[type="file"] > input[type="button"]:hover {
 body {
     color: #383838;
     font-size: 16px;
-    line-height: 18px;
+    line-height: 16px;
     font-family: 'RobotoCondensed-Regular', 'OpenSans-Regular', "Open Sans", Arial, "Helvetica Neue", "Liberation Sans", FreeSans, sans-serif;
 }
 
@@ -283,7 +283,7 @@ body {
     padding: 20px 0;
     margin: 0 10px 0 -15px;
     float: left;
-    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/order-btns-block-bg.png) no-repeat 0 0;
+    background: url('http://www.proconsult.by/sites/all/themes/pro_consult/images/order-btns-block-bg.png') no-repeat 0 0;
     position: relative;
 }
 .order-btns-block .header-btn {
@@ -841,16 +841,16 @@ ul.nice-menu li {
 }
 
 .footer-social-block .content a.social-link-twitter {
-    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/twitter-icon.png) no-repeat center center;
+    background: url('http://www.proconsult.by/sites/all/themes/pro_consult/images/twitter-icon.png') no-repeat center center;
 }
 .footer-social-block .content a.social-link-facebook {
-    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/facebook-icon.png) no-repeat center center;
+    background: url('http://www.proconsult.by/sites/all/themes/pro_consult/images/facebook-icon.png') no-repeat center center;
 }
 .footer-social-block .content a.social-link-vkontakte {
-    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/vk-icon.png) no-repeat center center;
+    background: url('http://www.proconsult.by/sites/all/themes/pro_consult/images/vk-icon.png') no-repeat center center;
 }
 .footer-social-block .content a.social-link-youtube {
-    background: url(http://www.proconsult.by/sites/all/themes/pro_consult/images/youtube-icon.png) no-repeat center center;
+    background: url('http://www.proconsult.by/sites/all/themes/pro_consult/images/youtube-icon.png') no-repeat center center;
 }
 .footer-info-block .info-link{
     color: #fff;
@@ -876,10 +876,9 @@ ul.nice-menu li {
     font-size: 5em;
     min-width: 750px;
     max-width:  1200px;
-    margin: 10px auto 60px ;
+    margin: 0px auto 40px ;
     background-color: white;
-    /*border: 1px black solid;*/
-    padding: 10px;
+    border: 1px black solid;
 }
 /*============print==========*/
 .print_content{
@@ -1322,6 +1321,7 @@ fieldset legend{
 }
 
 .resume .resume_widget p{
+    text-align: center;
     font-size: .9em;
 }
 .resume .resume_widget ul{
@@ -1541,15 +1541,15 @@ fieldset legend{
     background-color: green;
     font-weight: bold;
     color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     border: none;
     text-decoration: none;
     width: 49%;
     text-align: center;
     font-size: .65em;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 .resume .end_resume a.delete_resume{
     background-color: #ff564d;
@@ -2143,19 +2143,12 @@ input[type=email]{
 
 .block_no_experience {
     background: #ffffff;
-    border: 1px green dashed;
     color: #0050a3;
     border-radius: 10px;
     padding: 10px;
     position: relative;
 }
-.block_no_experience::after {
-    content: '';
-    position: absolute; /* Абсолютное позиционирование */
-    left: 20px; bottom: -20px; /* Положение треугольника */
-    border: 10px solid transparent; /* Прозрачные границы */
-    border-top: 10px solid green; /* Добавляем треугольник */
-}
+
 
 .personal.experience table td{
     padding-top: 5px;
