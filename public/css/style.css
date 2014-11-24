@@ -349,9 +349,6 @@ body {
 .header-contacts-block .header-mail-wrapper a:hover {
     text-decoration: underline;
 }
-
-
-
 /*--- MAIN MENU ---*/
 a{
     font-family: "Open Sans",Arial, Tahoma, Verdana, sans-serif;
@@ -1201,7 +1198,8 @@ ul.nice-menu li {
 
 
 
-.resume  h1:first-child{
+.resume > h1:first-child{
+    margin-bottom: 30px;
     color: #0050a3;
     font-size: .45em;
 }
@@ -1401,7 +1399,22 @@ fieldset legend{
 }
 
 .resume .personal_data header h1 a,
-.resume .contacts_data h1 a,
+.resume .contacts_data h1 a{
+    display: inline-block;
+    font-size: .15em;
+    font-weight: normal;
+    color: #c67b37;
+    border: none;
+    margin-left: 10px;
+    border: 1px rgba(233, 100, 26, 0.30) dashed;
+    padding: 2px 10px 2px 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+
+
 .resume .salary_position  h1 a,
 .resume .education_language h1 a,
 .resume .education_language h2 a,
@@ -1413,7 +1426,7 @@ fieldset legend{
 .resume .right_60 h2 a,
 .resume .nationality_workpermit h1 a{
     display: inline-block;
-    font-size: .4em;
+    font-size: .5em;
     font-weight: normal;
     color: #c67b37;
     border: none;
@@ -1548,9 +1561,8 @@ fieldset legend{
     display: block;
     width: 100%;
     line-height: 30px;
-    font-weight: bold;
     text-decoration: none;
-    font-size: .2em;
+    font-size: .25em;
     height: 150px;
     padding-top: 40px;
     padding-left: 30px;
@@ -1597,8 +1609,7 @@ fieldset legend{
 
 .resume .right:hover{
     cursor: pointer;
-    background-color: rgba(186, 186, 186, 0.3);
-    border: 1px #bbbbbb dashed;
+    background-color: rgba(87, 171, 255, 0.33);
 }
 
 .resume .left .add:hover,
@@ -1606,8 +1617,7 @@ fieldset legend{
 .resume .education_add:hover,
 .resume .experience_add:hover{
     cursor: pointer;
-    background-color: rgba(186, 186, 186, 0.3);
-    border: 1px #bbbbbb dashed;
+    background-color: rgba(87, 171, 255, 0.33);
 }
 
 
@@ -2883,6 +2893,36 @@ main.authorization .helpers_message_authorization{
     height: 30px;
 }
 
+/*finish*/
+
+.resume.finish{
+    font-size: 0.35em;
+}
+
+.resume.finish p{
+    color: #0050a3;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.resume.finish  > p:last-child{
+    text-align: center;
+}
+
+.resume.finish p span{
+    font-size: 0.5em;
+    background-color: #027ac6;
+    padding: 10px;
+}
+
+.resume.finish p span:hover{
+    background-color: rgba(2, 122, 198, 0.78);
+}
+.resume.finish p span a{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+}
 
 
 

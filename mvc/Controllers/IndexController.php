@@ -127,7 +127,10 @@ class IndexController extends IController{
 	public function finishAction(){
 		$this->_db_user->finishResume($this->_id_user);
 		$this->sessionClear();
-		$this->headerLocation('index');
+		return $this->_view->render(array(
+			'view' => 'index/finish',
+		));
+
 	}
 
 	private function _jsIndex(){
