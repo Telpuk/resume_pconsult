@@ -1007,9 +1007,9 @@ ul.nice-menu li {
     width: 100%;
     margin-top: 10px;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid rgba(102, 102, 102, 0.42);
-    -moz-border-radius: 10px;
+    -moz-border-radius: 5px;
     background-color: white;
 }
 
@@ -1451,6 +1451,7 @@ fieldset legend{
 .resume .experience h1,
 .resume .nationality_workpermit h1{
     margin-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px #bbbbbb ridge;
     font-size: 0.3em;
     color: #0050a3;
@@ -1594,8 +1595,8 @@ fieldset legend{
     width: 100%;
     margin-bottom: 30px;
     border: 1px #4c8cd5 dashed;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
     font-size: 0.25em;
     height: 60px;
 }
