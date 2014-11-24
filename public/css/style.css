@@ -1276,6 +1276,10 @@ fieldset legend{
     font-size: .85em;
 }
 
+fieldset p{
+    text-align: left !important;
+}
+
 .resume .resume_widget .form_comment{
     margin-top: 20px;
     padding: 10px;

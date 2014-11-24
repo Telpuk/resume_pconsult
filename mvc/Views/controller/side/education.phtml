@@ -244,10 +244,9 @@
 	</thead>
 	<tbody>
 	<tr>
-		<td><label for="native_language">родной язык<span class="required input">Обязательно для заполнения</span></label></td>
+		<td><label for="native_language">родной язык</label></td>
 		<td>
 			<select id="native_language" name="native_language">
-				<option value=""></option>
 				<?php foreach($this->data['data']['languages'] as  $language): ?>
 					<option value="<?=$language?>" <?php if($this->data['data']['inputs']['native_language']['value']===$language)echo'selected'?>><?=$language?></option>
 				<?php endforeach; ?>
