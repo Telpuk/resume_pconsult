@@ -1502,7 +1502,6 @@ fieldset p{
 .resume .experience table{
     margin-left: 10px;
     border: none;
-    margin-top: 5px;
 }
 .resume .education_language .languages h4,
 .resume .education_language .courses h4{
@@ -1513,6 +1512,14 @@ fieldset p{
     margin-left: 20px;
     margin-top: 5px;
 }
+
+.resume .languages{
+    margin-bottom: 20px;
+}
+.resume .languages h2{
+    margin-bottom: 10px;
+}
+
 
 .resume .languages p{
     font-size: .2em;
