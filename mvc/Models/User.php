@@ -493,7 +493,7 @@ class User{
 				$data.="<tr>"
 					."<td>{$starteds}";
 				if($personal_data['experience_at_the_moments'][$key]=='true'){
-					$data.="&mdash; по настоящее время<br>
+					$data.="&mdash;по настоящее время<br>
 					<span>{$personal_data['experience_count'][$key]}</span></td>";
 				}else{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
@@ -537,9 +537,9 @@ class User{
 		}
 
 		return sprintf(
-			'<p><b>%s</b> &#183; <b>%s</b> пол &#183; <b>%s</b> </p>
+			'<p><b>%s</b><b>%s</b> пол &#183; <b>%s</b> </p>
 				<p>  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b></p>',
-			$birth,
+			$birth?$birth.' &#183 ':'',
 			$personal_data['sex'],
 			$personal_data['city'],
 			$personal_data['move'],

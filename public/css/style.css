@@ -1225,6 +1225,7 @@ ul.nice-menu li {
 }
 
 .resume .skills{
+    margin-left: 20px;
     margin-top: 5px;
     padding: 5px;
     border-top: 1px #bbbbbb  dashed;
@@ -1383,9 +1384,10 @@ fieldset p{
 }
 
 .left_40{
+    margin-left: 20px;
     margin-top: 10px;
     float: left;
-    width: 50%;
+    width: 45%;
 }
 
 .right_60{
@@ -1450,6 +1452,9 @@ fieldset p{
     width: 100%;
 }
 
+.resume .salary_position p{
+    padding: 5px 0px 5px 20px;
+}
 .resume .salary_position  h1,
 .resume .education_language h1,
 .resume .experience h1,
@@ -1484,11 +1489,13 @@ fieldset p{
 
 .resume .salary_position p,
 .resume .nationality_workpermit p{
+    margin-top: 10px;
+    margin-left: 20px;
     font-size: 0.2em;
-    padding: 5px;
 }
 .resume .education_language table,
 .resume .experience table{
+    margin-left: 10px;
     border: none;
     margin-top: 5px;
 }
@@ -1498,15 +1505,18 @@ fieldset p{
 }
 
 .resume .education_language .courses{
-    margin-top: 10px;
+    margin-left: 20px;
+    margin-top: 5px;
 }
 
 .resume .languages p{
     font-size: .2em;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-left: 20px;
 }
-
+.resume .languages h2{
+    margin-left: 20px;
+}
 
 .resume .education_language table td,
 .resume .experience table td{
