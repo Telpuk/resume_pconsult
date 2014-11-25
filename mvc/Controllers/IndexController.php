@@ -29,6 +29,7 @@ class IndexController extends IController{
 			$this->_db_user->setIdUser();
 			$this->_id_user = $this->_db_user->getIdUser();
 			$this->setSessionUsers(array('user' => $this->_id_user));
+			$this->setSessionParams(array('time_input_user'=>uniqid()));
 		}
 	}
 
@@ -94,6 +95,7 @@ class IndexController extends IController{
 				'view' => 'index/index',
 				'data' =>@array_merge(array(
 						'helpers'=> $widget,
+						'time_input_user'=>$this->getSessionParamsId('time_input_user'),
 						'id_user'=>$this->getSessionUserID('user'),
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
@@ -122,15 +124,6 @@ class IndexController extends IController{
 			$this->sessionClear();
 			$this->headerLocation('index');
 		}
-	}
-
-	public function finishAction(){
-		$this->_db_user->finishResume($this->_id_user);
-		$this->sessionClear();
-		return $this->_view->render(array(
-			'view' => 'index/finish',
-		));
-
 	}
 
 	private function _jsIndex(){

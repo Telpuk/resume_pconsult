@@ -2,7 +2,8 @@
 	return array(
 		'user'=>array('controllers'=>array(
 			'ProfileController',
-			'SideController'
+			'SideController',
+			'FinishController'
 		)),
 		'admin'=>array('controllers'=>array(
 			'AdmincontrolController',
