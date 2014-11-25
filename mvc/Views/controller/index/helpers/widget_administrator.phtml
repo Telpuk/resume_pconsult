@@ -1,4 +1,13 @@
 <p class="header_comments">Комментарии</p>
+<div id="comments_add">
+	<p><img src="<?=BASE_URL.'/public/img/comment-add.png'?>"> Добавить комментарий</p>
+	<div class="form_comment">
+		<form action='<?=BASE_URL."/index/comment"?>' method="post">
+			<textarea name="comment" placeholder="введите свой комментарий"></textarea>
+			<input type="submit" name="addComment" value="добавить комментарий">
+		</form>
+	</div>
+</div>
 <?php foreach($this->data['data']['comments'] as $value): ?>
 	<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'> <?=$value['name']?></p>
 	<fieldset>
@@ -13,12 +22,3 @@
 	</fieldset>
 <?php endforeach; ?>
 
-<div class="form_comment">
-	<form action='<?=BASE_URL."/index/comment"?>' method="post">
-		<textarea name="comment" placeholder="введите свой комментарий"></textarea>
-		<input type="submit" name="addComment" value="добавить комментарий">
-	</form>
-</div>
-<!--<div class="end_resume">-->
-<!--	<a class="delete_resume" href="--><?//=BASE_URL.'/index/delete'?><!--">удалить резюме</a>-->
-<!--</div>-->

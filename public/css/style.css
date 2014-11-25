@@ -1282,7 +1282,8 @@ fieldset p{
 }
 
 .resume .resume_widget .form_comment{
-    margin-top: 20px;
+    display: none;
+    margin-top: 5px;
     padding: 10px;
     margin-bottom: 30px;
 }
@@ -1291,6 +1292,22 @@ fieldset p{
     margin-top: 20px;
     padding-left: 5px;
 }
+
+
+.resume .resume_widget #comments_add > p{
+    margin-left: 10px;
+    text-align: left;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    color: green;
+}
+.resume .resume_widget #comments_add > p:first-child:hover{
+    color: red;
+    cursor: pointer;
+}
+
+
 .resume .resume_widget .header_comments{
     text-align: center;
     font-size: 1.3em;

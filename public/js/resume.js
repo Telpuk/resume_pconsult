@@ -12,10 +12,13 @@
         this.$download = $('#download');
         this.$download_content = $('#download_content');
 
+        this.$comments_add = $('#comments_add > p');
+        this.$form_comment = $('.form_comment');
+
     }
 
 
-    Resume.prototype.addEventListener = function(){
+    Resume.prototype.addEventListenerEdit = function(){
         this.$resume.on('click', {self:this}, function(event){
             var text = event.data.self.$conclusion_text.text();
             if(event.target.className === 'editConclusion' || event.target.className === 'conclusion_text'){
@@ -32,8 +35,8 @@
                 event.data.self.$conclusion_text.text(text);
             }
 
-            event.data.self.$favorite_folds.hide();
-            event.data.self.$download_content.hide();
+            event.data.self.$favorite_folds.hide(500);
+            event.data.self.$download_content.hide(500);
 
         });
     };
@@ -85,7 +88,7 @@
                 self.$ajax_loader.css('visibility', 'hidden');
                 data = $.parseJSON(data);
                 self.getFoldersLI($.parseJSON(data['user_folders']),$.parseJSON(data['folders']));
-                self.$favorite_folds.toggle();
+                self.$favorite_folds.slideToggle();
             });
 
     };
@@ -100,7 +103,7 @@
     };
     Resume.prototype.addEventListenerFavorite = function(){
         this.$favorite.on('click', {self:this}, function(event){
-            event.data.self.$favorite_folds.toggle();
+            event.data.self.$favorite_folds.slideToggle();
             if(event.data.self.$favorite_folds.is(':visible')){
                 $.post(BASE_URL + "/index/ajaxfoldersusers", {'ajax': "ajax",'all_checkbox':'true'})
                     .done(function (data) {
@@ -147,15 +150,24 @@
 
     Resume.prototype.addEventListenerDownloadWord = function () {
         this.$download.on('click', {self: this}, function (event) {
-            event.data.self.$download_content.toggle();
+            event.data.self.$download_content.slideToggle();
+            event.stopPropagation();
+        });
+    };
+
+
+    Resume.prototype.addEventListenerComments = function () {
+        this.$comments_add.on('click', {self: this}, function (event) {
+            event.data.self.$form_comment.slideToggle();
             event.stopPropagation();
         });
     };
 
     Resume.prototype.init = function(){
+        this.addEventListenerComments();
         this.addEventListenerDownloadWord();
         this.addEventListenerDownloadContent()
-        this.addEventListener();
+        this.addEventListenerEdit();
         this.addEventListenerFavoriteFolds();
         this.addEventListenerFavorite();
         this.addEventListenerInputText();
