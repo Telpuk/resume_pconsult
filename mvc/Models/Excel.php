@@ -78,8 +78,7 @@ class Excel{
 			)
 		);
 
-		$personal_data['experience_key_skills'] = str_replace(' ',', ',str_replace('&nbsp;','',
-			$personal_data['experience_key_skills']));
+		$personal_data['experience_key_skills'] = str_replace('&nbsp;',' ',$personal_data['experience_key_skills']);
 
 		$personal_data['old'] = $this->_getOld(array('birth'=>$personal_data['birth']));
 
