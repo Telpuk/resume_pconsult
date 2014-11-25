@@ -40,50 +40,50 @@ html {
 
 @font-face {
     font-family: 'RobotoCondensed-Italic';
-    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Italic.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Italic.svg') format('svg');
+    src: url('../fonts/RobotoCondensed-Italic.eot');
+    src: local('☺'), url('../fonts/RobotoCondensed-Italic.woff') format('woff'), url('../fonts/RobotoCondensed-Italic.ttf') format('truetype'), url('../fonts/RobotoCondensed-Italic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Bold';
-    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Bold.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Bold.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Bold.svg') format('svg');
+    src: url('../fonts/RobotoCondensed-Bold.eot');
+    src: local('☺'), url('../fonts/RobotoCondensed-Bold.woff') format('woff'), url('../fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('../fonts/RobotoCondensed-Bold.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Regular';
-    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Regular.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Regular.svg') format('svg');
+    src: url('../fonts/RobotoCondensed-Regular.eot');
+    src: local('☺'), url('../fonts/RobotoCondensed-Regular.woff') format('woff'), url('../fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('../fonts/RobotoCondensed-Regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'RobotoCondensed-Light';
-    src: url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Light.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/RobotoCondensed-Light.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/RobotoCondensed-Light.svg') format('svg');
+    src: url('../fonts/RobotoCondensed-Light.eot');
+    src: local('☺'), url('../fonts/RobotoCondensed-Light.woff') format('woff'), url('../fonts/RobotoCondensed-Light.ttf') format('truetype'), url('../fonts/RobotoCondensed-Light.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-Italic';
-    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-Italic.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-Italic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Italic.svg') format('svg');
+    src: url('../fonts/OpenSans-Italic.eot');
+    src: local('☺'), url('../fonts/OpenSans-Italic.woff') format('woff'), url('../fonts/OpenSans-Italic.ttf') format('truetype'), url('../fonts/OpenSans-Italic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-SemiboldItalic';
-    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-SemiboldItalic.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-SemiboldItalic.svg') format('svg');
+    src: url('../fonts/OpenSans-SemiboldItalic.eot');
+    src: local('☺'), url('../fonts/OpenSans-SemiboldItalic.woff') format('woff'), url('../fonts/OpenSans-SemiboldItalic.ttf') format('truetype'), url('../fonts/OpenSans-SemiboldItalic.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'OpenSans-Regular';
-    src: url('http://www.hh.proconsult.by/public/fonts/OpenSans-Regular.eot');
-    src: local('☺'), url('http://www.hh.proconsult.by/public/fonts/OpenSans-Regular.woff') format('woff'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.ttf') format('truetype'), url('http://www.proconsult.by/sites/all/themes/pro_consult/css/fonts/OpenSans-Regular.svg') format('svg');
+    src: url('../fonts/OpenSans-Regular.eot');
+    src: local('☺'), url('../fonts/OpenSans-Regular.woff') format('woff'), url('../fonts/OpenSans-Regular.ttf') format('truetype'), url('../fonts/OpenSans-Regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -1149,17 +1149,19 @@ ul.nice-menu li {
     font-size: .6em;
     margin-left: 10px;
     border: none;
+    color: #c67b37;
+    font-size: 0.5em;
+    border: 1px dashed #c67b37;
     border-radius: 5px;
     -moz-border-radius: 5px;
-    color: white;
-    background-color: rgba(198, 123, 55, 0.44);
-    padding: 5px 10px 5px 10px;
+    padding: 2px 5px 2px 5px;
+    text-transform: uppercase;
     text-decoration: underline;
 }
 
 .resume .conclusion .editConclusion img,
 .resume .conclusion .deleteConclusion img{
-    height: 12px;
+    width: 8px;
     margin-right: 10px;
 }
 
@@ -1384,7 +1386,7 @@ fieldset p{
 .resume .nationality_workpermit h1 img{
     margin-left: 10px;
     margin-right: 10px;
-    width: 10px;
+    width: 8px;
 }
 
 
@@ -1420,14 +1422,15 @@ fieldset p{
 
 .resume .personal_data header h1 a,
 .resume .contacts_data h1 a{
+    text-transform: uppercase;
     display: block;
-    font-size: .15em;
+    font-size: .14em;
     font-weight: normal;
     width: 150px;
     color: #c67b37;
     margin-left: 10px;
     border: 1px rgba(233, 100, 26, 0.30) dashed;
-    padding: 2px 10px 2px 10px;
+    padding: 0 5px 0 5px;
     margin-bottom: 5px;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1445,6 +1448,7 @@ fieldset p{
 .resume .left_40 h2 a,
 .resume .right_60 h2 a,
 .resume .nationality_workpermit h1 a{
+    text-transform: uppercase;
     display: inline-block;
     font-size: .5em;
     font-weight: normal;
@@ -1452,7 +1456,7 @@ fieldset p{
     border: none;
     margin-left: 10px;
     border: 1px rgba(233, 100, 26, 0.30) dashed;
-    padding: 2px 10px 2px 10px;
+    padding: 0 5px 0 5px;
     margin-bottom: 5px;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1552,6 +1556,10 @@ fieldset p{
     font-weight: normal;
     padding: 10px;
     font-size: 0.2em;
+}
+.resume .education_language table td:first-child,
+.resume .experience table td:first-child{
+    width: 250px;
 }
 .resume .education_language table td span{
     display: block;
@@ -2714,21 +2722,22 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion .editConclusion,
 .admin_control .conclusion .deleteConclusion a{
-    font-size: .65em;
-    margin-left: 5px;
+    font-size: .6em;
+    margin-left: 10px;
     border: none;
+    color: #c67b37;
+    font-size: 0.56em;
+    border: 1px dashed #c67b37;
     border-radius: 5px;
     -moz-border-radius: 5px;
-    color: white  !important;
-    background-color: rgba(198, 123, 55, 0.36);
-    padding: 5px 10px 5px 10px  !important;
+    padding: 2px 5px 2px 5px;
+    text-transform: uppercase;
     text-decoration: underline;
 }
 
 .admin_control .conclusion .editConclusion img,
 .admin_control .conclusion .deleteConclusion img{
-    height: 12px;
-    width: 12px;
+    width: 8px;
     margin-right: 10px;
 }
 

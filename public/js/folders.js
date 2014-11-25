@@ -48,7 +48,7 @@
             event.data.self.$download_content.hide();
             event.data.self.resetChecked();
             if(event.target.className === 'delete_folder'){
-                return confirm("Вы действительно хатите удалить?");
+                return confirm("Вы действительно хотите удалить?");
             }
         });
     };

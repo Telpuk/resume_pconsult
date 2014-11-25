@@ -67,18 +67,25 @@ class Excel{
 			'other_site'=>$personal_data['other_site'],
 		));
 
-		$personal_data['birth_sex_city_move_trip'] = $this->_getBerBirthSexCityMoveTrip(
+		$personal_data['city_move_trip'] = $this->_getCityMoveTrip(
 			array(
-				'sex'=>$personal_data['sex'],
+				'nationality'=>$personal_data['nationality'],
+				'auto'=>$personal_data['auto'],
+				'certificate_auto'=>$personal_data['certificate_auto'],
 				'move'=>$personal_data['move'],
 				'city'=>$personal_data['city'],
 				'trip'=>$personal_data['trip']
 			)
 		);
+
 		$personal_data['experience_key_skills'] = str_replace(' ',', ',str_replace('&nbsp;','',
 			$personal_data['experience_key_skills']));
 
 		$personal_data['old'] = $this->_getOld(array('birth'=>$personal_data['birth']));
+
+		$personal_data['employment'] = implode(', ',explode('[@!-#-!@]',$personal_data['employment']));
+		$personal_data['schedule'] = implode(', ',explode('[@!-#-!@]',$personal_data['schedule']));
+		$personal_data['travel_time_work'] = $personal_data['travel_time_work'];
 
 		$personal_data['institutions']=$this->_getNamesInstitutionsNoHTML(
 			array(
@@ -147,7 +154,7 @@ class Excel{
 			)
 		);
 
-		$personal_data['sum_experience'] = $experience_count['sum'];
+		$personal_data['sum_experience'] = $experience_count['sum']?$experience_count['sum']:'без опыта работы';
 
 		$personal_data['experience_organizations'] = $this->_getExperienceOrganizationsNoHTML(
 			array(
@@ -413,16 +420,30 @@ class Excel{
 			$birth = $interval->format('%y года(лет)');
 		}
 
-		return " ({$birth})";
+		return $birth;
 	}
 
-	private function _getBerBirthSexCityMoveTrip($personal_data){
-		return sprintf(
-			'<b>%s</b> пол &#183; <b>%s</b> &#183;  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b>',
-			$personal_data['sex'],
-			$personal_data['city'],
-			$personal_data['move'],
-			$personal_data['trip']);
+	private function _getCityMoveTrip($personal_data){
+		if($personal_data['city']){
+			$data[] = 'Проживает: '.$personal_data['city'];
+		}
+		if($personal_data['nationality']){
+			$data[] = 'Гражданство: '.$personal_data['nationality'];
+		}
+		if($personal_data['move']){
+			$data[] = 'Переезд: '.$personal_data['move'];
+		}
+		if($personal_data['trip']){
+			$data[] = 'Готовность командировкам: '.$personal_data['trip'];
+		}
+		if($personal_data['auto']){
+			$data[] = 'Наличие авто: '.$personal_data['auto'];
+		}
+		if($personal_data['certificate_auto']){
+			$data[] = 'Наличие водительского удостоверения: '.$personal_data['certificate_auto'];
+		}
+
+		return $data;
 	}
 
 

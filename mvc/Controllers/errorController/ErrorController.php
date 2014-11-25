@@ -5,7 +5,7 @@ class ErrorController extends IController{
 
 	public function indexAction(){
 		$view = new View();
-		return $view->render(['view'=>'error/index']);
+		return $view->render(array('view'=>'error/index'));
 	}
 
 }

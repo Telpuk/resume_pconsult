@@ -20,48 +20,156 @@ class ExcelController extends IController{
 
 	public function indexAction(){
 		$this->_id_user = $this->getParams('id');
-		if(is_numeric($this->getParams('id'))){
+		if(is_numeric($this->getParams('id'))) {
 
 			$personal_data = $this->_db_excel->excelExport($this->_id_user);
 
-			if($this->getParams('comments') !== 'false'){
-				$comments = $this->_db_excel->selectCommetsExport($this->_id_user);
-			}
+			//			if($this->getParams('comments') !== 'false'){
+			//				$comments = $this->_db_excel->selectCommetsExport($this->_id_user);
+			//			}
 
 			$this->_word->setDefaultFontName('Times New Roman');
-			$this->_word->setDefaultFontSize(14);
+			$this->_word->setDefaultFontSize(12);
 
 
-			$sectionStyle = array('orientation' => 'landscape',
-				'marginLeft' => $this->_m2t(15), //Левое поле равно 15 мм
-				'marginRight' => $this->_m2t(15),
-				'marginTop' => $this->_m2t(15),
-				'borderTopColor' => 'C0C0C0'
-			);
+			$sectionStyle = array('marginLeft' => $this->_m2t(15), //Левое поле равно 15 мм
+				'marginRight' => $this->_m2t(15), 'marginTop' => $this->_m2t(15), 'borderTopColor' => 'C0C0C0');
 
 			$section = $this->_word->createSection($sectionStyle);
 
-			$header = $section->addHeader();
-			$header->addWatermark(BASE_URL."/public/img/logo.jpg",
-				array(
-					'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-					'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
-					'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_MARGIN,
-					'marginRight' =>2,
-					'marginTop' => 1,
-					'width' => 70,
-					'height' => 70)
-			);
-			$header->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center','size'=>8));
-			$header->addLink("www.proconsult.by");
-			$header->addText("+375 44 779 03 94",array('align'=>'center', 'size'=>8));
+			//			$header = $section->addHeader();
+			//			$table = $header->addTable();
+			//			$table->addRow();
+			//			$cell = $table->addCell(4500);
+			//			$textrun = $cell->addTextRun();
+			//			$textrun->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center','size'=>8));
+			//			$textrun->addTextBreak();
+			//			$textrun->addLink("www.proconsult.by");
+			//			$textrun->addTextBreak();
+			//			$textrun->addText("+375 44 779 03 94",array('align'=>'center', 'size'=>8));
+			//			$table->addCell(4000)->addImage(
+			//				BASE_URL."/public/img/logo.jpg",
+			//				array('width' => 50, 'height' => 50, 'align' => 'right')
+			//			);
+
+			//			print_r($personal_data);
+			$styleTable = array('borderSize' => 6, 'borderColor' => '999999');
+
+			$this->_word->addTableStyle('Colspan Rowspan1', $styleTable);
+			$this->_word->addTableStyle('Colspan Rowspan2', $styleTable);
+			$this->_word->addTableStyle('Colspan Rowspan3', $styleTable);
+
+			$table = $section->addTable('Colspan Rowspan1');
+
+			$table->addRow();
+
+			if ($personal_data['photo'] !== 'no-photo.png') {
+				$table->addCell(3000)->addImage(BASE_URL . "/files/photo/" . $personal_data['photo'], array('width' => 150, 'height' => 150, 'align' => 'center'));
+			}
+
+			$cell = $table->addCell(10000);
+			$textrun = $cell->addTextRun();
+			$textrun->addText($personal_data['name'], array('bold' => true, 'size' => 18), array('align' => 'left'));
+			$textrun->addTextBreak();
+			$textrun->addText("Пол: {$personal_data['sex']}" . ($personal_data['old'] ? ', ' . $personal_data['old'] : ''));
+			$textrun->addTextBreak();
+
+			foreach ($personal_data['call_me'] as $key => $value) {
+				$textrun->addTextBreak();
+				$textrun->addText($value);
+
+			}
+
+			$textrun->addTextBreak();
+
+			foreach ($personal_data['city_move_trip'] as $key => $value) {
+				$textrun->addTextBreak();
+				$textrun->addText($value);
+
+			}
+			$section->addTextBreak();
+
+			/*Желаемая должность и зарплата*/
+			$table = $section->addTable('Colspan Rowspan2');
+
+			$table->addRow();
+			$cell = $table->addCell(4000, array('gridSpan' => 2, 'vMerge' => 'restart', 'valign' => 'center'));
+			$textrun = $cell->addTextRun(array('align' => 'left'));
+			$textrun->addText('Желаемая должность и зарплата', array('size' => 14));
+
+			$table->addRow();
+			$cell = $table->addCell(20000);
+			$textrun = $cell->addTextRun(array('align' => 'left'));
+			$textrun->addText($personal_data['desired_position'], array('size' => 16, 'bold' => true));
+			$textrun->addTextBreak();
+			$textrun->addText($personal_data['professional_area']);
+			$textrun->addTextBreak(2);
+			$textrun->addText("Занятость: " . mb_strtolower($personal_data['employment'], 'UTF-8'));
+			$textrun->addTextBreak();
+			$textrun->addText("График работы: " . mb_strtolower($personal_data['schedule'], 'UTF-8'));
+			$textrun->addTextBreak(2);
+			$textrun->addText("Желательное время в пути до работы: " . mb_strtolower($personal_data['travel_time_work'], 'UTF-8'));
+			$cell = $table->addCell(10000);
+			$textrun = $cell->addTextRun(array('align' => 'right'));
+			if ($personal_data['salary']) {
+				$textrun->addText($personal_data['salary'], array('size' => 16, 'bold' => true));
+				$textrun->addText(' ' . $personal_data['currency']);
+			}
+
+			$section->addTextBreak();
+
+			/*Опыт работы*/
+			if ( $personal_data['sum_experience'] !== 'без опыта работы') {
+
+				$table = $section->addTable('Colspan Rowspan3');
+				$table->addRow();
+				$cell = $table->addCell(4000, array('gridSpan' => 2, 'vMerge' => 'restart', 'valign' => 'center'));
+				$textrun = $cell->addTextRun(array('align' => 'left'));
+				$textrun->addText('Опыт работы - ' . $personal_data['sum_experience'], array('size' => 14));
+
+				foreach($personal_data['experience_organizations'] as $key=>$value){
+					$table->addRow();
+
+					$cell = $table->addCell(20000);
+					$textrun = $cell->addTextRun(array('align' => 'left'));
+					$textrun->addText($personal_data['experience_getting_starteds']);
+					$textrun->addTextBreak();
+					$textrun->addText($personal_data['experience_count']);
+
+					$cell = $table->addCell(20000);
+					$textrun = $cell->addTextRun(array('align' => 'left'));
+					$textrun->addText($personal_data['experience_organizations']);
+					$textrun->addTextBreak();
+					$textrun->addText($personal_data['experience_count']);
+
+//					$section->addText($value['experience_organizations'].
+//						"({$value['experience_getting_starteds']}, опыт: {$value['experience_count']})", array('bold'=>true));
+//					$section->addText("Регион: {$value['experience_regions']}", array('bold'=>true));
+//					$section->addText("Сфера деятельносьти компании: {$value['experience_field_activities']}", array('bold'=>true));
+//					$section->addText("Сайт: {$value['experience_sites']}", array('bold'=>true));
+//					$section->addText("Должность: ".$value['experience_positions'], array('bold'=>true));
+//					$section->addText("Обязанности:");
+//					$section->addText($value['experience_functions']);
+//					$section->addTextBreak();
+				}
+			}
+
+
+
+
+
+
+
+
 
 			$section->addText('РЕЗЮМЕ', array('size'=>14),array('align'=>'center'));
 			$section->addText($personal_data['name'].$personal_data['old'], array('bold'=>true,'size'=>14), array('align'=>'center'));
 
-			foreach($personal_data['call_me'] as $key=>$value){
-				$section->addText($value, array('align'=>'left'));
-			}
+
+
+
+
+
 			// ===================================опыт======================= //
 			$section->addText('Опыт:',
 				array('size'=>18,'italic'=>true, 'color'=>'blue'),
