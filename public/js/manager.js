@@ -1,5 +1,7 @@
 (function($, window){
     function Manager(){
+        this.$add_manager = $('#add_manager');
+        this.$form_manager = $('.form_manager');
     }
 
     Manager.prototype.validateForm = function(){
@@ -121,8 +123,15 @@
 
             });
     }
+
+    Manager.prototype.addEventListenerManager = function(){
+       this.$add_manager.on('click', {self:this},function(event){
+            event.data.self.$form_manager.slideToggle();
+       });
+    };
     Manager.prototype.init = function(){
         this.createPassword();
+        this.addEventListenerManager();
         this.validateForm();
     };
 

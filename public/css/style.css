@@ -2621,6 +2621,7 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .form_manager{
+    display: none;
     border: 1px rgba(187, 187, 187, 0.87) dashed;
     width: 100%;
     margin-top: 10px;
@@ -2678,6 +2679,17 @@ main.authorization .helpers_message_authorization{
 .admin_control.managers .table_managers{
     margin-top: 10px;
     width: 100%;
+}
+
+.admin_control.managers  #add_manager{
+    margin: 20px;
+    color: green;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+.admin_control.managers  #add_manager:hover{
+   color: red;
+    cursor: pointer;
 }
 
 .admin_control.managers .table_managers table{
