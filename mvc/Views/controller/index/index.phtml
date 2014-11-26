@@ -44,11 +44,13 @@
 			</p>
 		</div>
 	</div>
-	<div class="print" id="download">
-		<p class="active_download">
-			<a  onclick="return confirm('Вы действительно хотите удалить резюме?')?true:false" href="<?=BASE_URL.'/index/delete'?>"><img src='<?= BASE_URL . "/public/img/delete_resume.png" ?>'>удалить резюме</a>
-		</p>
-	</div>
+	<?php if($this->data['data']['admin'] === 'main'): ?>
+		<div class="print" id="download">
+			<p class="active_download">
+				<a  onclick="return confirm('Вы действительно хотите удалить резюме?')?true:false" href="<?=BASE_URL.'/index/delete'?>"><img src='<?= BASE_URL . "/public/img/delete_resume.png" ?>'>удалить резюме</a>
+			</p>
+		</div>
+	<?php endif ?>
 	<div class="clear"></div>
 <?php else: ?>
 	<h1>Создать резюме за несколько минут</h1>
