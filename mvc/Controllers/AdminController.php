@@ -5,7 +5,6 @@ class AdminController extends IController{
 		$_db_admin;
 
 	public function  __construct(){
-
 		parent::__construct();
 		$this->_view = new View();
 		$this->_db_admin = new Admin();
@@ -27,7 +26,8 @@ class AdminController extends IController{
 	public function authorizationAction(){
 		if (isset($_POST['submitAuthorization'])){
 			if (!empty($_POST['login']) && !empty($_POST['password'])) {
-				$users = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'], 'password' => $_POST['password']));
+				$users = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'],
+					'password' => md5($_POST['password'])));
 				if ($users === false) {
 					return $this->_view->render(array(
 						'view' => 'admin/authorization',
@@ -36,6 +36,13 @@ class AdminController extends IController{
 					));
 				} else if(isset($users['type_user']) && isset($users['id'])){
 					$this->setSessionUsers(array('admin' => $users['type_user'], 'id_user_admin'=>$users['id']));
+					$this->setSessionParams(array(
+						'name_first' => $users['name_first'],
+						'name_second'=>$users['name_second'],
+						'patronymic'=>$users['patronymic'],
+						'login'=>$users['login'],
+						'type_admin_widget'=>($users['type_user']==='main')?'администратор':'менеджер'
+					));
 					$this->headerLocation('admincontrol');
 				}
 

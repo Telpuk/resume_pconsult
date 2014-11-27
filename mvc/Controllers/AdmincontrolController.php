@@ -35,6 +35,23 @@ class AdminControlController extends IController{
 		exit;
 	}
 
+	public function upadminAction(){
+		if(isset($_POST['submitUpdateAdminInfo']) && !empty($_POST['login']) && !empty($_POST['name_first'])){
+			$result = $this->_db_admin->upadmin($_POST, $this->getSessionUserID('id_user_admin'));
+
+			if(is_array($result)){
+
+				$this->setSessionParams(array(
+					'name_first' => $result[':name_first'],
+					'name_second'=>$result[':name_second'],
+					'patronymic'=>$result[':patronymic'],
+					'login'=>$result[':login'],
+				));
+			}
+		}
+		$this->headerLocation('admincontrol');
+	}
+
 
 	public function foldersAction(){
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
@@ -68,12 +85,20 @@ class AdminControlController extends IController{
 			'data' => array(
 				'id_folders_active'=>$this->getParams('id'),
 				'admin'=>$this->getSessionUserID('admin'),
+				'admin_info'=>array(
+					'name_first'=>$this->getSessionParamsId('name_first'),
+					'name_second'=>$this->getSessionParamsId('name_second'),
+					'patronymic'=>$this->getSessionParamsId('patronymic'),
+					'login'=>$this->getSessionParamsId('login'),
+					'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+				),
 				'users'=> $folder_users['users'],
 				'count_users'=>$count,
 				'message'=>$message,
 				'search_folders_user'=>$search[0],
 				'helpers' => array(
 					'header'=> 'admin_control/helpers/header',
+					'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
 					'widget_admin' => 'admin_control/helpers/widget',
 					'widget_folders'=>'admin_control/helpers/widget_folders'),
 				'folder'=>true,
@@ -99,11 +124,19 @@ class AdminControlController extends IController{
 						'view'=>'admin_control/managers',
 						'data' => array(
 							'admin'=>$this->getSessionUserID('admin'),
+							'admin_info'=>array(
+								'name_first'=>$this->getSessionParamsId('name_first'),
+								'name_second'=>$this->getSessionParamsId('name_second'),
+								'patronymic'=>$this->getSessionParamsId('patronymic'),
+								'login'=>$this->getSessionParamsId('login'),
+								'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+							),
 							'active_manager'=>true,
 							'managers'=>$managers,
 							'inputs'=>$inputs,
 							'helpers' => array(
 								'widget_admin' => 'admin_control/helpers/widget',
+								'admin_info_widget' => 'admin_control/helpers/admin_info_widget',
 							),
 							'users_count'=>$this->getSessionParamsId('count_users'),
 							'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
@@ -117,11 +150,19 @@ class AdminControlController extends IController{
 					'view'=>'admin_control/managers',
 					'data' => array(
 						'admin'=>$this->getSessionUserID('admin'),
+						'admin_info'=>array(
+							'name_first'=>$this->getSessionParamsId('name_first'),
+							'name_second'=>$this->getSessionParamsId('name_second'),
+							'patronymic'=>$this->getSessionParamsId('patronymic'),
+							'login'=>$this->getSessionParamsId('login'),
+							'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+						),
 						'active_manager'=>true,
 						'managers'=>$managers,
 						'inputs'=>$inputs,
 						'helpers' => array(
 							'widget_admin' => 'admin_control/helpers/widget',
+							'admin_info_widget' => 'admin_control/helpers/admin_info_widget',
 							'message'=>'admin_control/helpers/exists_login'
 						),
 						'users_count'=>$this->getSessionParamsId('count_users'),
@@ -187,10 +228,18 @@ class AdminControlController extends IController{
 			'view'=>'admin_control/managers',
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
+				'admin_info'=>array(
+					'name_first'=>$this->getSessionParamsId('name_first'),
+					'name_second'=>$this->getSessionParamsId('name_second'),
+					'patronymic'=>$this->getSessionParamsId('patronymic'),
+					'login'=>$this->getSessionParamsId('login'),
+					'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+				),
 				'active_manager'=>true,
 				'managers'=>$managers,
 				'helpers' =>array(
 					'header'=> 'admin_control/helpers/header',
+					'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
 					'widget_admin' => 'admin_control/helpers/widget'
 				),
 				'users_count'=>$this->getSessionParamsId('count_users'),
@@ -215,8 +264,16 @@ class AdminControlController extends IController{
 				'js'=>$this->_jsAdminControl(),
 				'data' => array(
 					'admin'=>$this->getSessionUserID('admin'),
+					'admin_info'=>array(
+						'name_first'=>$this->getSessionParamsId('name_first'),
+						'name_second'=>$this->getSessionParamsId('name_second'),
+						'patronymic'=>$this->getSessionParamsId('patronymic'),
+						'login'=>$this->getSessionParamsId('login'),
+						'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+					),
 					'helpers' => array(
 						'header'=> 'admin_control/helpers/header',
+						'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
 						'widget_admin' => 'admin_control/helpers/widget'
 					),
 					'active_all_no_view'=>true,
@@ -257,8 +314,16 @@ class AdminControlController extends IController{
 			'js'=>$this->_jsAdminControl(),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
+				'admin_info'=>array(
+					'name_first'=>$this->getSessionParamsId('name_first'),
+					'name_second'=>$this->getSessionParamsId('name_second'),
+					'patronymic'=>$this->getSessionParamsId('patronymic'),
+					'login'=>$this->getSessionParamsId('login'),
+					'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+				),
 				'helpers' => array(
 					'header'=> 'admin_control/helpers/header',
+					'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
 					'widget_admin' => 'admin_control/helpers/widget'
 				),
 				'active_all_resume'=>true,

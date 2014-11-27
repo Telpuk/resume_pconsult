@@ -45,6 +45,32 @@ class Admin{
 		return true;
 	}
 
+	public function upadmin($info, $id){
+		$name_first = strip_tags(trim($info['name_first']));
+		$name_second = strip_tags(trim($info['name_second']));
+		$patronymic = strip_tags(trim($info['patronymic']));
+		$login = strip_tags(trim($info['login']));
+		$password = empty($info['password'])?null:",password = '".md5(strip_tags(trim($info['password'])))."'";
+
+		$sql = "UPDATE users SET name_first = :name_first, name_second = :name_second,patronymic = :patronymic,
+login = :login {$password} WHERE id = :id";
+
+		$array_execute = array(
+			':name_first'=>$name_first,
+			':name_second'=>$name_second,
+			':patronymic'=>$patronymic,
+			':login'=>$login,
+			':id'=>$id);
+		try {
+			$stmt = $this->_dbc->prepare($sql);
+			$stmt->execute($array_execute);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return $array_execute;
+	}
+
+
 	public function updateFoldersUsers($folders,$id_user){
 		try {
 			$stmt = $this->_dbc->prepare ("UPDATE
@@ -213,7 +239,7 @@ class Admin{
 				$stmt->execute(array(
 					':name_first'=>$data['name_first']['value'],
 					':login'=>$data['login_manager']['value'],
-					':password'=>$data['password_manager']['value']
+					':password'=>md5($data['password_manager']['value'])
 				));
 			}catch (PDOException $e){
 				exit(print_r($e->errorInfo).$e->getFile());
@@ -248,16 +274,8 @@ class Admin{
 
 	public  function checkLoginAndPassword($data){
 		try {
-			$stmt = $this->_dbc->prepare ("
-												SELECT
-													id, type_user
-												FROM
-													users
-												WHERE
-													login = :login
-												AND
-													password = :password"
-			);
+			$stmt = $this->_dbc->prepare ("SELECT id, type_user,name_first,name_second,patronymic,
+			login FROM users WHERE login = :login AND password = :password");
 			$stmt->execute(array(
 				':login'=>$data['login'],
 				':password'=>$data['password']

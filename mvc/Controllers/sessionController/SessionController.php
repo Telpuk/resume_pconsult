@@ -15,10 +15,10 @@
 		}
 
 		public function setSessionUsers($session=array()){
-			$_SESSION['session_users']['users'] = @array_merge((array)$_SESSION['session_users']['users'],$session);
+			$_SESSION['session_users']['users'] = array_merge((array)$_SESSION['session_users']['users'],$session);
 		}
 		public function setSessionParams($session=array()){
-			$_SESSION['params'] = @array_merge($session,(array)$_SESSION['params']);
+			$_SESSION['params'] = array_merge((array)$_SESSION['params'],$session);
 		}
 
 		public function getSessionParamsId($id_params){

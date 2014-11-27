@@ -2338,8 +2338,9 @@ table.possessions_language *[data-tr-language-further-id] td:nth-child(1){
 }
 
 /*authorization*/
-main.authorization form{
-    margin:  0 auto;
+main.authorization{
+    margin:  100px auto;
+    min-height: 250px;
     width: 30%;
 }
 
@@ -2378,7 +2379,76 @@ main.authorization .helpers_message_authorization{
 .admin_control{
     /*border: 1px black solid;*/
     width: 100%;
+    min-height: 450px;
     padding: 5px;
+}
+
+.admin_control #widget_right{
+    position: fixed;
+    top: 30%;
+    right: 0;
+    width: 300px;
+}
+
+.admin_control #widget_right #admin_info{
+    float: right;
+    width: 260px;
+    box-shadow: 0 0 10px rgba(87, 171, 255, 0.82);
+    border-radius: 5px 0 0 5px;
+    -moz-border-radius:  5px 0 0 5px;
+    padding: 10px;
+}
+
+.admin_control #widget_right #admin_info h1{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.2em;
+}
+
+.admin_control #widget_right #admin_info > p{
+    text-align: center;
+    margin-top: 10px;
+    color: green;
+    text-transform: uppercase;
+    font-size: 0.15em;
+}
+
+.admin_control #widget_right #admin_info > p:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin > p{
+    margin-top: 10px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 0.15em;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin  p span{
+    width: 100%;
+    display: block;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin  p span input{
+    width: 100%;
+    padding: 2px;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin  p span input[type=submit]{
+    padding: 5px;
+    border: 0;
+    background-color: red;
+    color: #ffffff;
+}
+
+.admin_control #widget_right #icon_user{
+    float: left;
+    width: 40px;
+}
+
+.admin_control #widget_right #icon_user:hover{
+    cursor: pointer;
 }
 
 .admin_control .left_admin_control{
@@ -2689,7 +2759,7 @@ main.authorization .helpers_message_authorization{
     text-transform: uppercase;
 }
 .admin_control.managers  #add_manager:hover{
-   color: red;
+    color: red;
     cursor: pointer;
 }
 
