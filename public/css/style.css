@@ -2386,7 +2386,7 @@ main.authorization .helpers_message_authorization{
 .admin_control #widget_right{
     position: fixed;
     margin-right: -300px;
-    top: 300px;
+    top: 350px;
     right: 0;
     width: 350px;
 }
