@@ -10,6 +10,7 @@
         this.$add_skills_hid = $('.add_skills_hid');
     }
 
+
     Experience.prototype.tableTemplatePosition = function(){
 
         var source = $("#table-template-experience").html();

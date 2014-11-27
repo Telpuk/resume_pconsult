@@ -28,11 +28,11 @@
                     "<form action='"+BASE_URL+"/index/conclusion' method='post'>"+
                     "<textarea class='conclusion_textarea' name='conclusion'>"+text+"</textarea>"+
                     "<input class='button_conclusion' type='submit' name='updateConclusion' value='обновить'>"+
-                    "</form>");
+                    "</form>").hide().fadeIn();
             }else if(event.target.className != 'conclusion_textarea' && event.target.className != 'button_conclusion'){
                 $('.editConclusion').removeClass('editConclusion cancel').addClass('editConclusion');
                 $('.editConclusion').html("<img src='"+BASE_URL+"/public/img/edit.png'>редактировать");
-                event.data.self.$conclusion_text.text(text);
+                event.data.self.$conclusion_text.text(text).hide().fadeIn();
             }
 
             event.data.self.$favorite_folds.hide(500);

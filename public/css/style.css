@@ -1005,6 +1005,7 @@ ul.nice-menu li {
 
 .resume .conclusion{
     width: 100%;
+    min-height: 115px;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
@@ -2504,7 +2505,7 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control .user_id .person_inform{
     float: right;
-    width: 65%;
+    width: 63%;
 }
 .admin_control .right_admin_control .user_id .inform_user p{
     margin-top: 5px;
@@ -2717,6 +2718,7 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .conclusion{
     width: 100%;
+    min-height: 110px;
     margin-top: 5px;
     padding: 5px;
     border: 1px solid rgba(87, 171, 255, 0.42);
