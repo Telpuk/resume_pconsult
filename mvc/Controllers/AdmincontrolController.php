@@ -52,6 +52,24 @@ class AdminControlController extends IController{
 		$this->headerLocation('admincontrol');
 	}
 
+	public function upadminajaxAction(){
+		if(isset($_POST['ajax']) && !empty($_POST['admin_info']['login']) && !empty($_POST['admin_info']['name_first'])){
+			$result = $this->_db_admin->upadmin($_POST['admin_info'], $this->getSessionUserID('id_user_admin'));
+
+			if(is_array($result)){
+
+				$this->setSessionParams(array(
+					'name_first' => $result[':name_first'],
+					'name_second'=>$result[':name_second'],
+					'patronymic'=>$result[':patronymic'],
+					'login'=>$result[':login'],
+				));
+			}
+			echo true;
+		}
+		exit;
+	}
+
 
 	public function foldersAction(){
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
@@ -346,8 +364,9 @@ class AdminControlController extends IController{
 	{
 		return array('src' => array(
 			BASE_URL . "/public/js/jquery-2.1.1.min.js",
-			BASE_URL . "/public/js/admincontrol.js")
-		);
+			BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
+			BASE_URL . "/public/js/admincontrol.js",
+		));
 	}
 
 	private function _jsManager(){
@@ -355,6 +374,7 @@ class AdminControlController extends IController{
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 				BASE_URL."/public/js/manager.js"
 			),
 		);
@@ -363,6 +383,7 @@ class AdminControlController extends IController{
 		return array(
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 				BASE_URL."/public/js/folders.js"
 			),
 		);

@@ -2385,14 +2385,25 @@ main.authorization .helpers_message_authorization{
 
 .admin_control #widget_right{
     position: fixed;
-    top: 30%;
+    margin-right: -300px;
+    top: 300px;
     right: 0;
-    width: 300px;
+    width: 350px;
+}
+.admin_control #widget_right .valid{
+    color: red;
+}
+
+.admin_control #widget_right #ajax_loader_admin{
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 100px;
 }
 
 .admin_control #widget_right #admin_info{
     float: right;
-    width: 260px;
+    width: 300px;
     box-shadow: 0 0 10px rgba(87, 171, 255, 0.82);
     border-radius: 5px 0 0 5px;
     -moz-border-radius:  5px 0 0 5px;
@@ -2418,7 +2429,28 @@ main.authorization .helpers_message_authorization{
     cursor: pointer;
 }
 
-.admin_control #widget_right #admin_info #form_user_admin > p{
+.admin_control #widget_right #admin_info #form_user_admin{
+    position: relative;
+    display: none;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin input{
+    border: 1px solid black;
+}
+.admin_control #widget_right #admin_info #form_user_admin #show_input_password{
+    color: green;
+}
+.admin_control #widget_right #admin_info #form_user_admin #show_input_password:hover{
+    color: red;
+    cursor: pointer;
+}
+
+
+.admin_control #widget_right #admin_info #form_user_admin #password_content{
+    display: none;
+}
+
+.admin_control #widget_right #admin_info #form_user_admin  p{
     margin-top: 10px;
     color: black;
     text-transform: uppercase;
