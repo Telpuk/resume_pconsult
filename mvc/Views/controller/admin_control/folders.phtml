@@ -55,8 +55,10 @@
 									Опыт работы<br><span><?=$user['sum_experience']?></span>
 								</p>
 								<p>
-									Последнее место работы<br>
-									<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+									<?php if($user['last_place_work']['last_position']): ?>
+										Последнее место работы<br>
+										<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+									<?php endif ?>
 								</p>
 								<p>
 									<?=$user['last_place_work']['last_works']?>
