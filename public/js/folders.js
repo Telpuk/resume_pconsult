@@ -98,6 +98,7 @@
                 self.$inout_text.val('');
                 data = $.parseJSON(data);
                 self.buildFoldersLI(data);
+
             });
     };
 
@@ -381,8 +382,6 @@
 
         });
     };
-
-
 
 
     Folders.prototype.init = function(){
