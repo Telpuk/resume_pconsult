@@ -506,7 +506,7 @@ class SideController extends IController{
 
 	private function _checkFormExperience($post){
 
-		$no_experience = isset($post['no_experience']) && $post['no_experience'] === 'yes'? false: true;
+		$no_experience = isset($post['no_experience']) && $post['no_experience'] == 'yes'? false: true;
 
 		if($no_experience) {
 			$organizations_key=0;

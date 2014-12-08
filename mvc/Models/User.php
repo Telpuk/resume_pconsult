@@ -1211,7 +1211,7 @@ class User{
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
-				':no_experience'=>$inputs['no_experience']['value'],
+				':no_experience'=>$inputs['no_experience']['value']?'true':'false',
 				':organizations'=>implode('[@!-#-!@]',(array)$inputs['organizations']['value']),
 				':positions'=>implode('[@!-#-!@]',(array)$inputs['positions']['value']),
 				':regions'=>implode('[@!-#-!@]',(array)$inputs['regions']['value']),
@@ -1265,7 +1265,7 @@ class User{
 
 
 		$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
-		$no_experience = $experience_data['no_experience'];
+		$no_experience = $experience_data['no_experience']=='true'?true:false;
 		$closing_work = explode('[@!-#-!@]',$experience_data['closing_works']);
 
 		foreach($getting_start as $key=>$value){
