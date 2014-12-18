@@ -19,7 +19,7 @@
 		}
 
 		public function getParams($param){
-			return $this->_paramsGET[$param];
+			return isset($this->_paramsGET[$param])?$this->_paramsGET[$param]:null;
 		}
 
 	}

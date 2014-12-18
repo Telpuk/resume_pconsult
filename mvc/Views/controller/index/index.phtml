@@ -137,6 +137,70 @@
 	<?php endif; ?>
 </div>
 
+<div class="experience">
+	<?php if(!$this->data['data']['experience_key_skills']): ?>
+		<div class="experience_add">
+			<a href='<?=BASE_URL.'/side/experience'?>'><span>Опыт работы</span><span>Добавить...</span></a>
+		</div>
+	<?php else: ?>
+		<section>
+			<h1>
+				Опыт работы <?=$this->data['data']['sum_experience']?><a href='<?=BASE_URL.'/side/experience'?>'>
+					<?php if($this->data['data']['admin'] === 'manager'): ?>
+						<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
+					<?php else: ?>
+						<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
+					<?php endif; ?>
+				</a>
+			</h1>
+			<?=$this->data['data']['experience_organizations']?>
+			<div class="skills">
+				<h2>
+					Ключевые навыки<a href='<?=BASE_URL.'/side/experience#skill'?>'>
+						<?php if($this->data['data']['admin'] === 'manager'): ?>
+							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
+						<?php else: ?>
+							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
+						<?php endif; ?>
+					</a>
+				</h2>
+				<p>
+					<?=$this->data['data']['experience_key_skills']?>
+				</p>
+			</div>
+
+			<div class="left_40">
+				<h2>
+					Обо мне<a href='<?=BASE_URL.'/side/experience#ab_self'?>'>
+						<?php if($this->data['data']['admin'] === 'manager'): ?>
+							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
+						<?php else: ?>
+							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
+						<?php endif; ?>
+					</a>
+				</h2>
+				<p>
+					<?=$this->data['data']['experience_about_self']?>
+				</p>
+			</div>
+
+			<div class="right_60">
+				<h2>
+					Рекомендации<a href='<?=BASE_URL.'/side/experience#reg'?>'>
+						<?php if($this->data['data']['admin'] === 'manager'): ?>
+							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
+						<?php else: ?>
+							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
+						<?php endif; ?>
+					</a>
+				</h2>
+				<?=$this->data['data']['experience_recommend']?>
+			</div>
+			<div class="clear"></div>
+		</section>
+	<?php endif; ?>
+</div>
+
 <div class="education_language">
 	<?php if(!$this->data['data']['institutions']): ?>
 		<div class="education_add">
@@ -203,69 +267,7 @@
 		</section>
 	<?php endif; ?>
 </div>
-<div class="experience">
-	<?php if(!$this->data['data']['experience_key_skills']): ?>
-		<div class="experience_add">
-			<a href='<?=BASE_URL.'/side/experience'?>'><span>Опыт работы</span><span>Добавить...</span></a>
-		</div>
-	<?php else: ?>
-		<section>
-			<h1>
-				Опыт работы <?=$this->data['data']['sum_experience']?><a href='<?=BASE_URL.'/side/experience'?>'>
-					<?php if($this->data['data']['admin'] === 'manager'): ?>
-						<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
-					<?php else: ?>
-						<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
-					<?php endif; ?>
-				</a>
-			</h1>
-			<?=$this->data['data']['experience_organizations']?>
-			<div class="skills">
-				<h2>
-					Ключевые навыки<a href='<?=BASE_URL.'/side/experience#skill'?>'>
-						<?php if($this->data['data']['admin'] === 'manager'): ?>
-							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
-						<?php else: ?>
-							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
-						<?php endif; ?>
-					</a>
-				</h2>
-				<p>
-					<?=$this->data['data']['experience_key_skills']?>
-				</p>
-			</div>
 
-			<div class="left_40">
-				<h2>
-					Обо мне<a href='<?=BASE_URL.'/side/experience#ab_self'?>'>
-						<?php if($this->data['data']['admin'] === 'manager'): ?>
-							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
-						<?php else: ?>
-							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
-						<?php endif; ?>
-					</a>
-				</h2>
-				<p>
-					<?=$this->data['data']['experience_about_self']?>
-				</p>
-			</div>
-
-			<div class="right_60">
-				<h2>
-					Рекомендации<a href='<?=BASE_URL.'/side/experience#reg'?>'>
-						<?php if($this->data['data']['admin'] === 'manager'): ?>
-							<img src="<?=BASE_URL.'/public/img/view.png'?>">смотреть
-						<?php else: ?>
-							<img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать
-						<?php endif; ?>
-					</a>
-				</h2>
-				<?=$this->data['data']['experience_recommend']?>
-			</div>
-			<div class="clear"></div>
-		</section>
-	<?php endif; ?>
-</div>
 <?php if($this->data['data']['name']): ?>
 	<div class="nationality_workpermit">
 		<header>

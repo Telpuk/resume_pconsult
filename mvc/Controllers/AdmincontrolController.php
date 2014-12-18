@@ -134,7 +134,7 @@ class AdminControlController extends IController{
 				'users'=> $folder_users['users'],
 				'count_users'=>$count,
 				'message'=>$message,
-				'search_folders_user'=>$search[0],
+				'search_folders_user'=>isset($search[0])?$search[0]:null,
 				'helpers' => array(
 					'header'=> 'admin_control/helpers/header',
 					'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
@@ -146,7 +146,7 @@ class AdminControlController extends IController{
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 				'pagination' => $this->_db_admin->printPagination(
 					ceil($count / $this->_count_view), $this->_page, array(
-						'url'=>"folders/id/{$this->getParams('id')}/search/?search=$search[0]")),
+						'url'=>"folders/id/{$this->getParams('id')}/search/?search=".(isset($search[0])?$search[0]:null))),
 			),
 			'js'=>$this->_jsFolders()
 		));
@@ -370,10 +370,10 @@ class AdminControlController extends IController{
 				'users_count' =>$this->getSessionParamsId('count_users'),
 				'users_count_search'=>$this->getSessionParamsId('count_users_search'),
 				'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
-				'search' => $search[0],
+				'search' => isset($search[0])?$search[0]:null,
 				'pagination' => $this->_db_admin->printPagination(
 					ceil($users['count'] / $this->_count_view), $this->_page, array(
-						'url'=>"index/search/?search=".$search[0])),
+						'url'=>"index/search/?search=".(isset($search[0])?$search[0]:null))),
 			)
 		));
 

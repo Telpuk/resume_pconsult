@@ -7,22 +7,26 @@
 	</div>
 	<div class="right_admin_control">
 		<?php if($this->data['data']['users'][0]):?>
-			<?php if($this->data['data']['users_count_search']): ?>
-				<p class="found">Найденных анкет: <?=$this->data['data']['users_count_search']?></p>
-			<?php endif; ?>
-			<nav>
-				<?=$this->data['data']['pagination']?>
-			</nav>
-			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
-				<div class="user_id">
-					<figure>
-						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
-					</figure>
-					<div class="inform_user">
-						<div class="salary_inform_user">
-							<span>Зарплата: <span class="inform-user-left"><?=$user['salary']?></span></span>
-							<span>Возраст: <span class="inform-user-left"><?=$user['years_user']?></span></span>
-							<span>Дата: <span class="inform-user-left"><?=$user['date_registration']?></span></span>
+	<?php if($this->data['data']['users_count_search']): ?>
+		<p class="found">Найденных анкет: <?=$this->data['data']['users_count_search']?></p>
+	<?php endif; ?>
+		<nav>
+			<?=$this->data['data']['pagination']?>
+		</nav>
+	<?php foreach($this->data['data']['users'] as $key=>$user): ?>
+	<?php if($user['view_admin'] == 'no'): ?>
+		<div class="user_id no_admin">
+			<?php else: ?>
+			<div class="user_id">
+				<?php endif; ?>
+				<figure>
+					<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+				</figure>
+				<div class="inform_user">
+					<div class="salary_inform_user">
+						<span>Зарплата: <span class="inform-user-left"><?=$user['salary']?></span></span>
+						<span>Возраст: <span class="inform-user-left"><?=$user['years_user']?></span></span>
+						<span>Дата: <span class="inform-user-left"><?=$user['date_registration']?></span></span>
 							<span>
 								<div class="download">
 									<p class="active_download">
@@ -41,49 +45,49 @@
 									</div>
 								</div>
 							</span>
-						</div>
-						<div class="person_inform">
-							<div class="position"><?=$user['desired_position']?></div>
-							<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
-							<p>
-								Опыт работы<br><span><?=$user['sum_experience']?></span>
-							</p>
-							<p>
-								<?php if($user['last_place_work']['last_position']): ?>
-									Последнее место работы<br>
-									<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
-								<?php endif ?>
-							</p>
-							<p>
-								<?=$user['last_place_work']['last_works']?>
-							</p>
+					</div>
+					<div class="person_inform">
+						<div class="position"><?=$user['desired_position']?></div>
+						<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><?=$user['name']?></a></div>
+						<p>
+							Опыт работы<br><span><?=$user['sum_experience']?></span>
+						</p>
+						<p>
+							<?php if($user['last_place_work']['last_position']): ?>
+								Последнее место работы<br>
+								<span><?=$user['last_place_work']['last_position']?>, <?=$user['last_place_work']['date']?></span>
+							<?php endif ?>
+						</p>
+						<p>
+							<?=$user['last_place_work']['last_works']?>
+						</p>
 
-						</div>
 					</div>
-					<div class="clear"></div>
-					<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>
-						<?php if( $user['conclusion'] == ''): ?>
-							<h1>Заключение</h1>
-							<textarea class='conclusion_textarea' name="conclusion"></textarea>
-							<input type="hidden" name="admincontrol" value="admincontrol">
-							<button class="button_conclusion">сохранить</button>
-							<div class="clear"></div>
-						<?php  else: ?>
-							<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#<?=$user['id']?>"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
-							<div class="conclusion_text"><?=$user['conclusion']?></div>
-							<div class="clear"></div>
-						<?php endif; ?>
-					</div>
-					<div class="clear"></div>
 				</div>
+				<div class="clear"></div>
+				<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>
+					<?php if( $user['conclusion'] == ''): ?>
+						<h1>Заключение</h1>
+						<textarea class='conclusion_textarea' name="conclusion"></textarea>
+						<input type="hidden" name="admincontrol" value="admincontrol">
+						<button class="button_conclusion">сохранить</button>
+						<div class="clear"></div>
+					<?php  else: ?>
+						<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#<?=$user['id']?>"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
+						<div class="conclusion_text"><?=$user['conclusion']?></div>
+						<div class="clear"></div>
+					<?php endif; ?>
+				</div>
+				<div class="clear"></div>
+			</div>
 			<?php endforeach; ?>
 			<nav>
 				<?=$this->data['data']['pagination']?>
 			</nav>
-		<?php else: ?>
-			<p class="no_resume">По этому запросу у вас ничего нет</p>
-		<?php endif; ?>
-	</div>
-	<div class="clear"></div>
-	<?=$this->data['helpers']['admin_info_widget']?>
+			<?php else: ?>
+				<p class="no_resume">По этому запросу у вас ничего нет</p>
+			<?php endif; ?>
+		</div>
+		<div class="clear"></div>
+		<?=$this->data['helpers']['admin_info_widget']?>
 </main>

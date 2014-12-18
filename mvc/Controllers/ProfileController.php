@@ -232,7 +232,7 @@ class ProfileController extends IController{
 			if(empty($phone['phone']) && $phone['preferred_communication'] == 1){
 				return  array('message'=>'Необходимо заполнить');
 			}elseif(!empty($phone['phone']) &&
-				!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+				!preg_match('/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/',
 					$phone['phone'])){
 				return  array('message'=>'Номер указан некорректно');
 			}else{
@@ -244,7 +244,7 @@ class ProfileController extends IController{
 			if(empty($phone['phone']) && $phone['preferred_communication'] == 2){
 				return  array('message'=>'Необходимо заполнить');
 			}elseif(!empty($phone['phone']) &&
-				!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+				!preg_match('/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/',
 					$phone['phone'])){
 				return  array('message'=>'Номер указан некорректно');
 			}else{
@@ -257,7 +257,7 @@ class ProfileController extends IController{
 			if(empty($phone['phone']) && $phone['preferred_communication'] == 3){
 				return  array('message'=>'Необходимо заполнить');
 			}elseif(!empty($phone['phone']) &&
-				!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i',
+				!preg_match('/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/',
 					$phone['phone'])){
 				return  array('message'=>'Номер указан некорректно');
 			}else{
@@ -374,6 +374,7 @@ class ProfileController extends IController{
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
 				BASE_URL."/public/js/handlebars-v2.0.0.js",
+				BASE_URL."/public/js/vendor/jquery.maskedinput.min.js",
 				BASE_URL."/public/js/contacts.js"
 			),
 		);

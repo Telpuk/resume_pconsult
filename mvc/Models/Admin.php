@@ -311,6 +311,7 @@ login = :login {$password} WHERE id = :id";
 	}
 
 	public function selectAllResume($count_view, $page){
+		$count_user = null;
 		try {
 			$stmt = $this->_dbc->prepare("CALL allResume(:start,:count_view)");
 			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
@@ -334,9 +335,7 @@ login = :login {$password} WHERE id = :id";
 			}
 			$_SESSION['params']['count_users'] = $count_user;
 			$_SESSION['params']['count_view_admin_resume'] = $count_view_admin_resume;
-
 		}
-
 		return $this->_getResumeFormat($search_data, $count_user);
 	}
 

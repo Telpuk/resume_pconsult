@@ -537,7 +537,7 @@ class User{
 		}
 
 		return sprintf(
-			'<p><b>%s</b><b>%s</b> пол &#183; <b>%s</b> </p>
+			'<p><b>%s</b> Пол <b>%s &#183;</b> Город <b>%s</b> </p>
 				<p>  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b></p>',
 			$birth?$birth.' &#183 ':'',
 			$personal_data['sex'],

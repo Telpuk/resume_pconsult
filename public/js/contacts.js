@@ -84,8 +84,15 @@
             }
         });
     };
+    Personal.prototype.maskedInputInit = function(){
+        $("#mobile_phone").mask("375 (99) 999-99-99");
+        $("#work_phone").mask("375 (99) 999-99-99");
+        $("#home_phone").mask("375 (99) 999-99-99");
+    };
+
 
     Personal.prototype.init = function(){
+        this.maskedInputInit();
         this.setConnectionLabel();
         this.validateForm();
         this.addEventListenerConnect();

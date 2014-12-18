@@ -44,6 +44,29 @@
 			<p><?=$this->data['data']['employment']?></p>
 			<p><?=$this->data['data']['schedule']?></p>
 		</div>
+		<div class="experience">
+			<section>
+				<h1>Опыт работы (<?=$this->data['data']['sum_experience']?>)</h1>
+				<?=$this->data['data']['experience_organizations']?>
+				<div class="skills">
+					<h2>Ключевые навыки</h2>
+					<p>
+						<?=$this->data['data']['experience_key_skills']?>
+					</p>
+				</div>
+				<div class="left_40">
+					<h2>Обо мне</h2>
+					<p>
+						<?=$this->data['data']['experience_about_self']?>
+					</p>
+				</div>
+				<div class="right_60">
+					<h2>Рекомендации</h2>
+					<?=$this->data['data']['experience_recommend']?>
+				</div>
+				<div class="clear"></div>
+			</section>
+		</div>
 
 		<div class="education_language">
 			<section>
@@ -73,30 +96,7 @@
 				<?php endif; ?>
 			</section>
 		</div>
-		<div class="experience">
-			<section>
-				<h1>Опыт работы (<?=$this->data['data']['sum_experience']?>)</h1>
-				<?=$this->data['data']['experience_organizations']?>
-				<div class="skills">
-					<h2>Ключевые навыки</h2>
-					<p>
-						<?=$this->data['data']['experience_key_skills']?>
-					</p>
-				</div>
-				<div class="left_40">
-					<h2>Обо мне</h2>
-					<p>
-						<?=$this->data['data']['experience_about_self']?>
-					</p>
-				</div>
 
-				<div class="right_60">
-					<h2>Рекомендации</h2>
-					<?=$this->data['data']['experience_recommend']?>
-				</div>
-				<div class="clear"></div>
-			</section>
-		</div>
 		<?php if($this->data['data']['name']): ?>
 			<div class="nationality_workpermit">
 				<header>
