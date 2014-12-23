@@ -14,7 +14,7 @@
 			<?=$this->data['data']['pagination']?>
 		</nav>
 	<?php foreach($this->data['data']['users'] as $key=>$user): ?>
-	<?php if($user['view_admin'] == 'no'): ?>
+	<?php if($user['view_admin'] == 'yes'): ?>
 		<div class="user_id no_admin">
 			<?php else: ?>
 			<div class="user_id">

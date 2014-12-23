@@ -2945,8 +2945,7 @@ main.authorization .helpers_message_authorization{
 }
 
 .no_admin{
-    background-color: rgba(186, 186, 186, 0.30);
-    opacity: 4;
+    background-color: rgba(104, 104, 104, 0.06);
 }
 
 .admin_control.folders .right_admin_control .folders_list p#addFolder:hover{

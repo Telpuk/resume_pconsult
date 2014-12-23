@@ -102,8 +102,6 @@ class ProfileController extends IController{
 				'js'=>$this->_jsPersonal(),
 			));
 		}
-
-
 	}
 
 	private function _checkFormPersonal($post){
