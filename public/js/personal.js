@@ -105,7 +105,7 @@
 
     Personal.prototype.addEventListenerExample = function(){
         $('#city_example, #nationality_example, #work_permit_example').on('click', {self:this},function(event){
-            $(event.target).parent().parent().children().get(1).value = $(event.target).text();
+            $(event.target).parent().siblings('input').val($(event.target).text());
         });
     };
     Personal.prototype.autocompCity = function(data){
@@ -131,9 +131,9 @@
             { autocomplete: "autocomplete"})
             .done(function( data ) {
                 data = JSON.parse(data);
-                self.autocompCity(JSON.parse(data['city']));
-                self.autocompNationality(JSON.parse(data['city']));
-                self.autocompWorkPermit(JSON.parse(data['city']));
+                self.autocompCity(data);
+                self.autocompNationality(data);
+                self.autocompWorkPermit(data);
             });
     };
 

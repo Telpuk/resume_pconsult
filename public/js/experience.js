@@ -8,6 +8,11 @@
         this.$table_organizations = $('#table_organizations');
         this.$no_experience = $('#no_experience input[type=checkbox]');
         this.$add_skills_hid = $('.add_skills_hid');
+
+        //рекомендации по запросу
+        this.$questionRecommend = $('#questionRecommend');
+        this.$questionRecommendInput = $('input',  this.$questionRecommend);
+        this.$addRecommendations = $('.add_recommendations');
     }
 
 
@@ -117,9 +122,9 @@
                 case 'delete_skills':{
                     var value =  $(event.target).parent().text();
                     $(event.target).parent().remove();
-                    if($('span',event.data.self.$add_skills_hid).length === 0 && !event.data.self.$key_skill.val()){
-                        $('.message',event.data.self.$skills_td).text('Обязательно для заполнения');
-                    }
+                    //if($('span',event.data.self.$add_skills_hid).length === 0 && !event.data.self.$key_skill.val()){
+                    //    $('.message',event.data.self.$skills_td).text('Обязательно для заполнения');
+                    //}
                     break;
                 }
             }
@@ -200,9 +205,37 @@
         }
     };
 
+    Experience.prototype.questionRecommend = function(){
+
+        if(this.$questionRecommendInput.prop("checked")){
+            $('.recommendations input[type=text]').prop('disabled', true);
+            this.$addRecommendations.hide();
+        }else{
+            $('.recommendations input[type=text]').prop('disabled', false);
+            this.$addRecommendations.show();
+        }
+
+        this.$questionRecommend.on('click', {self:this}, function(event) {
+            if(event.target.tagName.toLowerCase() !== 'input'){
+                event.data.self.$questionRecommendInput.prop( "checked", function( i, val ) {
+                    return !val;
+                });
+            }
+            if(event.data.self.$questionRecommendInput.prop("checked")){
+                $('.recommendations input[type=text]').prop('disabled', true).val('');
+                event.data.self.$addRecommendations.hide();
+            }else{
+                $('.recommendations input[type=text]').prop('disabled', false);
+                event.data.self.$addRecommendations.show();
+            }
+
+        });
+    };
+
     Experience.prototype.init = function(){
         this.checkNoExperienceChecked();
         this.autocompletePost();
+        this.questionRecommend();
         this.addEventListenerSkills();
         this.addEventListenerNoExperience();
         this.addEventListenerFORM();

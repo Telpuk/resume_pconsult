@@ -1405,6 +1405,7 @@ fieldset p{
 
 .left_40{
     margin-left: 20px;
+    padding: 5px;
     margin-top: 10px;
     float: left;
     width: 45%;
@@ -1412,6 +1413,7 @@ fieldset p{
 
 .right_60{
     margin-top: 10px;
+    padding: 5px;
     float: left;
     width: 50%;
 }
@@ -2175,6 +2177,17 @@ input[type=email]{
     width: 90%;
     padding: 30px;
 }
+.personal.experience #questionRecommend{
+    margin-top: 40px;
+    color: #bababa;
+    text-transform: uppercase;
+    font-size: 0.2em;
+}
+
+.personal.experience #questionRecommend{
+    cursor: pointer;
+}
+
 .base_education  th{
     padding-bottom: 15px;
     font-size: 1.2em;

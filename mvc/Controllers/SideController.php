@@ -219,6 +219,7 @@ class SideController extends IController{
 			$this->headerLocation('index');
 		}else{
 			$checkForm = $this->_dbuser->selectExperience($this->getSessionUserID('user'));
+
 			return $this->_view->render(array(
 				'view' => 'side/experience',
 				'data'=>array(
@@ -289,9 +290,9 @@ class SideController extends IController{
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 				}, $follow_organizations[$education_course_key]);
 
-				$courses_specialties_val[$education_course_key] = call_user_func(function ($var) {
-					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-				}, $courses_specialties[$education_course_key]);
+//				$courses_specialties_val[$education_course_key] = call_user_func(function ($var) {
+//					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+//				}, $courses_specialties[$education_course_key]);
 
 				$course_years_graduations_val[$education_course_key] = call_user_func(function ($var) {
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
@@ -324,9 +325,9 @@ class SideController extends IController{
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 				}, $tests_exams_follow_organizations[$test_exam_education_key]);
 
-				$tests_exams_specialty_val[$test_exam_education_key] = call_user_func(function ($var) {
-					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
-				}, $tests_exams_specialty[$test_exam_education_key]);
+//				$tests_exams_specialty_val[$test_exam_education_key] = call_user_func(function ($var) {
+//					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
+//				}, $tests_exams_specialty[$test_exam_education_key]);
 
 				$tests_exams_years_graduations_val[$test_exam_education_key] = call_user_func(function ($var) {
 					return !empty($var) ? true : array('message' => 'Необходимо заполнить');
@@ -337,7 +338,6 @@ class SideController extends IController{
 
 			}
 		}
-
 
 		$electronic_certificates_key = 0;
 
@@ -403,7 +403,6 @@ class SideController extends IController{
 				return !empty($var) ? true : array('message' => 'Необходимо заполнить');
 			}, $language_further);
 
-
 			++$count_language_further;
 		}
 
@@ -438,7 +437,7 @@ class SideController extends IController{
 				'value'=>(array)$follow_organizations
 			),
 			'courses_specialties'=>array(
-				'val'=>(array)$courses_specialties_val,
+				'val'=>true,
 				'value'=>(array)$courses_specialties
 			),
 			'course_years_graduations'=>array(
@@ -455,7 +454,7 @@ class SideController extends IController{
 				'value'=>(array)$tests_exams_follow_organizations
 			),
 			'tests_exams_specialty'=>array(
-				'val'=>(array)$tests_exams_specialty_val,
+				'val'=>true,
 				'value'=>(array)$tests_exams_specialty
 			),
 			'tests_exams_years_graduations'=>array(
@@ -506,9 +505,9 @@ class SideController extends IController{
 
 	private function _checkFormExperience($post){
 
-		$no_experience = isset($post['no_experience']) && $post['no_experience'] == 'yes'? false: true;
+		$no_experience = isset($post['no_experience']) && $post['no_experience'] == 'yes'? true: false;
 
-		if($no_experience) {
+		if(!$no_experience) {
 			$organizations_key=0;
 
 			foreach ($post['organizations'] as $key => $organization) {
@@ -520,7 +519,7 @@ class SideController extends IController{
 				}, $organizations[$organizations_key]);
 
 
-				$regions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]', '', $post['regions'][$key])));
+				$regions[$organizations_key] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['regions'][$key])));
 
 				$regions_val[$organizations_key] = call_user_func(function ($regions) {
 					return !empty($regions) ? true : array('message' => 'Необходимо заполнить');
@@ -528,11 +527,12 @@ class SideController extends IController{
 
 				$sites[$organizations_key] = trim(strip_tags($post['sites'][$key]));
 
-				$field_activities[$organizations_key] = trim(strip_tags($post['field_activities'][$key]));
+				$field_activities[$organizations_key] = trim(strip_tags(preg_replace('/\s{2,}/',' ',
+					$post['field_activities'][$key])));
 
-				$positions[$organizations_key] = trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ-]', '', $post['positions'][$key])));
+				$positions[$organizations_key] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['positions'][$key])));
 
-				$functions[$organizations_key] = trim(strip_tags($post['functions'][$key]));
+				$functions[$organizations_key] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['functions'][$key])));
 
 				$functions_val[$organizations_key] = call_user_func(function ($position) {
 					return !empty($position) ? true : array('message' => 'Необходимо заполнить');
@@ -574,32 +574,37 @@ class SideController extends IController{
 
 		$recommend_name_key = 0;
 
-		foreach($post['recommend_names'] as $key=>$recommend_name){
-			if(!empty($recommend_name)||!empty($post['recommend_position'][$key])||
-				!empty($post['recommend_organization'][$key])||!empty($post['recommend_phone'][$key])){
+		$recommend_question = isset($post['recommend_question'])?true:false;
 
-				$recommend_names[$recommend_name_key] = trim(strip_tags($recommend_name));
-				$recommend_position[$recommend_name_key] = trim(strip_tags($post['recommend_position'][$key]));
-				$recommend_organization[$recommend_name_key] = trim(strip_tags($post['recommend_organization'][$key]));
-				$recommend_phone[$recommend_name_key] = trim(strip_tags($post['recommend_phone'][$key]));
+		if(!$recommend_question) {
+			foreach ( $post['recommend_names'] as $key => $recommend_name ) {
+				if ( !empty( $recommend_name ) || !empty( $post['recommend_position'][$key] ) ||
+					!empty( $post['recommend_organization'][$key] ) || !empty( $post['recommend_phone'][$key] )
+				) {
 
-				$recommend_names_val[$recommend_name_key] = call_user_func(function($recommend_name){
-					return !empty($recommend_name)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_names[$recommend_name_key]);
+					$recommend_names[$recommend_name_key] = trim( strip_tags( $recommend_name ) );
+					$recommend_position[$recommend_name_key] = trim( strip_tags( preg_replace( '/\s{2,}/', ' ', $post['recommend_position'][$key] ) ) );
+					$recommend_organization[$recommend_name_key] = trim( strip_tags( $post['recommend_organization'][$key] ) );
+					$recommend_phone[$recommend_name_key] = trim( strip_tags( $post['recommend_phone'][$key] ) );
 
-				$recommend_position_val[$recommend_name_key] = call_user_func(function($recommend_position){
-					return !empty($recommend_position)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_position[$recommend_name_key]);
+					$recommend_names_val[$recommend_name_key] = call_user_func( function ( $recommend_name ) {
+						return !empty( $recommend_name ) ? true : array( 'message' => 'Необходимо заполнить' );
+					}, $recommend_names[$recommend_name_key] );
 
-				$recommend_organization_val[$recommend_name_key] = call_user_func(function($recommend_organization){
-					return !empty($recommend_organization)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_organization[$recommend_name_key]);
+					$recommend_position_val[$recommend_name_key] = call_user_func( function ( $recommend_position ) {
+						return !empty( $recommend_position ) ? true : array( 'message' => 'Необходимо заполнить' );
+					}, $recommend_position[$recommend_name_key] );
 
-				$recommend_phone_val[$recommend_name_key] = call_user_func(function($recommend_phone){
-					return !empty($recommend_phone)?true: array('message'=>'Необходимо заполнить');
-				},$recommend_phone[$recommend_name_key]);
+					$recommend_organization_val[$recommend_name_key] = call_user_func( function ( $recommend_organization ) {
+						return !empty( $recommend_organization ) ? true : array( 'message' => 'Необходимо заполнить' );
+					}, $recommend_organization[$recommend_name_key] );
 
-				++$recommend_name_key;
+					$recommend_phone_val[$recommend_name_key] = call_user_func( function ( $recommend_phone ) {
+						return !empty( $recommend_phone ) ? true : array( 'message' => 'Необходимо заполнить' );
+					}, $recommend_phone[$recommend_name_key] );
+
+					++$recommend_name_key;
+				}
 			}
 		}
 
@@ -608,11 +613,11 @@ class SideController extends IController{
 			$key_skills[] = $post['key_skills'];
 		}
 
-		$key_skills_val = call_user_func(function($key_skills){
-			return count($key_skills)!==0?true: array('message'=>'Необходимо заполнить');
-		}, (array)$key_skills);
+//		$key_skills_val = call_user_func(function($key_skills){
+//			return count($key_skills)!==0?true: array('message'=>'Необходимо заполнить');
+//		}, (array)$key_skills);
 
-		$about_self = $post['about_self'];
+		$about_self = preg_replace('/\s{2,}/',' ',$post['about_self']);
 
 		return array(
 			'no_experience'=>array(
@@ -649,7 +654,7 @@ class SideController extends IController{
 				'value'=>$functions
 			),
 			'key_skills'=>array(
-				'val'=>$key_skills_val,
+				'val'=>true,
 				'value'=>$key_skills
 			),
 			'about_self'=>array('value'=>$about_self),
@@ -657,6 +662,10 @@ class SideController extends IController{
 			'recommend_names'=>array(
 				'val'=>(array)$recommend_names_val,
 				'value'=>is_array($recommend_names)?$recommend_names:array(),
+			),
+			'recommend_question'=>array(
+				'val'=>true,
+				'value'=>$recommend_question,
 			),
 			'recommend_position'=>array(
 				'val'=>(array)$recommend_position_val,

@@ -138,7 +138,7 @@
 </div>
 
 <div class="experience">
-	<?php if(!$this->data['data']['experience_key_skills']): ?>
+	<?php if(is_null($this->data['data']['no_experience'])): ?>
 		<div class="experience_add">
 			<a href='<?=BASE_URL.'/side/experience'?>'><span>Опыт работы</span><span>Добавить...</span></a>
 		</div>

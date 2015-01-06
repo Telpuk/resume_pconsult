@@ -131,37 +131,21 @@ class User{
 	}
 
 	public function selectAutocompletePersonal(){
-		$stmt = $this->_dbc->query("SELECT DISTINCT
-												p.city,
-												e.regions,
-												p.nationality,
-												p.work_permit
-											FROM
-												profile p,
-												experience e"
-		);
+		$autocompleteArray = array();
+		$stmt = $this->_dbc->query("(SELECT DISTINCT city FROM profile) UNION (SELECT DISTINCT regions FROM experience)");
 		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 		foreach ($autocomplete as $key => $value) {
-			if($value['city']){
-				$autocomplete_arr['city'][] = $value['city'];
+			foreach(array_unique(explode('[@!-#-!@]', $value['city'])) as $element){
+				if($element){
+					$autocompleteArray[] = $element;
+				}
 			}
-			if($value['regions']){
-				$autocomplete_arr['city'][] = $value['regions'];
-			}
-			if($value['nationality']) {
-				$autocomplete_arr['city'][] = $value['nationality'];
-
-			}
-			if($value['work_permit']){
-				$autocomplete_arr['city'][] = $value['work_permit'];
-			}
-
 		}
+		$autocompleteArray = array_values(array_unique($autocompleteArray));
 
-		$json['city'] = $this->json_encode_cyr((array)$autocomplete_arr['city']);
-
-		return $this->json_encode_cyr($json);
+		return $this->json_encode_cyr($autocompleteArray);
 
 	}
 
@@ -291,8 +275,8 @@ class User{
 			)
 		);
 
-		$personal['sum_experience'] = isset($experience_count['sum']) ? $experience_count['sum']: 'Ранее не работал';
-
+		$personal['sum_experience'] = $personal_data['no_experience']=='false' && isset($experience_count['sum']) ? $experience_count['sum']: 'Ранее&nbsp;не&nbsp;работал';
+		$personal['no_experience'] = $personal_data['no_experience'];
 		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
 			array(
 				'experience_count' =>$experience_count,
@@ -312,9 +296,11 @@ class User{
 		$personal['experience_key_skills'] = $personal_data['experience_key_skills'];
 
 		$personal['experience_about_self'] = $personal_data['experience_about_self'];
+
 		$personal['experience_recommend'] = $this->_getExperienceRecommend(
 			array(
 				'experience_recommend_names'=>explode('[@!-#-!@]',$personal_data['experience_recommend_names']),
+				'experience_recommend_question'=>$personal_data['experience_recommend_question'],
 				'experience_recommend_position'=>explode('[@!-#-!@]',$personal_data['experience_recommend_position']),
 				'experience_recommend_organization'=>explode('[@!-#-!@]',$personal_data['experience_recommend_organization']),
 				'experience_recommend_phone'=>explode('[@!-#-!@]',$personal_data['experience_recommend_phone']),
@@ -467,6 +453,7 @@ class User{
 
 	private function _getExperienceRecommend($personal_data){
 		$data='';
+
 		if($personal_data['experience_recommend_names'][0]) {
 			foreach ($personal_data['experience_recommend_names'] as $key => $experience_recommend_names) {
 				$data .= "<p><b>{$personal_data['experience_recommend_organization'][$key]}</b><br>" .
@@ -474,6 +461,8 @@ class User{
 					"{$personal_data['experience_recommend_phone'][$key]}</p>";
 
 			}
+		}elseif($personal_data['experience_recommend_question']=='true'){
+			$data = "<p>РЕКОМЕНДАЦИИ ПРЕДОСТАВЛЯЮТСЯ ПО ЗАПРОСУ</p>";
 		}
 		return $data;
 	}
@@ -520,7 +509,7 @@ class User{
 			$data .="</table>";
 
 		}else{
-			$data = "<div style='font-size: 0.3em; padding:10px'>Ранее не работал</div>";
+			$data = "<div style='font-size: 0.3em; padding:10px 0 10px 20px'>Ранее не работал</div>";
 		}
 
 		return $data;
@@ -751,13 +740,13 @@ class User{
 												WHERE
 													id = :id_user");
 			$stmt->execute(array(
-				':desired_position'=>$inputs['desired_position']['value'],
-				':professional_area'=>$inputs['professional_area']['value'],
-				':employment'=>implode('[@!-#-!@]',$inputs['employment']['value']),
-				':schedule'=>implode('[@!-#-!@]',$inputs['schedule']['value']),
-				':salary'=>$inputs['salary']['value'],
-				':currency'=>$inputs['currency']['value'],
-				':id_user'=>$id_user)
+					':desired_position'=>$inputs['desired_position']['value'],
+					':professional_area'=>$inputs['professional_area']['value'],
+					':employment'=>implode('[@!-#-!@]',$inputs['employment']['value']),
+					':schedule'=>implode('[@!-#-!@]',$inputs['schedule']['value']),
+					':salary'=>$inputs['salary']['value'],
+					':currency'=>$inputs['currency']['value'],
+					':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -800,35 +789,35 @@ class User{
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
-				':level'=>$inputs['level']['value'],
-				':names_institutions'=>implode('[@!-#-!@]',$inputs['names_institutions']['value']),
-				':faculties'=>implode('[@!-#-!@]',$inputs['faculties']['value']),
-				':specialties_specialties'=>implode('[@!-#-!@]',$inputs['specialties_specialties']['value']),
-				':years_graduations'=>implode('[@!-#-!@]',$inputs['years_graduations']['value']),
+					':level'=>$inputs['level']['value'],
+					':names_institutions'=>implode('[@!-#-!@]',$inputs['names_institutions']['value']),
+					':faculties'=>implode('[@!-#-!@]',$inputs['faculties']['value']),
+					':specialties_specialties'=>implode('[@!-#-!@]',$inputs['specialties_specialties']['value']),
+					':years_graduations'=>implode('[@!-#-!@]',$inputs['years_graduations']['value']),
 
-				':courses_names'=>implode('[@!-#-!@]',$inputs['courses_names']['value']),
-				':follow_organizations'=>implode('[@!-#-!@]',$inputs['follow_organizations']['value']),
-				':courses_specialties'=>implode('[@!-#-!@]',$inputs['courses_specialties']['value']),
-				':course_years_graduations'=>implode('[@!-#-!@]',$inputs['course_years_graduations']['value']),
+					':courses_names'=>implode('[@!-#-!@]',$inputs['courses_names']['value']),
+					':follow_organizations'=>implode('[@!-#-!@]',$inputs['follow_organizations']['value']),
+					':courses_specialties'=>implode('[@!-#-!@]',$inputs['courses_specialties']['value']),
+					':course_years_graduations'=>implode('[@!-#-!@]',$inputs['course_years_graduations']['value']),
 
-				':tests_exams_names'=>implode('[@!-#-!@]',$inputs['tests_exams_names']['value']),
-				':tests_exams_follow_organizations'=>implode('[@!-#-!@]',$inputs['tests_exams_follow_organizations']['value']),
-				':tests_exams_specialty'=>implode('[@!-#-!@]',$inputs['tests_exams_specialty']['value']),
-				':tests_exams_years_graduations'=>implode('[@!-#-!@]',$inputs['tests_exams_years_graduations']['value']),
+					':tests_exams_names'=>implode('[@!-#-!@]',$inputs['tests_exams_names']['value']),
+					':tests_exams_follow_organizations'=>implode('[@!-#-!@]',$inputs['tests_exams_follow_organizations']['value']),
+					':tests_exams_specialty'=>implode('[@!-#-!@]',$inputs['tests_exams_specialty']['value']),
+					':tests_exams_years_graduations'=>implode('[@!-#-!@]',$inputs['tests_exams_years_graduations']['value']),
 
-				':electronic_certificates_names'=>implode('[@!-#-!@]',$inputs['electronic_certificates_names']['value']),
-				':electronic_certificates_years_graduations'=>implode('[@!-#-!@]',$inputs['electronic_certificates_years_graduations']['value']),
-				':electronic_certificates_links'=>implode('[@!-#-!@]',$inputs['electronic_certificates_links']['value']),
+					':electronic_certificates_names'=>implode('[@!-#-!@]',$inputs['electronic_certificates_names']['value']),
+					':electronic_certificates_years_graduations'=>implode('[@!-#-!@]',$inputs['electronic_certificates_years_graduations']['value']),
+					':electronic_certificates_links'=>implode('[@!-#-!@]',$inputs['electronic_certificates_links']['value']),
 
-				':language_further'=>implode('[@!-#-!@]',$inputs['language_further']['value']),
-				':language_further_level'=>implode('[@!-#-!@]',$inputs['language_further_level']['value']),
+					':language_further'=>implode('[@!-#-!@]',$inputs['language_further']['value']),
+					':language_further_level'=>implode('[@!-#-!@]',$inputs['language_further_level']['value']),
 
-				'native_language'=>$inputs['native_language']['value'],
-				'language_english'=>$inputs['language_english']['value'],
-				'language_germany'=>$inputs['language_germany']['value'],
-				'language_french'=>$inputs['language_french']['value'],
+					'native_language'=>$inputs['native_language']['value'],
+					'language_english'=>$inputs['language_english']['value'],
+					'language_germany'=>$inputs['language_germany']['value'],
+					'language_french'=>$inputs['language_french']['value'],
 
-				':id_user'=>$id_user)
+					':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -866,20 +855,20 @@ class User{
 												WHERE
 													id = :id_user");
 			$stmt->execute(array(
-				':surname'=>$inputs['surname']['value'],
-				':first_name'=>$inputs['first_name']['value'],
-				':patronymic'=>$inputs['patronymic']['value'],
-				':birth'=>"{$inputs['birth']['day_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['year_birth']}",
-				':sex'=>$inputs['sex']['value'],
-				':city'=>$inputs['city']['value'],
-				':move'=>$inputs['move']['value'],
-				':trip'=>$inputs['trip']['value'],
-				':nationality'=>$inputs['nationality']['value'],
-				':work_permit'=>$inputs['work_permit']['value'],
-				':travel_time_work'=>$inputs['travel_time_work']['value'],
-				':auto'=>$inputs['auto']['value'],
-				':certificate_auto'=>$inputs['certificate_auto']['value'],
-				':id_user'=>$id_user)
+					':surname'=>$inputs['surname']['value'],
+					':first_name'=>$inputs['first_name']['value'],
+					':patronymic'=>$inputs['patronymic']['value'],
+					':birth'=>"{$inputs['birth']['day_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['year_birth']}",
+					':sex'=>$inputs['sex']['value'],
+					':city'=>$inputs['city']['value'],
+					':move'=>$inputs['move']['value'],
+					':trip'=>$inputs['trip']['value'],
+					':nationality'=>$inputs['nationality']['value'],
+					':work_permit'=>$inputs['work_permit']['value'],
+					':travel_time_work'=>$inputs['travel_time_work']['value'],
+					':auto'=>$inputs['auto']['value'],
+					':certificate_auto'=>$inputs['certificate_auto']['value'],
+					':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -911,23 +900,23 @@ class User{
 												WHERE
 													id = :id_user");
 			$stmt->execute(array(
-				':mobile_phone'=>$inputs['mobile_phone']['value'],
-				':home_phone'=>$inputs['home_phone']['value'],
-				':work_phone'=>$inputs['work_phone']['value'],
-				':comment_mobile_phone'=>$inputs['comment_mobile_phone']['value'],
-				':comment_home_phone'=>$inputs['comment_home_phone']['value'],
-				':comment_work_phone'=>$inputs['comment_work_phone']['value'],
-				':preferred_communication'=>$inputs['preferred_communication']['value'],
-				':email'=>$inputs['email']['value'],
-				':icq'=>$inputs['icq']['value'],
-				':skype'=>$inputs['skype']['value'],
-				':free_lance'=>$inputs['free_lance']['value'],
-				':my_circle'=>$inputs['my_circle']['value'],
-				':linkedln'=>$inputs['linkedln']['value'],
-				':facebook'=>$inputs['facebook']['value'],
-				':live_journal'=>$inputs['live_journal']['value'],
-				':other_site'=>$inputs['other_site']['value'],
-				':id_user'=>$id_user)
+					':mobile_phone'=>$inputs['mobile_phone']['value'],
+					':home_phone'=>$inputs['home_phone']['value'],
+					':work_phone'=>$inputs['work_phone']['value'],
+					':comment_mobile_phone'=>$inputs['comment_mobile_phone']['value'],
+					':comment_home_phone'=>$inputs['comment_home_phone']['value'],
+					':comment_work_phone'=>$inputs['comment_work_phone']['value'],
+					':preferred_communication'=>$inputs['preferred_communication']['value'],
+					':email'=>$inputs['email']['value'],
+					':icq'=>$inputs['icq']['value'],
+					':skype'=>$inputs['skype']['value'],
+					':free_lance'=>$inputs['free_lance']['value'],
+					':my_circle'=>$inputs['my_circle']['value'],
+					':linkedln'=>$inputs['linkedln']['value'],
+					':facebook'=>$inputs['facebook']['value'],
+					':live_journal'=>$inputs['live_journal']['value'],
+					':other_site'=>$inputs['other_site']['value'],
+					':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile().$e->getMessage());
@@ -1204,6 +1193,7 @@ class User{
 													functions = :functions,
 													key_skills = :key_skills,
 													about_self = :about_self,
+													recommend_question = :recommend_question,
 													recommend_names = :recommend_names,
 													recommend_position = :recommend_position,
 													recommend_organization = :recommend_organization,
@@ -1211,23 +1201,24 @@ class User{
 												WHERE
 													id_user = :id_user");
 			$stmt->execute(array(
-				':no_experience'=>$inputs['no_experience']['value']?'true':'false',
-				':organizations'=>implode('[@!-#-!@]',(array)$inputs['organizations']['value']),
-				':positions'=>implode('[@!-#-!@]',(array)$inputs['positions']['value']),
-				':regions'=>implode('[@!-#-!@]',(array)$inputs['regions']['value']),
-				':sites'=>implode('[@!-#-!@]',(array)$inputs['sites']['value']),
-				':field_activities'=>implode('[@!-#-!@]',(array)$inputs['field_activities']['value']),
-				':getting_starteds'=>implode('[@!-#-!@]',(array)$getting_starteds),
-				':closing_works'=>implode('[@!-#-!@]',(array)$closing_works),
-				':at_the_moments'=>implode('[@!-#-!@]',(array)$inputs['at_the_moments']['value']),
-				':functions'=>implode('[@!-#-!@]',(array)$inputs['functions']['value']),
-				':key_skills'=>implode('[@!-#-!@]',(array)$inputs['key_skills']['value']),
-				':about_self'=>$inputs['about_self']['value'],
-				':recommend_names'=>implode('[@!-#-!@]',(array)$inputs['recommend_names']['value']),
-				':recommend_position'=>implode('[@!-#-!@]',(array)$inputs['recommend_position']['value']),
-				':recommend_organization'=>implode('[@!-#-!@]',(array)$inputs['recommend_organization']['value']),
-				':recommend_phone'=>implode('[@!-#-!@]',(array)$inputs['recommend_phone']['value']),
-				':id_user'=>$id_user)
+					':no_experience'=>$inputs['no_experience']['value']?'true':'false',
+					':organizations'=>implode('[@!-#-!@]',(array)$inputs['organizations']['value']),
+					':positions'=>implode('[@!-#-!@]',(array)$inputs['positions']['value']),
+					':regions'=>implode('[@!-#-!@]',(array)$inputs['regions']['value']),
+					':sites'=>implode('[@!-#-!@]',(array)$inputs['sites']['value']),
+					':field_activities'=>implode('[@!-#-!@]',(array)$inputs['field_activities']['value']),
+					':getting_starteds'=>implode('[@!-#-!@]',(array)$getting_starteds),
+					':closing_works'=>implode('[@!-#-!@]',(array)$closing_works),
+					':at_the_moments'=>implode('[@!-#-!@]',(array)$inputs['at_the_moments']['value']),
+					':functions'=>implode('[@!-#-!@]',(array)$inputs['functions']['value']),
+					':key_skills'=>implode('[@!-#-!@]',(array)$inputs['key_skills']['value']),
+					':about_self'=>$inputs['about_self']['value'],
+					':recommend_question'=>$inputs['recommend_question']['value'],
+					':recommend_names'=>implode('[@!-#-!@]',(array)$inputs['recommend_names']['value']),
+					':recommend_position'=>implode('[@!-#-!@]',(array)$inputs['recommend_position']['value']),
+					':recommend_organization'=>implode('[@!-#-!@]',(array)$inputs['recommend_organization']['value']),
+					':recommend_phone'=>implode('[@!-#-!@]',(array)$inputs['recommend_phone']['value']),
+					':id_user'=>$id_user)
 			);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -1236,33 +1227,14 @@ class User{
 
 	public function selectExperience($id_user){
 		try {
-			$stmt = $this->_dbc->prepare("SELECT
-													no_experience,
-													organizations,
-													regions,
-													positions,
-													sites,
-													field_activities,
-													getting_starteds,
-													closing_works,
-													at_the_moments,
-													functions,
-													key_skills,
-													about_self,
-													recommend_names,
-													recommend_position,
-													recommend_organization,
-													recommend_phone
-												FROM
-													experience
-												WHERE
-													id_user = :id_user");
+			$stmt = $this->_dbc->prepare('SELECT no_experience,organizations,regions,positions,sites,field_activities,getting_starteds,closing_works,
+at_the_moments,functions,key_skills,about_self,recommend_question,recommend_names,recommend_position,
+recommend_organization,recommend_phone FROM experience WHERE id_user = :id_user');
 			$stmt->execute(array(':id_user'=>$id_user));
 			$experience_data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
-
 
 		$getting_start = explode('[@!-#-!@]',$experience_data['getting_starteds']);
 		$no_experience = $experience_data['no_experience']=='true'?true:false;
@@ -1285,6 +1257,10 @@ class User{
 			'no_experience'=>array(
 				'val'=>true,
 				'value'=>$no_experience
+			),
+			'recommend_question'=>array(
+				'val'=>true,
+				'value'=>$experience_data['recommend_question']
 			),
 			'organizations'=>array(
 				'val'=>true,

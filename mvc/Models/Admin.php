@@ -408,7 +408,6 @@ login = :login {$password} WHERE id = :id";
 	private function _lastPlaceWork($data_user){
 		$data = '';
 		$date = array();
-
 		if($data_user['experience_getting_starteds'][0] && $data_user['experience_organizations'][0]){
 			foreach($data_user['experience_getting_starteds'] as $key=>$start_data){
 				if($data_user['experience_at_the_moments'][$key] == 'true'){
@@ -418,6 +417,7 @@ login = :login {$password} WHERE id = :id";
 				}
 			}
 			$temp = $date[0];
+			$key = 0;
 			for($i = 1; $i < count($date); $i++){
 				if($temp < $date[$i]){
 					$temp =  $date[$i];
@@ -428,14 +428,13 @@ login = :login {$password} WHERE id = :id";
 			if($data_user['experience_at_the_moments'][$key] == 'true'){
 				$data_f = $this->_month[(int)$data[1]]." ".$data[0]."&mdash;по настоящее время";
 			}else{
-				$data_f= $this->_month[(int)$data[1]]." ".$data[0];
+				$data_f= "{$this->_month[(int)$data[1]]}&nbsp;{$data[0]}";
 			}
 			$data['date'] = $data_f;
 			$data['last_works'] = $data_user['experience_organizations'][$key];
 			$data['last_position'] = $data_user['experience_positions'][$key];
 
 		}
-
 		return $data;
 	}
 
