@@ -866,6 +866,13 @@ ul.nice-menu li {
     margin-bottom: 10px;
 }
 
+#scrollUp {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+}
 
 
 
@@ -876,7 +883,7 @@ ul.nice-menu li {
     font-size: 5em;
     min-width: 750px;
     max-width:  1200px;
-    margin: 0px auto 40px ;
+    margin: 50px auto 40px ;
     background-color: white;
     /*border: 1px black solid;*/
 }
@@ -2400,7 +2407,7 @@ main.authorization .helpers_message_authorization{
 .admin_control #widget_right{
     position: fixed;
     margin-right: -300px;
-    top: 350px;
+    top: 270px;
     right: 0;
     width: 350px;
 }

@@ -275,11 +275,12 @@ class User{
 			)
 		);
 
-		$personal['sum_experience'] = $personal_data['no_experience']=='false' && isset($experience_count['sum']) ? $experience_count['sum']: 'Ранее&nbsp;не&nbsp;работал';
+		$personal['sum_experience'] = $personal_data['no_experience']=='false' && isset($experience_count['sum']) ? $experience_count['sum']: '';
 		$personal['no_experience'] = $personal_data['no_experience'];
 		$personal['experience_organizations'] = $this->_getExperienceOrganizations(
 			array(
 				'experience_count' =>$experience_count,
+				'no_experience'=>$personal_data['no_experience'],
 				'experience_organizations'=>explode('[@!-#-!@]',$personal_data['experience_organizations']),
 				'experience_getting_starteds'=>explode('[@!-#-!@]',$personal_data['experience_getting_starteds']),
 				'experience_closing_works'=>explode('[@!-#-!@]',$personal_data['experience_closing_works']),
@@ -467,11 +468,9 @@ class User{
 		return $data;
 	}
 
-
-
 	private function _getExperienceOrganizations($personal_data){
 		$data='';
-		if($personal_data['experience_organizations'][0]){
+		if($personal_data['experience_organizations'][0] && !is_null($personal_data['no_experience'])){
 			$data='<table>';
 			foreach($personal_data['experience_organizations'] as $key=>$organizations){
 
@@ -488,7 +487,7 @@ class User{
 					$closing = explode('-',$personal_data['experience_closing_works'][$key]);
 					$closing[1] = $this->_month[$closing[1]];
 					$closing = implode(array_reverse($closing),' ');
-					$data.="&mdash; {$closing}<br>
+					$data.="&mdash;{$closing}<br>
 					<span>{$personal_data['experience_count'][$key]}</span>
 					</td>";
 				}
@@ -508,8 +507,8 @@ class User{
 
 			$data .="</table>";
 
-		}else{
-			$data = "<div style='font-size: 0.3em; padding:10px 0 10px 20px'>Ранее не работал</div>";
+		}elseif(!is_null($personal_data['no_experience'])){
+			$data = "<div style='font-size: 0.3em; padding:10px 0 10px 20px'>Ранее&nbsp;не&nbsp;работал</div>";
 		}
 
 		return $data;

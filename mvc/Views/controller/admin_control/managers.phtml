@@ -39,7 +39,7 @@
 						<th>№</th>
 						<th>имя</th>
 						<th>логин</th>
-						<th>пароль</th>
+<!--						<th>пароль</th>-->
 						<th></th>
 					</tr>
 					</thead>
@@ -49,7 +49,7 @@
 							<td><?=$key+1?></td>
 							<td><?=$manager['name_first']?></td>
 							<td><?=$manager['login']?></td>
-							<td><?=$manager['password']?></td>
+<!--							<td>--><?//=$manager['password']?><!--</td>-->
 							<td><a href="<?=BASE_URL."/admincontrol/delmanager/delete/{$manager['id']}"?>"><img src="<?=BASE_URL ."/public/img/manager_delete.png"?>"</a></td>
 						</tr>
 					<?php endforeach; ?>

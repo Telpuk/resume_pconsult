@@ -9,6 +9,7 @@ class ProfileController extends IController{
 
 	public function __construct(){
 		parent::__construct();
+
 		$this->_view = new View();
 		$this->_dbuser = new User();
 
@@ -105,16 +106,16 @@ class ProfileController extends IController{
 	}
 
 	private function _checkFormPersonal($post){
-		$surname = isset($post['surname'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['surname']))):'';
-		$first_name = isset($post['first_name'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['first_name']))):'';
-		$patronymic = isset($post['patronymic'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-яёЁ]','', $post['patronymic']))):'';
+		$surname = isset($post['surname'])?trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['surname']))):'';
+		$first_name = isset($post['first_name'])?trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['first_name']))):'';
+		$patronymic = isset($post['patronymic'])?trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['patronymic']))):'';
 
 		$day_birth = isset($post['day_birth'])?trim(strip_tags($post['day_birth'])):'';
 		$month_birth = isset($post['month_birth'])?trim(strip_tags($post['month_birth'])):'';
 		$year_birth = isset($post['year_birth'])?trim(strip_tags($post['year_birth'])):'';
 
 		$sex =  isset($post['sex'])?trim(strip_tags($post['sex'])):'';
-		$city = isset($post['city'])?trim(strip_tags(mb_eregi_replace('[^A-Za-zА-Яа-я]','',$post['city']))):'';
+		$city = isset($post['city'])?trim(strip_tags(preg_replace('/\s{2,}/',' ',$post['city']))):'';
 
 		$move = isset($post['move'])?trim(strip_tags($post['move'])):'';
 		$trip = isset($post['trip'])?trim(strip_tags($post['trip'])):'';
@@ -340,6 +341,14 @@ class ProfileController extends IController{
 			$file_name = $this->getSessionUserID('user').'.'.substr(strrchr($photo['name'], '.'), 1);
 			if(move_uploaded_file ($photo['tmp_name'], $this->_getDownloadDirPhoto() . "/{$file_name}")){
 				$this->_dbuser->updatePhotoId($file_name, $this->getSessionUserID('user'));
+
+				$image = new Imagick($this->_getDownloadDirPhoto() . "/{$file_name}");
+				$image->thumbnailImage(150,150);
+
+				$image->transformImage("183x150", "183x150");
+				$image->adaptiveSharpenImage(2,1);
+
+				$image->writeImage($this->_getDownloadDirPhoto() . "/{$file_name}");
 			}
 		}
 	}

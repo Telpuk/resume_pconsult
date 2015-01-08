@@ -1,5 +1,4 @@
 <?php if($this->data['data']['name'] &&
-	$this->data['data']['experience_key_skills']&&
 	$this->data['data']['institutions']&&
 	$this->data['data']['desired_position']&&
 	$this->data['data']['call_me']): ?>
@@ -11,9 +10,7 @@
 	</div>
 <?php elseif($this->data['data']['name'] ||
 	$this->data['data']['photo'] !== 'no-photo.png'||
-	($this->data['data']['experience_organizations'] &&
-		$this->data['data']['experience_organizations'] == 'Ранее не работал')||
-	$this->data['data']['experience_key_skills'] ||
+	$this->data['data']['experience_organizations'] ||
 	$this->data['data']['institutions']||
 	$this->data['data']['desired_position']||
 	$this->data['data']['call_me']): ?>
@@ -31,7 +28,7 @@
 		<?php if(!$this->data['data']['institutions']):?>
 			<li><a href='<?=BASE_URL."/side/education"?>'>&mdash; образование</a></li>
 		<?php endif; ?>
-		<?php if(!$this->data['data']['experience_key_skills']):?>
+		<?php if(!$this->data['data']['experience_organizations']):?>
 			<li><a href='<?=BASE_URL."/side/experience"?>'>&mdash; опыт работы и ключевые навыки</a></li>
 		<?php endif; ?>
 	</ul>

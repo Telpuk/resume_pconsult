@@ -89,7 +89,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label>Окончание работы<span class="required input">Обязательно для заполнения</span></label></td>
+				<td><label>Окончание работы</label></td>
 				<td>
 					<select name="closing_works[<?=$i?>][month]">
 						<?php
@@ -171,15 +171,15 @@
 	</tr>
 	</tbody>
 </table>
+<div id="questionRecommend">
+	рекомендации&nbsp;предоставляются&nbsp;по&nbsp;запросу
+	<input type="checkbox" value="true" name="recommend_question"<?php if
+	($this->data['data']['inputs']['recommend_question']['value']=='true') echo 'checked' ?>>
+</div>
 <?php for( $i=0; $i <= $this->data['data']['table_count_recommendations']-1; ++$i): ?>
 	<?php if($i>=1): ?>
 		<div class="delete recommendations" data-table-recommendations-id='<?=$i?>'><img src='<?=BASE_URL ."/public/img/delete.png"?>'>Удалить</div>
 	<?php endif; ?>
-	<div id="questionRecommend">
-		рекомендации&nbsp;предоставляются&nbsp;по&nbsp;запросу
-		<input type="checkbox" value="true" name="recommend_question"<?php if
-		($this->data['data']['inputs']['recommend_question']['value']=='true') echo 'checked' ?>>
-	</div>
 	<table id="reg" data-table-recommendations-id="<?=$i?>" class="recommendations">
 		<tbody>
 		<tr>
@@ -211,7 +211,7 @@
 		<tr>
 			<td>Телефон</td>
 			<td>
-				<input type="text" name="recommend_phone[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_phone']['value'][$i]?>">
+				<input type="text" class="recommend_phone" name="recommend_phone[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_phone']['value'][$i]?>">
 				<div class="message"><?=$this->data['data']['inputs']['recommend_phone']['val'][$i]['message']?></div>
 			</td>
 		</tr>

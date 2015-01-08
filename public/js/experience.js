@@ -87,6 +87,8 @@
                     event.data.self.autocompletePost();
                     var html = event.data.self.tableTemplateRecommendations();
                     $(event.target).before(html);
+                    console.log('tut');
+                    event.data.self.maskedInputInit();
                     break;
                 }
                 case 'delete experience':{
@@ -232,9 +234,14 @@
         });
     };
 
+    Experience.prototype.maskedInputInit = function(){
+        $(".recommend_phone").mask("375 (99) 999-99-99");
+    };
+
     Experience.prototype.init = function(){
         this.checkNoExperienceChecked();
         this.autocompletePost();
+        this.maskedInputInit();
         this.questionRecommend();
         this.addEventListenerSkills();
         this.addEventListenerNoExperience();

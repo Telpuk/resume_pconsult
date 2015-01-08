@@ -67,7 +67,7 @@
 						</div>
 					</div>
 				</div>
-			</div> <!-- /.section, /.main-menu -->
+			</div>
 		</div>
 	</div>
 </div>
@@ -75,7 +75,7 @@
 
 <div class="wrapper_resume">
 	<div class="helpers"><?=$this->_helpers_menu?></div>
-	<div class="content"><?=$this->_content?></div>
+	<div class="my_content"><?=$this->_content?></div>
 </div>
 <div class="clear"></div>
 <div class="footer-wrapper">
@@ -126,6 +126,52 @@
 </body>
 <script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
 <?=$this->_javascript?>
+<script type="text/javascript" src="<?=BASE_URL?>/public/js/jquery.scrollUp.min.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter27841548 = new Ya.Metrika({
+					id:27841548,
+					webvisor:true
+				});
+			} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+
+	$.scrollUp({
+		scrollName: 'scrollUp',      // Element ID
+		scrollDistance: 300,         // Distance from top/bottom before showing element (px)
+		scrollFrom: 'top',           // 'top' or 'bottom'
+		scrollSpeed: 300,            // Speed back to top (ms)
+		easingType: 'linear',        // Scroll to top easing (see http://easings.net/)
+		animation: 'slide',           // Fade, slide, none
+		animationSpeed: 200,         // Animation speed (ms)
+		scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
+		scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
+		scrollText: 'НАВЕРХ', // Text for element, can contain HTML
+		scrollTitle: true,          // Set a custom <a> title if required.
+		scrollImg: false,            // Set true to use image
+		activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+		zIndex: 2147483647           // Z-Index for the overlay
+	});
+</script>
+<noscript>
+	<div><img src="//mc.yandex.ru/watch/27841548" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
 <script id="table-template-experience" type="text/x-handlebars-template">
 	<hr data-table-experience-id='{{i}}'>
 	<div class="delete experience" data-table-experience-id="{{i}}">
@@ -245,7 +291,7 @@
 		<tr>
 			<td>Телефон</td>
 			<td>
-				<input type="text" name="recommend_phone[{{i}}]" value="">
+				<input class="recommend_phone" type="text" name="recommend_phone[{{i}}]" value="">
 				<div class="message"></div>
 			</td>
 		</tr>
