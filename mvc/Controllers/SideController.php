@@ -13,6 +13,15 @@ class SideController extends IController{
 		$this->_admin = $this->getSessionUserID('admin');
 	}
 
+	public function aucpositionAction(){
+
+		if($_POST['autocomplete']==='autocomplete'){
+			echo($this->_dbuser->selectAutocompletePositions());
+		}else {
+			$this->headerLocation('index');
+		}
+	}
+
 	public function positionAction(){
 		if(isset($_POST['savePosition'])){
 			$checkForm = $this->_checkFormPosition($_POST);
@@ -745,6 +754,7 @@ class SideController extends IController{
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
 				BASE_URL."/public/js/jquery.validate.min.js",
+				BASE_URL."/public/js/jquery-ui.js",
 				BASE_URL."/public/js/position.js"
 			),
 		);

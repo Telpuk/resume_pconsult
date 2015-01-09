@@ -132,12 +132,29 @@ class User{
 
 	public function selectAutocompletePersonal(){
 		$autocompleteArray = array();
-		$stmt = $this->_dbc->query("(SELECT DISTINCT city FROM profile) UNION (SELECT DISTINCT regions FROM experience)");
+		$stmt = $this->_dbc->query("(SELECT DISTINCT city FROM profile WHERE city <>'') UNION (SELECT DISTINCT
+		regions FROM experience  WHERE regions <>'')");
+		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach ($autocomplete as $key => $value) {
+			foreach(array_unique(explode('[@!-#-!@]', $value['city'])) as $element){
+					$autocompleteArray[] = $element;
+			}
+		}
+		$autocompleteArray = array_values(array_unique($autocompleteArray));
+
+		return $this->json_encode_cyr($autocompleteArray);
+
+	}
+
+	public function selectAutocompletePositions(){
+		$autocompleteArray = array();
+		$stmt = $this->_dbc->query("(SELECT DISTINCT desired_position FROM profile WHERE desired_position <>'' )UNION(SELECT DISTINCT positions FROM experience WHERE positions <>'')");
 		$autocomplete = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 		foreach ($autocomplete as $key => $value) {
-			foreach(array_unique(explode('[@!-#-!@]', $value['city'])) as $element){
+			foreach(array_unique(explode('[@!-#-!@]', $value['desired_position'])) as $element){
 				if($element){
 					$autocompleteArray[] = $element;
 				}
@@ -146,7 +163,6 @@ class User{
 		$autocompleteArray = array_values(array_unique($autocompleteArray));
 
 		return $this->json_encode_cyr($autocompleteArray);
-
 	}
 
 	public function deleteResume($id_user){

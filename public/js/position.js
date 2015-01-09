@@ -1,8 +1,10 @@
 (function($, window){
-    function Personal(){
+
+    function Position(){
+        this.$desired_position = $('#desired_position');
     }
 
-    Personal.prototype.validateForm = function(){
+    Position.prototype.validateForm = function(){
         $("#position_form").validate({
             rules:{
                 desired_position:{
@@ -33,11 +35,7 @@
             }
         });
     };
-    Personal.prototype.messageColor = function(){
-
-        console.log(  $('div.message').filter(function(){
-            return $(this).text()
-        }));
+    Position.prototype.messageColor = function(){
         $('div.message').filter(function(){
             return $(this).text()
         }).parent().css({
@@ -47,22 +45,32 @@
             'color':'red'
         });
 
-
     };
 
+    Position.prototype.autocompCareerObjective = function(data){
+        this.$desired_position.autocomplete({
+            source: data
+        });
+    };
 
+    Position.prototype.autocompletePost = function(){
+        var self = this;
+        $.post( BASE_URL+"/side/aucposition",
+            { autocomplete: "autocomplete"})
+            .done(function( data ) {
+                data = JSON.parse(data);
+                self.autocompCareerObjective(data);
+            });
+    };
 
-    Personal.prototype.init = function(){
+    Position.prototype.init = function(){
+        this.autocompletePost();
         this.messageColor();
         this.validateForm();
     };
 
-
-
-
-
-    var personal = new Personal();
-    personal.init();
+    var position = new Position();
+    position.init();
 
 })(jQuery, window)
 

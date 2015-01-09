@@ -90,6 +90,7 @@
     Personal.prototype.maskedInputInit = function(){
         $("#mobile_phone").mask("375 (99) 999-99-99");
         $("#work_phone").mask("375 (99) 999-99-99");
+        $("#mobile_phone_other").mask("375 (99) 999-99-99");
         $("#home_phone").mask("375 (99) 999-99-99");
     };
 

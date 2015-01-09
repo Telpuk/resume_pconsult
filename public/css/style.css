@@ -2657,7 +2657,6 @@ main.authorization .helpers_message_authorization{
 
 .admin_control .right_admin_control .user_id .inform_user p:last-child{
     color: #bababa;
-    font-weight: bold;
 }
 
 .admin_control .right_admin_control .user_id .inform_user p span{
