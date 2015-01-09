@@ -1,187 +1,206 @@
 <main class="personal contacts">
-	<article>
-		<div class="arrow-right"></div>
-		<a class='no-save' href="<?=BASE_URL?>">Вернуться к резюме</a>
-		<div class="clear"></div>
-		<section>
-			<h1>Контакты</h1>
-			<div class="form">
-				<form  action='<?=BASE_URL.'/profile/contacts'?>' id="personal_contacts" method="post">
-					<table>
-						<tbody>
-						<tr>
-							<td><label for="mobile_phone">Мобильный телефон</label></td>
-							<td>+</td>
-							<td><input type="tel"  id="mobile_phone"  name="mobile_phone"
-							           value='<?=$this->data['data']['inputs']['mobile_phone']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication"
-									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 1)echo'checked'?> value='1'>Желаемый вид связи</td>
-							<td class="message"><span class="required"><?=$this->data['data']['inputs']['mobile_phone']['val']['message']?></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td  class="comment" colspan="3">
-								Комментарий<br><input type="text" name="comment_mobile_phone" value='<?=$this->data['data']['inputs']['comment_mobile_phone']['value']?>'>
-							</td>
-						</tr>
-						<tr>
-							<td><label for="home_phone">Домашний телефон</label></td>
-							<td>+</td>
-							<td><input type="tel"  id="home_phone"  name="home_phone" value='<?=$this->data['data']['inputs']['home_phone']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication"
-									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи</td>
-							<td class="message"><span class="required hidden"><span class="required"><?=$this->data['data']['inputs']['home_phone']['val']['message']?></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td class="comment" colspan="3">
-								Комментарий<br>
-								<input type="text" name="comment_home_phone" value='<?=$this->data['data']['inputs']['comment_home_phone']['value']?>'>
-							</td>
-						</tr>
-						<tr>
-							<td><label for="work_phone">Рабочий телефон</label></td>
-							<td>+</td>
-							<td><input type="tel"  id="work_phone" name="work_phone" value='<?=$this->data['data']['inputs']['work_phone']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication"
-									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 3)echo'checked'?> value='3'>Желаемый вид связи</td>
-							<td class="message"><span class="required"><span
-										class="required"><?=$this->data['data']['inputs']['work_phone']['val']['message']?></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td  class="comment" colspan="4">
-								Комментарий<br><input type="text" name="comment_work_phone" value='<?=$this->data['data']['inputs']['comment_work_phone']['value']?>'>
-							</td>
-						</tr>
-						<tr>
-							<td><label for="email">Эл. почта<span class="required input">Обязательно для заполнения</span></label></td>
-							<td></td>
-							<td><input type="email"  id="email" name="email"
-							           value='<?=$this->data['data']['inputs']['email']['value']?>'></td>
-							<td><input type="radio" name="preferred_communication"
-									<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 4)echo'checked'?> value='4'>Желаемый вид связи</td>
-							<td class="message"><span class="required"><?=$this->data['data']['inputs']['email']['val']['message']?></span></td>
-						</tr>
-						<?php if($this->data['data']['inputs']['skype']['value']): ?>
-							<tr>
-								<td><label for="skype">Skype</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/skype.png"></td>
-								<td colspan="3"><input type="text" id="skype" name="skype" value='<?=$this->data['data']['inputs']['skype']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['icq']['value']): ?>
-							<tr>
-								<td><label for="icq">ICQ</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/icq.png"></td>
-								<td colspan="3"><input type="text" id="icq" name="icq" value='<?=$this->data['data']['inputs']['icq']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['free_lance']['value']): ?>
-							<tr>
-								<td><label for="free_lance">Free-lance</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/free_lance.png"></td>
-								<td colspan="3"><input type="text" id="free_lance" name="free_lance" value='<?=$this->data['data']['inputs']['free_lance']['value']?>'></td>
-							</tr>
-						<?php endif ?>
+<article>
+<div class="arrow-right"></div>
+<a class='no-save' href="<?=BASE_URL?>">Вернуться к резюме</a>
+<div class="clear"></div>
+<section>
+	<h1>Контакты</h1>
+	<div class="form">
+		<form  action='<?=BASE_URL.'/profile/contacts'?>' id="personal_contacts" method="post">
+			<table>
+				<tbody>
+				<tr>
+					<td><label for="mobile_phone">Мобильный телефон</label></td>
+					<td>+</td>
+					<td><input type="tel"  id="mobile_phone"  name="mobile_phone" value='<?=$this->data['data']['inputs']['mobile_phone']['value']?>'></td>
+					<td><input type="radio" name="preferred_communication" <?php if($this->data['data']['inputs']['preferred_communication']['value'] == 1)echo'checked'?> value='1'>Желаемый вид связи</td>
+					<td class="message"><span class="required"><?=$this->data['data']['inputs']['mobile_phone']['val']['message']?></span></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone" value='<?=$this->data['data']['inputs']['comment_mobile_phone']['value']?>'></td>
+				</tr>
+				<?php if($this->data['data']['inputs']['preferred_communication']['value']!=5 && !$this->data['data']['inputs']['mobile_phone_other']['value'] ):?>
+					<tr id="add_mobile_phone_td">
+						<td colspan="5"><p id="add_mobile_phone"  style="color: green">&nbsp;&nbsp;<img src="<?=BASE_URL."/public/img/add.png"?>">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон</p></td>
+					</tr>
+				<?php else: ?>
+					<tr id="add_mobile_phone_td" class="delete_phone">
+						<td colspan="5"><p id="add_mobile_phone" style="color: red">&nbsp;&nbsp;<img src="<?=BASE_URL."/public/img/delete.png"?>">&nbsp;&nbsp;Удалить&nbsp;мобильный&nbsp;телефон</p></td>
+					</tr>
+				<?php endif; ?>
 
-						<?php if($this->data['data']['inputs']['my_circle']['value']): ?>
-							<tr>
-								<td><label for="my_circle">Мой круг</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/my_circle.png"></td>
-								<td colspan="3"><input type="text" id="my_circle" name="my_circle" value='<?=$this->data['data']['inputs']['my_circle']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['linkedln']['value']): ?>
-							<tr>
-								<td><label for="linkedln">Linkedln</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/linkedln.png"></td>
-								<td colspan="3"><input type="text" id="linkedln" name="linkedln" value='<?=$this->data['data']['inputs']['linkedln']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['facebook']['value']): ?>
-							<tr>
-								<td><label for="facebook">Facebook</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/facebook.png"></td>
-								<td colspan="3"><input type="text" id="facebook" name="facebook"
-								                       value='<?=$this->data['data']['inputs']['facebook']['value']?>'>
-								</td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['live_journal']['value']): ?>
-							<tr>
-								<td><label for="live_journal">LiveJournal</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/live_journal.png"></td>
-								<td colspan="3"><input type="text" id="live_journal" name="live_journal" value='<?=$this->data['data']['inputs']['live_journal']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<?php if($this->data['data']['inputs']['other_site']['value']): ?>
-							<tr>
-								<td><label for="other_site">Другой сайт</label></td>
-								<td><img src="<?=BASE_URL?>/public/img/other_site.png"></td>
-								<td colspan="3"><input type="text"  id="other_site" name="other_site" value='<?=$this->data['data']['inputs']['other_site']['value']?>'></td>
-							</tr>
-						<?php endif ?>
-						<tr>
-							<td colspan="5" id="add_connect_user">
-								<?php if(!$this->data['data']['inputs']['skype']['value'] ||
-									!$this->data['data']['inputs']['icq']['value'] ||
-									!$this->data['data']['inputs']['free_lance']['value'] ||
-									!$this->data['data']['inputs']['my_circle']['value'] ||
-									!$this->data['data']['inputs']['linkedln']['value'] ||
-									!$this->data['data']['inputs']['facebook']['value'] ||
-									!$this->data['data']['inputs']['live_journal']['value'] ||
-									!$this->data['data']['inputs']['other_site']['value']
-								):?>
-									<p id="add"><img src="<?=BASE_URL."/public/img/add.png"?>">Добавить вид связи</p>
-								<?php endif; ?>
-								<div id="connect">
-									<?php if(!$this->data['data']['inputs']['skype']['value']): ?>
-										<p data-connect="skype"><img src="<?=BASE_URL?>/public/img/skype.png">Skype</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['icq']['value']): ?>
-										<p data-connect="icq" ><img src="<?=BASE_URL?>/public/img/icq.png">ICQ</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['free_lance']['value']): ?>
-										<p data-connect="free_lance"><img src="<?=BASE_URL?>/public/img/free_lance.png">Free-lance</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['my_circle']['value']): ?>
-										<p data-connect="my_circle"><img src="<?=BASE_URL?>/public/img/my_circle.png">Мой круг</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['linkedln']['value']): ?>
-										<p data-connect="linkedln"><img src="<?=BASE_URL?>/public/img/linkedln.png">Linkedln</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['facebook']['value']): ?>
-										<p data-connect="facebook"><img src="<?=BASE_URL?>/public/img/facebook.png">Facebook</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['live_journal']['value']): ?>
-										<p data-connect="live_journal"><img src="<?=BASE_URL?>/public/img/live_journal.png">LiveJournal</p>
-									<?php endif ?>
-									<?php if(!$this->data['data']['inputs']['other_site']['value']): ?>
-										<p data-connect="other_site"><img src="<?=BASE_URL?>/public/img/other_site.png">Другой сайт</p>
-									<?php endif ?>
-								</div>
-							</td>
-						</tr>
-						</tbody>
-						<tfoot>
-						<?php if($this->data['data']['admin'] !== 'manager'): ?>
-							<tr>
-								<td colspan="5">
-									<div class="contacts_footer">
-										<input type="submit"  name="saveContacts" value="Сохранить">
-										<a class="back" href="<?=BASE_URL?>">Отмена</a>
-									</div>
-								</td>
-							</tr>
-						<?php endif ?>
-						</tfoot>
-					</table>
-				</form>
-			</div>
-		</section>
-	</article>
+				<?php if($this->data['data']['inputs']['mobile_phone_other']['value'] || $this->data['data']['inputs']['preferred_communication']['value']==5): ?>
+					<tr data-mobile-phone="delete">
+						<td></td>
+						<td>+</td>
+						<td><input type="tel"  id="mobile_phone_other"  name="mobile_phone_other" value='<?=$this->data['data']['inputs']['mobile_phone_other']['value']?>'></td>
+						<td><input type="radio" name="preferred_communication" <?php if($this->data['data']['inputs']['preferred_communication']['value'] == 5)echo'checked'?> value='5'>Желаемый вид связи</td>
+						<td class="message"><span class="required"><?=$this->data['data']['inputs']['mobile_phone_other']['val']['message']?></span></td>
+					</tr>
+					<tr data-mobile-phone="delete">
+						<td></td>
+						<td></td>
+						<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone_other" value='<?=$this->data['data']['inputs']['comment_mobile_phone_other']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+
+
+				<tr>
+					<td><label for="home_phone">Домашний телефон</label></td>
+					<td>+</td>
+					<td><input type="tel"  id="home_phone"  name="home_phone" value='<?=$this->data['data']['inputs']['home_phone']['value']?>'></td>
+					<td><input type="radio" name="preferred_communication"
+							<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи</td>
+					<td class="message"><span class="required hidden"><span class="required"><?=$this->data['data']['inputs']['home_phone']['val']['message']?></span></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="comment" colspan="3">
+						Комментарий<br>
+						<input type="text" name="comment_home_phone" value='<?=$this->data['data']['inputs']['comment_home_phone']['value']?>'>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="work_phone">Рабочий телефон</label></td>
+					<td>+</td>
+					<td><input type="tel"  id="work_phone" name="work_phone" value='<?=$this->data['data']['inputs']['work_phone']['value']?>'></td>
+					<td><input type="radio" name="preferred_communication"
+							<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 3)echo'checked'?> value='3'>Желаемый вид связи</td>
+					<td class="message"><span class="required"><span
+								class="required"><?=$this->data['data']['inputs']['work_phone']['val']['message']?></span></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td  class="comment" colspan="4">
+						Комментарий<br><input type="text" name="comment_work_phone" value='<?=$this->data['data']['inputs']['comment_work_phone']['value']?>'>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="email">Эл. почта<span class="required input">Обязательно для заполнения</span></label></td>
+					<td></td>
+					<td><input type="email"  id="email" name="email" value='<?=$this->data['data']['inputs']['email']['value']?>'></td>
+					<td><input type="radio" name="preferred_communication"<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 4)echo'checked'?> value='4'>Желаемый вид связи</td>
+					<td class="message"><span class="required"><?=$this->data['data']['inputs']['email']['val']['message']?></span></td>
+				</tr>
+				<?php if($this->data['data']['inputs']['skype']['value']): ?>
+					<tr>
+						<td><label for="skype">Skype</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/skype.png"></td>
+						<td colspan="3"><input type="text" id="skype" name="skype" value='<?=$this->data['data']['inputs']['skype']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['icq']['value']): ?>
+					<tr>
+						<td><label for="icq">ICQ</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/icq.png"></td>
+						<td colspan="3"><input type="text" id="icq" name="icq" value='<?=$this->data['data']['inputs']['icq']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['free_lance']['value']): ?>
+					<tr>
+						<td><label for="free_lance">Free-lance</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/free_lance.png"></td>
+						<td colspan="3"><input type="text" id="free_lance" name="free_lance" value='<?=$this->data['data']['inputs']['free_lance']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+
+				<?php if($this->data['data']['inputs']['my_circle']['value']): ?>
+					<tr>
+						<td><label for="my_circle">Мой круг</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/my_circle.png"></td>
+						<td colspan="3"><input type="text" id="my_circle" name="my_circle" value='<?=$this->data['data']['inputs']['my_circle']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['linkedln']['value']): ?>
+					<tr>
+						<td><label for="linkedln">Linkedln</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/linkedln.png"></td>
+						<td colspan="3"><input type="text" id="linkedln" name="linkedln" value='<?=$this->data['data']['inputs']['linkedln']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['facebook']['value']): ?>
+					<tr>
+						<td><label for="facebook">Facebook</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/facebook.png"></td>
+						<td colspan="3"><input type="text" id="facebook" name="facebook" value='<?=$this->data['data']['inputs']['facebook']['value']?>'>
+						</td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['live_journal']['value']): ?>
+					<tr>
+						<td><label for="live_journal">LiveJournal</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/live_journal.png"></td>
+						<td colspan="3"><input type="text" id="live_journal" name="live_journal" value='<?=$this->data['data']['inputs']['live_journal']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<?php if($this->data['data']['inputs']['other_site']['value']): ?>
+					<tr>
+						<td><label for="other_site">Другой сайт</label></td>
+						<td><img src="<?=BASE_URL?>/public/img/other_site.png"></td>
+						<td colspan="3"><input type="text"  id="other_site" name="other_site" value='<?=$this->data['data']['inputs']['other_site']['value']?>'></td>
+					</tr>
+				<?php endif ?>
+				<tr>
+					<td colspan="5" id="add_connect_user">
+						<?php if(!$this->data['data']['inputs']['skype']['value'] ||
+							!$this->data['data']['inputs']['icq']['value'] ||
+							!$this->data['data']['inputs']['free_lance']['value'] ||
+							!$this->data['data']['inputs']['my_circle']['value'] ||
+							!$this->data['data']['inputs']['linkedln']['value'] ||
+							!$this->data['data']['inputs']['facebook']['value'] ||
+							!$this->data['data']['inputs']['live_journal']['value'] ||
+							!$this->data['data']['inputs']['other_site']['value']
+						):?>
+							<p id="add"><img src="<?=BASE_URL."/public/img/add.png"?>">Добавить вид связи</p>
+						<?php endif; ?>
+						<div id="connect">
+							<?php if(!$this->data['data']['inputs']['skype']['value']): ?>
+								<p data-connect="skype"><img src="<?=BASE_URL?>/public/img/skype.png">Skype</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['icq']['value']): ?>
+								<p data-connect="icq" ><img src="<?=BASE_URL?>/public/img/icq.png">ICQ</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['free_lance']['value']): ?>
+								<p data-connect="free_lance"><img src="<?=BASE_URL?>/public/img/free_lance.png">Free-lance</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['my_circle']['value']): ?>
+								<p data-connect="my_circle"><img src="<?=BASE_URL?>/public/img/my_circle.png">Мой круг</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['linkedln']['value']): ?>
+								<p data-connect="linkedln"><img src="<?=BASE_URL?>/public/img/linkedln.png">Linkedln</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['facebook']['value']): ?>
+								<p data-connect="facebook"><img src="<?=BASE_URL?>/public/img/facebook.png">Facebook</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['live_journal']['value']): ?>
+								<p data-connect="live_journal"><img src="<?=BASE_URL?>/public/img/live_journal.png">LiveJournal</p>
+							<?php endif ?>
+							<?php if(!$this->data['data']['inputs']['other_site']['value']): ?>
+								<p data-connect="other_site"><img src="<?=BASE_URL?>/public/img/other_site.png">Другой сайт</p>
+							<?php endif ?>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				<?php if($this->data['data']['admin'] !== 'manager'): ?>
+					<tr>
+						<td colspan="5">
+							<div class="contacts_footer">
+								<input type="submit"  name="saveContacts" value="Сохранить">
+								<a class="back" href="<?=BASE_URL?>">Отмена</a>
+							</div>
+						</td>
+					</tr>
+				<?php endif ?>
+				</tfoot>
+			</table>
+		</form>
+	</div>
+</section>
+</article>
 </main>

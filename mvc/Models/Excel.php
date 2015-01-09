@@ -46,13 +46,14 @@ class Excel{
 		}
 
 		$personal_data['call_me'] = $this->_getCallMeNoHTML(array(
-			'comment_mobile_phone'=>$personal_data['comment_mobile_phone']?"("
-				.$personal_data['comment_mobile_phone'].")":'',
+			'comment_mobile_phone'=>$personal_data['comment_mobile_phone']?"(".$personal_data['comment_mobile_phone'].")":'',
+			'comment_mobile_phone_other'=>$personal_data['comment_mobile_phone_other']?"(".$personal_data['comment_mobile_phone_other'].")":'',
 			'comment_home_phone'=>$personal_data['comment_home_phone']?"(".$personal_data['comment_home_phone']
 				.")":'',
 			'comment_work_phone'=>$personal_data['comment_work_phone']?"(".$personal_data['comment_work_phone']
 				.")":'',
 			'mobile_phone'=>$personal_data['mobile_phone'],
+			'mobile_phone_other'=>$personal_data['mobile_phone_other'],
 			'home_phone'=>$personal_data['home_phone'],
 			'work_phone'=>$personal_data['work_phone'],
 			'email'=>$personal_data['email'],
@@ -313,6 +314,14 @@ class Excel{
 			}else{
 				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}";
 			}
+
+			if($personal_data['preferred_communication']==5){
+				$call_me[] = "мобильный — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}(желаемый способ связи)";
+			}else{
+				$call_me[] = "мобильный — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}";
+			}
+
+
 		}
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){

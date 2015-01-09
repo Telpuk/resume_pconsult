@@ -1,10 +1,13 @@
-(function($, window){
+(function($,BASE_URL ,window){
     function Personal(){
         this.$personal = $('.personal.contacts');
         this.$personal_contacts = $('#personal_contacts');
         this.$add = $('#add', this.$personal_contacts);
         this.$add_connect_user = $('#add_connect_user', this.$personal_contacts);
         this.$connect_list = $('#connect', this.$personal_contacts);
+
+        this.$mobilePhone = $('#mobile_phone', this.$personal_contacts);
+        this.$addMobilePhoneTd = $('#add_mobile_phone_td', this.$personal_contacts);
 
         this.connectLabelFull = {
             skype: "Skype",
@@ -90,10 +93,51 @@
         $("#home_phone").mask("375 (99) 999-99-99");
     };
 
+    Personal.prototype.addEventListenerMobilePhone = function(){
+
+        if(this.$mobilePhone.val()){
+            this.$addMobilePhoneTd.show();
+        }
+
+        this.$mobilePhone.on('keydown change blur',{self:this},function(event){
+            $inputPhone = $(this);
+
+            if( $inputPhone.val() && $inputPhone.val() !== '375 (__) ___-__-__' && !(/_/.test($inputPhone.val()))){
+                event.data.self.$addMobilePhoneTd.fadeIn(500);
+            }else{
+                event.data.self.$addMobilePhoneTd.hide();
+                $('tr[data-mobile-phone="delete"]').remove();
+                event.data.self.$addMobilePhoneTd.removeClass('delete_phone');
+                $('#add_mobile_phone',event.data.self.$addMobilePhoneTd).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
+            }
+        });
+    };
+
+    Personal.prototype.addEventListenerMobilePhoneTd = function(){
+
+        this.$addMobilePhoneTd.on('click',{self:this},function(event){
+            if(!($(this).hasClass('delete_phone'))) {
+                var source = $("#tr-template-mobilePhone").html();
+                var template = Handlebars.compile(source);
+                var html = template({'BASE_URL': BASE_URL});
+                $(this).after(html);
+                $("#mobile_phone_other").mask("375 (99) 999-99-99");
+                $(this).addClass('delete_phone');
+                $('#add_mobile_phone',$(this)).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/delete.png">&nbsp;&nbsp;Удалить&nbsp;мобильный&nbsp;телефон').css({color: 'red'});
+            }else{
+                $('tr[data-mobile-phone="delete"]').remove();
+                $(this).removeClass('delete_phone');
+                $('#add_mobile_phone',$(this)).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
+            }
+        });
+    };
+
 
     Personal.prototype.init = function(){
         this.maskedInputInit();
         this.setConnectionLabel();
+        this.addEventListenerMobilePhone();
+        this.addEventListenerMobilePhoneTd();
         this.validateForm();
         this.addEventListenerConnect();
         this.addEventListenerAddConnect();
@@ -105,5 +149,5 @@
     var personal = new Personal();
     personal.init();
 
-})(jQuery, window)
+})(jQuery,BASE_URL ,window)
 

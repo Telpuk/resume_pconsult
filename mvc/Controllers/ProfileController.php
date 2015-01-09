@@ -204,26 +204,28 @@ class ProfileController extends IController{
 	}
 
 	private function _checkFormContacts($post){
-		$mobile_phone = isset($post['mobile_phone'])?trim(strip_tags($post['mobile_phone'])):'';
-		$home_phone = isset($post['home_phone'])?trim(strip_tags($post['home_phone'])):'';
-		$work_phone = isset($post['work_phone'])?trim(strip_tags($post['work_phone'])):'';
+		$mobile_phone = isset($post['mobile_phone'])?trim(strip_tags($post['mobile_phone'])):null;
+		$mobile_phone_other = isset($post['mobile_phone_other'])?trim(strip_tags($post['mobile_phone_other'])):null;
+		$home_phone = isset($post['home_phone'])?trim(strip_tags($post['home_phone'])):null;
+		$work_phone = isset($post['work_phone'])?trim(strip_tags($post['work_phone'])):null;
 
-		$comment_mobile_phone = isset($post['comment_mobile_phone'])?trim(strip_tags($post['comment_mobile_phone'])):'';
-		$comment_home_phone = isset($post['comment_home_phone'])?trim(strip_tags($post['comment_home_phone'])):'';
-		$comment_work_phone = isset($post['comment_work_phone'])?trim(strip_tags($post['comment_work_phone'])):'';
+		$comment_mobile_phone = (isset($post['comment_mobile_phone'])&&$mobile_phone)?trim(strip_tags($post['comment_mobile_phone'])):null;
+		$comment_mobile_phone_other = (isset($post['comment_mobile_phone_other'])&&$mobile_phone_other)?trim(strip_tags($post['comment_mobile_phone_other'])):null;
+		$comment_home_phone = (isset($post['comment_home_phone'])&&$home_phone)?trim(strip_tags($post['comment_home_phone'])):null;
+		$comment_work_phone = (isset($post['comment_work_phone'])&&$work_phone)?trim(strip_tags($post['comment_work_phone'])):null;
 
-		$preferred_communication = isset($post['preferred_communication'])?trim(strip_tags ($post['preferred_communication'])):1;
+		$preferred_communication = isset($post['preferred_communication'])?trim(strip_tags($post['preferred_communication'])):4;
 
-		$email =  isset($post['email'])?trim(strip_tags($post['email'])):'';
+		$email =  isset($post['email'])?trim(strip_tags($post['email'])):null;
 
-		$icq =  isset($post['icq'])?trim(strip_tags($post['icq'])):'';
+		$icq =  isset($post['icq'])?trim(strip_tags($post['icq'])):null;
 		$skype =  isset($post['skype'])?trim(strip_tags($post['skype'])):'';
-		$free_lance =  isset($post['free_lance'])?trim(strip_tags($post['free_lance'])):'';
-		$my_circle =  isset($post['my_circle'])?trim(strip_tags($post['my_circle'])):'';
-		$linkedln =  isset($post['linkedln'])?trim(strip_tags($post['linkedln'])):'';
-		$facebook =  isset($post['facebook'])?trim(strip_tags($post['facebook'])):'';
-		$live_journal =  isset($post['live_journal'])?trim(strip_tags($post['live_journal'])):'';
-		$other_site =  isset($post['other_site'])?trim(strip_tags($post['other_site'])):'';
+		$free_lance =  isset($post['free_lance'])?trim(strip_tags($post['free_lance'])):null;
+		$my_circle =  isset($post['my_circle'])?trim(strip_tags($post['my_circle'])):null;
+		$linkedln =  isset($post['linkedln'])?trim(strip_tags($post['linkedln'])):null;
+		$facebook =  isset($post['facebook'])?trim(strip_tags($post['facebook'])):null;
+		$live_journal =  isset($post['live_journal'])?trim(strip_tags($post['live_journal'])):null;
+		$other_site =  isset($post['other_site'])?trim(strip_tags($post['other_site'])):null;
 
 
 
@@ -238,6 +240,18 @@ class ProfileController extends IController{
 				return true;
 			}
 		}, array('phone'=>$mobile_phone, 'preferred_communication'=>$preferred_communication));
+
+		$mobile_phone_other_val = call_user_func(function($phone){
+			if(empty($phone['phone']) && $phone['preferred_communication'] == 5){
+				return  array('message'=>'Необходимо заполнить');
+			}elseif(!empty($phone['phone']) &&
+				!preg_match('/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/',
+					$phone['phone'])){
+				return  array('message'=>'Номер указан некорректно');
+			}else{
+				return true;
+			}
+		}, array('phone'=>$mobile_phone_other, 'preferred_communication'=>$preferred_communication));
 
 		$home_phone_val = call_user_func(function($phone){
 			if(empty($phone['phone']) && $phone['preferred_communication'] == 2){
@@ -281,6 +295,9 @@ class ProfileController extends IController{
 			'mobile_phone'=>array(
 				'val'=>$mobile_phone_val,
 				'value'=>$mobile_phone ),
+			'mobile_phone_other'=>array(
+				'val'=>$mobile_phone_other_val,
+				'value'=>$mobile_phone_other ),
 			'home_phone'=>array(
 				'val'=>$home_phone_val,
 				'value'=>$home_phone
@@ -294,6 +311,7 @@ class ProfileController extends IController{
 			),
 			'preferred_communication'=>array('value'=>$preferred_communication),
 			'comment_mobile_phone'=>array('value'=>$comment_mobile_phone),
+			'comment_mobile_phone_other'=>array('value'=>$comment_mobile_phone_other),
 			'comment_home_phone'=>array('value'=>$comment_home_phone),
 			'comment_work_phone'=>array('value'=>$comment_work_phone),
 			'icq'=>array('value'=>$icq),

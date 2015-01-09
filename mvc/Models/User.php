@@ -368,13 +368,13 @@ class User{
 
 		$personal['call_me'] = $this->_getCallMe(
 			array(
-				'comment_mobile_phone'=>$personal_data['comment_mobile_phone']?"("
-					.$personal_data['comment_mobile_phone'].")":'',
-				'comment_home_phone'=>$personal_data['comment_home_phone']?"(".$personal_data['comment_home_phone']
-					.")":'',
-				'comment_work_phone'=>$personal_data['comment_work_phone']?"(".$personal_data['comment_work_phone']
-					.")":'',
+				'comment_mobile_phone'=>$personal_data['comment_mobile_phone']?"({$personal_data['comment_mobile_phone']})":null,
+				'comment_mobile_phone_other'=>$personal_data['comment_mobile_phone_other']?"({$personal_data['comment_mobile_phone_other']})":null,
+				'comment_home_phone'=>$personal_data['comment_home_phone']?"({$personal_data['comment_home_phone']})":null,
+				'comment_mobile_phone_other'=>$personal_data['comment_mobile_phone_other']?"({$personal_data['comment_mobile_phone_other']})":null,
+				'comment_work_phone'=>$personal_data['comment_work_phone']?"({$personal_data['comment_work_phone']})":null,
 				'mobile_phone'=>$personal_data['mobile_phone'],
+				'mobile_phone_other'=>$personal_data['mobile_phone_other'],
 				'home_phone'=>$personal_data['home_phone'],
 				'work_phone'=>$personal_data['work_phone'],
 				'email'=>$personal_data['email'],
@@ -635,6 +635,15 @@ class User{
 				$call_me .= "<p><a href='tel:{$personal_data['mobile_phone']}'><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone']}</a>{$personal_data['comment_mobile_phone']}</p>";
 			}
 		}
+
+		if($personal_data['mobile_phone_other']){
+			if($personal_data['preferred_communication']==5){
+				$call_me .= "<p><a href='tel:{$personal_data['mobile_phone_other']}'><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone_other']}</a>{$personal_data['comment_mobile_phone_other']} <span>желаемый способ связи</span></p>";
+			}else{
+				$call_me .= "<p><a href='tel:{$personal_data['mobile_phone_other']}'><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['mobile_phone_other']}</a>{$personal_data['comment_mobile_phone_other']}</p>";
+			}
+		}
+
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
 				$call_me .= "<p><a href='tel:{$personal_data['home_phone']}'><img src='".BASE_URL."/public/img/phone.png'>{$personal_data['home_phone']}</a>{$personal_data['comment_home_phone']}<span>желаемый способ связи</span></p>";
@@ -877,32 +886,19 @@ class User{
 
 	public function updateContacts($inputs, $id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													mobile_phone = :mobile_phone,
-													home_phone = :home_phone,
-													work_phone = :work_phone,
-													comment_mobile_phone = :comment_mobile_phone,
-													comment_home_phone = :comment_home_phone,
-													comment_work_phone = :comment_work_phone,
-													preferred_communication = :preferred_communication,
-													email = :email,
-													icq = :icq,
-													skype = :skype,
-													free_lance = :free_lance,
-													my_circle = :my_circle,
-													linkedln = :linkedln,
-													facebook = :facebook,
-													live_journal = :live_journal,
-													other_site = :other_site
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare ("UPDATE profile SET mobile_phone = :mobile_phone,mobile_phone_other = :mobile_phone_other,
+home_phone = :home_phone,work_phone = :work_phone,comment_mobile_phone = :comment_mobile_phone,
+comment_mobile_phone_other = :comment_mobile_phone_other,comment_home_phone = :comment_home_phone,
+comment_work_phone = :comment_work_phone,preferred_communication = :preferred_communication,email = :email,icq = :icq,skype = :skype,
+free_lance = :free_lance,my_circle = :my_circle,linkedln = :linkedln,facebook = :facebook,live_journal = :live_journal,other_site = :other_site
+WHERE id = :id_user");
 			$stmt->execute(array(
 					':mobile_phone'=>$inputs['mobile_phone']['value'],
+					':mobile_phone_other'=>$inputs['mobile_phone_other']['value'],
 					':home_phone'=>$inputs['home_phone']['value'],
 					':work_phone'=>$inputs['work_phone']['value'],
 					':comment_mobile_phone'=>$inputs['comment_mobile_phone']['value'],
+					':comment_mobile_phone_other'=>$inputs['comment_mobile_phone_other']['value'],
 					':comment_home_phone'=>$inputs['comment_home_phone']['value'],
 					':comment_work_phone'=>$inputs['comment_work_phone']['value'],
 					':preferred_communication'=>$inputs['preferred_communication']['value'],
@@ -1052,27 +1048,9 @@ class User{
 
 	public function selectContacts($id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("SELECT
-													mobile_phone,
-													home_phone,
-													work_phone,
-													email,
-													preferred_communication,
-													comment_mobile_phone,
-													comment_home_phone,
-													comment_work_phone,
-													icq,
-													skype,
-													free_lance,
-													my_circle,
-													linkedln,
-													facebook,
-													live_journal,
-													other_site
-												FROM
-													profile
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare ('SELECT mobile_phone,mobile_phone_other,home_phone,
+work_phone,email,preferred_communication,comment_mobile_phone,comment_mobile_phone_other,comment_home_phone,comment_work_phone,
+icq,skype,free_lance,my_circle,linkedln,facebook,live_journal,other_site FROM profile WHERE id = :id_user');
 			$stmt->execute(array(':id_user'=>$id_user));
 			$contacts_data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
@@ -1082,6 +1060,9 @@ class User{
 			'mobile_phone'=>array(
 				'val'=>true,
 				'value'=>$contacts_data['mobile_phone'] ),
+			'mobile_phone_other'=>array(
+				'val'=>true,
+				'value'=>$contacts_data['mobile_phone_other'] ),
 			'home_phone'=>array(
 				'val'=>true,
 				'value'=>$contacts_data['home_phone']
@@ -1095,6 +1076,7 @@ class User{
 			),
 			'preferred_communication'=>array('value'=>$contacts_data['preferred_communication']),
 			'comment_mobile_phone'=>array('value'=>$contacts_data['comment_mobile_phone']),
+			'comment_mobile_phone_other'=>array('value'=>$contacts_data['comment_mobile_phone_other']),
 			'comment_home_phone'=>array('value'=>$contacts_data['comment_home_phone']),
 			'comment_work_phone'=>array('value'=>$contacts_data['comment_work_phone']),
 			'icq'=>array('value'=>$contacts_data['icq']),

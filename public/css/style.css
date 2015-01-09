@@ -1872,7 +1872,7 @@ a.addPhoto span:last-child,
 }
 
 .personal table td{
-    height: 60px;
+    height: 50px;
 }
 
 
@@ -1998,6 +1998,20 @@ table.foot_table  tr td{
     position: relative;
     color: green;
 }
+
+.personal.contacts #add_mobile_phone{
+    width: 250px;
+}
+
+.personal.contacts #add_mobile_phone_td{
+    display: none;
+}
+
+.personal.contacts #add_mobile_phone:hover{
+    cursor: pointer;
+    color: red;
+}
+
 .personal.contacts #add:hover{
     color: red;
     cursor: pointer;
