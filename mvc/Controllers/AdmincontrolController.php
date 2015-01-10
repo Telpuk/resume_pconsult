@@ -332,6 +332,8 @@ class AdminControlController extends IController{
 	public function indexAction(){
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 
+		$search[0] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$search[0])));
+
 		if (isset($search[0]) && !empty($search[0])) {
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;

@@ -343,7 +343,7 @@ login = :login {$password} WHERE id = :id";
 		try {
 			$stmt = $this->_dbc->prepare ("CALL searchResume(:search, :start, :count_view)");
 			$stmt->execute(array(
-				':search'=>"%".$search."%",
+				':search'=>"%{$search}%",
 				':start' => $page,
 				':count_view'=>$count_view
 			));
