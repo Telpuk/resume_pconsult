@@ -3,18 +3,8 @@ class Admin{
 	private
 		$_dbc,
 		$_user_object,
-		$_month = array(1=>"январь",
-		2=>"февраль",
-		3=>"март",
-		4=>"апрель",
-		5=>"май",
-		6=>"июнь",
-		7=>"июль",
-		8=>"август",
-		9=>"сентябрь",
-		10=>"октябрь",
-		11=>"ноябрь",
-		12=>"декабрь");
+		$_month = array( 1=>"январь", 2=>"февраль", 3=>"март", 4=>"апрель", 5=>"май",
+		6=>"июнь", 7=>"июль", 8=>"август", 9=>"сентябрь", 10=>"октябрь", 11=>"ноябрь", 12=>"декабрь" );
 
 	function __construct(){
 		$this->_dbc = Model::getInstance()->getDbh();
@@ -52,8 +42,7 @@ class Admin{
 		$login = strip_tags(trim($info['login']));
 		$password = empty($info['password'])?null:",password = '".md5(strip_tags(trim($info['password'])))."'";
 
-		$sql = "UPDATE users SET name_first = :name_first, name_second = :name_second,patronymic = :patronymic,
-login = :login {$password} WHERE id = :id";
+		$sql = "UPDATE users SET name_first = :name_first, name_second = :name_second,patronymic = :patronymic,login = :login {$password} WHERE id = :id";
 
 		$array_execute = array(
 			':name_first'=>$name_first,
@@ -73,12 +62,7 @@ login = :login {$password} WHERE id = :id";
 
 	public function updateFoldersUsers($folders,$id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													folders = :folders
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare ("UPDATE profile SET folders = :folders WHERE id = :id_user");
 			$stmt->execute(array(':folders'=>implode(',',$folders),':id_user'=>$id_user));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -145,13 +129,7 @@ login = :login {$password} WHERE id = :id";
 
 	public function selectFolders(){
 		try {
-			$stmt = $this->_dbc->query("
-												SELECT
-													id,
-													name
-												FROM
-													folders
-												ORDER BY name"
+			$stmt = $this->_dbc->query("SELECT id,name FROM folders ORDER BY name"
 			);
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
@@ -162,14 +140,7 @@ login = :login {$password} WHERE id = :id";
 
 	public function selectFoldersUser($id_user){
 		try {
-			$stmt = $this->_dbc->prepare("
-												SELECT
-													folders
-												FROM
-													profile
-												WHERE
-												id=:id_user"
-			);
+			$stmt = $this->_dbc->prepare("SELECT folders FROM profile WHERE id=:id_user");
 			$stmt->execute(array(':id_user'=>$id_user));
 			$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
@@ -180,11 +151,7 @@ login = :login {$password} WHERE id = :id";
 
 	public function deleteNotStockedResume(){
 		try {
-			$sql = "DELETE
-						profile
-					FROM
-						profile
-					WHERE registered_user='no' AND  DATEDIFF(CURRENT_TIMESTAMP(),date) >=1";
+			$sql = "DELETE profile FROM profile WHERE registered_user='no' AND  DATEDIFF(CURRENT_TIMESTAMP(),date) >=1";
 			$this->_dbc->query($sql);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -193,12 +160,7 @@ login = :login {$password} WHERE id = :id";
 
 	public function deleteManager($id){
 		try {
-			$stm= $this->_dbc->prepare( "DELETE
-						users
-					FROM
-						users
-					WHERE id = :id");
-
+			$stm= $this->_dbc->prepare( "DELETE users FROM users WHERE id = :id");
 			$stm->execute(array(':id'=>$id));
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -207,17 +169,7 @@ login = :login {$password} WHERE id = :id";
 	}
 	public function selectManagers(){
 		try {
-			$stmt = $this->_dbc->query("
-												SELECT
-													id,
-													name_first,
-													login,
-													password
-												FROM
-													users
-												WHERE
-													type_user = 'manager'"
-			);
+			$stmt = $this->_dbc->query("SELECT id,name_first,login,password FROM users WHERE type_user = 'manager'");
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
@@ -231,11 +183,7 @@ login = :login {$password} WHERE id = :id";
 			return false;
 		}else{
 			try {
-				$stmt = $this->_dbc->prepare ("
-												INSERT INTO
-													users(type_user,name_first,login,password)
-												VALUES('manager',:name_first,:login,:password)"
-				);
+				$stmt = $this->_dbc->prepare ("INSERT INTO users(type_user,name_first,login,password) VALUES('manager',:name_first,:login,:password)");
 				$stmt->execute(array(
 					':name_first'=>$data['name_first']['value'],
 					':login'=>$data['login_manager']['value'],
@@ -251,14 +199,7 @@ login = :login {$password} WHERE id = :id";
 
 	private function _existsManager($login_manager){
 		try {
-			$stmt = $this->_dbc->prepare ("
-												SELECT
-													COUNT(id) as 'count'
-												FROM
-													users
-												WHERE
-													login = :login"
-			);
+			$stmt = $this->_dbc->prepare ("SELECT COUNT(id) as 'count' FROM users WHERE login = :login");
 			$stmt->execute(array(
 				':login'=>$login_manager
 			));
@@ -274,8 +215,7 @@ login = :login {$password} WHERE id = :id";
 
 	public  function checkLoginAndPassword($data){
 		try {
-			$stmt = $this->_dbc->prepare ("SELECT id, type_user,name_first,name_second,patronymic,
-			login FROM users WHERE login = :login AND password = :password");
+			$stmt = $this->_dbc->prepare ("SELECT id, type_user,name_first,name_second,patronymic, login FROM users WHERE (login = :login AND password = :password)");
 			$stmt->execute(array(
 				':login'=>$data['login'],
 				':password'=>$data['password']

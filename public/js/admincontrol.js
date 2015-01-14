@@ -136,7 +136,15 @@
 
     Resume.prototype.addEventListenerDownloadWord = function () {
         this.$download.on('click', {self: this}, function (event) {
-            $('.download_content',$(this)).toggle();
+
+            var   href_export = '/id/' + $('.download_content',$(this)).data('idUser');
+
+            if(!$('input[type=checkbox]', $('.download_content',$(this))).length){
+                location.href = BASE_URL + "/excel/index" + href_export;
+                $('.download_content',$(this)).hide();
+            }else{
+                $('.download_content',$(this)).toggle();
+            }
             event.stopPropagation();
         });
     };

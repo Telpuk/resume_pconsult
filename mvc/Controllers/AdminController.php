@@ -26,8 +26,7 @@ class AdminController extends IController{
 	public function authorizationAction(){
 		if (isset($_POST['submitAuthorization'])){
 			if (!empty($_POST['login']) && !empty($_POST['password'])) {
-				$users = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'],
-					'password' => md5($_POST['password'])));
+				$users = $this->_db_admin->checkLoginAndPassword(array('login' => $_POST['login'], 'password' => md5($_POST['password'])));
 				if ($users === false) {
 					return $this->_view->render(array(
 						'view' => 'admin/authorization',

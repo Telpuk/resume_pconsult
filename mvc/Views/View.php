@@ -31,6 +31,7 @@ class View{
 			if(isset($arguments['cache_headers'])){
 				$this->cacheHeaders($arguments['cache_headers']);
 			}
+
 			if(isset($arguments['data']['helpers'])){
 				unset($this->data['data']['helpers']);
 				foreach($arguments['data']['helpers'] as $key=>$helper) {

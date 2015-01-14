@@ -124,55 +124,6 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
-<?=$this->_javascript?>
-<script type="text/javascript" src="<?=BASE_URL?>/public/js/jquery.scrollUp.min.js"></script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-	(function (d, w, c) {
-		(w[c] = w[c] || []).push(function() {
-			try {
-				w.yaCounter27841548 = new Ya.Metrika({id:27841548,
-					webvisor:true,
-					clickmap:true,
-					accurateTrackBounce:true});
-			} catch(e) { }
-		});
-
-		var n = d.getElementsByTagName("script")[0],
-			s = d.createElement("script"),
-			f = function () { n.parentNode.insertBefore(s, n); };
-		s.type = "text/javascript";
-		s.async = true;
-		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-		if (w.opera == "[object Opera]") {
-			d.addEventListener("DOMContentLoaded", f, false);
-		} else { f(); }
-	})(document, window, "yandex_metrika_callbacks");
-
-	$.scrollUp({
-		scrollName: 'scrollUp',      // Element ID
-		scrollDistance: 300,         // Distance from top/bottom before showing element (px)
-		scrollFrom: 'top',           // 'top' or 'bottom'
-		scrollSpeed: 300,            // Speed back to top (ms)
-		easingType: 'linear',        // Scroll to top easing (see http://easings.net/)
-		animation: 'slide',           // Fade, slide, none
-		animationSpeed: 200,         // Animation speed (ms)
-		scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
-		scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
-		scrollText: 'НАВЕРХ', // Text for element, can contain HTML
-		scrollTitle: true,          // Set a custom <a> title if required.
-		scrollImg: false,            // Set true to use image
-		activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-		zIndex: 2147483647           // Z-Index for the overlay
-	});
-</script>
-<noscript>
-	<div><img src="//mc.yandex.ru/watch/27841548" style="position:absolute; left:-9999px;" alt="" /></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
-
 <script id="tr-template-mobilePhone" type="text/x-handlebars-template">
 	<tr data-mobile-phone="delete">
 		<td></td>
@@ -184,10 +135,9 @@
 	<tr data-mobile-phone="delete">
 		<td></td>
 		<td></td>
-		<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone_other" value='<?=$this->data['data']['inputs']['comment_mobile_phone_other']['value']?>'></td>
+		<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone_other" value=''></td>
 	</tr>
 </script>
-
 <script id="table-template-experience" type="text/x-handlebars-template">
 	<hr data-table-experience-id='{{i}}'>
 	<div class="delete experience" data-table-experience-id="{{i}}">
@@ -273,7 +223,6 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="table-template-recommendations" type="text/x-handlebars-template">
 	<hr data-table-recommendations-id='{{i}}'>
 	<div class="delete recommendations" data-table-recommendations-id='{{i}}'>
@@ -314,7 +263,6 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="table-base-education" type="text/x-handlebars-template">
 	<hr data-table-base-education-id='{{i}}'>
 	<div class="delete education base" data-table-base-education-id='{{i}}'>
@@ -336,7 +284,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label>Cпециализация / специальность<span class="required input">Обязательно для заполнения</span></label></td>
+			<td><label>Специализация / специальность<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
 				<input type="text" name="specialties_specialties[{{i}}]" value=''>
 				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
@@ -358,7 +306,6 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="table_training_courses" type="text/x-handlebars-template">
 	<hr data-table-training-courses-id='{{i}}'>
 	<div class="delete training courses" data-table-training-courses-id='{{i}}'>
@@ -407,7 +354,6 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="table_tests_exams" type="text/x-handlebars-template">
 	<hr data-table-tests-exams-id='{{i}}'>
 	<div class="delete test_exam" data-table-tests-exams-id='{{i}}'>
@@ -456,7 +402,6 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="table_electronic_certificates" type="text/x-handlebars-template">
 	<hr data-table-electronic-certificates-id='{{i}}'>
 	<div class="delete electronic_certificates" data-table-electronic-certificates-id='{{i}}'>
@@ -496,12 +441,9 @@
 		</tbody>
 	</table>
 </script>
-
 <script id="tr_language_further" type="text/x-handlebars-template">
 	<tr data-tr-language-further-id='{{i}}'>
-		<td  colspan="2" class="delete language" data-tr-language-further-id='{{i}}'><img
-				src='{{BASE_URL}}/public/img/delete
-		.png'>Удалить</td>
+		<td  colspan="2" class="delete language" data-tr-language-further-id='{{i}}'><img src='{{BASE_URL}}/public/img/delete.png'>Удалить</td>
 	</tr>
 	<tr data-tr-language-further-id='{{i}}'>
 		<td>
@@ -522,7 +464,6 @@
 		</td>
 	</tr>
 </script>
-
 <script id="contacts_list" type="text/x-handlebars-template">
 	<tr>
 		<td>
@@ -537,6 +478,52 @@
 	</tr>
 </script>
 
+<script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
+<?=$this->_javascript?>
+<script type="text/javascript" src="<?=BASE_URL?>/public/js/jquery.scrollUp.min.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter27841548 = new Ya.Metrika({id:27841548,
+					webvisor:true,
+					clickmap:true,
+					accurateTrackBounce:true});
+			} catch(e) { }
+		});
 
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+
+	$.scrollUp({
+		scrollName: 'scrollUp',      // Element ID
+		scrollDistance: 300,         // Distance from top/bottom before showing element (px)
+		scrollFrom: 'top',           // 'top' or 'bottom'
+		scrollSpeed: 300,            // Speed back to top (ms)
+		easingType: 'linear',        // Scroll to top easing (see http://easings.net/)
+		animation: 'slide',           // Fade, slide, none
+		animationSpeed: 200,         // Animation speed (ms)
+		scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
+		scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
+		scrollText: 'НАВЕРХ', // Text for element, can contain HTML
+		scrollTitle: true,          // Set a custom <a> title if required.
+		scrollImg: false,            // Set true to use image
+		activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+		zIndex: 2147483647           // Z-Index for the overlay
+	});
+</script>
+<noscript>
+	<div><img src="//mc.yandex.ru/watch/27841548" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
 </html>

@@ -44,6 +44,8 @@ class ExcelController extends IController{
 			$textrun = $cell->addTextRun();
 			$textrun->addText("Консалтинговый центр «Pro-consult»",array('align'=>'center','size'=>8));
 			$textrun->addTextBreak();
+			$textrun->addText("Бизнес-обучение и подбор персонала",array('align'=>'center','size'=>8));
+			$textrun->addTextBreak();
 			$textrun->addText("www.proconsult.by",array('align'=>'center','size'=>8));
 			$textrun->addTextBreak();
 			$textrun->addText("+375 44 779 03 94",array('align'=>'center', 'size'=>8));

@@ -22,7 +22,7 @@
 				<td><label>Организация<span class="required input">Обязательно для заполнения</span></label></td>
 				<td>
 					<input type="text"  class="organizations"  name="organizations[<?=$i?>]"
-						   value='<?=$this->data['data']['inputs']['organizations']['value'][$i]?>'>
+						   value='<?=htmlspecialchars($this->data['data']['inputs']['organizations']['value'][$i], ENT_QUOTES)?>'>
 					<div class="message"><?=$this->data['data']['inputs']['organizations']['val'][$i]['message']?></div>
 				</td>
 			</tr>
@@ -30,7 +30,7 @@
 				<td><label>Регион<span class="required input">Обязательно для заполнения</span></label></td>
 				<td>
 					<input class="regions" type="text"  name="regions[<?=$i?>]"
-						   value='<?=$this->data['data']['inputs']['regions']['value'][$i]?>'>
+						   value='<?=htmlspecialchars($this->data['data']['inputs']['regions']['value'][$i],ENT_QUOTES)?>'>
 					<div class="message"><?=$this->data['data']['inputs']['regions']['val'][$i]['message']?></div>
 				</td>
 			</tr>
@@ -38,7 +38,7 @@
 				<td><label>Сайт</label></td>
 				<td>
 					<input type="text"  name="sites[<?=$i?>]"
-						   value='<?=$this->data['data']['inputs']['sites']['value'][$i]?>'>
+						   value='<?=htmlspecialchars($this->data['data']['inputs']['sites']['value'][$i],ENT_QUOTES)?>'>
 					<div class="message"><?=$this->data['data']['inputs']['sites']['val']['message'][$i]?></div>
 				</td>
 			</tr>
@@ -46,7 +46,7 @@
 				<td><label>Сфера деятельности компании</label></td>
 				<td>
 					<input type="text" class="field_activities"  name="field_activities[<?=$i?>]"
-						   value='<?=$this->data['data']['inputs']['field_activities']['value'][$i]?>'>
+						   value='<?=htmlspecialchars($this->data['data']['inputs']['field_activities']['value'][$i],ENT_QUOTES)?>'>
 					<div class="message"><?=$this->data['data']['inputs']['field_activities']['val'][$i]['message']?></div>
 				</td>
 			</tr>
@@ -54,7 +54,7 @@
 				<td><label for="positions">Должность<span class="required input">Обязательно для заполнения</span></label></td>
 				<td>
 					<input type="text" class="positions"  name="positions[<?=$i?>]"
-						   value='<?=$this->data['data']['inputs']['positions']['value'][$i]?>'>
+						   value='<?=htmlspecialchars($this->data['data']['inputs']['positions']['value'][$i],ENT_QUOTES)?>'>
 					<div class="message"><?=$this->data['data']['inputs']['positions']['val'][$i]['message']?></div>
 				</td>
 			</tr>
@@ -188,7 +188,7 @@
 		<tr>
 			<td>Имя</td>
 			<td>
-				<input type="text" name="recommend_names[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_names']['value'][$i]?>">
+				<input type="text" name="recommend_names[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['recommend_names']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['recommend_names']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -196,7 +196,7 @@
 			<td>Должность</td>
 			<td>
 				<input class="positions" type="text" name="recommend_position[<?=$i?>]"
-					   value="<?=$this->data['data']['inputs']['recommend_position']['value'][$i]?>">
+					   value='<?=htmlspecialchars($this->data['data']['inputs']['recommend_position']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['recommend_position']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -204,14 +204,15 @@
 			<td>Организация</td>
 			<td>
 				<input class="organizations" type="text" name="recommend_organization[<?=$i?>]"
-					   value="<?=$this->data['data']['inputs']['recommend_organization']['value'][$i]?>">
+					   value='<?=htmlspecialchars($this->data['data']['inputs']['recommend_organization']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['recommend_organization']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
 			<td>Телефон</td>
 			<td>
-				<input type="text" class="recommend_phone" name="recommend_phone[<?=$i?>]" value="<?=$this->data['data']['inputs']['recommend_phone']['value'][$i]?>">
+				<input type="text" class="recommend_phone" name="recommend_phone[<?=$i?>]"
+					   value='<?=htmlspecialchars($this->data['data']['inputs']['recommend_phone']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['recommend_phone']['val'][$i]['message']?></div>
 			</td>
 		</tr>

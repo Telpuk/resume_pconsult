@@ -695,7 +695,7 @@ class SideController extends IController{
 
 	private function _checkFormPosition($post){
 
-		$desired_position = isset($post['desired_position'])?trim(strip_tags($post['desired_position'])):'';
+		$desired_position = isset($post['desired_position'])?trim(htmlspecialchars(strip_tags($post['desired_position']),ENT_QUOTES)) :'';
 		$professional_area = isset($post['professional_area'])?trim(strip_tags($post['professional_area'])):'';
 		$salary = isset($post['salary'])?trim(strip_tags(mb_eregi_replace('[^0-9]','',$post['salary']))):'';
 		$currency = isset($post['currency'])?trim(strip_tags($post['currency'])):'';

@@ -2000,7 +2000,7 @@ table.foot_table  tr td{
 }
 
 .personal.contacts #add_mobile_phone{
-    width: 250px;
+    width: 300px;
 }
 
 .personal.contacts #add_mobile_phone_td{
@@ -2560,7 +2560,7 @@ main.authorization .helpers_message_authorization{
 }
 .admin_control .left_admin_control .widget.admin a{
     display: block;
-    width: 98%;
+    width: 85%;
     color: #4f80b1;
 }
 
@@ -2911,6 +2911,8 @@ main.authorization .helpers_message_authorization{
     padding: 10px;
     float: left;
     width: 60%;
+    max-height:700px;
+    min-height:50px;
     margin-bottom: 10px;
     margin-left: 60px;
     resize: vertical;

@@ -12,21 +12,21 @@
 						<tr>
 							<td><label for="surname">Фамилия<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input type="text"  id="surname" name="surname" value='<?=$this->data['data']['inputs']['surname']['value']?>'>
+								<input type="text"  id="surname" name="surname" value='<?=htmlspecialchars($this->data['data']['inputs']['surname']['value'],ENT_QUOTES)?>'>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['surname']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="first_name">Имя<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input type="text" name="first_name" value='<?=$this->data['data']['inputs']['first_name']['value']?>'>
+								<input type="text" name="first_name" value='<?=htmlspecialchars($this->data['data']['inputs']['first_name']['value'],ENT_QUOTES)?>'>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['first_name']['val']['message']?></span></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="patronymic">Отчество</label></td>
 							<td>
-								<input type="text" id="patronymic" name="patronymic" value='<?=$this->data['data']['inputs']['patronymic']['value']?>'>
+								<input type="text" id="patronymic" name="patronymic" value='<?=htmlspecialchars($this->data['data']['inputs']['patronymic']['value'],ENT_QUOTES)?>'>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['patronymic']['val']['message']?></span></div>
 							</td>
 						</tr>
@@ -82,7 +82,7 @@
 						<tr>
 							<td><label for="city">Город проживания<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input name="city" id="city" type="text" value='<?=$this->data['data']['inputs']['city']['value']?>'>
+								<input name="city" id="city" type="text" value='<?=htmlspecialchars($this->data['data']['inputs']['city']['value'],ENT_QUOTES)?>'>
 								<p class="example">Например: <span id="city_example">Минск</span></p>
 								<div class="message"><span class="required"><?=$this->data['data']['inputs']['city']['val']['message']?></span></div>
 							</td>
@@ -107,15 +107,14 @@
 						<tr id="nat">
 							<td><label for="nationality">Гражданство</label></td>
 							<td>
-								<input type="text" id="nationality" name="nationality"
-									   value='<?=$this->data['data']['inputs']['nationality']['value']?>'>
+								<input type="text" id="nationality" name="nationality" value='<?=htmlspecialchars($this->data['data']['inputs']['nationality']['value'],ENT_QUOTES)?>'>
 								<p  class="example">Например: <span id="nationality_example">Беларусь</span></p>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="work_permit">Разрешение на работу</label></td>
 							<td>
-								<input type="text" id="work_permit" name="work_permit" value='<?=$this->data['data']['inputs']['work_permit']['value']?>'>
+								<input type="text" id="work_permit" name="work_permit" value='<?=htmlspecialchars($this->data['data']['inputs']['work_permit']['value'],ENT_QUOTES)?>'>
 								<p  class="example">Например: <span id="work_permit_example">Беларусь</span></p>
 							</td>
 						</tr>

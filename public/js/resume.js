@@ -149,8 +149,17 @@
     };
 
     Resume.prototype.addEventListenerDownloadWord = function () {
-        this.$download.on('click', {self: this}, function (event) {
-            event.data.self.$download_content.slideToggle();
+        this.$download.on('click', {self: this, id: this.$download_content.data('idUser')}, function (event) {
+
+            var href_export = '/id/' + event.data.id;
+            
+            if(!$('#download_content input[type=checkbox]').length){
+                location.href = BASE_URL + "/excel/index" + href_export;
+                event.data.self.$download_content.hide();
+            }else{
+                event.data.self.$download_content.slideToggle();
+            }
+
             event.stopPropagation();
         });
     };

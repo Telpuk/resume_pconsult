@@ -12,14 +12,14 @@
 						<tr>
 							<td><label for="desired_position">Желаемая должность<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input type="text"  id="desired_position"  name="desired_position" value='<?=$this->data['data']['inputs']['desired_position']['value']?>'>
+								<input type="text"  id="desired_position"  name="desired_position" value='<?=htmlspecialchars($this->data['data']['inputs']['desired_position']['value'],ENT_QUOTES)?>'>
 								<div class="message"><?=$this->data['data']['inputs']['desired_position']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="professional_area">Профессиональная область<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input type="text"  id="professional_area"  name="professional_area" value='<?=$this->data['data']['inputs']['professional_area']['value']?>'>
+								<input type="text"  id="professional_area"  name="professional_area" value='<?=htmlspecialchars($this->data['data']['inputs']['professional_area']['value'],ENT_QUOTES)?>'>
 								<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
 							</td>
 						</tr>

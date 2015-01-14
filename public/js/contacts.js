@@ -101,7 +101,7 @@
         }
 
         this.$mobilePhone.on('keydown change blur',{self:this},function(event){
-            $inputPhone = $(this);
+            var $inputPhone = $(this);
 
             if( $inputPhone.val() && $inputPhone.val() !== '375 (__) ___-__-__' && !(/_/.test($inputPhone.val()))){
                 event.data.self.$addMobilePhoneTd.fadeIn(500);
@@ -109,7 +109,7 @@
                 event.data.self.$addMobilePhoneTd.hide();
                 $('tr[data-mobile-phone="delete"]').remove();
                 event.data.self.$addMobilePhoneTd.removeClass('delete_phone');
-                $('#add_mobile_phone',event.data.self.$addMobilePhoneTd).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
+                $('#add_mobile_phone',event.data.self.$addMobilePhoneTd).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Дополнительный&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
             }
         });
     };
@@ -128,7 +128,7 @@
             }else{
                 $('tr[data-mobile-phone="delete"]').remove();
                 $(this).removeClass('delete_phone');
-                $('#add_mobile_phone',$(this)).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
+                $('#add_mobile_phone',$(this)).html('&nbsp;&nbsp;<img src="'+BASE_URL+'/public/img/add.png">&nbsp;&nbsp;Дополнительный&nbsp;мобильный&nbsp;телефон').css({color: 'green'});
             }
         });
     };

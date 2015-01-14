@@ -14,19 +14,20 @@
 		<td>
 			<select class="level" id="level" name="level">
 				<option value="Высшее" <?php if($this->data['data']['inputs']['level']['value']==='Высшее')echo"selected"?>>Высшее</option>
-				<option value="Бакалавр"<?php if($this->data['data']['inputs']['level']['value']==='Бакалавр')echo"selected"?>>&nbsp;&nbsp;&nbsp;Бакалавр</option>
-				<option value="Магистар"<?php if($this->data['data']['inputs']['level']['value']==='Магистар')echo"selected"?>>&nbsp;&nbsp;&nbsp;Магистар</option>
-				<option value="Кандидат наук"<?php if($this->data['data']['inputs']['level']['value']==='Кандидат наук')echo"selected"?>>&nbsp;&nbsp;&nbsp;Кандидат наук</option>
-				<option value="Доктор наук"<?php if($this->data['data']['inputs']['level']['value']==='Доктор наук')echo"selected"?>>&nbsp;&nbsp;&nbsp;Доктор наук</option>
-				<option value="Неоконченное высшее"<?php if ($this->data['data']['inputs']['level']['value']==='Неоконченное высшее')echo"selected"?>>Неоконченное высшее</option>
-				<option value="Среднее специальное"<?php if ($this->data['data']['inputs']['level']['value']==='Среднее специальное')echo"selected"?>>Среднее специальное</option>
-				<option value="Среднее"<?php if($this->data['data']['inputs']['level']['value']==='Среднее')echo"selected"?>>Среднее</option>
+				<option value="Бакалавр" <?php if($this->data['data']['inputs']['level']['value']==='Бакалавр') echo"selected"?>>&nbsp;&nbsp;&nbsp;Бакалавр</option>
+				<option value="Магистар" <?php if($this->data['data']['inputs']['level']['value']==='Магистар') echo"selected"?>>&nbsp;&nbsp;&nbsp;Магистар</option>
+				<option value="Кандидат наук"
+					<?php if($this->data['data']['inputs']['level']['value']==='Кандидат наук') echo"selected"?>>&nbsp;&nbsp;&nbsp;Кандидат&nbsp;наук</option>
+				<option value="Доктор наук" <?php if($this->data['data']['inputs']['level']['value']==='Доктор наук') echo"selected"?>>&nbsp;&nbsp;&nbsp;Доктор&nbsp;наук</option>
+				<option value="Неоконченное высшее" <?php if ($this->data['data']['inputs']['level']['value']==='Неоконченное высшее')echo"selected"?>>Неоконченное&nbsp;высшее</option>
+				<option value="Среднее специальное" <?php if ($this->data['data']['inputs']['level']['value']==='Среднее специальное')echo"selected"?>>Среднее&nbsp;специальное</option>
+				<option value="Среднее" <?php if($this->data['data']['inputs']['level']['value']==='Среднее') echo"selected"?>>Среднее</option>
 			</select>
 			<div class="message"><?=$this->data['data']['inputs']['level']['val']['message']?></div>
 		</td>
 	</tr>
 	<tr>
-		<th colspan="2">Основное образование</th>
+		<th colspan="2">Основное&nbsp;образование</th>
 	</tr>
 	</tbody>
 </table>
@@ -37,29 +38,29 @@
 	<table class="base_education" data-table-base-education-id='<?=$i?>'>
 		<tbody>
 		<tr>
-			<td><label for="names_institutions">Название учебного заведения<span class="required input">Обязательно для заполнения</span></label></td>
+			<td><label for="names_institutions">Название&nbsp;учебного&nbsp;заведения<span class="required input">Обязательно&nbsp;для&nbsp;заполнения</span></label></td>
 			<td>
-				<input type="text" id="names_institutions" name="names_institutions[<?=$i?>]" value='<?=$this->data['data']['inputs']['names_institutions']['value'][$i]?>'>
+				<input type="text" id="names_institutions" name="names_institutions[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['names_institutions']['value'][$i], ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['names_institutions']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
 			<td><label for="faculties">Факультет<span class="required input">Обязательно для заполнения</span></label></td>
 			<td>
-				<input type="text"  id="faculties"  name="faculties[<?=$i?>]" value='<?=$this->data['data']['inputs']['faculties']['value'][$i]?>'>
+				<input type="text"  id="faculties"  name="faculties[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['faculties']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['faculties']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="specialty_specialty">Cпециализация / специальность<span class="required input">Обязательно для заполнения</span></label></td>
+			<td><label for="specialty_specialty">Специализация&nbsp;/&nbsp;специальность<span class="required input">Обязательно&nbsp;для&nbsp;заполнения</span></label></td>
 			<td>
-				<input type="text"  id="specialty_specialty"  name="specialties_specialties[<?=$i?>]" value='<?=$this->data['data']['inputs']['specialties_specialties']['value'][$i]?>'>
-				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<input type="text"  id="specialty_specialty"  name="specialties_specialties[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['specialties_specialties']['value'][$i],ENT_QUOTES)?>'>
+				<p>Например,&nbsp;"Прикладная&nbsp;информатика"&nbsp;или&nbsp;"Управление персоналом"</p>
 				<div class="message"><?=$this->data['data']['inputs']['specialties_specialties']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="year_graduation">Год окончания<span class="required input">Обязательно для заполнения</span></label></td>
+			<td><label for="year_graduation">Год окончания<span class="required input">Обязательно&nbsp;для&nbsp;заполнения</span></label></td>
 			<td>
 				<select name="years_graduations[<?=$i?>]">
 					<option value="0"></option>
@@ -67,7 +68,7 @@
 						<option value="<?=$year?>" <?php if($this->data['data']['inputs']['years_graduations']['value'][$i]==$year)echo'selected' ?>><?=$year?></option>
 					<?php endfor; ?>
 				</select>
-				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<p>Если&nbsp;учитесь&nbsp;в&nbsp;настоящее&nbsp;время&nbsp;—&nbsp;укажите&nbsp;год&nbsp;предполагаемого&nbsp;окончания</p>
 				<div class="message"><?=$this->data['data']['inputs']['years_graduations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -76,7 +77,7 @@
 <?php endfor; ?>
 
 <?php if($this->data['data']['admin'] !== 'manager'): ?>
-	<div class="add_education"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно место обучения</div>
+	<div class="add_education"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать&nbsp;еще&nbsp;одно&nbsp;место&nbsp;обучения</div>
 <?php endif; ?>
 
 <?php for( $i=0; $i <= $this->data['data']['table_training_courses_count']-1; ++$i): ?>
@@ -86,29 +87,29 @@
 	<table id="cours" class="training_courses" data-table-training-courses-id='<?=$i?>'>
 		<thead>
 		<tr>
-			<th colspan="2">Повышение квалификации, курсы</th>
+			<th colspan="2">Повышение квалификации,&nbsp;курсы</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td><label for="courses_name">Название</label></td>
 			<td>
-				<input type="text" id="courses_name" name="courses_names[<?=$i?>]" value='<?=$this->data['data']['inputs']['courses_names']['value'][$i]?>'>
+				<input type="text" id="courses_name" name="courses_names[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['courses_names']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['courses_names']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="follow_organizations">Проводившая организация</label></td>
+			<td><label for="follow_organizations">Проводившая&nbsp;организация</label></td>
 			<td>
-				<input type="text"  id="follow_organizations"  name="follow_organizations[<?=$i?>]" value='<?=$this->data['data']['inputs']['follow_organizations']['value'][$i]?>'>
+				<input type="text"  id="follow_organizations"  name="follow_organizations[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['follow_organizations']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['follow_organizations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="courses_specialty">Cпециализация / специальность</label></td>
+			<td><label for="courses_specialty">Специализация&nbsp;/&nbsp;специальность</label></td>
 			<td>
-				<input type="text"  id="courses_specialty"  name="courses_specialties[<?=$i?>]" value='<?=$this->data['data']['inputs']['courses_specialties']['value'][$i]?>'>
-				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<input type="text"  id="courses_specialty"  name="courses_specialties[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['courses_specialties']['value'][$i],ENT_QUOTES)?>'>
+				<p>Например,&nbsp;"Прикладная&nbsp;информатика"&nbsp;или&nbsp;"Управление персоналом"</p>
 				<div class="message"><?=$this->data['data']['inputs']['courses_specialties']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -121,7 +122,7 @@
 						<option value="<?=$year?>" <?php if($this->data['data']['inputs']['course_years_graduations']['value'][$i]==$year)echo'selected' ?>><?=$year?></option>
 					<?php endfor; ?>
 				</select>
-				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<p>Если&nbsp;учитесь&nbsp;в&nbsp;настоящее&nbsp;время&nbsp;—&nbsp;укажите&nbsp;год&nbsp;предполагаемого&nbsp;окончания</p>
 				<div class="message"><?=$this->data['data']['inputs']['course_years_graduations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -130,7 +131,7 @@
 <?php endfor; ?>
 
 <?php if($this->data['data']['admin'] !== 'manager'): ?>
-	<div class="add_training_courses"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще одно повышение квалификации или курсы</div>
+	<div class="add_training_courses"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать&nbsp;еще&nbsp;одно&nbsp;повышение&nbsp;квалификации&nbsp;или&nbsp;курсы</div>
 <?php endif; ?>
 
 <?php for( $i=0; $i <= $this->data['data']['table_count_tests_exams']-1; ++$i): ?>
@@ -140,36 +141,34 @@
 	<table id="tests" class="tests_exams" data-table-tests-exams-id='<?=$i?>'>
 		<thead>
 		<tr>
-			<th colspan="2">Тесты, экзамены</th>
+			<th colspan="2">Тесты,&nbsp;экзамены</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td><label for="tests_exams_names">Название</label></td>
 			<td>
-				<input type="text" id="tests_exams_names" name="tests_exams_names[<?=$i?>]"
-				       value='<?=$this->data['data']['inputs']['tests_exams_names']['value'][$i]?>'>
+				<input type="text" id="tests_exams_names" name="tests_exams_names[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['tests_exams_names']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['tests_exams_names']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_follow_organizations">Проводившая организация</label></td>
+			<td><label for="tests_exams_follow_organizations">Проводившая&nbsp;организация</label></td>
 			<td>
-				<input type="text"  id="tests_exams_follow_organizations"
-				       name="tests_exams_follow_organizations[<?=$i?>]" value='<?=$this->data['data']['inputs']['tests_exams_follow_organizations']['value'][$i]?>'>
+				<input type="text"  id="tests_exams_follow_organizations" name="tests_exams_follow_organizations[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['tests_exams_follow_organizations']['value'][$i],ENT_QUOTES)?>'>
 				<div class="message"><?=$this->data['data']['inputs']['tests_exams_follow_organizations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_specialty">Cпециализация / специальность</label></td>
+			<td><label for="tests_exams_specialty">Специализация&nbsp;/&nbsp;специальность</label></td>
 			<td>
-				<input type="text"  id="tests_exams_specialty"  name="tests_exams_specialty[<?=$i?>]" value='<?=$this->data['data']['inputs']['tests_exams_specialty']['value'][$i]?>'>
-				<p>Например, "Прикладная информатика" или "Управление персоналом"</p>
+				<input type="text"  id="tests_exams_specialty"  name="tests_exams_specialty[<?=$i?>]" value='<?=htmlspecialchars($this->data['data']['inputs']['tests_exams_specialty']['value'][$i],ENT_QUOTES)?>'>
+				<p>Например,&nbsp;"Прикладная&nbsp;информатика"&nbsp;или&nbsp;"Управление&nbsp;персоналом"</p>
 				<div class="message"><?=$this->data['data']['inputs']['tests_exams_specialty']['val'][$i]['message']?></div>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="tests_exams_years_graduations">Год сдачи</label></td>
+			<td><label for="tests_exams_years_graduations">Год&nbsp;сдачи</label></td>
 			<td>
 				<select name="tests_exams_years_graduations[<?=$i?>]">
 					<option value="0"></option>
@@ -177,7 +176,7 @@
 						<option value="<?=$year?>" <?php if($this->data['data']['inputs']['tests_exams_years_graduations']['value'][$i]==$year)echo'selected' ?>><?=$year?></option>
 					<?php endfor; ?>
 				</select>
-				<p>Если учитесь в настоящее время — укажите год предполагаемого окончания</p>
+				<p>Если&nbsp;учитесь&nbsp;в&nbsp;настоящее&nbsp;время&nbsp;—&nbsp;укажите&nbsp;год&nbsp;предполагаемого&nbsp;окончания</p>
 				<div class="message"><?=$this->data['data']['inputs']['tests_exams_years_graduations']['val'][$i]['message']?></div>
 			</td>
 		</tr>
@@ -186,8 +185,7 @@
 <?php endfor; ?>
 
 <?php if($this->data['data']['admin'] !== 'manager'): ?>
-	<div class="add_tests_exams"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
-		один тест или экзамен</div>
+	<div class="add_tests_exams"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать&nbsp;еще&nbsp;один&nbsp;тест&nbsp;или&nbsp;экзамен</div>
 <?php endif ?>
 
 
@@ -198,7 +196,7 @@
 	<table id="sert" class="electronic_certificates" data-table-electronic-certificates-id='<?=$i?>'>
 		<thead>
 		<tr>
-			<th colspan="2">Электронные сертификаты</th>
+			<th colspan="2">Электронные&nbsp;сертификаты</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -210,7 +208,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="electronic_certificates_years_graduations">Год получения</label></td>
+			<td><label for="electronic_certificates_years_graduations">Год&nbsp;получения</label></td>
 			<td>
 				<select name="electronic_certificates_years_graduations[<?=$i?>]">
 					<option value="0"></option>
@@ -222,7 +220,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="electronic_certificates_links">Ссылка на сертификат</label></td>
+			<td><label for="electronic_certificates_links">Ссылка&nbsp;на&nbsp;сертификат</label></td>
 			<td>
 				<input type="text"  id="electronic_certificates_links" name="electronic_certificates_links[<?=$i?>]" value='<?=$this->data['data']['inputs']['electronic_certificates_links']['value'][$i]?>'>
 				<div class="message"><?=$this->data['data']['inputs']['electronic_certificates_links']['val'][$i]['message']?></div>
@@ -232,19 +230,18 @@
 	</table>
 <?php endfor; ?>
 <?php if($this->data['data']['admin'] !== 'manager'): ?>
-	<div class="add_electronic_certificates"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще
-		сертификат</div>
+	<div class="add_electronic_certificates"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать&nbsp;еще&nbsp;сертификат</div>
 <?php endif; ?>
 
 <table class="possessions_language" id="lang" >
 	<thead>
 	<tr>
-		<th colspan="2">Владения языками</th>
+		<th colspan="2">Владения&nbsp;языками</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-		<td><label for="native_language">родной язык</label></td>
+		<td><label for="native_language">родной&nbsp;язык</label></td>
 		<td>
 			<select id="native_language" name="native_language">
 				<?php foreach($this->data['data']['languages'] as  $language): ?>
@@ -256,23 +253,23 @@
 	</tr>
 
 	<tr>
-		<td><label for="language_english">aнглийский</label></td>
+		<td><label for="language_english">английский</label></td>
 		<td>
 			<select id="language_english" name="language_english">
 				<option value="не владею" <?php if ($this->data['data']['inputs']['language_english']['value']==="не
-				владею")echo'selected'?>>не владею</option>
+				владею")echo'selected'?>>не&nbsp;владею</option>
 				<option value="базовые знания"<?php if
 				($this->data['data']['inputs']['language_english']['value']==="базовые знания")
-					echo'selected'?>>базовые знания</option>
+					echo'selected'?>>базовые&nbsp;знания</option>
 				<option value="читаю профессиональную литературу"<?php if
 				($this->data['data']['inputs']['language_english']['value']==="читаю профессиональную литературу")
-					echo'selected'?>>читаю профессиональную литературу</option>
+					echo'selected'?>>читаю&nbsp;профессиональную&nbsp;литературу</option>
 				<option value="могу проходить интервью"<?php if
 				($this->data['data']['inputs']['language_english']['value']==="могу проходить интервью")
-					echo'selected'?>>могу проходить интервью</option>
+					echo'selected'?>>могу&nbsp;проходить&nbsp;интервью</option>
 				<option value="свободно владею"<?php if
 				($this->data['data']['inputs']['language_english']['value']==="свободно владею")
-					echo'selected'?>>свободно владею</option>
+					echo'selected'?>>свободно&nbsp;владею</option>
 			</select>
 			<div class="message"><?=$this->data['data']['inputs']['language_english']['val']['message']?></div>
 		</td>
@@ -284,19 +281,19 @@
 			<select id="language_germany" name="language_germany">
 				<option value="не владею"
 					<?php if ($this->data['data']['inputs']['language_germany']['value']==="не владею")
-						echo'selected'?>>не владею</option>
+						echo'selected'?>>не&nbsp;владею</option>
 				<option value="базовые знания"<?php if
 				($this->data['data']['inputs']['language_germany']['value']==="базовые знания")
-					echo'selected'?>>базовые знания</option>
+					echo'selected'?>>базовые&nbsp;знания</option>
 				<option value="читаю профессиональную литературу"<?php if
 				($this->data['data']['inputs']['language_germany']['value']==="читаю профессиональную литературу")
-					echo'selected'?>>читаю профессиональную литературу</option>
+					echo'selected'?>>читаю&nbsp;профессиональную&nbsp;литературу</option>
 				<option value="могу проходить интервью"<?php if
 				($this->data['data']['inputs']['language_germany']['value']==="могу проходить интервью")
-					echo'selected'?>>могу проходить интервью</option>
+					echo'selected'?>>могу&nbsp;проходить&nbsp;интервью</option>
 				<option value="свободно владею"<?php if
 				($this->data['data']['inputs']['language_germany']['value']==="свободно владею")
-					echo'selected'?>>свободно владею</option>
+					echo'selected'?>>свободно&nbsp;владею</option>
 			</select>
 			<div class="message"><?=$this->data['data']['inputs']['language_germany']['val']['message']?></div>
 		</td>
@@ -307,19 +304,19 @@
 			<select id="language_french" name="language_french">
 				<option value="не владею"
 					<?php if ($this->data['data']['inputs']['language_french']['value']==="не владею")
-						echo'selected'?>>не владею</option>
+						echo'selected'?>>не&nbsp;владею</option>
 				<option value="базовые знания"<?php if
 				($this->data['data']['inputs']['language_french']['value']==="базовые знания")
-					echo'selected'?>>базовые знания</option>
+					echo'selected'?>>базовые&nbsp;знания</option>
 				<option value="читаю профессиональную литературу"<?php if
 				($this->data['data']['inputs']['language_french']['value']==="читаю профессиональную литературу")
-					echo'selected'?>>читаю профессиональную литературу</option>
+					echo'selected'?>>читаю&nbsp;профессиональную&nbsp;литературу</option>
 				<option value="могу проходить интервью"<?php if
 				($this->data['data']['inputs']['language_french']['value']==="могу проходить интервью")
-					echo'selected'?>>могу проходить интервью</option>
+					echo'selected'?>>могу&nbsp;проходить&nbsp;интервью</option>
 				<option value="свободно владею"<?php if
 				($this->data['data']['inputs']['language_french']['value']==="свободно владею")
-					echo'selected'?>>свободно владею</option>
+					echo'selected'?>>свободно&nbsp;владею</option>
 			</select>
 			<div class="message"><?=$this->data['data']['inputs']['language_french']['val']['message']?></div>
 		</td>
@@ -341,16 +338,16 @@
 					<select id="language_further_level" name="language_further_level[<?=$i?>]">
 						<option value="базовые знания"<?php if
 						($this->data['data']['inputs']['language_further_level']['value'][$i]==="базовые знания")
-							echo'selected'?>>базовые знания</option>
+							echo'selected'?>>базовые&nbsp;знания</option>
 						<option value="читаю профессиональную литературу"<?php if
 						($this->data['data']['inputs']['language_further_level']['value'][$i]==="читаю
-						профессиональную литературу")echo'selected'?>>читаю профессиональную литературу</option>
+						профессиональную литературу")echo'selected'?>>читаю&nbsp;профессиональную&nbsp;литературу</option>
 						<option value="могу проходить интервью"<?php if
 						($this->data['data']['inputs']['language_further_level']['value'][$i]==="могу проходить
-						интервью")echo'selected'?>>могу проходить интервью</option>
+						интервью")echo'selected'?>>могу&nbsp;проходить&nbsp;интервью</option>
 						<option value="свободно владею"<?php if
 						($this->data['data']['inputs']['language_further_level']['value'][$i]==="свободно владею")
-							echo'selected'?>>свободно владею</option>
+							echo'selected'?>>свободно&nbsp;владею</option>
 					</select>
 					<div class="message"><?=$this->data['data']['inputs']['language_further_level']['val'][$i]['message']?></div>
 				</td>
@@ -360,7 +357,7 @@
 	</tbody>
 </table>
 <?php if($this->data['data']['admin'] !== 'manager'): ?>
-	<div class="add_language"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать еще один язык</div>
+	<div class="add_language"><img src='<?=BASE_URL."/public/img/add.png"?>' alt="">Указать&nbsp;еще&nbsp;один&nbsp;язык</div>
 <?php endif; ?>
 <table class="foot_table">
 	<tfoot>

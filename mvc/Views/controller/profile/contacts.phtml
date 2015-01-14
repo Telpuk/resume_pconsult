@@ -19,11 +19,15 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone" value='<?=$this->data['data']['inputs']['comment_mobile_phone']['value']?>'></td>
+					<td  class="comment" colspan="3">
+						Комментарий
+						<br>
+						<input type="text" name="comment_mobile_phone" value='<?=htmlspecialchars($this->data['data']['inputs']['comment_mobile_phone']['value'],ENT_QUOTES)?>'>
+					</td>
 				</tr>
 				<?php if($this->data['data']['inputs']['preferred_communication']['value']!=5 && !$this->data['data']['inputs']['mobile_phone_other']['value'] ):?>
 					<tr id="add_mobile_phone_td">
-						<td colspan="5"><p id="add_mobile_phone"  style="color: green">&nbsp;&nbsp;<img src="<?=BASE_URL."/public/img/add.png"?>">&nbsp;&nbsp;Добавить&nbsp;мобильный&nbsp;телефон</p></td>
+						<td colspan="5"><p id="add_mobile_phone"  style="color: green">&nbsp;&nbsp;<img src="<?=BASE_URL."/public/img/add.png"?>">&nbsp;&nbsp;Дополнительный&nbsp;мобильный&nbsp;номер</p></td>
 					</tr>
 				<?php else: ?>
 					<tr id="add_mobile_phone_td" class="delete_phone">
@@ -42,7 +46,11 @@
 					<tr data-mobile-phone="delete">
 						<td></td>
 						<td></td>
-						<td  class="comment" colspan="3">Комментарий<br><input type="text" name="comment_mobile_phone_other" value='<?=$this->data['data']['inputs']['comment_mobile_phone_other']['value']?>'></td>
+						<td  class="comment" colspan="3">
+							Комментарий
+							<br>
+							<input type="text" name="comment_mobile_phone_other" value='<?=htmlspecialchars($this->data['data']['inputs']['comment_mobile_phone_other']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 
@@ -51,16 +59,18 @@
 					<td><label for="home_phone">Домашний телефон</label></td>
 					<td>+</td>
 					<td><input type="tel"  id="home_phone"  name="home_phone" value='<?=$this->data['data']['inputs']['home_phone']['value']?>'></td>
-					<td><input type="radio" name="preferred_communication"
-							<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи</td>
+					<td>
+						<input type="radio" name="preferred_communication" <?php if($this->data['data']['inputs']['preferred_communication']['value'] == 2)echo'checked'?> value='2'>Желаемый вид связи
+					</td>
 					<td class="message"><span class="required hidden"><span class="required"><?=$this->data['data']['inputs']['home_phone']['val']['message']?></span></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td class="comment" colspan="3">
-						Комментарий<br>
-						<input type="text" name="comment_home_phone" value='<?=$this->data['data']['inputs']['comment_home_phone']['value']?>'>
+						Комментарий
+						<br>
+						<input type="text" name="comment_home_phone" value='<?=htmlspecialchars($this->data['data']['inputs']['comment_home_phone']['value'],ENT_QUOTES)?>'>
 					</td>
 				</tr>
 				<tr>
@@ -69,14 +79,13 @@
 					<td><input type="tel"  id="work_phone" name="work_phone" value='<?=$this->data['data']['inputs']['work_phone']['value']?>'></td>
 					<td><input type="radio" name="preferred_communication"
 							<?php if ($this->data['data']['inputs']['preferred_communication']['value'] == 3)echo'checked'?> value='3'>Желаемый вид связи</td>
-					<td class="message"><span class="required"><span
-								class="required"><?=$this->data['data']['inputs']['work_phone']['val']['message']?></span></td>
+					<td class="message"><span class="required"><span class="required"><?=$this->data['data']['inputs']['work_phone']['val']['message']?></span></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
 					<td  class="comment" colspan="4">
-						Комментарий<br><input type="text" name="comment_work_phone" value='<?=$this->data['data']['inputs']['comment_work_phone']['value']?>'>
+						Комментарий<br><input type="text" name="comment_work_phone" value='<?=htmlspecialchars($this->data['data']['inputs']['comment_work_phone']['value'],ENT_QUOTES)?>'>
 					</td>
 				</tr>
 				<tr>
@@ -90,21 +99,27 @@
 					<tr>
 						<td><label for="skype">Skype</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/skype.png"></td>
-						<td colspan="3"><input type="text" id="skype" name="skype" value='<?=$this->data['data']['inputs']['skype']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="skype" name="skype" value='<?=htmlspecialchars($this->data['data']['inputs']['skype']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<?php if($this->data['data']['inputs']['icq']['value']): ?>
 					<tr>
 						<td><label for="icq">ICQ</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/icq.png"></td>
-						<td colspan="3"><input type="text" id="icq" name="icq" value='<?=$this->data['data']['inputs']['icq']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="icq" name="icq" value='<?=htmlspecialchars($this->data['data']['inputs']['icq']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<?php if($this->data['data']['inputs']['free_lance']['value']): ?>
 					<tr>
 						<td><label for="free_lance">Free-lance</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/free_lance.png"></td>
-						<td colspan="3"><input type="text" id="free_lance" name="free_lance" value='<?=$this->data['data']['inputs']['free_lance']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="free_lance" name="free_lance" value='<?=htmlspecialchars($this->data['data']['inputs']['free_lance']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 
@@ -112,21 +127,26 @@
 					<tr>
 						<td><label for="my_circle">Мой круг</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/my_circle.png"></td>
-						<td colspan="3"><input type="text" id="my_circle" name="my_circle" value='<?=$this->data['data']['inputs']['my_circle']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="my_circle" name="my_circle" value='<?=htmlspecialchars($this->data['data']['inputs']['my_circle']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<?php if($this->data['data']['inputs']['linkedln']['value']): ?>
 					<tr>
 						<td><label for="linkedln">Linkedln</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/linkedln.png"></td>
-						<td colspan="3"><input type="text" id="linkedln" name="linkedln" value='<?=$this->data['data']['inputs']['linkedln']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="linkedln" name="linkedln" value='<?=htmlspecialchars($this->data['data']['inputs']['linkedln']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<?php if($this->data['data']['inputs']['facebook']['value']): ?>
 					<tr>
 						<td><label for="facebook">Facebook</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/facebook.png"></td>
-						<td colspan="3"><input type="text" id="facebook" name="facebook" value='<?=$this->data['data']['inputs']['facebook']['value']?>'>
+						<td colspan="3">
+							<input type="text" id="facebook" name="facebook" value='<?=htmlspecialchars($this->data['data']['inputs']['facebook']['value'],ENT_QUOTES)?>'>
 						</td>
 					</tr>
 				<?php endif ?>
@@ -134,14 +154,18 @@
 					<tr>
 						<td><label for="live_journal">LiveJournal</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/live_journal.png"></td>
-						<td colspan="3"><input type="text" id="live_journal" name="live_journal" value='<?=$this->data['data']['inputs']['live_journal']['value']?>'></td>
+						<td colspan="3">
+							<input type="text" id="live_journal" name="live_journal" value='<?=htmlspecialchars($this->data['data']['inputs']['live_journal']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<?php if($this->data['data']['inputs']['other_site']['value']): ?>
 					<tr>
 						<td><label for="other_site">Другой сайт</label></td>
 						<td><img src="<?=BASE_URL?>/public/img/other_site.png"></td>
-						<td colspan="3"><input type="text"  id="other_site" name="other_site" value='<?=$this->data['data']['inputs']['other_site']['value']?>'></td>
+						<td colspan="3">
+							<input type="text"  id="other_site" name="other_site" value='<?=htmlspecialchars($this->data['data']['inputs']['other_site']['value'],ENT_QUOTES)?>'>
+						</td>
 					</tr>
 				<?php endif ?>
 				<tr>
