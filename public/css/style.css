@@ -1965,7 +1965,6 @@ table.foot_table  tr td{
 
 #city_example, #nationality_example, #work_permit_example{
     color: rgba(175, 175, 175, .8);
-    font-weight: bold;
     border-bottom: 1px rgba(175, 175, 175, .8) dashed;
 }
 
@@ -2308,6 +2307,7 @@ table.electronic_certificates  tbody td:nth-child(2) {
 
 
 .function_td p{
+    color: #919191;
     font-size: .8em;
 }
 
@@ -2665,6 +2665,9 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .right_admin_control .user_id .inform_user .salary_inform_user{
+    text-transform: uppercase;
+    font-size: 0.85em;
+    color: #666;
     float: right;
     width: 35%;
     border-radius: 10px;
@@ -2673,6 +2676,23 @@ main.authorization .helpers_message_authorization{
     box-shadow: 0 0 10px rgba(87, 171, 255, 0.73);
 
 }
+
+.admin_control .right_admin_control .user_id .inform_user .showComment,
+.admin_control .right_admin_control .user_id .inform_user .showConclusion{
+    width: 90px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-bottom: 1px #666 dashed;
+
+}
+.admin_control .right_admin_control .user_id .inform_user .showComment:hover,
+.admin_control .right_admin_control .user_id .inform_user .showConclusion:hover{
+    color: red;
+}
+
 
 .admin_control.folders .right_admin_control .user_id .inform_user .salary_inform_user{
     font-size: 0.85em;
@@ -2860,6 +2880,7 @@ main.authorization .helpers_message_authorization{
 }
 
 .admin_control .conclusion{
+    display: none;
     width: 100%;
     min-height: 110px;
     margin-top: 5px;
@@ -2869,6 +2890,71 @@ main.authorization .helpers_message_authorization{
     -moz-border-radius: 10px;
     background-color: white;
 }
+.closeBlock {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.closeBlock:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    height: 7px;
+    width: 7px;
+    bottom: 0;
+    background: no-repeat url(../../public/img/sprite.png) 0 0;
+}
+.admin_control .containerComment{
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid rgba(87, 171, 255, 0.42);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-color: white;
+}
+.admin_control .containerComment h1{
+    color: rgba(87, 171, 255, 0.42);
+    text-align: center;
+    text-transform: uppercase;
+}
+.admin_control .containerComment .addComment{
+    display: none;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10px;
+}
+.admin_control .containerComment .addComment span{
+    display: block;
+}
+.admin_control .containerComment .addComment span:last-child{
+    background-color: #ffffff;
+    border: 1px solid rgba(87, 171, 255, 0.42);
+    position: absolute;
+    padding: 10px;
+    z-index: 2;
+}
+
+.admin_control .containerComment .addComment span:last-child div{
+    float: left;
+    margin-left: 10px;
+}
+.admin_control .containerComment .addComment span:last-child div textarea{
+    width: 300px;
+    min-height: 50px;
+    resize: vertical;
+}
+
+
+
+
 
 .admin_control .conclusion h1{
     width: 100%;

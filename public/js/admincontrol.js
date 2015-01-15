@@ -1,7 +1,9 @@
 (function($, BASE_URL,window){
-    function Resume(){
+    function AdminControl(){
         this.$html = $('html');
         this.$conclusion = $('.conclusion');
+        this.$commentAndConclusion = $('.commentAndConclusion');
+
         this.conclusion_text;
         this.cache = {};
 
@@ -17,7 +19,7 @@
         this.$ajax_loader_admin = $('#ajax_loader_admin');
     }
 
-    Resume.prototype.resetChecked = function(){
+    AdminControl.prototype.resetChecked = function(){
         $('input[type=checkbox]',this.$download_content).each(function () {
             var $self = $(this);
             if ($self.filter(":checkbox:checked").length !== 0) {
@@ -26,7 +28,7 @@
         });
     };
 
-    Resume.prototype.conclusionClose = function($element){
+    AdminControl.prototype.conclusionClose = function($element){
         for(var i in  this.cache){
             if(i != $element.parent().parent().data('idConclusion')){
                 this.cache[i]['element'].html(
@@ -41,7 +43,7 @@
         }
     };
 
-    Resume.prototype.addEventListenerBody = function(){
+    AdminControl.prototype.addEventListenerBody = function(){
         this.$html.on('click',{self:this},function(event){
             event.data.self.conclusionClose($(event.target));
             event.data.self.$download_content.hide();
@@ -50,7 +52,7 @@
     };
 
 
-    Resume.prototype.addEventListenerConclusion = function(){
+    AdminControl.prototype.addEventListenerConclusion = function(){
         this.$conclusion.on('click', {self:this}, function(event){
             var $self = $(this);
 
@@ -134,7 +136,7 @@
         });
     };
 
-    Resume.prototype.addEventListenerDownloadWord = function () {
+    AdminControl.prototype.addEventListenerDownloadWord = function () {
         this.$download.on('click', {self: this}, function (event) {
 
             var   href_export = '/id/' + $('.download_content',$(this)).data('idUser');
@@ -150,7 +152,7 @@
     };
 
 
-    Resume.prototype.addEventListenerDownloadContent = function () {
+    AdminControl.prototype.addEventListenerDownloadContent = function () {
         this.$download_content.on('click', {self: this}, function (event) {
             var checkbox = {},
                 href_export = '/id/' + $(this).data('idUser');
@@ -175,7 +177,7 @@
         });
     };
 
-    Resume.prototype.addEventListenerWidgetRight = function(){
+    AdminControl.prototype.addEventListenerWidgetRight = function(){
         var self = this;
 
         this.$icon_user.on('click', function() {
@@ -221,7 +223,7 @@
 
     };
 
-    Resume.prototype.addEventListenerFIOContent= function() {
+    AdminControl.prototype.addEventListenerFIOContent= function() {
         this.$form_user_admin.on('submit change',{self:this} ,function (event) {
             var $name_first = $('#name_first' ,$(this));
             var $login = $('#login' ,$(this));
@@ -308,19 +310,50 @@
 
         });
     };
+    AdminControl.prototype.buildCommentBlock = function(id, $container){
+        $container.css({
+            'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) no-repeat',
+            'background-position': 'center'
+        });
+    };
 
-    Resume.prototype.init = function(){
+
+    AdminControl.prototype.addEventListenerCommentAndConclusion = function(){
+        this.$commentAndConclusion.on('click', {self:this},function(event){
+            var $element = $(event.target);
+            if($element.hasClass('showComment')){
+                var $container = $('.containerComment' ,$element.parents('.user_id'));
+
+                if($container.is(':hidden')){
+                    event.data.self.buildCommentBlock($container.data('userId'), $container);
+                }
+                $container.toggle(100);
+
+                $('.conclusion' ,$element.parents('.user_id')).hide();
+            }else if($element.hasClass('showConclusion')){
+                $('.containerComment' ,$element.parents('.user_id')).hide();
+                $('.conclusion' ,$element.parents('.user_id')).toggle(100);
+
+            }
+
+            return false;
+        });
+    };
+
+    AdminControl.prototype.init = function(){
         this.addEventListenerDownloadWord();
 
         this.addEventListenerWidgetRight();
         this.addEventListenerFIOContent();
+
+        this.addEventListenerCommentAndConclusion();
 
         this.addEventListenerDownloadContent();
         this.addEventListenerConclusion();
         this.addEventListenerBody();
     };
 
-    var resume = new Resume();
+    var resume = new AdminControl();
     resume.init();
 
 })(jQuery,BASE_URL ,window)
