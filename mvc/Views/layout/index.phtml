@@ -135,6 +135,14 @@
 	</div>
 </div>
 </body>
+<script id="template-comment" type="text/x-handlebars-template">
+	{{#each object}}
+	<fieldset>
+		<legend><span class="closeBlock" title="удалить" data-id-comment = "{{this.id}}"></span>{{this.name}}&nbsp;{{this.date}}</legend>
+		{{this.comment}}
+	</fieldset>
+	{{/each}}
+</script>
 <script id="tr-template-mobilePhone" type="text/x-handlebars-template">
 	<tr data-mobile-phone="delete">
 		<td></td>

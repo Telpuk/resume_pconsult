@@ -1,6 +1,5 @@
 <?php
 class View{
-	private $_helpers_menu = '';
 	private $_content = '';
 	private $_javascript = '';
 

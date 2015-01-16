@@ -40,8 +40,8 @@ class User{
 
 	public function addComment($comment, $id_user, $id_admin){
 		try {
-			$stmt = $this->_dbc->prepare ("INSERT INTO comments(id_user, comment, id_admin)".
-				"VALUES(:id_user, :comment, :id_admin)");
+			$stmt = $this->_dbc->prepare ('INSERT INTO comments(id_user, comment, id_admin)'.
+				'VALUES(:id_user, :comment, :id_admin)');
 			$stmt->execute(array(
 				':comment'=>$comment,
 				':id_user'=>$id_user,

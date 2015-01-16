@@ -158,6 +158,22 @@ class Admin{
 		}
 	}
 
+	public function getCommentUser($id = null){
+		if(!is_null($id)){
+			try {
+				$stmt= $this->_dbc->prepare( "SELECT comments.id,comments.id_user,comments.id_admin,comments.comment,
+				CONCAT_WS(' ',name_first, users.name_second) as name,DATE_FORMAT(DATE, '%Y-%m-%d %h:%i') AS date FROM
+				 comments, users WHERE id_user = :id_user ORDER BY date DESC");
+				$stmt->execute(array(':id_user'=>$id));
+				return  $this->_user_object->json_encode_cyr($stmt->fetchAll(PDO::FETCH_ASSOC));
+			}catch (PDOException $e){
+				exit(print_r($e->errorInfo).$e->getFile());
+			}
+		}
+		return false;
+
+	}
+
 	public function deleteManager($id){
 		try {
 			$stm= $this->_dbc->prepare( "DELETE users FROM users WHERE id = :id");

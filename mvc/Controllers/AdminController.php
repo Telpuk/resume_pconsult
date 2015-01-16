@@ -15,6 +15,7 @@ class AdminController extends IController{
 		$this->sessionClear();
 		return $this->_view->render(array(
 			'view' => 'admin/authorization',
+			'js'=> $this->_jsAdmin()
 		));
 	}
 
@@ -30,7 +31,9 @@ class AdminController extends IController{
 				if ($users === false) {
 					return $this->_view->render(array(
 						'view' => 'admin/authorization',
-						'data' => array('helpers' => array('no-authorization' => 'admin/helpers/repeat'), 'login' => $_POST['login'])
+						'data' => array('helpers' => array('no-authorization' => 'admin/helpers/repeat'),
+							'login' => $_POST['login']),
+						'js'=> $this->_jsAdmin()
 
 					));
 				} else if(isset($users['type_user']) && isset($users['id'])){
@@ -48,17 +51,27 @@ class AdminController extends IController{
 			} else {
 				return $this->_view->render(array(
 					'view' => 'admin/authorization',
-					'data' => array('helpers' => array('no-authorization' => 'admin/helpers/empty_input'), 'login' => $_POST['login'])
+					'data' => array('helpers' => array('no-authorization' => 'admin/helpers/empty_input'),
+						'login' => $_POST['login']),
+					'js'=> $this->_jsAdmin()
 
 				));
 			}
 		}else{
 			return $this->_view->render(array(
 				'view' => 'admin/authorization',
+				'js'=> $this->_jsAdmin()
 			));
 		}
+	}
 
-
+	private  function _jsAdmin(){
+		return array(
+			'src'=>array(
+				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/jquery.validate.min.js",
+			),
+		);
 	}
 
 }

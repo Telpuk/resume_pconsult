@@ -2685,7 +2685,7 @@ main.authorization .helpers_message_authorization{
     margin-left: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    border-bottom: 1px #666 dashed;
+    text-decoration: underline;
 
 }
 .admin_control .right_admin_control .user_id .inform_user .showComment:hover,
@@ -2910,7 +2910,7 @@ main.authorization .helpers_message_authorization{
     background: no-repeat url(../../public/img/sprite.png) 0 0;
 }
 .admin_control .containerComment{
-    display: block;
+    display: none;
     width: 100%;
     min-height: 110px;
     margin-top: 5px;
@@ -2921,22 +2921,30 @@ main.authorization .helpers_message_authorization{
     background-color: white;
 }
 .admin_control .containerComment h1{
-    color: rgba(87, 171, 255, 0.42);
+    color: #0050a3;
     text-align: center;
     text-transform: uppercase;
 }
 .admin_control .containerComment .addComment{
-    display: none;
-    cursor: pointer;
     position: relative;
     margin-left: 10px;
 }
-.admin_control .containerComment .addComment span{
-    display: block;
+.admin_control .containerComment .addComment span:first-child:hover{
+    color: red;
 }
-.admin_control .containerComment .addComment span:last-child{
+
+.admin_control .containerComment .addComment span:first-child{
+    display: block;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.8em;
+}
+.admin_control .containerComment .addComment .inputComment{
+    display: none;
+    border-radius: 10px;
     background-color: #ffffff;
-    border: 1px solid rgba(87, 171, 255, 0.42);
+    -moz-border-radius: 10px;
+    box-shadow: 0 0 10px rgba(87, 171, 255, 0.73);
     position: absolute;
     padding: 10px;
     z-index: 2;

@@ -1,8 +1,13 @@
-(function($, BASE_URL,window){
+(function($, BASE_URL,HBS,window){
     function AdminControl(){
         this.$html = $('html');
         this.$conclusion = $('.conclusion');
         this.$commentAndConclusion = $('.commentAndConclusion');
+
+        this.templateComment = $("#template-comment").html();
+        this.$commentBlock = $('.commentBlock');
+
+        this.$addComment = $('.addComment');
 
         this.conclusion_text;
         this.cache = {};
@@ -150,7 +155,6 @@
             event.stopPropagation();
         });
     };
-
 
     AdminControl.prototype.addEventListenerDownloadContent = function () {
         this.$download_content.on('click', {self: this}, function (event) {
@@ -310,10 +314,34 @@
 
         });
     };
+
+    AdminControl.prototype.removeWithoutComments = function($element){
+
+        console.log($('.commentBlock',$element));
+        console.log($element);
+        console.log($('input.without_comments[type=checkbox]',$element));
+    };
+
+
     AdminControl.prototype.buildCommentBlock = function(id, $container){
+        var self = this;
+
         $container.css({
-            'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) no-repeat',
+            'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) 100% 100% no-repeat',
             'background-position': 'center'
+        });
+
+        $.post(BASE_URL+'/admincontrol/getcomment', {'id':id} ,function(data){
+            var data = $.parseJSON(data);
+            var template = HBS.compile(self.templateComment);
+            var html = template({'object': data});
+
+            $('.commentBlock', $container).html(html);
+
+
+            $container.css({
+                'background': 'white'
+            });
         });
     };
 
@@ -339,6 +367,58 @@
             return false;
         });
     };
+    AdminControl.prototype.addEventListenerCommentBlock = function(){
+        this.$commentBlock.on('click', {self:this} ,function(event){
+
+            var $element =  $(event.target);
+            $('.inputComment',$element.parents('.commentBlock').siblings('.addComment')).hide();
+
+            if($element.hasClass('closeBlock') && $element.data('idComment')){
+                var $block = $element.parent('.containerComment');
+
+                $block.css({
+                    'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) 100% 100% no-repeat',
+                    'background-position': 'center'
+                });
+
+                $.post(BASE_URL+'/admincontrol/dcomment', {'id':$element.data('idComment')} ,function(data){
+                    $element.parents('fieldset').remove();
+
+                    event.data.self.removeWithoutComments($block.parents('.inform_user'));
+
+                    $block.css({
+                        'background': 'white'
+                    });
+                });
+            }
+
+        });
+    };
+
+    AdminControl.prototype.addEventListenerAddComment = function(){
+
+        this.$addComment.on('click', {self:this} ,function(event){
+            var $element = $(event.target);
+            var self = $(this);
+            if($element.hasClass('addSpam')){
+                $element.siblings('.inputComment').toggle();
+            }else if(event.target.tagName.toLocaleLowerCase() === 'button'){
+                var $ele =$('textarea',$element.parent('div').siblings('div'));
+
+                if($ele.val()){
+                    $.post(BASE_URL+'/admincontrol/addcomment', {
+                        'comment':$ele.val(),
+                        'id_user': $element.data('userId'),
+                        'id_admin':1
+                    } ,function(data){
+                        $('.inputComment',self).hide();
+                        $ele.val('');
+                        event.data.self.buildCommentBlock($element.data('userId'), self.parent('.containerComment'));
+                    });
+                }
+            }
+        });
+    };
 
     AdminControl.prototype.init = function(){
         this.addEventListenerDownloadWord();
@@ -346,7 +426,11 @@
         this.addEventListenerWidgetRight();
         this.addEventListenerFIOContent();
 
+        this.addEventListenerCommentBlock();
+
         this.addEventListenerCommentAndConclusion();
+
+        this.addEventListenerAddComment();
 
         this.addEventListenerDownloadContent();
         this.addEventListenerConclusion();
@@ -356,5 +440,5 @@
     var resume = new AdminControl();
     resume.init();
 
-})(jQuery,BASE_URL ,window)
+})(jQuery,BASE_URL,Handlebars, window)
 

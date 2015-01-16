@@ -90,18 +90,13 @@
 				<div class="containerComment" data-user-id="<?=$user['id']?>">
 					<h1>Комментарии</h1>
 					<div class="addComment">
-						<span>ДОБАВИТЬ КОММЕНТАРИЙ</span>
-						<span>
-							<div><button>ОК</button></div>
-							<div><textarea></textarea></div>
+						<span class="addSpam">ДОБАВИТЬ КОММЕНТАРИЙ</span>
+						<span class="inputComment">
+							<div><button data-user-id="<?=$user['id']?>" class="buttonComment">ОК</button></div>
+							<div><textarea placeholder="Введите коментарий"></textarea></div>
 						</span>
 					</div>
-					<div class="commentBlock">
-						<fieldset>
-							<legend><span class="closeBlock" onclick="confirm('Хотите удалить?')"></span>admin</legend>
-							fdsfdsfds sdfndkjshfkds sfkjdshf
-						</fieldset>
-					</div>
+					<div class="commentBlock"></div>
 				</div>
 				<div class="clear"></div>
 			</div>
