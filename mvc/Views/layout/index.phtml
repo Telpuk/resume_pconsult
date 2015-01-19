@@ -138,7 +138,11 @@
 <script id="template-comment" type="text/x-handlebars-template">
 	{{#each object}}
 	<fieldset>
-		<legend><span class="closeBlock" title="удалить" data-id-comment = "{{this.id}}"></span>{{this.name}}&nbsp;{{this.date}}</legend>
+		<legend>
+			{{#equal this.access_delete  "yes"}}
+			<span class="closeBlock" title="удалить" data-id-comment = "{{this.id}}"></span>
+			{{/equal}}
+			&nbsp;{{this.name}}&nbsp;{{this.date}}</legend>
 		{{this.comment}}
 	</fieldset>
 	{{/each}}

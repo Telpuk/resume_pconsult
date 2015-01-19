@@ -315,11 +315,18 @@
         });
     };
 
-    AdminControl.prototype.removeWithoutComments = function($element){
+    AdminControl.prototype.removeWithoutComments = function($userBlock){
+        var $commentBlock = $('.commentBlock',$userBlock);
+        var $download_content = $('.download_content',$userBlock);
+        var $inputWithoutComments = $('input.without_comments[type=checkbox]',$download_content);
+        if($.trim($commentBlock.html())){
+            if(!$inputWithoutComments.length){
+                $download_content.prepend('<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>');
+            }
+        }else{
+            $inputWithoutComments.parent('p').remove();
+        }
 
-        console.log($('.commentBlock',$element));
-        console.log($element);
-        console.log($('input.without_comments[type=checkbox]',$element));
     };
 
 
@@ -333,6 +340,19 @@
 
         $.post(BASE_URL+'/admincontrol/getcomment', {'id':id} ,function(data){
             var data = $.parseJSON(data);
+
+
+            HBS.registerHelper('equal', function(lvalue, rvalue, options) {
+                if (arguments.length < 3)
+                    throw new Error("Handlebars Helper equal needs 2 parameters");
+                if( lvalue!=rvalue ) {
+                    return options.inverse(this);
+                } else {
+                    return options.fn(this);
+                }
+            });
+
+
             var template = HBS.compile(self.templateComment);
             var html = template({'object': data});
 
@@ -342,6 +362,8 @@
             $container.css({
                 'background': 'white'
             });
+
+            self.removeWithoutComments($container.parents('.user_id'));
         });
     };
 
@@ -371,10 +393,10 @@
         this.$commentBlock.on('click', {self:this} ,function(event){
 
             var $element =  $(event.target);
-            $('.inputComment',$element.parents('.commentBlock').siblings('.addComment')).hide();
+            $('.inputComment',$element.parent('.commentBlock').siblings('.addComment')).hide();
 
             if($element.hasClass('closeBlock') && $element.data('idComment')){
-                var $block = $element.parent('.containerComment');
+                var $block = $element.parents('.containerComment');
 
                 $block.css({
                     'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) 100% 100% no-repeat',
@@ -384,7 +406,7 @@
                 $.post(BASE_URL+'/admincontrol/dcomment', {'id':$element.data('idComment')} ,function(data){
                     $element.parents('fieldset').remove();
 
-                    event.data.self.removeWithoutComments($block.parents('.inform_user'));
+                    event.data.self.removeWithoutComments($block.parent('.user_id'));
 
                     $block.css({
                         'background': 'white'
@@ -408,8 +430,7 @@
                 if($ele.val()){
                     $.post(BASE_URL+'/admincontrol/addcomment', {
                         'comment':$ele.val(),
-                        'id_user': $element.data('userId'),
-                        'id_admin':1
+                        'id_user': $element.data('userId')
                     } ,function(data){
                         $('.inputComment',self).hide();
                         $ele.val('');

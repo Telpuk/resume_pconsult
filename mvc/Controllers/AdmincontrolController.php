@@ -34,15 +34,15 @@ class AdminControlController extends IController{
 	}
 
 	public function addcommentAction(){
-		if(isset($_POST['comment']) && isset($_POST['id_user']) && isset($_POST['id_admin'])){
-			$this->_db_user->addComment($_POST['comment'], $_POST['id_user'], $_POST['id_admin']);
+		if(isset($_POST['comment']) && isset($_POST['id_user'])){
+			$this->_db_user->addComment($_POST['comment'], $_POST['id_user'],$this->getSessionUserID('id_user_admin'));
 		}
 		exit;
 	}
 
 	public function getcommentAction(){
 		if(isset($_POST['id'])){
-			echo($this->_db_admin->getCommentUser((int)$_POST['id']));
+			echo($this->_db_admin->getCommentUser((int)$_POST['id'], $this->getSessionUserID('id_user_admin')));
 		}
 		exit;
 	}
@@ -428,6 +428,7 @@ class AdminControlController extends IController{
 		return array(
 			'src'=>array(
 				BASE_URL."/public/js/jquery-2.1.1.min.js",
+				BASE_URL."/public/js/handlebars-v2.0.0.js",
 				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 				BASE_URL."/public/js/folders.js"
 			),

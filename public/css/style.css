@@ -2649,7 +2649,7 @@ main.authorization .helpers_message_authorization{
 .admin_control.folders .right_admin_control .user_id .person_inform{
     float: right;
     margin-right: 10px;
-    width: 340px;
+    width: 55%;
 }
 .admin_control .right_admin_control .user_id .inform_user p{
     margin-top: 5px;
@@ -3151,6 +3151,10 @@ main.authorization .helpers_message_authorization{
     width: 100%;
     padding: 10px 0 10px 0 !important;
     margin: 10px 0 10px 0 !important;
+}
+
+.admin_control.folders .user_folders .user_id  .inform_user .salary_inform_user{
+    width: 40%;
 }
 
 

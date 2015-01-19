@@ -33,7 +33,7 @@
 		}
 
 		public function getSessionUserID($user){
-			return isset($_SESSION['session_users']['users'][$user]) ? $_SESSION['session_users']['users'][$user]: false;
+			return isset($_SESSION['session_users']['users'][$user]) ? $_SESSION['session_users']['users'][$user]:false;
 		}
 
 		public function deleteSessionUsers($user){

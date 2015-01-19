@@ -1,6 +1,17 @@
-(function($, BASE_URL,window){
+(function($, BASE_URL,HBS, window){
     function Folders(){
         this.$html = $('body');
+
+        this.$conclusion = $('.conclusion');
+        this.$commentAndConclusion = $('.commentAndConclusion');
+
+        this.templateComment = $("#template-comment").html();
+        this.$commentBlock = $('.commentBlock');
+
+        this.$addComment = $('.addComment');
+
+
+
         this.$addFolder = $('#addFolder');
         this.$input_new_folder_block = $('#input_new_folder_block');
         this.$inout_text = $('#new_folder');
@@ -391,11 +402,145 @@
     };
 
 
+
+    Folders.prototype.buildCommentBlock = function(id, $container){
+        var self = this;
+
+        $container.css({
+            'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) 100% 100% no-repeat',
+            'background-position': 'center'
+        });
+
+        $.post(BASE_URL+'/admincontrol/getcomment', {'id':id} ,function(data){
+            var data = $.parseJSON(data);
+
+
+            HBS.registerHelper('equal', function(lvalue, rvalue, options) {
+                if (arguments.length < 3)
+                    throw new Error("Handlebars Helper equal needs 2 parameters");
+                if( lvalue!=rvalue ) {
+                    return options.inverse(this);
+                } else {
+                    return options.fn(this);
+                }
+            });
+
+
+            var template = HBS.compile(self.templateComment);
+            var html = template({'object': data});
+
+            $('.commentBlock', $container).html(html);
+
+
+            $container.css({
+                'background': 'white'
+            });
+
+            self.removeWithoutComments($container.parents('.user_id'));
+        });
+    };
+
+
+    Folders.prototype.addEventListenerCommentAndConclusion = function(){
+        this.$commentAndConclusion.on('click', {self:this},function(event){
+            var $element = $(event.target);
+            if($element.hasClass('showComment')){
+                var $container = $('.containerComment' ,$element.parents('.user_id'));
+
+                if($container.is(':hidden')){
+                    event.data.self.buildCommentBlock($container.data('userId'), $container);
+                }
+                $container.toggle(100);
+
+                $('.conclusion' ,$element.parents('.user_id')).hide();
+            }else if($element.hasClass('showConclusion')){
+                $('.containerComment' ,$element.parents('.user_id')).hide();
+                $('.conclusion' ,$element.parents('.user_id')).toggle(100);
+
+            }
+
+            return false;
+        });
+    };
+    Folders.prototype.addEventListenerCommentBlock = function(){
+        this.$commentBlock.on('click', {self:this} ,function(event){
+
+            var $element =  $(event.target);
+            $('.inputComment',$element.parent('.commentBlock').siblings('.addComment')).hide();
+
+            if($element.hasClass('closeBlock') && $element.data('idComment')){
+                var $block = $element.parents('.containerComment');
+
+                $block.css({
+                    'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif) 100% 100% no-repeat',
+                    'background-position': 'center'
+                });
+
+                $.post(BASE_URL+'/admincontrol/dcomment', {'id':$element.data('idComment')} ,function(data){
+                    $element.parents('fieldset').remove();
+
+                    event.data.self.removeWithoutComments($block.parent('.user_id'));
+
+                    $block.css({
+                        'background': 'white'
+                    });
+                });
+            }
+
+        });
+    };
+
+    Folders.prototype.addEventListenerAddComment = function(){
+
+        this.$addComment.on('click', {self:this} ,function(event){
+            var $element = $(event.target);
+            var self = $(this);
+            if($element.hasClass('addSpam')){
+                $element.siblings('.inputComment').toggle();
+            }else if(event.target.tagName.toLocaleLowerCase() === 'button'){
+                var $ele =$('textarea',$element.parent('div').siblings('div'));
+
+                if($ele.val()){
+                    $.post(BASE_URL+'/admincontrol/addcomment', {
+                        'comment':$ele.val(),
+                        'id_user': $element.data('userId')
+                    } ,function(data){
+                        $('.inputComment',self).hide();
+                        $ele.val('');
+                        event.data.self.buildCommentBlock($element.data('userId'), self.parent('.containerComment'));
+                    });
+                }
+            }
+        });
+    };
+
+    Folders.prototype.removeWithoutComments = function($userBlock){
+        var $commentBlock = $('.commentBlock',$userBlock);
+        var $download_content = $('.download_content',$userBlock);
+        var $inputWithoutComments = $('input.without_comments[type=checkbox]',$download_content);
+        if($.trim($commentBlock.html())){
+            if(!$inputWithoutComments.length){
+                $download_content.prepend('<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>');
+            }
+        }else{
+            $inputWithoutComments.parent('p').remove();
+        }
+
+    };
+
+
     Folders.prototype.init = function(){
         this.addEventListenerDownloadWord();
         this.addEventListenerDownloadContent();
         this.addEventListenerHtml();
         this.addEventListenerWidgetRight();
+
+        this.addEventListenerCommentBlock();
+
+        this.addEventListenerCommentAndConclusion();
+
+        this.addEventListenerAddComment();
+
         this.addEventListenerFIOContent();
         this.addEventListenerAddFolder();
         this.addEventListenerConclusion();
@@ -406,5 +551,5 @@
     var folders = new Folders();
     folders.init();
 
-})(jQuery,BASE_URL ,window)
+})(jQuery,BASE_URL, Handlebars ,window)
 

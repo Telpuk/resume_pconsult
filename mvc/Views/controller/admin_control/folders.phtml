@@ -8,98 +8,116 @@
 	<div class="right_admin_control">
 		<?=$this->data['helpers']['widget_folders']?>
 		<?php if($this->data['data']['id_folders_active']): ?>
-			<nav>
-				<?=$this->data['data']['pagination']?>
-			</nav>
-			<div class="search_folders">
-				<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
-					<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search_folders_user']?>">
-					<input type="submit"  value="искать в папке">
-					<span><?=$this->data['data']['message']?></span>
-				</form>
-			</div>
-			<div class="user_folders">
-				<?php foreach($this->data['data']['users'] as $key=>$user): ?>
-					<div class="user_id">
-						<figure>
-							<a target="_blank" href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
-						</figure>
-						<div class="inform_user">
-							<div class="salary_inform_user">
-								<span>Зарплата: <span class="inform-user-left"><?=$user['salary']?></span></span>
-								<span>Возраст: <span class="inform-user-left"><?=$user['years_user']?></span></span>
-								<span>Дата: <span class="inform-user-left"><?=$user['date_registration']?></span></span>
-								<span>
-									<div class="download">
-										<p class="active_download">
-											<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
-										</p>
-										<div data-id-user="<?=$user['id']?>" class="download_content">
-											<?php if ($user['comments_count']): ?>
-												<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
-											<?php endif; ?>
-											<?php if (!empty($user['conclusion'])): ?>
-												<p><input type="checkbox" class="without_conclusion" value="conclusion">Без заключения</p>
-											<?php endif; ?>
-											<p>
-												<button class="button">Скачать</button>
-											</p>
-										</div>
-									</div>
-								</span>
-							</div>
-							<div class="person_inform">
-								<div class="position"><?=$user['desired_position']?></div>
-								<div class="name_user_inform">
-									<a target="_blank" href="<?=BASE_URL."/index/index/id/".$user['id']?>"><?=$user['name']?></a>
+		<nav>
+			<?=$this->data['data']['pagination']?>
+		</nav>
+		<div class="search_folders">
+			<form action='<?=BASE_URL."/admincontrol/folders/id/{$this->data['data']['id_folders_active']}/search/"?>' method="get">
+				<input type='search' name="search" placeholder="введите текст для поиска" value="<?=$this->data['data']['search_folders_user']?>">
+				<input type="submit"  value="искать в папке">
+				<span><?=$this->data['data']['message']?></span>
+			</form>
+		</div>
+		<div class="user_folders">
+			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
+		<?php if($user['view_admin'] == 'yes'): ?>
+			<div class="user_id no_admin">
+				<?php else: ?>
+				<div class="user_id">
+					<?php endif; ?>
+					<figure>
+						<a target="_blank" href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+					</figure>
+					<div class="inform_user">
+						<div class="salary_inform_user">
+							<span>Зарплата: <span class="inform-user-left"><?=$user['salary']?></span></span>
+							<span>Возраст: <span class="inform-user-left"><?=$user['years_user']?></span></span>
+							<span>Дата: <span class="inform-user-left"><?=$user['date_registration']?></span></span>
+						<span>
+							<div class="download">
+								<p class="active_download">
+									<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
+								</p>
+								<div data-id-user="<?=$user['id']?>" class="download_content">
+									<?php if ($user['comments_count']): ?>
+										<p><input type="checkbox" class="without_comments" value="comments">Без комментариев</p>
+									<?php endif; ?>
+									<?php if (!empty($user['conclusion'])): ?>
+										<p><input type="checkbox" class="without_conclusion" value="conclusion">Без заключения</p>
+									<?php endif; ?>
+									<p>
+										<button class="button">Скачать</button>
+									</p>
 								</div>
-								<p>
-									Опыт работы<br><span><?=$user['sum_experience']?></span>
-								</p>
-								<p>
-									<?php if($user['last_place_work']['last_position']): ?>
-										Последнее место работы<br>
-										<span>
-											<?=$user['last_place_work']['last_position']?>
-											<br>
-											<?=$user['last_place_work']['date']?>
-										</span>
-									<?php endif ?>
-								</p>
-								<p>
-									<?=$user['last_place_work']['last_works']?>
-								</p>
+							</div>
+						</span>
+							<div class="commentAndConclusion">
+								<span class="showComment">Комментарии</span>
+								<span class="showConclusion">Заключение</span>
+								<div class="clear"></div>
 							</div>
 						</div>
-						<div class="clear"></div>
-						<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>
-							<?php if( $user['conclusion'] == ''): ?>
-								<h1>Заключение</h1>
-								<textarea class='conclusion_textarea' name="conclusion"></textarea>
-								<input type="hidden" name="admincontrol" value="admincontrol">
-								<button class="button_conclusion">сохранить</button>
-								<div class="clear"></div>
-							<?php  else: ?>
-								<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href=""><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
-								<div class="conclusion_text"><?=$user['conclusion']?></div>
-								<div class="clear"></div>
-							<?php endif; ?>
+						<div class="person_inform">
+							<div class="position"><?=$user['desired_position']?></div>
+							<div class="name_user_inform"><a target="_blank" href="<?=BASE_URL."/index/index/id/".$user['id']?>"><?=$user['name']?></a></div>
+							<p>
+								Опыт работы<br><span><?=$user['sum_experience']?></span>
+							</p>
+							<p>
+								<?php if($user['last_place_work']['last_position']): ?>
+									Последнее место работы<br>
+									<span>
+									<?=$user['last_place_work']['last_position']?>
+										<br>
+										<?=$user['last_place_work']['date']?>
+								</span>
+								<?php endif ?>
+							</p>
+							<p>
+								<?=$user['last_place_work']['last_works']?>
+							</p>
+
 						</div>
-						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>
+					<div class="conclusion" id="<?=$user['id']?>" data-id-conclusion='<?=$user['id']?>'>
+						<?php if( $user['conclusion'] == ''): ?>
+							<h1>Заключение</h1>
+							<textarea class='conclusion_textarea' name="conclusion"></textarea>
+							<input type="hidden" name="admincontrol" value="admincontrol">
+							<button class="button_conclusion">сохранить</button>
+							<div class="clear"></div>
+						<?php  else: ?>
+							<h1>Заключение <span class="editConclusion"><img src="<?=BASE_URL.'/public/img/edit.png'?>">редактировать</span><span class="deleteConclusion"><a class="a_deleteConclusion" href="#<?=$user['id']?>"><img src="<?=BASE_URL .'/public/img/delete.png'?>">удалить</a></span></h1>
+							<div class="conclusion_text"><?=$user['conclusion']?></div>
+							<div class="clear"></div>
+						<?php endif; ?>
+					</div>
+					<div class="containerComment" data-user-id="<?=$user['id']?>">
+						<h1>Комментарии</h1>
+						<div class="addComment">
+							<span class="addSpam">ДОБАВИТЬ КОММЕНТАРИЙ</span>
+						<span class="inputComment">
+							<div><button data-user-id="<?=$user['id']?>" class="buttonComment">ОК</button></div>
+							<div><textarea placeholder="Введите коментарий"></textarea></div>
+						</span>
+						</div>
+						<div class="commentBlock"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
 				<?php endforeach; ?>
 			</div>
 			<div class="clear"></div>
 			<nav>
 				<?=$this->data['data']['pagination']?>
 			</nav>
-		<?php else: ?>
-			<div class="choose_folders">
-				выберите папку
-			</div>
-		<?php endif; ?>
-	</div>
-	<div class="clear"></div>
-	<?=$this->data['helpers']['admin_info_widget']?>
+			<?php else: ?>
+				<div class="choose_folders">
+					выберите папку
+				</div>
+			<?php endif; ?>
+		</div>
+		<div class="clear"></div>
+		<?=$this->data['helpers']['admin_info_widget']?>
 </main>

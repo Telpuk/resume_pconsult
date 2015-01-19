@@ -158,13 +158,14 @@ class Admin{
 		}
 	}
 
-	public function getCommentUser($id = null){
-		if(!is_null($id)){
+	public function getCommentUser($id = null, $id_admin=null){
+		if(!is_null($id) && !is_null($id_admin)){
 			try {
 				$stmt= $this->_dbc->prepare( "SELECT comments.id,comments.id_user,comments.id_admin,comments.comment,
-				CONCAT_WS(' ',name_first, users.name_second) as name,DATE_FORMAT(DATE, '%Y-%m-%d %h:%i') AS date FROM
-				 comments, users WHERE id_user = :id_user ORDER BY date DESC");
-				$stmt->execute(array(':id_user'=>$id));
+				CONCAT_WS(' ', users.name_first, users.name_second, users.patronymic) as name,DATE_FORMAT(DATE,'%Y-%m-%d %h:%i') AS date ,
+				IF(:id_admin = 1 OR comments.id_admin = :id_admin, 'yes', 'no') AS 'access_delete' FROM comments,users
+				WHERE comments.id_user = :id_user AND   comments.id_admin = users.id  ORDER BY date DESC");
+				$stmt->execute(array(':id_user'=>$id,':id_admin'=>$id_admin));
 				return  $this->_user_object->json_encode_cyr($stmt->fetchAll(PDO::FETCH_ASSOC));
 			}catch (PDOException $e){
 				exit(print_r($e->errorInfo).$e->getFile());
