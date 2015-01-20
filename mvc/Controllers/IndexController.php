@@ -15,22 +15,24 @@ class IndexController extends IController{
 		$this->_admin = $this->getSessionUserID('admin');
 		$this->_id_user = $this->getSessionUserID('user');
 
-		if(($this->_admin === 'main' || $this->_admin === 'manager') && !$this->_id_user){
-			if(is_numeric($this->getParams('id')) &&  $this->_db_user->checkId($this->getParams('id'))) {
+		if(($this->_admin === 'main' || $this->_admin === 'manager') && $this->getParams('id')){
+			if($this->_db_user->checkId($this->getParams('id'))) {
 				$this->_id_user = $this->getParams('id');
 				$this->setSessionUsers(array('user' => $this->_id_user));
+				return false;
 			}else{
 				$this->headerLocation('admincontrol');
 			}
-		}
-
-
-		if(!is_numeric($this->_id_user) && !$this->_admin){
+		}else if(!$this->_admin && !$this->_id_user){
 			$this->_db_user->setIdUser();
 			$this->_id_user = $this->_db_user->getIdUser();
 			$this->setSessionUsers(array('user' => $this->_id_user));
 			$this->setSessionParams(array('time_input_user'=>uniqid()));
+			return false;
+		}else if($this->_admin && !$this->_id_user){
+			$this->headerLocation('admincontrol');
 		}
+		return false;
 	}
 
 
@@ -97,6 +99,7 @@ class IndexController extends IController{
 						'helpers'=> $widget,
 						'time_input_user'=>$this->getSessionParamsId('time_input_user'),
 						'id_user'=>$this->getSessionUserID('user'),
+						'currentUrlAdmin'=>$this->readCurrentUrlCookies(),
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
 						'admin'=>$this->_admin,
 						'type_admin_rus'=>$this->_type_admin),

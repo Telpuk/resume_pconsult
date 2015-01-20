@@ -3,7 +3,7 @@ class AdminControlController extends IController{
 	private $_view,
 		$_db_admin,
 		$_db_user,
-		$_count_view = 7,
+		$_count_view = 10,
 		$_page = null;
 
 	public function  __construct(){
@@ -114,6 +114,8 @@ class AdminControlController extends IController{
 
 
 	public function foldersAction(){
+		$this->writeCurrentUrlCookies($this->getCurrentUrl());
+
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 
 		if($this->getParams('delete')){
@@ -174,6 +176,7 @@ class AdminControlController extends IController{
 	}
 
 	public function addmanagerAction(){
+
 		$managers = $this->_db_admin->selectManagers();
 
 		if($_POST['addManager']){
@@ -310,6 +313,7 @@ class AdminControlController extends IController{
 	}
 
 	public function unreviewedAction(){
+		$this->writeCurrentUrlCookies($this->getCurrentUrl());
 
 		if ($this->getParams('view')) {
 			$page = $this->getParams('page');
@@ -351,6 +355,8 @@ class AdminControlController extends IController{
 
 
 	public function indexAction(){
+		$this->writeCurrentUrlCookies($this->getCurrentUrl());
+
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 
 		$search[0] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$search[0])));

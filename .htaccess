@@ -8,6 +8,7 @@ php_flag zlib.output_compression On
 php_value output_handler ob_gzhandler
 
 
+
 <ifModule mod_gzip.c>
   mod_gzip_on Yes
   mod_gzip_dechunk Yes

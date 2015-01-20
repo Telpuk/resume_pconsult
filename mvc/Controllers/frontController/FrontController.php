@@ -1,14 +1,14 @@
 <?php
 class FrontController extends Config{
 	static private $_instance = null;
-	private $_controller, $_action, $_content ,$_body, $_params = array();
+	private $_controller, $_action, $_content ,$_body, $_currentUrl, $_params = array();
 
 	private function __construct(){
 
 		$this->getConfig();
-		$request = $_SERVER["REQUEST_URI"];
+		$this->setCurrentUrl(urldecode($_SERVER["REQUEST_URI"]));
 
-		$router  = explode("/", trim($request, '/'));
+		$router  = explode("/", trim($this->getCurrentUrl(), '/'));
 
 		if(($key = array_search(trim(PROJECT_FOLDER, "/"), $router)) !== false)
 		{
@@ -67,6 +67,13 @@ class FrontController extends Config{
 	}
 	public function getAction(){
 		return $this->_action;
+	}
+
+	public function getCurrentUrl(){
+		return $this->_currentUrl;
+	}
+	public function setCurrentUrl($url = null){
+		$this->_currentUrl = $url;
 	}
 	public function getController(){
 		return $this->_controller;

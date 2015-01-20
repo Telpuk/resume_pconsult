@@ -26,7 +26,7 @@
 				<div class="user_id">
 					<?php endif; ?>
 					<figure>
-						<a target="_blank" href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
+						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>
 					</figure>
 					<div class="inform_user">
 						<div class="salary_inform_user">
@@ -59,7 +59,7 @@
 						</div>
 						<div class="person_inform">
 							<div class="position"><?=$user['desired_position']?></div>
-							<div class="name_user_inform"><a target="_blank" href="<?=BASE_URL."/index/index/id/".$user['id']?>"><?=$user['name']?></a></div>
+							<div class="name_user_inform"><a href="<?=BASE_URL."/index/index/id/".$user['id']?>"><?=$user['name']?></a></div>
 							<p>
 								Опыт работы<br><span><?=$user['sum_experience']?></span>
 							</p>

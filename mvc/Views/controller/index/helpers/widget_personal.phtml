@@ -2,10 +2,9 @@
 	$this->data['data']['institutions']&&
 	$this->data['data']['desired_position']&&
 	$this->data['data']['call_me']): ?>
-	<p>Резюме заполнено<br>вы можете:</p>
+	<p>Резюме заполнено:</p>
 	<div class="end_resume">
-		<a class="save_resume" href="<?=BASE_URL.'/finish/index/uniqid/'.$this->data['data']['time_input_user']?>">Отправить
-			резюме</a>
+		<a class="save_resume" href="<?=BASE_URL.'/finish/index/uniqid/'.$this->data['data']['time_input_user']?>">Готово!!!</a>
 		<a class="delete_resume" onclick="return confirm('Вы действительно хотите удалить резюме!')?true:false" href="<?=BASE_URL.'/index/delete'?>">Удалить резюме</a>
 	</div>
 <?php elseif($this->data['data']['name'] ||
