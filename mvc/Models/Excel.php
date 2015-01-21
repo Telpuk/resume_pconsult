@@ -298,7 +298,7 @@ class Excel{
 			foreach ($personal_data['names_institutions'] as $key => $name_institution) {
 				$data[$key]['name_institution'] = $name_institution;
 				$data[$key]['years_graduations'] = $personal_data['years_graduations'][$key];
-				$data[$key]['faculties'] = $name_institution.$personal_data['faculties'][$key];
+				$data[$key]['faculties'] = empty( $personal_data['faculties'][$key] ) ? null : $personal_data['faculties'][$key] . ', ';
 				$data[$key]['specialties_specialties']=$personal_data['specialties_specialties'][$key];
 			}
 
@@ -314,15 +314,16 @@ class Excel{
 			}else{
 				$call_me[] = "мобильный — {$personal_data['mobile_phone']} {$personal_data['comment_mobile_phone']}";
 			}
-
-			if($personal_data['preferred_communication']==5){
-				$call_me[] = "мобильный — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}(желаемый способ связи)";
-			}else{
-				$call_me[] = "мобильный — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}";
-			}
-
-
 		}
+
+		if ( $personal_data['mobile_phone_other'] ) {
+			if($personal_data['preferred_communication']==5){
+				$call_me[] = "дополнительный мобильны — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}(желаемый способ связи)";
+			}else{
+				$call_me[] = "дополнительный мобильный — {$personal_data['mobile_phone_other']}{$personal_data['comment_mobile_phone_other']}";
+			}
+		}
+
 		if($personal_data['home_phone']){
 			if($personal_data['preferred_communication']==2){
 				$call_me[] = "домашний — {$personal_data['home_phone']}{$personal_data['comment_home_phone']}(желаемый способ связи)";

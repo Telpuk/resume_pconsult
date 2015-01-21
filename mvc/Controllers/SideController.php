@@ -258,9 +258,7 @@ class SideController extends IController{
 			$years_graduations[$education_base_key] = trim(strip_tags($post['years_graduations'][$key]));
 
 
-			$faculties_val[$education_base_key] = call_user_func(function ($faculty) {
-				return !empty($faculty) ? true : array('message' => 'Необходимо заполнить');
-			}, $faculties[$education_base_key]);
+			$faculties_val[$education_base_key] = true;
 
 			$names_institutions_val[$education_base_key] = call_user_func(function ($name_institution) {
 				return !empty($name_institution) ? true : array('message' => 'Необходимо заполнить');

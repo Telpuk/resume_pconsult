@@ -9,10 +9,11 @@ class User{
 		$this->_dbc = Model::getInstance()->getDbh();
 	}
 
-	public function viewAdmin($id_user){
+	public function viewAdmin( $id_user, $id_admin )
+	{
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE profile SET view_admin = 'yes' WHERE id = :id_user");
-			$stmt->execute(array(':id_user'=>$id_user));
+			$stmt = $this->_dbc->prepare( 'CALL viewAdmin(:id_user, :id_admin)' );
+			$stmt->execute( array( ':id_user' => $id_user, ':id_admin' => $id_admin ) );
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
@@ -622,8 +623,9 @@ class User{
 			foreach ($personal_data['names_institutions'] as $key => $name_institution) {
 				$data .= "<tr>"
 					."<td>{$personal_data['years_graduations'][$key]}</td>"
-					."<td>{$name_institution}<span>{$personal_data['faculties'][$key]},
-					{$personal_data['specialties_specialties'][$key]}</span></td>"
+					. "<td>{$name_institution}<span>" .
+					( empty( $personal_data['faculties'][$key] ) ? null : "{$personal_data['faculties'][$key]}, " ) .
+					"{$personal_data['specialties_specialties'][$key]}</span></td>"
 					."</tr>";
 			}
 			$data .= '</table>';

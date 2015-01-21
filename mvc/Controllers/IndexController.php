@@ -82,7 +82,7 @@ class IndexController extends IController{
 		$widget = array('widget' => 'index/helpers/widget_personal');
 
 		if($this->_admin){
-			$this->_db_user->viewAdmin($this->_id_user);
+			$this->_db_user->viewAdmin( (int)$this->_id_user, (int)$this->getSessionUserID( 'id_user_admin' ) );
 			$widget = array('widget'=>'index/helpers/widget_administrator');
 		}
 

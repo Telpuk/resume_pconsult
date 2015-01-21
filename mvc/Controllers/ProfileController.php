@@ -356,23 +356,40 @@ class ProfileController extends IController{
 
 	private function _movePhotoDir($photo){
 		if(isset($photo['name'])){
-			$file_name = $this->getSessionUserID('user').'.'.substr(strrchr($photo['name'], '.'), 1);
-			if(move_uploaded_file ($photo['tmp_name'], $this->_getDownloadDirPhoto() . "/{$file_name}")){
+			$photoUniqid = uniqid();
+			$file_name = $photoUniqid . $this->getSessionUserID( 'user' ) . '.' . substr( strrchr( $photo['name'], '.' ), 1 );
+			if ( move_uploaded_file( $photo['tmp_name'], $this->_getDownloadDirPhoto() . '/' . $file_name ) ) {
 				$this->_dbuser->updatePhotoId($file_name, $this->getSessionUserID('user'));
+				$x = 0;
+				$y = 0;
 
-				$image = new Imagick($this->_getDownloadDirPhoto() . "/{$file_name}");
-				$image->thumbnailImage(150,150);
+				$image = new Imagick( $this->_getDownloadDirPhoto() . '/' . $file_name );
+				$imageprops = $image->getImageGeometry();
+				$width = $imageprops['width'];
+				$height = $imageprops['height'];
+				if ( $width > $height ) {
+					$newHeight = 150;
+					$newWidth = ( 150 / $height ) * $width;
+				} else {
+					$newWidth = 150;
+					$newHeight = ( 150 / $width ) * $height;
+				}
+				$image->resizeImage( $newWidth, $newHeight, imagick::FILTER_LANCZOS, 0.9, true );
+				if ( $newWidth > 150 ) {
+					$x = round( ( $newWidth - 150 ) / 2 );
+					$y = 5;
+				}
 
-				$image->transformImage("183x150", "183x150");
-				$image->adaptiveSharpenImage(2,1);
+				$image->cropImage( 150, 150, $x, $y );
 
 				$image->writeImage($this->_getDownloadDirPhoto() . "/{$file_name}");
+				$image->destroy();
 			}
 		}
 	}
 
 	private function _checkFilesFormatAndSize($photo){
-		if(!isset($this->_format_photo[mb_strtolower(substr(strrchr($photo['name'], '.'), 1), "utf-8")])){
+		if ( !isset( $this->_format_photo[mb_strtolower( substr( strrchr( $photo['name'], '.' ), 1 ), 'utf-8' )] ) ) {
 			return array('photo_format'=> true);
 		}
 		if($photo['size'] > $this->_size_photo){

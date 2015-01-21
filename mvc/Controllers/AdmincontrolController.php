@@ -319,7 +319,7 @@ class AdminControlController extends IController{
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;
 
-			$users = $this->_db_admin->selectResumeNoView($this->_count_view, $this->_page);
+			$users = $this->_db_admin->selectResumeNoView( $this->_count_view, $this->_page, (int)$this->getSessionUserID( 'id_user_admin' ) );
 
 			$users['count'] = $this->getSessionParamsId('count_view_admin_resume');
 
@@ -358,8 +358,9 @@ class AdminControlController extends IController{
 		$this->writeCurrentUrlCookies($this->getCurrentUrl());
 
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
-
-		$search[0] = trim(strip_tags(preg_replace('/\s{2,}/',' ',$search[0])));
+		if ( isset( $search[0] ) ) {
+			$search[0] = trim( strip_tags( preg_replace( '/\s{2,}/', ' ', $search[0] ) ) );
+		}
 
 		if (isset($search[0]) && !empty($search[0])) {
 			$page = $this->getParams('page');
@@ -372,7 +373,7 @@ class AdminControlController extends IController{
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;
 
-			$users = $this->_db_admin->selectAllResume($this->_count_view, $this->_page);
+			$users = $this->_db_admin->selectAllResume( $this->_count_view, $this->_page, (int)$this->getSessionUserID( 'id_user_admin' ) );
 			$users['count'] = $this->getSessionParamsId('count_users');
 			$this->deleteSessionParamsId('count_users_search');
 		}

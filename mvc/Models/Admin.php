@@ -249,10 +249,13 @@ class Admin{
 		return false;
 	}
 
-	public function selectResumeNoView($count_view, $page){
+	public function selectResumeNoView( $count_view, $page, $admin_id )
+	{
+		$count_user = 0;
+
 		try {
-			$stmt = $this->_dbc->prepare("CALL noViewAdmin(:start,:count_view)");
-			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
+			$stmt = $this->_dbc->prepare( "CALL noViewAdmin(:start,:count_view,:admin_id)" );
+			$stmt->execute( array( ':start' => $page, ':count_view' => $count_view, ':admin_id' => $admin_id ) );
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			exit(print_r($e->errorInfo) . $e->getFile());
@@ -267,11 +270,13 @@ class Admin{
 		return $this->_getResumeFormat($data, $count_user);
 	}
 
-	public function selectAllResume($count_view, $page){
+	public function selectAllResume( $count_view, $page, $id_admin )
+	{
 		$count_user = null;
+		$_SESSION['params']['noShowAdminResume'] = array();
 		try {
-			$stmt = $this->_dbc->prepare("CALL allResume(:start,:count_view)");
-			$stmt->execute(array(':start' => $page, ':count_view' => $count_view));
+			$stmt = $this->_dbc->prepare( "CALL allResume(:start,:count_view,:id_admin)" );
+			$stmt->execute( array( ':start' => $page, ':count_view' => $count_view, ':id_admin' => $id_admin ) );
 			$search_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			exit(print_r($e->errorInfo) . $e->getFile());
@@ -283,7 +288,8 @@ class Admin{
 
 			foreach($search_data as $key=>$user) {
 				++$count_user;
-				if ($user['view_admin'] === 'no') {
+				if ( $user['view_admin'] !== 'yes' ) {
+					$_SESSION['params']['noShowAdminResumeId'][] = $user['id'];
 					++$count_view_admin_resume;
 				}
 				if ($key >= $count_view) {

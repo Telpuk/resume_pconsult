@@ -15,7 +15,7 @@
 		</nav>
 	<?php foreach($this->data['data']['users'] as $key=>$user): ?>
 	<?php if($user['view_admin'] == 'yes'): ?>
-		<div class="user_id no_admin" id='<?=$user['id']?>'>
+		<div class="user_id view_admin" id='<?= $user['id'] ?>'>
 			<?php else: ?>
 			<div class="user_id">
 				<?php endif; ?>

@@ -173,7 +173,7 @@ class ExcelController extends IController{
 				$textrun = $cell->addTextRun(array('align' => 'left'));
 				$textrun->addText($value['name_institution'], array('bold'=>true));
 				$textrun->addTextBreak();
-				$textrun->addText($value['faculties'].', '.$value['specialties_specialties']);
+				$textrun->addText( $value['faculties'] . $value['specialties_specialties'] );
 			}
 			if($personal_data['courses_names'][0]) {
 				foreach ($personal_data['courses_names'] as $key => $value) {
@@ -230,10 +230,14 @@ class ExcelController extends IController{
 			$textrun->addText('Знание языков');
 			$cell = $row->addCell(9000);
 			$textrun = $cell->addTextRun(array('align' => 'left'));
-			foreach($personal_data['languages'] as $key=>$value){
-				$textrun->addText($value);
-				$textrun->addTextBreak();
+
+			if ( count( $personal_data['languages'] ) > 0 ) {
+				foreach ( $personal_data['languages'] as $key => $value ) {
+					$textrun->addText( $value );
+					$textrun->addTextBreak();
+				}
 			}
+
 
 			$row = $table->addRow();
 			$cell = $row->addCell(4000);
@@ -286,17 +290,17 @@ class ExcelController extends IController{
 
 			// ===================================Заключение============== //
 			if($personal_data['conclusion'] && $this->getParams('conclusion') !== 'false'){
-				$section->addText('Заключение:', array('size'=>16,'bold'=>true), array('align'=>'left'));
+				$section->addText( 'Заключение:', array( 'size' => 14, 'bold' => true ), array( 'align' => 'left' ) );
 				$section->addText($personal_data['conclusion']);
 			}
 			// ===================================end Заключение======================= //
 
 			// ===================================Комментарии============== //
 			if(count($comments) && $this->getParams('comments') !== 'false'){
-				$section->addText('Комментарии:', array('size'=>16,'bold'=>true), array('align'=>'left'));
+				$section->addText( 'Комментарии:', array( 'size' => 14, 'bold' => true ), array( 'align' => 'left' ) );
 				foreach($comments as $value) {
-					$section->addText($value['name'] . "({$value['date']})", array('bold' => true));
-					$section->addText($value['comment'],array('tabs' => true));
+					$section->addText( $value['name'] . "({$value['date']})", array( 'size' => 14, 'bold' => true ) );
+					$section->addText( $value['comment'], array( 'size' => 14, 'tabs' => true ) );
 				}
 			}
 			// ===================================end Комментарии======================= //

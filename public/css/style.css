@@ -1228,8 +1228,7 @@ ul.nice-menu li {
 
 .photo_personal_contacts figure img{
     background-size: contain;
-    border-radius: 10px;
-    width: 100%;
+    width: 150px;
     height: 150px;
 
 }
@@ -1267,7 +1266,6 @@ ul.nice-menu li {
     border: 1px rgba(76, 140, 213, 0.54) solid;
     margin-top: 10px;
     color: #0050a3;
-    font-weight: bold;
 }
 
 
@@ -1427,7 +1425,7 @@ fieldset p{
 
 .resume .left_40 p,
 .resume .right_60 p{
-    font-size: .23em;
+    font-size: .2em;
 }
 
 .resume .personal_data header h1 a,
@@ -1493,7 +1491,7 @@ fieldset p{
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px #bbbbbb ridge;
-    font-size: 0.3em;
+    font-size: 0.25em;
     color: #0050a3;
 }
 .resume .education_language{
@@ -1797,8 +1795,8 @@ a.addPhoto span:last-child,
 
 .user_photo img{
     float: left;
-    width: 200px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
 }
 .photo_form{
     width: 100%;
@@ -2619,7 +2617,7 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id{
     padding: 20px;
     margin-top: 10px;
-    border-top: 1px #bababa dashed;
+    border-top: 1.8px #000000 dashed;
 }
 .admin_control .right_admin_control .user_id:nth-last-child(2){
     border-bottom: 1px #bababa dashed;
@@ -2627,7 +2625,8 @@ main.authorization .helpers_message_authorization{
 .admin_control .right_admin_control .user_id figure{
     display: block;
     float: left;
-    width: 20%;
+    width: 150px;
+    height: 150px;
 }
 
 .admin_control .right_admin_control .user_id .inform_user{
@@ -3069,8 +3068,8 @@ main.authorization .helpers_message_authorization{
     color: #45921e;
 }
 
-.no_admin{
-    background-color: rgba(104, 104, 104, 0.06);
+.view_admin {
+    opacity: .4;
 }
 
 .admin_control.folders .right_admin_control .folders_list p#addFolder:hover{
