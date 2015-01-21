@@ -442,6 +442,7 @@
     };
 
     AdminControl.prototype.init = function(){
+
         this.addEventListenerDownloadWord();
 
         this.addEventListenerWidgetRight();

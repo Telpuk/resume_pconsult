@@ -14,13 +14,13 @@ class View{
 				foreach($arguments['js'] as $key => $js){
 					if($key === "src"){
 						foreach($js as $value){
-							$src .= "<script type='text/javascript' src='{$value}'></script>\n";
+							$src .= '<script type="text/javascript" src=' . $value . '></script>' . "\n";
 						}
 					}elseif($key === "js_c"){
-						$js_c .= "\n<script type='text/javascript'>{$js_c}</script>\n";
+						$js_c .= "\n" . '<script type="text/javascript">' . $js . '</script>' . "\n";
 					}
 				}
-				$this->_javascript = $js_c.$src."\n";
+				$this->_javascript = $src . $js_c . "\n";
 			}
 
 			if(isset($arguments['data'])){

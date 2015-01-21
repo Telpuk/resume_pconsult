@@ -3225,3 +3225,7 @@ main.authorization .helpers_message_authorization{
     text-decoration: none;
     color: #ffffff;
 }
+
+.highlight {
+    background-color: #fff34d;
+}
