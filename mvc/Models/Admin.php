@@ -273,7 +273,6 @@ class Admin{
 	public function selectAllResume( $count_view, $page, $id_admin )
 	{
 		$count_user = null;
-		$_SESSION['params']['noShowAdminResume'] = array();
 		try {
 			$stmt = $this->_dbc->prepare( "CALL allResume(:start,:count_view,:id_admin)" );
 			$stmt->execute( array( ':start' => $page, ':count_view' => $count_view, ':id_admin' => $id_admin ) );
@@ -289,7 +288,6 @@ class Admin{
 			foreach($search_data as $key=>$user) {
 				++$count_user;
 				if ( $user['view_admin'] !== 'yes' ) {
-					$_SESSION['params']['noShowAdminResumeId'][] = $user['id'];
 					++$count_view_admin_resume;
 				}
 				if ($key >= $count_view) {

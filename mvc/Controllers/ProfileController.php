@@ -400,25 +400,29 @@ class ProfileController extends IController{
 
 	private function _jsPersonal(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/jquery-ui.js",
-				BASE_URL."/public/js/personal.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/jquery-ui.js",
+					BASE_URL . "/public/js/personal.js"
+				),
+			)
 		);
 
 	}
 
 	private function _jsContacts(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/handlebars-v2.0.0.js",
-				BASE_URL."/public/js/vendor/jquery.maskedinput.min.js",
-				BASE_URL."/public/js/contacts.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/jquery.maskedinput.min.js",
+					BASE_URL . "/public/js/contacts.js"
+				),
+			)
 		);
 	}
 

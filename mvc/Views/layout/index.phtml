@@ -14,9 +14,11 @@
 	<link rel="shortlink" href="http://www.proconsult.by/" />
 	<title>КОНСАЛТИНГОВЫЙ ЦЕНТР &quot;PRO-CONSULT&quot; | Бизнес-обучение и подбор персонала в РБ и РФ</title>
 	<link href="http://allfont.ru/css/?fonts=roboto-condensed-italic" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="<?=BASE_URL?>/public/css/style.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
+	<link rel="stylesheet" href="<?= BASE_URL . '/public/css/style.css' ?>">
+	<?= $this->style ?>
+	<?= $this->javascriptHeader ?>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -85,8 +87,8 @@
 <div class="clear"></div>
 
 <div class="wrapper_resume">
-	<div class="helpers"><?=$this->_helpers_menu?></div>
-	<div class="my_content"><?=$this->_content?></div>
+	<div class="helpers"><?= $this->helpers_menu ?></div>
+	<div class="my_content"><?= $this->content ?></div>
 </div>
 <div class="clear"></div>
 <div class="footer-wrapper">
@@ -502,7 +504,7 @@
 </script>
 
 <script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
-<?=$this->_javascript?>
+<?= $this->javascriptFooter ?>
 <script type="text/javascript" src="<?=BASE_URL?>/public/js/jquery.scrollUp.min.js"></script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

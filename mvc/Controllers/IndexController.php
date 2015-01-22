@@ -131,11 +131,15 @@ class IndexController extends IController{
 
 	private function _jsIndex(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/resume.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/highlight.js",
+					BASE_URL . "/public/js/resume.js"
+				),
+				'js_c' => is_null( $this->readSearchCookies() ) ? null : '(function($){$(".resume_data_left,.conclusion").highlight("' . $this->readSearchCookies() . '");})($)'
+			)
 		);
 	}
 

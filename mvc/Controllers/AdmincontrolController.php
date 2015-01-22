@@ -114,9 +114,19 @@ class AdminControlController extends IController{
 
 
 	public function foldersAction(){
+		$data_search = null;
 		$this->writeCurrentUrlCookies($this->getCurrentUrl());
 
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
+
+		if ( isset( $search[0] ) ) {
+			$search[0] = trim( strip_tags( preg_replace( '/\s{2,}/', ' ', $search[0] ) ) );
+			$data_search = $search[0];
+			$this->writeSearchCookies( $data_search );
+		} else {
+			$this->writeSearchCookies( null );
+		}
+
 
 		if($this->getParams('delete')){
 			$this->_db_admin->deleteFolder($this->getParams('delete'));
@@ -171,7 +181,7 @@ class AdminControlController extends IController{
 					ceil($count / $this->_count_view), $this->_page, array(
 						'url'=>"folders/id/{$this->getParams('id')}/search/?search=".(isset($search[0])?$search[0]:null))),
 			),
-			'js'=>$this->_jsFolders()
+			'js' => $this->_jsFolders( $data_search )
 		));
 	}
 
@@ -355,11 +365,16 @@ class AdminControlController extends IController{
 
 
 	public function indexAction(){
+		$data_search = null;
 		$this->writeCurrentUrlCookies($this->getCurrentUrl());
 
 		$search = isset($_GET['search']) ? explode('/', $_GET['search']) : array();
 		if ( isset( $search[0] ) ) {
 			$search[0] = trim( strip_tags( preg_replace( '/\s{2,}/', ' ', $search[0] ) ) );
+			$data_search = $search[0];
+			$this->writeSearchCookies( $data_search );
+		} else {
+			$this->writeSearchCookies( null );
 		}
 
 		if (isset($search[0]) && !empty($search[0])) {
@@ -380,7 +395,10 @@ class AdminControlController extends IController{
 
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
-			'js' => $this->_jsAdminControl( $search[0] ),
+			'js' => $this->_jsAdminControl( $data_search ),
+			'styles' => array(
+				'styleCode' => 'sdfds',
+			),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
 				'admin_info'=>array(
@@ -410,38 +428,48 @@ class AdminControlController extends IController{
 	}
 
 
-	private function _jsAdminControl( $data )
+	private function _jsAdminControl( $data = null )
 	{
 		return array(
-			'src' => array(
-				BASE_URL . "/public/js/jquery-2.1.1.min.js",
-				BASE_URL . "/public/js/handlebars-v2.0.0.js",
-				BASE_URL . "/public/js/vendor/highlight.js",
-				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-				BASE_URL . "/public/js/admincontrol.js",
-			),
-			'js_c' => '(function($){$(".user_id").highlight(' . $data . ');})($)'
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/highlight.js",
+					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
+					BASE_URL . "/public/js/admincontrol.js",
+				),
+				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
+			)
 		);
 	}
 
 	private function _jsManager(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-				BASE_URL."/public/js/manager.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
+					BASE_URL . "/public/js/manager.js"
+				),
+			)
 		);
 	}
-	private function _jsFolders(){
+
+	private function _jsFolders( $data = null )
+	{
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/handlebars-v2.0.0.js",
-				BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-				BASE_URL."/public/js/folders.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
+					BASE_URL . "/public/js/vendor/highlight.js",
+					BASE_URL . "/public/js/folders.js"
+				),
+				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
+			)
 		);
 	}
 

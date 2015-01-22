@@ -3,7 +3,7 @@
 		private $_controllers;
 
 		public function __construct(){
-			$this->setControllers(require_once "config_session.php");
+			$this->setControllers( require_once "config_session.php" );
 		}
 
 		private function setControllers($controllers){

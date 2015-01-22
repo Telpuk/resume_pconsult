@@ -3226,6 +3226,10 @@ main.authorization .helpers_message_authorization{
     color: #ffffff;
 }
 
-.highlight {
-    background-color: #fff34d;
+span.highlight {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block !important;
+    background-color: #fff34d !important;
+    color: #000000 !important;
 }

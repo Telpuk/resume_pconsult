@@ -67,10 +67,12 @@ class AdminController extends IController{
 
 	private  function _jsAdmin(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+				),
+			)
 		);
 	}
 

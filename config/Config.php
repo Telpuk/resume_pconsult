@@ -14,6 +14,11 @@
 			define('JS', $config_js['javascript']);
 		}
 
+		protected function _setConfigCompressor( $config_compressor = array() )
+		{
+			define( 'COMPRESS_HTML', $config_compressor['html'] );
+		}
+
 		protected  function _setConfigDIR($config_dir){
 			$project_folder = empty($config_dir['project_folder']) ? "":"/".$config_dir['project_folder'];
 			define('HOST', $config_dir['host']);

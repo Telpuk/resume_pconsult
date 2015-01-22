@@ -33,11 +33,13 @@ class PrintController extends IController{
 
 	private function _jsPrint(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.printPage.js",
-				BASE_URL."/public/js/print.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.printPage.js",
+					BASE_URL . "/public/js/print.js"
+				),
+			)
 		);
 	}
 }

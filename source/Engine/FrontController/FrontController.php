@@ -10,6 +10,7 @@ class FrontController extends Config{
 
 		$router  = explode("/", trim($this->getCurrentUrl(), '/'));
 
+
 		if(($key = array_search(trim(PROJECT_FOLDER, "/"), $router)) !== false)
 		{
 			$cntr_ind = 1; $actn_ind = 2; $prms_ind = 3;
@@ -46,6 +47,7 @@ class FrontController extends Config{
 
 	protected function getConfig(){
 		$this->_setConfigBD(require_once "config_bd.php");
+		$this->_setConfigCompressor( require_once "compressor.php" );
 		$this->_setConfigDIR(require_once "config_dir.php");
 		$this->_setConfigJS(require_once "config_js.php");
 	}
@@ -102,6 +104,7 @@ class FrontController extends Config{
 
 	public function run(){
 		if(class_exists($this->getController())){
+
 			$class = new ReflectionClass($this->getController());
 
 			if( $class->hasMethod($this->getAction()) ){

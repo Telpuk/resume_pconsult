@@ -1,7 +1,8 @@
 <?php set_include_path( implode(PATH_SEPARATOR, array(
-	'mvc/Controllers/frontController',
-	'mvc/Controllers/errorController',
-	'mvc/Controllers/sessionController',
+	__DIR__ . '/Engine/FrontController',
+	__DIR__ . '/Engine/SessionController',
+	__DIR__ . '/Engine/Model',
+	__DIR__ . '/Engine/View',
 	'mvc/Controllers',
 	'mvc/Models',
 	'mvc/Views',
@@ -9,7 +10,7 @@
 	'library/'
 )));
 
-require_once  realpath(__DIR__.'/vendor/word/PhpWord/Autoloader.php');
+require_once realpath( __DIR__ . '/vendor/Word/PhpWord/Autoloader.php' );
 \PhpOffice\PhpWord\Autoloader::register();
 
 

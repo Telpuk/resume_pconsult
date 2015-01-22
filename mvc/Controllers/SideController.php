@@ -749,36 +749,42 @@ class SideController extends IController{
 
 	private function _jsPosition(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/jquery-ui.js",
-				BASE_URL."/public/js/position.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/jquery-ui.js",
+					BASE_URL . "/public/js/position.js"
+				),
+			)
 		);
 	}
 
 	private function _jsEducation(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/handlebars-v2.0.0.js",
-				BASE_URL."/public/js/education.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/education.js"
+				),
+			)
 		);
 	}
 
 	private function _jsExperience(){
 		return array(
-			'src'=>array(
-				BASE_URL."/public/js/jquery-2.1.1.min.js",
-				BASE_URL."/public/js/jquery-ui.js",
-				BASE_URL."/public/js/jquery.validate.min.js",
-				BASE_URL."/public/js/vendor/jquery.maskedinput.min.js",
-				BASE_URL."/public/js/handlebars-v2.0.0.js",
-				BASE_URL."/public/js/experience.js"
-			),
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/jquery-ui.js",
+					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery.maskedinput.min.js",
+					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/experience.js"
+				),
+			)
 		);
 	}
 }
