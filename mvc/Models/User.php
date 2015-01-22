@@ -705,17 +705,7 @@ class User{
 
 	public function selectPosition($id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("SELECT
-													desired_position,
-													professional_area,
-													employment,
-													schedule,
-													salary,
-													currency
-												FROM
-													profile
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare( "SELECT desired_position,professional_area,employment,schedule,salary,currency FROM profile WHERE id = :id_user" );
 			$stmt->execute(array(':id_user'=>$id_user));
 			$position_data = $stmt->fetch(PDO::FETCH_ASSOC);
 		}catch (PDOException $e){
@@ -744,17 +734,8 @@ class User{
 
 	public function updatePosition($inputs, $id_user){
 		try {
-			$stmt = $this->_dbc->prepare ("UPDATE
-													profile
-												SET
-													desired_position = :desired_position,
-													professional_area = :professional_area,
-													employment = :employment,
-													schedule = :schedule,
-													salary = :salary,
-													currency = :currency
-												WHERE
-													id = :id_user");
+			$stmt = $this->_dbc->prepare( "UPDATE profile SET desired_position = :desired_position,professional_area = :professional_area,
+employment = :employment,schedule = :schedule,salary = :salary,currency = :currency WHERE id = :id_user" );
 			$stmt->execute(array(
 					':desired_position'=>$inputs['desired_position']['value'],
 					':professional_area'=>$inputs['professional_area']['value'],

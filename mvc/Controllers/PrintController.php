@@ -18,7 +18,6 @@ class PrintController extends IController{
 
 			$select_personal_data = @array_merge((array)$select_personal_data,(array)$this->_db_user->selectCommits($this->getParams('id')));
 
-//			print_r($select_personal_data);
 			return $this->_view->render(array(
 				'view'=>'print/index',
 				'data' => $select_personal_data,
@@ -35,9 +34,9 @@ class PrintController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.printPage.js",
-					BASE_URL . "/public/js/print.js"
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.printPage.js",
+					BASE_URL . "/public/js/min/print.min.js"
 				),
 			)
 		);

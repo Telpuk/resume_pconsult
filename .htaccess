@@ -1,6 +1,6 @@
 AddDefaultCharset utf-8
 
-Options -Indexes
+Options All -Indexes
 
 AddOutputFilterByType DEFLATE text/html
 AddOutputFilterByType DEFLATE text/plain
@@ -13,6 +13,7 @@ php_flag zlib.output_compression On
 php_value output_handler ob_gzhandler
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/rss+xml
+
 
 
 

@@ -402,10 +402,10 @@ class ProfileController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.validate.min.js",
-					BASE_URL . "/public/js/jquery-ui.js",
-					BASE_URL . "/public/js/personal.js"
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery-ui.js",
+					BASE_URL . "/public/js/min/personal.min.js"
 				),
 			)
 		);
@@ -416,11 +416,11 @@ class ProfileController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.validate.min.js",
-					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
 					BASE_URL . "/public/js/vendor/jquery.maskedinput.min.js",
-					BASE_URL . "/public/js/contacts.js"
+					BASE_URL . "/public/js/min/contacts.min.js"
 				),
 			)
 		);

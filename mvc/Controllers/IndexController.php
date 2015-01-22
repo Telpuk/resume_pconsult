@@ -133,10 +133,10 @@ class IndexController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
 					BASE_URL . "/public/js/vendor/highlight.js",
-					BASE_URL . "/public/js/resume.js"
+					BASE_URL . "/public/js/min/resume.min.js"
 				),
 				'js_c' => is_null( $this->readSearchCookies() ) ? null : '(function($){$(".resume_data_left,.conclusion").highlight("' . $this->readSearchCookies() . '");})($)'
 			)

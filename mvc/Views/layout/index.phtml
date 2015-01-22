@@ -16,7 +16,7 @@
 	<link href="http://allfont.ru/css/?fonts=roboto-condensed-italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
-	<link rel="stylesheet" href="<?= BASE_URL . '/public/css/style.css' ?>">
+	<link rel="stylesheet" href="<?= BASE_URL . '/public/css/style.min.css' ?>">
 	<?= $this->style ?>
 	<?= $this->javascriptHeader ?>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -27,115 +27,22 @@
 	<![endif]-->
 </head>
 <body>
-<div class="page-wrapper" id="page-wrapper">
-	<div class="page" id="page">
-		<!-- header -->
-		<div class="header-wrapper" id="header">
-			<div class="section clearfix">
 
-				<div id="logo-and-slogan" class="logo-and-slogan-wrapper">
-					<div class="logo-wrapper site-logo">
-						<a href="http://proconsult.by/" title="Главная" rel="home" id="logo">
-							<img src="http://proconsult.by/sites/all/themes/pro_consult/logo.png" alt="Главная"/>
-						</a>
-					</div>
-					<div class="slogan-wrapper">
-						<div id="site-slogan">
-							Бизнес-обучение и подбор персонала в РБ и РФ
-						</div>
-					</div> <!-- /.slogan-wrapper -->
-				</div>
-				<div id="header_section" class="h_section section clearfix">
-					<div class="region region-header">
-						<div id="block-block-4" class="block block-block order-btns-block">
-							<div class="content">
-								<div class="order-call-btn-wrapper"><a href="http://proconsult.by/node/11?height=500&amp;width=600" class="colorbox-node order-call-btn header-btn">Обратный звонок</a></div>
-								<div class="offer-btn-wrapper"><a href="http://proconsult.by/node/12?height=450&amp;width=600" class="colorbox-node offer-btn header-btn">Коммерческое <span>предложение</span></a></div>
-							</div>
-						</div>
-						<div id="block-block-5" class="block block-block header-contacts-block">
-							<div class="content">
-								<div class="header-adress-wrapper">220017, Республика Беларусь,<br />
-									г. Минск, ул. Дунина-Марцинкевича 2/1 оф.206</div>
-								<div class="header-phones-wrapper"><span class="header-phone-wrapper">+375 29 <strong>678 32 35</strong></span><span class="header-phone-wrapper">+375 17 <strong>202 21 52</strong></span></div>
-								<div class="header-mail-wrapper"><a href="mailto:info@proconsult.by">info@proconsult.by</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="main-menu" class="main-menu">
-				<div class="section clearfix">
-					<div class="region region-main-menu">
-						<div id="block-nice-menus-1" class="block block-nice-menus main-menu-block">
-							<div class="content">
-								<ul class="nice-menu nice-menu-down nice-menu-main-menu nice-menus-processed sf-js-enabled sf-arrows" id="nice-menu-1">
-									<li class="menu-224 menu-path-front first odd">
-										<a href="http://proconsult.by/"
-										   onclick="return confirm('Вы действительно хотите' +
-										 ' покинуть страницу!')?true:false" title="" class="active">Вернуться к
-											сайту</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<header>
+	<div class="header"><?= $this->header ?></div>
+</header>
+
+<div class="container">
+	<div class="wrapper_resume">
+		<div class="helpers"><?= $this->helpers_menu ?></div>
+		<div class="my_content"><?= $this->content ?></div>
 	</div>
 </div>
-<div class="clear"></div>
 
-<div class="wrapper_resume">
-	<div class="helpers"><?= $this->helpers_menu ?></div>
-	<div class="my_content"><?= $this->content ?></div>
-</div>
-<div class="clear"></div>
-<div class="footer-wrapper">
-	<div class="footer-container">
-		<div class="footer-box clearfix">
-			<div id="footer" class="footer wrapper-3-row">
-				<div class="section clearfix">
-					<div class="region region-footer-a">
-						<div id="block-block-7" class="block block-block footer-contacts-block clearfix">
-							<div class="content">
-								<div class="footer-adress-wrapper">220017, Республика Беларусь,<br>
-									г. Минск, ул. Дунина-Марцинкевича 2/1 оф.206</div>
-								<div class="footer-phones-wrapper"><span class="footer-phone-wrapper">+375 29 <strong>678 32 35</strong></span><span class="footer-phone-wrapper">+375 17 <strong>202 21 52</strong></span></div>
-								<div class="footer-mail-wrapper"><a href="mailto:info@proconsult.by">info@proconsult.by</a><br>
-									_____________________________________________
-									<p>Разработка сайта - <a href="http://ib.by/">ib.by</a></p></div>
-							</div>
-						</div>
-					</div>
-					<div class="region region-footer-b">
-						<div id="block-block-8" class="block block-block footer-social-block cleafix">
-							<h2>Мы в социальных сетях:</h2>
-							<div class="content">
-								<div>
-									<a href="https://twitter.com/ProconsultBy" class="social-link social-link-twitter">Twitter</a><a href="https://www.facebook.com/Proconsult.by?ref=hl&ref_type=bookmark" class="social-link social-link-facebook">Facebook</a><a href="https://vk.com/proconsult" class="social-link social-link-vkontakte">ВКонтакте</a><a href="https://www.youtube.com/channel/UCOfQ7LhG7TDH32txjVNicPg/videos" class="social-link social-link-youtube">Youtube</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="region region-footer-c">
-						<div id="block-block-15" class="block block-block footer-info-block clearfix">
-							<h2>Информация:</h2>
-							<div class="content">
-								<div class="info-links-wrapper">
-									<div class="link-box"><a href="http://www.proconsult.by/statyi" class="info-link" alt="">Статьи</a></div>
-									<div class="link-box"><a href="http://www.proconsult.by/vopros-otvet" class="info-link" alt="">Вопрос-ответ</a></div>
-									<div class="link-box"><a href="http://www.proconsult.by/publichnaya-oferta" class="info-link" alt="">Публичная оферта</a></div>
-									<div class="link-box"><a href="http://www.proconsult.by/trenery" class="info-link" alt="">Тренеры</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<footer>
+	<div class="footer"><?= $this->footer ?></div>
+</footer>
+
 </body>
 <script id="template-comment" type="text/x-handlebars-template">
 	{{#each object}}
@@ -505,10 +412,26 @@
 
 <script type="text/javascript">var BASE_URL= '<?=BASE_URL?>'</script>
 <?= $this->javascriptFooter ?>
-<script type="text/javascript" src="<?=BASE_URL?>/public/js/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" src="<?= BASE_URL ?>/public/js/vendor/jquery.scrollUp.min.js"></script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 	(function (d, w, c) {
+		$.scrollUp({
+			scrollName: 'scrollUp',
+			scrollDistance: 300,
+			scrollFrom: 'top',
+			scrollSpeed: 300,
+			animation: 'slide',
+			animationSpeed: 200,
+			scrollTrigger: false,
+			scrollTarget: false,
+			scrollText: 'НАВЕРХ',
+			scrollTitle: true,
+			scrollImg: false,
+			activeOverlay: false,
+			zIndex: 2147483647
+		});
+
 		(w[c] = w[c] || []).push(function() {
 			try {
 				w.yaCounter27841548 = new Ya.Metrika({id:27841548,
@@ -530,22 +453,6 @@
 		} else { f(); }
 	})(document, window, "yandex_metrika_callbacks");
 
-	$.scrollUp({
-		scrollName: 'scrollUp',      // Element ID
-		scrollDistance: 300,         // Distance from top/bottom before showing element (px)
-		scrollFrom: 'top',           // 'top' or 'bottom'
-		scrollSpeed: 300,            // Speed back to top (ms)
-		easingType: 'linear',        // Scroll to top easing (see http://easings.net/)
-		animation: 'slide',           // Fade, slide, none
-		animationSpeed: 200,         // Animation speed (ms)
-		scrollTrigger: false,        // Set a custom triggering element. Can be an HTML string or jQuery object
-		scrollTarget: false,         // Set a custom target element for scrolling to. Can be element or number
-		scrollText: 'НАВЕРХ', // Text for element, can contain HTML
-		scrollTitle: true,          // Set a custom <a> title if required.
-		scrollImg: false,            // Set true to use image
-		activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-		zIndex: 2147483647           // Z-Index for the overlay
-	});
 </script>
 <noscript>
 	<div><img src="//mc.yandex.ru/watch/27841548" style="position:absolute; left:-9999px;" alt="" /></div>

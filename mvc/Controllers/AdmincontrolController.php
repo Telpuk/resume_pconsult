@@ -396,9 +396,6 @@ class AdminControlController extends IController{
 		return $this->_view->render(array(
 			'view' => 'admin_control/index',
 			'js' => $this->_jsAdminControl( $data_search ),
-			'styles' => array(
-				'styleCode' => 'sdfds',
-			),
 			'data' => array(
 				'admin'=>$this->getSessionUserID('admin'),
 				'admin_info'=>array(
@@ -433,11 +430,11 @@ class AdminControlController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
 					BASE_URL . "/public/js/vendor/highlight.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-					BASE_URL . "/public/js/admincontrol.js",
+					BASE_URL . "/public/js/min/admincontrol.min.js",
 				),
 				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
 			)
@@ -448,10 +445,10 @@ class AdminControlController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-					BASE_URL . "/public/js/manager.js"
+					BASE_URL . "/public/js/min/manager.min.js"
 				),
 			)
 		);
@@ -462,11 +459,11 @@ class AdminControlController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 					BASE_URL . "/public/js/vendor/highlight.js",
-					BASE_URL . "/public/js/folders.js"
+					BASE_URL . "/public/js/min/folders.min.js"
 				),
 				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
 			)

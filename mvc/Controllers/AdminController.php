@@ -69,8 +69,8 @@ class AdminController extends IController{
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
-					BASE_URL . "/public/js/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/jquery.validate.min.js",
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
 				),
 			)
 		);

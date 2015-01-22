@@ -3,6 +3,8 @@
 class View
 {
 	private $content = '';
+	private $header = '';
+	private $footer = '';
 	private $javascriptFooter = '';
 	private $javascriptHeader = '';
 	private $style = '';
@@ -13,7 +15,7 @@ class View
 	{
 		if ( $flag && COMPRESS_HTML ):
 			return function ( $buf ) {
-				return str_replace( array( "\n", "\r", "\t" ), '', $buf );
+				return trim( str_replace( array( "\n", "\r", "\t" ), '', $buf ) );
 			};
 		endif;
 	}
@@ -72,30 +74,53 @@ class View
 				$this->cacheHeaders( $arguments['cache_headers'] );
 			}
 
-			if ( isset( $arguments['data']['helpers'] ) ) {
-				unset( $this->data['data']['helpers'] );
-				foreach ( $arguments['data']['helpers'] as $key => $helper ) {
-					ob_start( $this->_compress() );
-					if ( !@include_once DIR_PROJECT . '/mvc/Views/controller/' . $helper . '.phtml' )
-						throw new Exception( 'Helpers view' );
-					$this->data['helpers'][$key] = ob_get_clean();
-				}
-			}
-
 			if ( isset( $arguments['ajax'] ) && $arguments['ajax'] === true ) {
 				ob_start( $this->_compress() );
 				if ( !@include_once DIR_PROJECT . '/mvc/Views/controller/' . $arguments['view'] . '.phtml' )
 					throw new Exception( 'Ajax view' );
-				return ob_end_flush();
+				$ajaxContent = ob_get_contents();
+				ob_clean();
+				return $ajaxContent;
 			} else {
+
+				if ( isset( $arguments['data']['helpers'] ) ) {
+					unset( $this->data['data']['helpers'] );
+					foreach ( $arguments['data']['helpers'] as $key => $helper ) {
+						ob_start( $this->_compress() );
+						if ( !@include_once( DIR_PROJECT . '/mvc/Views/controller/' . $helper . '.phtml' ) )
+							throw new Exception( 'Ajax view' );
+						$this->data['helpers'][$key] = ob_get_contents();
+						ob_clean();
+					}
+				}
+
 				ob_start( $this->_compress() );
 				if ( !@include_once DIR_PROJECT . '/mvc/Views/controller/' . $arguments['view'] . '.phtml' )
 					throw new Exception( 'Content view' );
-				$this->content = ob_get_clean();
+				$this->content = ob_get_contents();
+				ob_clean();
+
+
+				ob_start( $this->_compress() );
+				if ( !@include_once DIR_PROJECT . '/mvc/Views/layout/helpers/header.phtml' )
+					throw new Exception( 'Helpers header view' );
+				$this->header = ob_get_contents();
+				ob_clean();
+
+				ob_start( $this->_compress() );
+				if ( !@include_once DIR_PROJECT . '/mvc/Views/layout/helpers/footer.phtml' )
+					throw new Exception( 'Content view' );
+				$this->footer = ob_get_contents();
+				ob_clean();
+
+
 				ob_start( $this->_compress() );
 				if ( !@include_once DIR_PROJECT . '/mvc/Views/layout/index.phtml' )
 					throw new Exception( 'Layout view' );
-				return ob_end_flush();
+				$layout = ob_get_contents();
+				ob_clean();
+
+				return $layout;
 			}
 		} catch ( Exception $e ) {
 			header( "Location: " . BASE_URL . "/error" );
