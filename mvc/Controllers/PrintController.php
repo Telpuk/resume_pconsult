@@ -35,7 +35,7 @@ class PrintController extends IController{
 			'javascriptFooter' => array(
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/vendor/jquery.printPage.js",
+					BASE_URL . "/public/js/vendor/jquery.printPage.min.js",
 					BASE_URL . "/public/js/min/print.min.js"
 				),
 			)

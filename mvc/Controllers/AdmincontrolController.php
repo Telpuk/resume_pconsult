@@ -99,6 +99,8 @@ class AdminControlController extends IController{
 			}
 			$ajax =  $obj_folders->getAjaxPost();
 			print_r($ajax);
+		}else{
+			$this->headerLocation('error');
 		}
 		exit;
 	}
@@ -108,6 +110,8 @@ class AdminControlController extends IController{
 			if($obj_folders->insertFolder($_POST['folder_name'])){
 				echo($obj_folders->getFolders());
 			}
+		}else{
+			$this->headerLocation('error');
 		}
 		exit;
 	}
@@ -431,12 +435,12 @@ class AdminControlController extends IController{
 			'javascriptFooter' => array(
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
-					BASE_URL . "/public/js/vendor/highlight.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
+					BASE_URL . "/public/js/vendor/highlight.min.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 					BASE_URL . "/public/js/min/admincontrol.min.js",
 				),
-				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
+				'js_c' => is_null( $data ) || !$data ? null : '<script type="text/javascript">(function($){$(".person_inform,.conclusion").highlight("' . $data . '");})(jQuery)</script>'
 			)
 		);
 	}
@@ -460,12 +464,12 @@ class AdminControlController extends IController{
 			'javascriptFooter' => array(
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-					BASE_URL . "/public/js/vendor/highlight.js",
+					BASE_URL . "/public/js/vendor/highlight.min.js",
 					BASE_URL . "/public/js/min/folders.min.js"
 				),
-				'js_c' => is_null( $data ) || !$data ? null : '(function($){$(".person_inform, .conclusion").highlight("' . $data . '");})($)'
+				'js_c' => is_null( $data ) || !$data ? null : '<script type="text/javascript">(function($){$(".person_inform,.conclusion").highlight("' . $data . '");})(jQuery)</script>'
 			)
 		);
 	}

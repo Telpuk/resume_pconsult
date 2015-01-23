@@ -10,11 +10,6 @@
                 desired_position:{
                     required: true
                 },
-
-                professional_area:{
-                    required: true
-                },
-
                 employment:{
                     required: true
                 }
@@ -24,11 +19,6 @@
                 desired_position:{
                     required: "Это поле обязательно для заполнения"
                 },
-
-                professional_area:{
-                    required: "Это поле обязательно для заполнения"
-                },
-
                 employment:{
                     required: "Это поле обязательно для заполнения"
                 }

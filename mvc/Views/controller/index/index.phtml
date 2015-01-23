@@ -22,14 +22,11 @@
 	</div>
 	<div class="print">
 		<p>
-			<a href="<?= BASE_URL . "/print/index/id/{$this->data['data']['id_user']}" ?>"><img
-					src='<?= BASE_URL . "/public/img/print.png" ?>'>Распечатать</a>
+			<a href="<?= BASE_URL . "/print/index/id/{$this->data['data']['id_user']}" ?>"><img src='<?= BASE_URL . "/public/img/print.png" ?>'>Распечатать</a>
 		</p>
 	</div>
 	<div class="print" id="download">
-		<p class="active_download">
-			<img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме
-		</p>
+		<p class="active_download"><img src='<?= BASE_URL . "/public/img/download.png" ?>'>Скачать резюме</p>
 
 		<div data-id-user="<?= $this->data['data']['id_user'] ?>" id="download_content">
 			<?php if (count($this->data['data']['comments'])): ?>
@@ -83,10 +80,7 @@
 					</h1>
 					<h2><?=$this->data['data']['name']?></h2>
 				</header>
-				<section>
-					<p><?=$this->data['data']['birth_sex_city_move_trip']?></p>
-					<p><?=$this->data['data']['auto']?></p>
-				</section>
+				<section><?=$this->data['data']['birth_sex_city_move_trip']?><p><?=$this->data['data']['auto']?></p></section>
 			</div>
 		<?php endif?>
 		<div class="contacts_data">
@@ -128,9 +122,11 @@
 					<?php endif; ?>
 				</a></h1>
 		</header>
-		<p><strong><?=$this->data['data']['desired_position']?></strong></p>
-		<p><strong><?=$this->data['data']['salary']?></strong></p>
-		<p><?=$this->data['data']['professional_area']?></p>
+		<p><h2><?=$this->data['data']['desired_position']?></h2></p>
+		<?php if($this->data['data']['salary']): ?>
+			<p><h2><?=$this->data['data']['salary']?></h2></p>
+		<?php endif; ?>
+		<?=$this->data['data']['professional_area']?>
 		<p><?=$this->data['data']['employment']?></p>
 		<p><?=$this->data['data']['schedule']?></p>
 	<?php endif; ?>

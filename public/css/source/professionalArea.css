@@ -1,0 +1,183 @@
+#profArea{
+    width: 200px;
+    color: #009cd5;
+    border: 1px #009cd5;
+    border-bottom-style: dotted;
+    cursor: pointer;
+}
+#professionalAreaBlock{
+    margin-bottom: 10px;
+}
+#professionalAreaBlock p{
+    margin: 0;
+    padding: 0;
+}
+
+#professionalAreaBlock ul{
+    margin: 0;
+    padding: 0;
+}
+#professionalAreaBlock ul li{
+    margin-left: 30px;
+}
+
+
+#blockBlack{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.3;
+    width: 100%;
+    z-index: 8;
+}
+#wrapperProfessArea{
+    display: none;
+}
+
+
+#wrapperProfessArea > #blockArea{
+    position: absolute;
+    left:0;
+    right:0;
+    top: -400px;
+    bottom: 0;
+    margin:auto;
+    width: 50%;
+    max-height: 600px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    z-index: 9;
+}
+
+#blockArea .wrapperHeader {
+    box-shadow: 0 5px 5px -2px #ccc;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+#blockArea .wrapperHeader p{
+    margin: 0;
+    padding: 0;
+}
+#blockArea .wrapperHeader p:nth-child(1){
+    color: black;
+    font-size: 1.7em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#blockArea .wrapperHeader p input[type=search]{
+    display: block;
+    width: 100%;
+    padding: 5px;
+}
+#blockArea .wrapperHeader p:last-child{
+    text-align: right;
+    color: #666;
+}
+
+
+#blockArea .wrapperFooter{
+    border-top: 1px solid #ccc;
+    margin: 0 20px;
+}
+#blockArea .wrapperFooter h1{
+    font-weight: normal;
+    display: inline-block;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+#blockArea .wrapperFooter h1:nth-child(1){
+    text-align: center;
+    padding: 5px 15px 5px 15px;
+    border: 1px black solid;
+}
+#blockArea .wrapperFooter h1:nth-child(2){
+    border-bottom: 1px #666 dotted;
+    margin-left: 10px;
+    color: #666;
+}
+#blockArea #listProfessArea{
+    width: 90%;
+    height: 350px;
+    padding-left: 30px;
+    overflow: scroll;
+    direction:ltr;
+    overflow-x: hidden;
+}
+
+#blockArea #listProfessArea ul{
+    padding: 0;
+    list-style: none;
+}
+
+.selector_node {
+    background: no-repeat url(../../public/img/plusminus.png) -100px -100px;
+    line-height: 21px;
+    font-size: 14px;
+    padding: 0 0 0 20px;
+}
+.selector_node span:nth-child(1){
+    cursor: pointer;
+}
+
+
+.selector_open, .selector_close {
+    width: 1px;
+    white-space: nowrap;
+}
+
+.selector_node.selector_close {
+    background-position: 4px 4px;
+}
+.selector_node.selector_open {
+    background-position: -35px 4px;
+}
+
+.selector_node.selector_close ul{
+    display: none;
+}
+
+#closeGif {
+    background: url(../../public/img/close.gif) #fff no-repeat center center;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    position: absolute;
+    zoom: 1;
+    cursor: pointer;
+    z-index: 1;
+    right: -50px;
+    top: 0;
+    border-radius: 15px;
+}
+
+.highlight {
+    background-color: #fff34d;
+}
+
+.closeBlock {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.closeBlock:before {
+    display: block;
+    content: ' ';
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    height: 7px;
+    width: 7px;
+    bottom: 0;
+    background: no-repeat url(../../public/img/sprite.png) 0 0;
+}
+
+#enter{
+    color: #000000;
+}

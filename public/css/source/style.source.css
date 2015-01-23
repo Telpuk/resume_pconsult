@@ -91,7 +91,7 @@ html {
 /* `Basic HTML
 ----------------------------------------------------------------------------------------------------*/
 html {
-    font-size: 62.5%;
+    font-size: 62%;
 }
 
 pre,
@@ -116,13 +116,13 @@ h1 {
 }
 
 h2 {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 h3 {
     font-size: 14px;
-    line-height: 18px;
+    line-height: 16px;
 }
 
 h4 {
@@ -132,12 +132,12 @@ h4 {
 
 h5 {
     font-size: 12px;
-    line-height: 18px;
+    line-height: 16px;
 }
 
 h6 {
     font-size: 11px;
-    line-height: 18px;
+    line-height: 16px;
 }
 
 /* `Spacing
@@ -150,27 +150,6 @@ ol {
 ul {
     list-style: disc;
 }
-
-
-p,
-dl,
-hr,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ol,
-ul,
-pre,
-table,
-address,
-fieldset,
-figure {
-    margin-bottom: 5px;
-}
-
 
 button::-moz-focus-inner,
 input[type="reset"]::-moz-focus-inner,
@@ -209,7 +188,6 @@ input[type="file"] > input[type="button"]:hover {
 body {
     color: #383838;
     font-size: 16px;
-    line-height: 16px;
     font-family: 'RobotoCondensed-Regular', 'OpenSans-Regular', "Open Sans", Arial, "Helvetica Neue", "Liberation Sans", FreeSans, sans-serif;
 }
 
@@ -1178,6 +1156,7 @@ ul.nice-menu li {
 }
 
 .resume .conclusion .conclusion_text{
+    cursor: pointer;
     font-size: 0.2em;
     margin-left: 100px;
     padding: 10px;
@@ -1348,8 +1327,7 @@ fieldset p{
 }
 
 .resume .resume_widget p{
-    text-align: center;
-    font-size: .9em;
+    font-size: .7em;
 }
 .resume .resume_widget ul{
     padding: 0;
@@ -1400,6 +1378,15 @@ fieldset p{
     margin-left: 10px;
     color: #bababa;
 }
+.resume .salary_position  > ul{
+    font-size: 0.2em;
+    padding: 5px 0 5px 20px;
+}
+
+
+.resume .salary_position  > ul li{
+    list-style: none;
+}
 
 
 .resume .salary_position .salary_position_add,
@@ -1427,6 +1414,7 @@ fieldset p{
 .resume .right_60 p{
     font-size: .2em;
 }
+
 
 .resume .personal_data header h1 a,
 .resume .contacts_data h1 a{
@@ -1473,7 +1461,7 @@ fieldset p{
 .resume .personal_data section p,
 .resume .contacts_data section p,
 .resume .salary_position p{
-    margin-top: 3px;
+    margin: 5px 0 5px 0;
     font-size: .2em;
 }
 
@@ -1481,9 +1469,11 @@ fieldset p{
     width: 100%;
 }
 
-.resume .salary_position p{
-    padding: 5px 0px 5px 20px;
+.resume .salary_position p,.resume .salary_position h2{
+    padding-left: 20px;
 }
+
+
 .resume .salary_position  h1,
 .resume .education_language h1,
 .resume .experience h1,
@@ -1516,12 +1506,6 @@ fieldset p{
     margin-bottom: 10px;
 }
 
-.resume .salary_position p{
-    margin-top: 10px;
-    margin-left: 5px;
-    font-size: 0.2em;
-}
-
 .resume .nationality_workpermit p{
     margin-top: 10px;
     font-size: 0.2em;
@@ -1532,6 +1516,12 @@ fieldset p{
     width: 100%;
     margin-left: 10px;
     border: none;
+}
+.resume .experience table tr{
+    border-bottom: 1px #000000 dashed;
+}
+.resume .experience table tr:last-child{
+    border-bottom: none;
 }
 .resume .education_language .languages h4,
 .resume .education_language .courses h4{
@@ -1651,7 +1641,7 @@ fieldset p{
 .resume .salary_position_add,
 .resume .education_add,
 .resume .experience_add{
-    padding-top: 10px;
+    padding-top: 5px;
     width: 100%;
     margin-bottom: 30px;
     border: 1px #4c8cd5 dashed;
@@ -1966,15 +1956,11 @@ table.foot_table  tr td{
     border-bottom: 1px rgba(175, 175, 175, .8) dashed;
 }
 
-#city_example:hover, #nationality_example:hover, #work_permit_example:hover{
-    cursor: pointer;
-    font-size: 1.05em;
-}
 .example{
+    cursor: pointer;
     color: rgba(175, 175, 175, .8);
     font-size: .8em;
-    margin-bottom: 3px;
-    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .data_f{
@@ -2370,6 +2356,10 @@ main.authorization{
     margin:  100px auto;
     min-height: 250px;
     width: 30%;
+}
+
+main.authorization p{
+    margin-bottom: 10px;
 }
 
 
@@ -2787,6 +2777,7 @@ main.authorization .helpers_message_authorization{
     padding: 15px;
 }
 .admin_control .form_manager p{
+    padding: 5px;
     position: relative;
     clear: both;
 }
@@ -3233,3 +3224,55 @@ span.highlight {
     background-color: #fff34d !important;
     color: #000000 !important;
 }
+
+.ui-autocomplete {
+    font-size: 12px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+}
+

@@ -10,16 +10,56 @@
 					<table>
 						<tbody>
 						<tr>
-							<td><label for="desired_position">Желаемая должность<span class="required input">Обязательно для заполнения</span></label></td>
+							<td>
+								<label for="desired_position">Желаемая должность<span class="required input">Обязательно для заполнения</span></label>
+							</td>
 							<td>
 								<input type="text"  id="desired_position"  name="desired_position" value='<?=htmlspecialchars($this->data['data']['inputs']['desired_position']['value'],ENT_QUOTES)?>'>
 								<div class="message"><?=$this->data['data']['inputs']['desired_position']['val']['message']?></div>
 							</td>
 						</tr>
 						<tr>
-							<td><label for="professional_area">Профессиональная область<span class="required input">Обязательно для заполнения</span></label></td>
 							<td>
-								<input type="text"  id="professional_area"  name="professional_area" value='<?=htmlspecialchars($this->data['data']['inputs']['professional_area']['value'],ENT_QUOTES)?>'>
+								<label for="professional_area">Профессиональная область<span class="required input">Обязательно для заполнения</span></label>
+							</td>
+							<td>
+
+								<div id="professionalAreaBlock">
+									<?php if(!empty($this->data['data']['inputs']['professional_area']['value']['title'])): ?>
+										<p  data-professional-area-id="{{id}}"><?=$this->data['data']['inputs']['professional_area']['value']['title']?><span class="closeBlock"></span></p>
+										<ul>
+											<input type="hidden" name='professional_area[title]' value='<?=$this->data['data']['inputs']['professional_area']['value']['title']?>'>
+											<?php foreach($this->data['data']['inputs']['professional_area']['value']['children'] as $value): ?>
+												<li data-professional-area-children-id ={{this.id}}>
+													<input type="hidden" name='professional_area[children][]' value='<?=$value?>'><?=$value?><span class="closeBlock"></span>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									<?php endif; ?>
+								</div>
+								<span id="profArea">Указать профобласти</span>
+
+								<div id="wrapperProfessArea">
+									<div id="blockBlack"></div>
+
+									<div id="blockArea">
+										<div class="wrapperHeader">
+											<p>Выбор сфер деятельности</p>
+											<p><input type="search" id="text-search"  placeholder="Быстрый поиск" ></p>
+											<p>Выбор сфер деятельности</p>
+										</div>
+
+										<div id="listProfessArea">
+											<ul></ul>
+										</div>
+
+										<div class="wrapperFooter">
+											<h1 id="enter">Выбрать</h1>
+											<h1 id="cancel">Отменить</h1>
+										</div>
+										<div id="closeGif"></div>
+									</div>
+								</div>
 								<div class="message"><?=$this->data['data']['inputs']['professional_area']['val']['message']?></div>
 							</td>
 						</tr>
@@ -37,7 +77,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="employment">Занятость<span class="required input">Обязательно для заполнения</span></label></td>
+							<td>
+								<label for="employment">Занятость<span class="required input">Обязательно для заполнения</span></label>
+							</td>
 							<td>
 								<div class="container">
 									<input type="checkbox" name='employment[]'<?php if(in_array('Полная занятость',$this->data['data']['inputs']['employment']['value']))echo'checked'?> value="Полная занятость">Полная занятость<br>
@@ -50,7 +92,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label for="schedule">График работы<span class="required input">Обязательно для заполнения</span></label></td>
+							<td>
+								<label for="schedule">График работы<span class="required input">Обязательно для заполнения</span></label>
+							</td>
 							<td>
 								<div class="container">
 									<input type="checkbox" name='schedule[]'<?php if(in_array('Полный день',$this->data['data']['inputs']['schedule']['value']))echo'checked'?> value="Полный день">Полный день<br>

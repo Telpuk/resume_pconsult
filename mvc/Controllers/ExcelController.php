@@ -106,12 +106,20 @@ class ExcelController extends IController{
 			$textrun = $cell->addTextRun(array('align' => 'left'));
 			$textrun->addText($personal_data['desired_position'], array('size' => 16, 'bold' => true));
 			$textrun->addTextBreak();
-			$textrun->addText($personal_data['professional_area']);
-			$textrun->addTextBreak(2);
+
+			if(is_array($personal_data['professional_area'])):
+				$cell->addListItem($personal_data['professional_area']['title'], 0, array('bold'=>true), TYPE_SQUARE_FILLED);
+				foreach($personal_data['professional_area']['children'] as $value):
+					$cell->addListItem('     — '.$value, 1, null, TYPE_SQUARE_FILLED);   // уровень 1
+				endforeach;
+			else:
+				$textrun->addText($personal_data['professional_area']);
+				$textrun->addTextBreak();
+			endif;
 			$textrun->addText("Занятость: " . mb_strtolower($personal_data['employment'], 'UTF-8'));
 			$textrun->addTextBreak();
 			$textrun->addText("График работы: " . mb_strtolower($personal_data['schedule'], 'UTF-8'));
-			$textrun->addTextBreak(2);
+			$textrun->addTextBreak();
 			$textrun->addText("Желательное время в пути до работы: " . mb_strtolower($personal_data['travel_time_work'], 'UTF-8'));
 			$cell = $table->addCell(10000);
 			$textrun = $cell->addTextRun(array('align' => 'right'));

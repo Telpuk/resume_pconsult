@@ -24,27 +24,31 @@ class View
 	{
 		try {
 			if ( isset( $arguments['js'] ) && JS === true && is_array( $arguments['js'] ) ) {
-				$src = '';
-				$js_c = '';
+
 				if ( isset( $arguments['js']['javascriptFooter'] ) && is_array( $arguments['js']['javascriptFooter'] ) ):
+					$src = '';
+					$js_c = '';
 					foreach ( $arguments['js']['javascriptFooter'] as $key => $js ) {
 						if ( $key === "src" ) {
 							foreach ( $js as $value ) {
 								$src .= '<script type="text/javascript" src=' . $value . '></script>' . "\n";
 							}
 						} elseif ( $key === "js_c" && !is_null( $js ) && $js ) {
-							$js_c .= "\n" . '<script type="text/javascript">' . $js . '</script>' . "\n";
+							$js_c .= $js;
 						}
 					}
 					$this->javascriptFooter = $src . $js_c . "\n";
-				elseif ( isset( $arguments['js']['javascriptHeader'] ) && is_array( $arguments['js']['javascriptHeader'] ) ):
+				endif;
+				if ( isset( $arguments['js']['javascriptHeader'] ) && is_array( $arguments['js']['javascriptHeader'] ) ):
+					$src = '';
+					$js_c = '';
 					foreach ( $arguments['js']['javascriptHeader'] as $key => $js ) {
 						if ( $key === "src" ) {
 							foreach ( $js as $value ) {
 								$src .= '<script type="text/javascript" src=' . $value . '></script>' . "\n";
 							}
 						} elseif ( $key === "js_c" && !is_null( $js ) && $js ) {
-							$js_c .= '<script type="text/javascript">' . $js . '</script>' . "\n";
+							$js_c .= $js;
 						}
 					}
 					$this->javascriptHeader = $src . $js_c . "\n";

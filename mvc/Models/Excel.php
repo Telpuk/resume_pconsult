@@ -68,6 +68,8 @@ class Excel{
 			'other_site'=>$personal_data['other_site'],
 		));
 
+		$personal_data['professional_area'] = $this->_getProfessionalArea($personal_data['professional_area']);
+
 		$personal_data['city_move_trip'] = $this->_getCityMoveTrip(
 			array(
 				'nationality'=>$personal_data['nationality'],
@@ -185,6 +187,10 @@ class Excel{
 			}
 		}
 		return $data;
+	}
+
+	public function _getProfessionalArea($data){
+		return  @unserialize($data)?unserialize($data):$data;
 	}
 
 	private function _getExperienceOrganizationsNoHTML($personal_data){

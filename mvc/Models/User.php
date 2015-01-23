@@ -129,7 +129,7 @@ class User{
 
 		foreach ($autocomplete as $key => $value) {
 			foreach(array_unique(explode('[@!-#-!@]', $value['city'])) as $element){
-					$autocompleteArray[] = $element;
+				$autocompleteArray[] = $element;
 			}
 		}
 		$autocompleteArray = array_values(array_unique($autocompleteArray));
@@ -318,7 +318,9 @@ class User{
 		$personal['desired_position'] = $personal_data['desired_position'];
 
 		$personal['salary'] = $personal_data['salary']?$personal_data['salary']." ".$personal_data['currency']:'';
-		$personal['professional_area'] = $personal_data['professional_area'];
+
+
+		$personal['professional_area'] = $this->_getHtmlProfessionalArea($personal_data['professional_area']);
 
 		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);
 		$personal['schedule'] = sprintf('График работы: %s', $personal_data['schedule']);
@@ -399,6 +401,20 @@ class User{
 		return $personal;
 	}
 
+	public function _getHtmlProfessionalArea($data = array()){
+		$html = '';
+		$data = @unserialize($data)?unserialize($data):$data;
+		if(is_array($data)):
+			$html .= "<ul><li>{$data['title']}</li><li><ul>";
+			foreach($data['children'] as $value){
+				$html .= "<li>&mdash; {$value}</li>";
+			}
+			$html .= "</ul></li></ul>";
+		else:
+			$html = '<p>'.$data.'</p>';
+		endif;
+		return $html;
+	}
 
 	public function getExperienceCount($personal_data){
 		$date = array();
@@ -532,8 +548,7 @@ class User{
 		}
 
 		return sprintf(
-			'<p><b>%s</b> Пол <b>%s &#183;</b> Город <b>%s</b> </p>
-				<p>  Переезд: <b>%s</b> &#183; Готовность командировкам: <b>%s</b></p>',
+			'<p><b>%s</b>&nbsp;Пол&nbsp;<b>%s&nbsp;&#183;</b>&nbsp;Город&nbsp;<b>%s</b></p><p>Переезд:&nbsp;<b>%s</b>&nbsp;&#183;&nbsp;Готовность&nbsp;командировкам:&nbsp;<b>%s</b></p>',
 			$birth?$birth.' &#183 ':'',
 			$personal_data['sex'],
 			$personal_data['city'],
@@ -717,7 +732,7 @@ class User{
 				'value'=>$position_data['desired_position']),
 			'professional_area'=>array(
 				'val'=>true,
-				'value'=>$position_data['professional_area']
+				'value'=>@unserialize($position_data['professional_area'])
 			),
 			'employment'=>array(
 				'val'=>true,
@@ -738,7 +753,7 @@ class User{
 employment = :employment,schedule = :schedule,salary = :salary,currency = :currency WHERE id = :id_user" );
 			$stmt->execute(array(
 					':desired_position'=>$inputs['desired_position']['value'],
-					':professional_area'=>$inputs['professional_area']['value'],
+					':professional_area'=>is_array($inputs['professional_area']['value'])?serialize($inputs['professional_area']['value']):null,
 					':employment'=>implode('[@!-#-!@]',$inputs['employment']['value']),
 					':schedule'=>implode('[@!-#-!@]',$inputs['schedule']['value']),
 					':salary'=>$inputs['salary']['value'],

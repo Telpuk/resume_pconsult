@@ -110,7 +110,12 @@
     };
     Personal.prototype.autocompCity = function(data){
         this.$city.autocomplete({
-            source: data
+            source: data,
+            autoFocus: true,
+            delay: 500,
+            minLength: 0,
+            position: { my : "right top", at: "right bottom" },
+            search: function( event, ui ) {}
         });
     };
     Personal.prototype.autocompNationality = function(data){

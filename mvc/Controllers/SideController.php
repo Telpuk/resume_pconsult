@@ -31,6 +31,7 @@ class SideController extends IController{
 						'view' => 'side/position',
 						'data'=>array('inputs'=>$checkForm),
 						'js'=>$this->_jsPosition(),
+						'styles'=>$this->_stylePosition()
 					));
 				}
 			}
@@ -45,6 +46,7 @@ class SideController extends IController{
 					'inputs'=>$checkForm
 				),
 				'js'=>$this->_jsPosition(),
+				'styles'=>$this->_stylePosition()
 			));
 		}
 	}
@@ -694,7 +696,10 @@ class SideController extends IController{
 	private function _checkFormPosition($post){
 
 		$desired_position = isset($post['desired_position'])?trim(htmlspecialchars(strip_tags($post['desired_position']),ENT_QUOTES)) :'';
-		$professional_area = isset($post['professional_area'])?trim(strip_tags($post['professional_area'])):'';
+
+		$professional_area = isset($post['professional_area'])?$post['professional_area']:array();
+
+
 		$salary = isset($post['salary'])?trim(strip_tags(mb_eregi_replace('[^0-9]','',$post['salary']))):'';
 		$currency = isset($post['currency'])?trim(strip_tags($post['currency'])):'';
 
@@ -708,7 +713,7 @@ class SideController extends IController{
 		}, $desired_position);
 
 		$professional_area_val = call_user_func(function($professional_area){
-			return !empty($professional_area)?true: array('message'=>'Необходимо заполнить');
+			return (isset($professional_area['title'])&&isset($professional_area['children']))?true: array('message'=>'Необходимо заполнить');
 		}, $professional_area);
 
 		$employment_val = call_user_func(function($employment){
@@ -747,15 +752,58 @@ class SideController extends IController{
 		);
 	}
 
+	private function _stylePosition(){
+		return array(
+			'styleLinks' => array(
+				BASE_URL . "/public/css/professionalArea.min.css",
+			)
+		);
+	}
+
 	private function _jsPosition(){
 		return array(
 			'javascriptFooter' => array(
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
 					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
-					BASE_URL . "/public/js/vendor/jquery-ui.js",
-					BASE_URL . "/public/js/min/position.min.js"
-				),
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
+					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
+					BASE_URL . "/public/js/vendor/highlight.min.js",
+					BASE_URL . "/public/js/min/position.min.js",
+					BASE_URL . "/public/js/min/professionalArea.min.js"
+				)
+			),
+			'javascriptHeader' => array(
+				'js_c' =><<<HEAD
+<script id="professionalAreaBlock-template" type="text/x-handlebars-template">
+	<p  data-professional-area-id="{{id}}">{{title}}<span class="closeBlock"></span></p>
+	<ul>
+	    <input type="hidden" name='professional_area[title]' value='{{this.title}}'>
+		{{#each object}}
+		<li data-professional-area-children-id ={{this.id}}>
+			<input type="hidden" name='professional_area[children][]' value='{{this.title}}'>
+			{{this.title}}<span class="closeBlock"></span>
+		</li>
+		{{/each}}
+	</ul>
+</script>
+<script id="professionalArea-template" type="text/x-handlebars-template">
+	{{#if object}}
+	{{#each object}}
+	<li class="selector_node selector_close {{../status}}">
+		<span>{{this.title}}</span>
+		<ul {{#if ../status}}style='display:block'{{else}}style='display:none'{{/if}} >
+		{{#each this.children}}
+	<li><input data-professional-area-children-id ={{this.id}}  data-professional-area-id="{{../this.id}}" type="checkbox" value="{{this.title}}">{{this.title}}</li>
+	{{/each}}
+	</ul>
+	</li>
+	{{/each}}
+	{{else}}
+	<li>Совпадений не найдено</li>
+	{{/if}}
+</script>
+HEAD
 			)
 		);
 	}
@@ -766,9 +814,9 @@ class SideController extends IController{
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
 					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
-					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
 					BASE_URL . "/public/js/min/education.min.js"
-				),
+				)
 			)
 		);
 	}
@@ -778,10 +826,10 @@ class SideController extends IController{
 			'javascriptFooter' => array(
 				'src' => array(
 					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
-					BASE_URL . "/public/js/vendor/jquery-ui.js",
+					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
 					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
 					BASE_URL . "/public/js/vendor/jquery.maskedinput.min.js",
-					BASE_URL . "/public/js/vendor/handlebars-v2.0.0.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
 					BASE_URL . "/public/js/min/experience.min.js"
 				),
 			)

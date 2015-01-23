@@ -32,11 +32,11 @@
             }else if(event.target.className != 'conclusion_textarea' && event.target.className != 'button_conclusion'){
                 $('.editConclusion').removeClass('editConclusion cancel').addClass('editConclusion');
                 $('.editConclusion').html("<img src='"+BASE_URL+"/public/img/edit.png'>редактировать");
-                event.data.self.$conclusion_text.text(text).hide().fadeIn();
+                event.data.self.$conclusion_text.text(text).show();
             }
 
-            event.data.self.$favorite_folds.hide(500);
-            event.data.self.$download_content.hide(500);
+            event.data.self.$favorite_folds.hide(400);
+            event.data.self.$download_content.hide(400);
 
         });
     };

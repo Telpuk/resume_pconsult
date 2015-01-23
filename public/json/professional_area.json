@@ -1,0 +1,3128 @@
+[
+    {
+        "title": "Информационные технологии, интернет, телеком",
+        "children": [
+            {
+                "title": "Управление проектами",
+                "id": "1.327",
+                "name": "specialization.327"
+            },
+            {
+                "title": "Тестирование",
+                "id": "1.117",
+                "name": "specialization.117"
+            },
+            {
+                "title": "Контент",
+                "id": "1.116",
+                "name": "specialization.116"
+            },
+            {
+                "title": "Стартапы",
+                "id": "1.474",
+                "name": "specialization.474"
+            },
+            {
+                "title": "Банковское ПО",
+                "id": "1.395",
+                "name": "specialization.395"
+            },
+            {
+                "title": "Компьютерная безопасность",
+                "id": "1.110",
+                "name": "specialization.110"
+            },
+            {
+                "title": "Системы управления предприятием (ERP)",
+                "id": "1.50",
+                "name": "specialization.50"
+            },
+            {
+                "title": "CRM системы",
+                "id": "1.536",
+                "name": "specialization.536"
+            },
+            {
+                "title": "Консалтинг, Аутсорсинг",
+                "id": "1.113",
+                "name": "specialization.113"
+            },
+            {
+                "title": "Оптимизация сайта (SEO)",
+                "id": "1.400",
+                "name": "specialization.400"
+            },
+            {
+                "title": "Администратор баз данных",
+                "id": "1.420",
+                "name": "specialization.420"
+            },
+            {
+                "title": "Маркетинг",
+                "id": "1.137",
+                "name": "specialization.137"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "1.172",
+                "name": "specialization.172"
+            },
+            {
+                "title": "CTO, CIO, Директор по IT",
+                "id": "1.3",
+                "name": "specialization.3"
+            },
+            {
+                "title": "Развитие бизнеса",
+                "id": "1.246",
+                "name": "specialization.246"
+            },
+            {
+                "title": "Web мастер",
+                "id": "1.10",
+                "name": "specialization.10"
+            },
+            {
+                "title": "Web инженер",
+                "id": "1.9",
+                "name": "specialization.9"
+            },
+            {
+                "title": "Игровое ПО",
+                "id": "1.475",
+                "name": "specialization.475"
+            },
+            {
+                "title": "Мультимедиа",
+                "id": "1.161",
+                "name": "specialization.161"
+            },
+            {
+                "title": "Программирование, Разработка",
+                "id": "1.221",
+                "name": "specialization.221"
+            },
+            {
+                "title": "Телекоммуникации",
+                "id": "1.295",
+                "name": "specialization.295"
+            },
+            {
+                "title": "Аналитик",
+                "id": "1.25",
+                "name": "specialization.25"
+            },
+            {
+                "title": "Технический писатель",
+                "id": "1.296",
+                "name": "specialization.296"
+            },
+            {
+                "title": "Продажи",
+                "id": "1.225",
+                "name": "specialization.225"
+            },
+            {
+                "title": "Электронная коммерция",
+                "id": "1.359",
+                "name": "specialization.359"
+            },
+            {
+                "title": "Интернет",
+                "id": "1.89",
+                "name": "specialization.89"
+            },
+            {
+                "title": "Продюсер",
+                "id": "1.232",
+                "name": "specialization.232"
+            },
+            {
+                "title": "Инженер",
+                "id": "1.82",
+                "name": "specialization.82"
+            },
+            {
+                "title": "Передача данных и доступ в интернет",
+                "id": "1.203",
+                "name": "specialization.203"
+            },
+            {
+                "title": "Сотовые, Беспроводные технологии",
+                "id": "1.277",
+                "name": "specialization.277"
+            },
+            {
+                "title": "Системы автоматизированного проектирования",
+                "id": "1.274",
+                "name": "specialization.274"
+            },
+            {
+                "title": "Системный администратор",
+                "id": "1.273",
+                "name": "specialization.273"
+            },
+            {
+                "title": "Системная интеграция",
+                "id": "1.272",
+                "name": "specialization.272"
+            },
+            {
+                "title": "Поддержка, Helpdesk",
+                "id": "1.211",
+                "name": "specialization.211"
+            },
+            {
+                "title": "Сетевые технологии",
+                "id": "1.270",
+                "name": "specialization.270"
+            },
+            {
+                "title": "Арт-директор",
+                "id": "1.30",
+                "name": "specialization.30"
+            }
+        ],
+        "id": 1,
+        "name": "professional_area.1"
+    },
+    {
+        "title": "Бухгалтерия, управленческий учет, финансы предприятия",
+        "children": [
+            {
+                "title": "CIPA",
+                "id": "2.523",
+                "name": "specialization.523"
+            },
+            {
+                "title": "ACCA",
+                "id": "2.467",
+                "name": "specialization.467"
+            },
+            {
+                "title": "ТМЦ",
+                "id": "2.468",
+                "name": "specialization.468"
+            },
+            {
+                "title": "Первичная документация",
+                "id": "2.469",
+                "name": "specialization.469"
+            },
+            {
+                "title": "Бухгалтер-калькулятор",
+                "id": "2.463",
+                "name": "specialization.463"
+            },
+            {
+                "title": "Оффшоры",
+                "id": "2.200",
+                "name": "specialization.200"
+            },
+            {
+                "title": "Основные средства",
+                "id": "2.464",
+                "name": "specialization.464"
+            },
+            {
+                "title": "GAAP",
+                "id": "2.465",
+                "name": "specialization.465"
+            },
+            {
+                "title": "Руководство бухгалтерией",
+                "id": "2.261",
+                "name": "specialization.261"
+            },
+            {
+                "title": "Валютный контроль",
+                "id": "2.46",
+                "name": "specialization.46"
+            },
+            {
+                "title": "Бюджетирование и планирование",
+                "id": "2.44",
+                "name": "specialization.44"
+            },
+            {
+                "title": "Бухгалтер",
+                "id": "2.43",
+                "name": "specialization.43"
+            },
+            {
+                "title": "Экономист",
+                "id": "2.425",
+                "name": "specialization.425"
+            },
+            {
+                "title": "Кредитный контроль",
+                "id": "2.125",
+                "name": "specialization.125"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "2.179",
+                "name": "specialization.179"
+            },
+            {
+                "title": "Расчет себестоимости",
+                "id": "2.249",
+                "name": "specialization.249"
+            },
+            {
+                "title": "Планово-экономическое управление",
+                "id": "2.434",
+                "name": "specialization.434"
+            },
+            {
+                "title": "Ценные бумаги",
+                "id": "2.351",
+                "name": "specialization.351"
+            },
+            {
+                "title": "Налоги",
+                "id": "2.164",
+                "name": "specialization.164"
+            },
+            {
+                "title": "Финансовый анализ",
+                "id": "2.342",
+                "name": "specialization.342"
+            },
+            {
+                "title": "МСФО, IFRS",
+                "id": "2.454",
+                "name": "specialization.454"
+            },
+            {
+                "title": "Казначейство",
+                "id": "2.100",
+                "name": "specialization.100"
+            },
+            {
+                "title": "Кассир, Инкассатор",
+                "id": "2.102",
+                "name": "specialization.102"
+            },
+            {
+                "title": "Финансовый менеджмент",
+                "id": "2.344",
+                "name": "specialization.344"
+            },
+            {
+                "title": "Финансовый контроль",
+                "id": "2.343",
+                "name": "specialization.343"
+            },
+            {
+                "title": "Аудит",
+                "id": "2.33",
+                "name": "specialization.33"
+            },
+            {
+                "title": "Учет счетов и платежей",
+                "id": "2.337",
+                "name": "specialization.337"
+            },
+            {
+                "title": "Учет заработной платы",
+                "id": "2.335",
+                "name": "specialization.335"
+            }
+        ],
+        "id": 2,
+        "name": "professional_area.2"
+    },
+    {
+        "title": "Маркетинг, реклама, PR",
+        "children": [
+            {
+                "title": "Управление проектами",
+                "id": "3.328",
+                "name": "specialization.328"
+            },
+            {
+                "title": "Рекламный агент",
+                "id": "3.253",
+                "name": "specialization.253"
+            },
+            {
+                "title": "Копирайтер",
+                "id": "3.119",
+                "name": "specialization.119"
+            },
+            {
+                "title": "Верстальщик",
+                "id": "3.48",
+                "name": "specialization.48"
+            },
+            {
+                "title": "Консультант",
+                "id": "3.114",
+                "name": "specialization.114"
+            },
+            {
+                "title": "Управление маркетингом",
+                "id": "3.318",
+                "name": "specialization.318"
+            },
+            {
+                "title": "Производство рекламы",
+                "id": "3.236",
+                "name": "specialization.236"
+            },
+            {
+                "title": "Начальный уровень/Мало опыта",
+                "id": "3.171",
+                "name": "specialization.171"
+            },
+            {
+                "title": "Below The Line (BTL)",
+                "id": "3.1",
+                "name": "specialization.1"
+            },
+            {
+                "title": "Ассистент",
+                "id": "3.423",
+                "name": "specialization.423"
+            },
+            {
+                "title": "Радио реклама",
+                "id": "3.244",
+                "name": "specialization.244"
+            },
+            {
+                "title": "Дизайнер",
+                "id": "3.64",
+                "name": "specialization.64"
+            },
+            {
+                "title": "Торговый маркетинг(Trade marketing)",
+                "id": "3.305",
+                "name": "specialization.305"
+            },
+            {
+                "title": "PR, Маркетинговые коммуникации",
+                "id": "3.8",
+                "name": "specialization.8"
+            },
+            {
+                "title": "Аналитик",
+                "id": "3.26",
+                "name": "specialization.26"
+            },
+            {
+                "title": "Телевизионная реклама",
+                "id": "3.294",
+                "name": "specialization.294"
+            },
+            {
+                "title": "Интернет-маркетинг",
+                "id": "3.90",
+                "name": "specialization.90"
+            },
+            {
+                "title": "Продвижение, Специальные мероприятия",
+                "id": "3.230",
+                "name": "specialization.230"
+            },
+            {
+                "title": "Наружная реклама",
+                "id": "3.166",
+                "name": "specialization.166"
+            },
+            {
+                "title": "Печатная реклама",
+                "id": "3.206",
+                "name": "specialization.206"
+            },
+            {
+                "title": "Бренд-менеджмент",
+                "id": "3.40",
+                "name": "specialization.40"
+            },
+            {
+                "title": "Планирование, Размещение рекламы",
+                "id": "3.209",
+                "name": "specialization.209"
+            },
+            {
+                "title": "Политический PR",
+                "id": "3.213",
+                "name": "specialization.213"
+            },
+            {
+                "title": "Арт директор",
+                "id": "3.31",
+                "name": "specialization.31"
+            },
+            {
+                "title": "Мерчендайзинг",
+                "id": "3.151",
+                "name": "specialization.151"
+            },
+            {
+                "title": "Менеджмент продукта (Product manager)",
+                "id": "3.150",
+                "name": "specialization.150"
+            },
+            {
+                "title": "Промоутер",
+                "id": "3.509",
+                "name": "specialization.509"
+            },
+            {
+                "title": "Проведение опросов, Интервьюер",
+                "id": "3.508",
+                "name": "specialization.508"
+            },
+            {
+                "title": "Менеджер по работе с клиентами",
+                "id": "3.148",
+                "name": "specialization.148"
+            },
+            {
+                "title": "Исследования рынка",
+                "id": "3.98",
+                "name": "specialization.98"
+            },
+            {
+                "title": "Таинственный покупатель",
+                "id": "3.507",
+                "name": "specialization.507"
+            }
+        ],
+        "id": 3,
+        "name": "professional_area.3"
+    },
+    {
+        "title": "Административный персонал",
+        "children": [
+            {
+                "title": "Ресепшен",
+                "id": "4.255",
+                "name": "specialization.255"
+            },
+            {
+                "title": "Водитель",
+                "id": "4.52",
+                "name": "specialization.52"
+            },
+            {
+                "title": "Делопроизводство",
+                "id": "4.429",
+                "name": "specialization.429"
+            },
+            {
+                "title": "Ввод данных",
+                "id": "4.47",
+                "name": "specialization.47"
+            },
+            {
+                "title": "Последовательный перевод",
+                "id": "4.428",
+                "name": "specialization.428"
+            },
+            {
+                "title": "Секретарь",
+                "id": "4.264",
+                "name": "specialization.264"
+            },
+            {
+                "title": "Уборщица",
+                "id": "4.494",
+                "name": "specialization.494"
+            },
+            {
+                "title": "Персональный ассистент",
+                "id": "4.205",
+                "name": "specialization.205"
+            },
+            {
+                "title": "АХО",
+                "id": "4.374",
+                "name": "specialization.374"
+            },
+            {
+                "title": "Сотрудник call-центра",
+                "id": "4.278",
+                "name": "specialization.278"
+            },
+            {
+                "title": "Вечерний секретарь",
+                "id": "4.456",
+                "name": "specialization.456"
+            },
+            {
+                "title": "Письменный перевод",
+                "id": "4.207",
+                "name": "specialization.207"
+            },
+            {
+                "title": "Архивист",
+                "id": "4.32",
+                "name": "specialization.32"
+            },
+            {
+                "title": "Управляющий офисом(Оffice manager)",
+                "id": "4.332",
+                "name": "specialization.332"
+            },
+            {
+                "title": "Синхронный перевод",
+                "id": "4.271",
+                "name": "specialization.271"
+            },
+            {
+                "title": "Учет товарооборота",
+                "id": "4.338",
+                "name": "specialization.338"
+            },
+            {
+                "title": "Курьер",
+                "id": "4.127",
+                "name": "specialization.127"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "4.181",
+                "name": "specialization.181"
+            }
+        ],
+        "id": 4,
+        "name": "professional_area.4"
+    },
+    {
+        "title": "Банки, инвестиции, лизинг",
+        "children": [
+            {
+                "title": "Обменные пункты, Банкоматы",
+                "id": "5.192",
+                "name": "specialization.192"
+            },
+            {
+                "title": "Внутренние операции (Back Office)",
+                "id": "5.51",
+                "name": "specialization.51"
+            },
+            {
+                "title": "Риски: рыночные",
+                "id": "5.459",
+                "name": "specialization.459"
+            },
+            {
+                "title": "Автокредитование",
+                "id": "5.460",
+                "name": "specialization.460"
+            },
+            {
+                "title": "Валютный контроль",
+                "id": "5.45",
+                "name": "specialization.45"
+            },
+            {
+                "title": "ОПЕРУ",
+                "id": "5.195",
+                "name": "specialization.195"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "5.177",
+                "name": "specialization.177"
+            },
+            {
+                "title": "Торговое финансирование",
+                "id": "5.304",
+                "name": "specialization.304"
+            },
+            {
+                "title": "Денежный рынок (money market)",
+                "id": "5.61",
+                "name": "specialization.61"
+            },
+            {
+                "title": "Акции, Ценные бумаги",
+                "id": "5.23",
+                "name": "specialization.23"
+            },
+            {
+                "title": "Налоги",
+                "id": "5.163",
+                "name": "specialization.163"
+            },
+            {
+                "title": "Бумаги с фиксированной доходностью (fixed Income)",
+                "id": "5.41",
+                "name": "specialization.41"
+            },
+            {
+                "title": "Бухгалтер",
+                "id": "5.42",
+                "name": "specialization.42"
+            },
+            {
+                "title": "Аудит, Внутренний контроль",
+                "id": "5.34",
+                "name": "specialization.34"
+            },
+            {
+                "title": "Аналитик",
+                "id": "5.27",
+                "name": "specialization.27"
+            },
+            {
+                "title": "Корпоративное финансирование",
+                "id": "5.121",
+                "name": "specialization.121"
+            },
+            {
+                "title": "Эмиссии",
+                "id": "5.394",
+                "name": "specialization.394"
+            },
+            {
+                "title": "Розничный бизнес",
+                "id": "5.257",
+                "name": "specialization.257"
+            },
+            {
+                "title": "Факторинг",
+                "id": "5.534",
+                "name": "specialization.534"
+            },
+            {
+                "title": "Руководство бухгалтерией",
+                "id": "5.262",
+                "name": "specialization.262"
+            },
+            {
+                "title": "Ипотека, Ипотечное кредитование",
+                "id": "5.399",
+                "name": "specialization.399"
+            },
+            {
+                "title": "Риски: лизинговые",
+                "id": "5.133",
+                "name": "specialization.133"
+            },
+            {
+                "title": "Бюджетирование",
+                "id": "5.372",
+                "name": "specialization.372"
+            },
+            {
+                "title": "Кредиты: розничные",
+                "id": "5.371",
+                "name": "specialization.371"
+            },
+            {
+                "title": "Лизинг",
+                "id": "5.132",
+                "name": "specialization.132"
+            },
+            {
+                "title": "Паевые фонды",
+                "id": "5.424",
+                "name": "specialization.424"
+            },
+            {
+                "title": "Прямые инвестиции",
+                "id": "5.241",
+                "name": "specialization.241"
+            },
+            {
+                "title": "Экономист",
+                "id": "5.426",
+                "name": "specialization.426"
+            },
+            {
+                "title": "Кредиты",
+                "id": "5.126",
+                "name": "specialization.126"
+            },
+            {
+                "title": "Forex",
+                "id": "5.4",
+                "name": "specialization.4"
+            },
+            {
+                "title": "Риски: прочие",
+                "id": "5.366",
+                "name": "specialization.366"
+            },
+            {
+                "title": "Корреспондентские, Международные отношения",
+                "id": "5.123",
+                "name": "specialization.123"
+            },
+            {
+                "title": "Риски: кредитные",
+                "id": "5.124",
+                "name": "specialization.124"
+            },
+            {
+                "title": "Оценка залога, Стоимости имущества",
+                "id": "5.365",
+                "name": "specialization.365"
+            },
+            {
+                "title": "Разработка новых продуктов, Маркетинг",
+                "id": "5.368",
+                "name": "specialization.368"
+            },
+            {
+                "title": "Методология, Банковские технологии",
+                "id": "5.367",
+                "name": "specialization.367"
+            },
+            {
+                "title": "Казначейство, Управление ликвидностью",
+                "id": "5.370",
+                "name": "specialization.370"
+            },
+            {
+                "title": "Расчеты",
+                "id": "5.250",
+                "name": "specialization.250"
+            },
+            {
+                "title": "Отчетность",
+                "id": "5.369",
+                "name": "specialization.369"
+            },
+            {
+                "title": "Привлечение клиентов",
+                "id": "5.219",
+                "name": "specialization.219"
+            },
+            {
+                "title": "Продажа финансовых продуктов",
+                "id": "5.224",
+                "name": "specialization.224"
+            },
+            {
+                "title": "Проектное финансирование",
+                "id": "5.234",
+                "name": "specialization.234"
+            },
+            {
+                "title": "Инвестиционная компания",
+                "id": "5.79",
+                "name": "specialization.79"
+            },
+            {
+                "title": "Private Banking",
+                "id": "5.691",
+                "name": "specialization.691"
+            },
+            {
+                "title": "Филиалы",
+                "id": "5.341",
+                "name": "specialization.341"
+            },
+            {
+                "title": "Трейдинг, Дилинг",
+                "id": "5.101",
+                "name": "specialization.101"
+            },
+            {
+                "title": "Кассовое обслуживание, инкассация",
+                "id": "5.103",
+                "name": "specialization.103"
+            },
+            {
+                "title": "Риски: финансовые",
+                "id": "5.458",
+                "name": "specialization.458"
+            },
+            {
+                "title": "Риски: операционные",
+                "id": "5.457",
+                "name": "specialization.457"
+            },
+            {
+                "title": "Пластиковые карты",
+                "id": "5.210",
+                "name": "specialization.210"
+            },
+            {
+                "title": "Коммерческий банк",
+                "id": "5.106",
+                "name": "specialization.106"
+            },
+            {
+                "title": "Финансовый мониторинг",
+                "id": "5.444",
+                "name": "specialization.444"
+            },
+            {
+                "title": "Работа с проблемными заемщиками",
+                "id": "5.579",
+                "name": "specialization.579"
+            },
+            {
+                "title": "Кредитование малого и среднего бизнеса",
+                "id": "5.450",
+                "name": "specialization.450"
+            },
+            {
+                "title": "Портфельные инвестиции",
+                "id": "5.215",
+                "name": "specialization.215"
+            }
+        ],
+        "id": 5,
+        "name": "professional_area.5"
+    },
+    {
+        "title": "Управление персоналом, тренинги",
+        "children": [
+            {
+                "title": "Рекрутмент",
+                "id": "6.254",
+                "name": "specialization.254"
+            },
+            {
+                "title": "Тренинги",
+                "id": "6.309",
+                "name": "specialization.309"
+            },
+            {
+                "title": "Управление персоналом",
+                "id": "6.319",
+                "name": "specialization.319"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "6.184",
+                "name": "specialization.184"
+            },
+            {
+                "title": "Компенсации и льготы",
+                "id": "6.107",
+                "name": "specialization.107"
+            },
+            {
+                "title": "Развитие персонала",
+                "id": "6.247",
+                "name": "specialization.247"
+            },
+            {
+                "title": "Учет кадров",
+                "id": "6.336",
+                "name": "specialization.336"
+            }
+        ],
+        "id": 6,
+        "name": "professional_area.6"
+    },
+    {
+        "title": "Автомобильный бизнес",
+        "children": [
+            {
+                "title": "Продажа",
+                "id": "7.222",
+                "name": "specialization.222"
+            },
+            {
+                "title": "Автослесарь",
+                "id": "7.503",
+                "name": "specialization.503"
+            },
+            {
+                "title": "Тонировщик",
+                "id": "7.502",
+                "name": "specialization.502"
+            },
+            {
+                "title": "Начальный уровень /Мало опыта ",
+                "id": "7.392",
+                "name": "specialization.392"
+            },
+            {
+                "title": "Автомойщик",
+                "id": "7.566",
+                "name": "specialization.566"
+            },
+            {
+                "title": "Автожестянщик",
+                "id": "7.565",
+                "name": "specialization.565"
+            },
+            {
+                "title": "Автозапчасти",
+                "id": "7.14",
+                "name": "specialization.14"
+            },
+            {
+                "title": "Производство",
+                "id": "7.235",
+                "name": "specialization.235"
+            },
+            {
+                "title": "Прокат, лизинг",
+                "id": "7.239",
+                "name": "specialization.239"
+            },
+            {
+                "title": "Шины, Диски",
+                "id": "7.455",
+                "name": "specialization.455"
+            },
+            {
+                "title": "Сервисное обслуживание",
+                "id": "7.267",
+                "name": "specialization.267"
+            }
+        ],
+        "id": 7,
+        "name": "professional_area.7"
+    },
+    {
+        "title": "Безопасность",
+        "children": [
+            {
+                "title": "Инкассатор",
+                "id": "8.519",
+                "name": "specialization.519"
+            },
+            {
+                "title": "Экономическая и информационная безопасность",
+                "id": "8.356",
+                "name": "specialization.356"
+            },
+            {
+                "title": "Пожарная безопасность",
+                "id": "8.575",
+                "name": "specialization.575"
+            },
+            {
+                "title": "Личная безопасность",
+                "id": "8.135",
+                "name": "specialization.135"
+            },
+            {
+                "title": "Руководитель СБ",
+                "id": "8.260",
+                "name": "specialization.260"
+            },
+            {
+                "title": "Охранник",
+                "id": "8.202",
+                "name": "specialization.202"
+            },
+            {
+                "title": "Имущественная безопасность",
+                "id": "8.77",
+                "name": "specialization.77"
+            },
+            {
+                "title": "Системы видеонаблюдения",
+                "id": "8.461",
+                "name": "specialization.461"
+            },
+            {
+                "title": "Взыскание задолженности, Коллекторская деятельность",
+                "id": "8.462",
+                "name": "specialization.462"
+            }
+        ],
+        "id": 8,
+        "name": "professional_area.8"
+    },
+    {
+        "title": "Высший менеджмент",
+        "children": [
+            {
+                "title": "Консультирование",
+                "id": "9.115",
+                "name": "specialization.115"
+            },
+            {
+                "title": "Управление закупками",
+                "id": "9.532",
+                "name": "specialization.532"
+            },
+            {
+                "title": "Управление персоналом, Тренинги",
+                "id": "9.321",
+                "name": "specialization.321"
+            },
+            {
+                "title": "Управление малым бизнесом",
+                "id": "9.317",
+                "name": "specialization.317"
+            },
+            {
+                "title": "Туризм, Гостиницы, Рестораны",
+                "id": "9.312",
+                "name": "specialization.312"
+            },
+            {
+                "title": "Производство, Технология",
+                "id": "9.238",
+                "name": "specialization.238"
+            },
+            {
+                "title": "Транспорт, Логистика",
+                "id": "9.307",
+                "name": "specialization.307"
+            },
+            {
+                "title": "Добыча cырья",
+                "id": "9.67",
+                "name": "specialization.67"
+            },
+            {
+                "title": "Антикризисное управление",
+                "id": "9.562",
+                "name": "specialization.562"
+            },
+            {
+                "title": "Продажи",
+                "id": "9.226",
+                "name": "specialization.226"
+            },
+            {
+                "title": "Администрирование",
+                "id": "9.22",
+                "name": "specialization.22"
+            },
+            {
+                "title": "Строительство, Недвижимость",
+                "id": "9.289",
+                "name": "specialization.289"
+            },
+            {
+                "title": "Наука, Образование",
+                "id": "9.168",
+                "name": "specialization.168"
+            },
+            {
+                "title": "Инвестиции",
+                "id": "9.78",
+                "name": "specialization.78"
+            },
+            {
+                "title": "Медицина, Фармацевтика",
+                "id": "9.145",
+                "name": "specialization.145"
+            },
+            {
+                "title": "Спортивные клубы, Фитнес, Салоны красоты",
+                "id": "9.521",
+                "name": "specialization.521"
+            },
+            {
+                "title": "Страхование",
+                "id": "9.452",
+                "name": "specialization.452"
+            },
+            {
+                "title": "Финансы",
+                "id": "9.345",
+                "name": "specialization.345"
+            },
+            {
+                "title": "Коммерческий Банк",
+                "id": "9.105",
+                "name": "specialization.105"
+            },
+            {
+                "title": "Маркетинг, Реклама, PR",
+                "id": "9.139",
+                "name": "specialization.139"
+            },
+            {
+                "title": "Информационные технологии, Интернет, Мультимедиа",
+                "id": "9.94",
+                "name": "specialization.94"
+            },
+            {
+                "title": "Искусство, Развлечения, Масс-медиа",
+                "id": "9.95",
+                "name": "specialization.95"
+            },
+            {
+                "title": "Юриспруденция",
+                "id": "9.448",
+                "name": "specialization.448"
+            }
+        ],
+        "id": 9,
+        "name": "professional_area.9"
+    },
+    {
+        "title": "Добыча сырья",
+        "children": [
+            {
+                "title": "Маркшейдер",
+                "id": "10.471",
+                "name": "specialization.471"
+            },
+            {
+                "title": "Газ",
+                "id": "10.472",
+                "name": "specialization.472"
+            },
+            {
+                "title": "Нефть",
+                "id": "10.191",
+                "name": "specialization.191"
+            },
+            {
+                "title": "Управление предприятием",
+                "id": "10.323",
+                "name": "specialization.323"
+            },
+            {
+                "title": "Геологоразведка",
+                "id": "10.54",
+                "name": "specialization.54"
+            },
+            {
+                "title": "Руда",
+                "id": "10.258",
+                "name": "specialization.258"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "10.393",
+                "name": "specialization.393"
+            },
+            {
+                "title": "Бурение",
+                "id": "10.470",
+                "name": "specialization.470"
+            },
+            {
+                "title": "Инженер",
+                "id": "10.80",
+                "name": "specialization.80"
+            },
+            {
+                "title": "Уголь",
+                "id": "10.315",
+                "name": "specialization.315"
+            }
+        ],
+        "id": 10,
+        "name": "professional_area.10"
+    },
+    {
+        "title": "Искусство, развлечения, масс-медиа",
+        "children": [
+            {
+                "title": "Музыка",
+                "id": "11.160",
+                "name": "specialization.160"
+            },
+            {
+                "title": "Кино",
+                "id": "11.436",
+                "name": "specialization.436"
+            },
+            {
+                "title": "Телевидение",
+                "id": "11.293",
+                "name": "specialization.293"
+            },
+            {
+                "title": "Мода",
+                "id": "11.157",
+                "name": "specialization.157"
+            },
+            {
+                "title": "Издательская деятельность",
+                "id": "11.76",
+                "name": "specialization.76"
+            },
+            {
+                "title": "Фотография",
+                "id": "11.347",
+                "name": "specialization.347"
+            },
+            {
+                "title": "Казино и игорный бизнес",
+                "id": "11.99",
+                "name": "specialization.99"
+            },
+            {
+                "title": "Литературная, Редакторская деятельность",
+                "id": "11.134",
+                "name": "specialization.134"
+            },
+            {
+                "title": "Журналистика",
+                "id": "11.71",
+                "name": "specialization.71"
+            },
+            {
+                "title": "Прочее",
+                "id": "11.240",
+                "name": "specialization.240"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "11.173",
+                "name": "specialization.173"
+            },
+            {
+                "title": "Радио",
+                "id": "11.243",
+                "name": "specialization.243"
+            },
+            {
+                "title": "Пресса",
+                "id": "11.218",
+                "name": "specialization.218"
+            },
+            {
+                "title": "Дизайн, графика, живопись",
+                "id": "11.62",
+                "name": "specialization.62"
+            }
+        ],
+        "id": 11,
+        "name": "professional_area.11"
+    },
+    {
+        "title": "Консультирование",
+        "children": [
+            {
+                "title": "Реинжиниринг, Аутсорсинг финансовой функции",
+                "id": "12.252",
+                "name": "specialization.252"
+            },
+            {
+                "title": "Реинжиниринг бизнес процессов",
+                "id": "12.251",
+                "name": "specialization.251"
+            },
+            {
+                "title": "Корпоративные финансы",
+                "id": "12.122",
+                "name": "specialization.122"
+            },
+            {
+                "title": "Управление проектами",
+                "id": "12.326",
+                "name": "specialization.326"
+            },
+            {
+                "title": "Управление практикой",
+                "id": "12.322",
+                "name": "specialization.322"
+            },
+            {
+                "title": "Организационное консультирование",
+                "id": "12.197",
+                "name": "specialization.197"
+            },
+            {
+                "title": "Стратегия",
+                "id": "12.280",
+                "name": "specialization.280"
+            },
+            {
+                "title": "Недвижимость",
+                "id": "12.376",
+                "name": "specialization.376"
+            },
+            {
+                "title": "Knowledge management",
+                "id": "12.6",
+                "name": "specialization.6"
+            },
+            {
+                "title": "Информационные технологии",
+                "id": "12.92",
+                "name": "specialization.92"
+            },
+            {
+                "title": "Internet, E-Commerce",
+                "id": "12.5",
+                "name": "specialization.5"
+            },
+            {
+                "title": "Управленческое консультирование",
+                "id": "12.331",
+                "name": "specialization.331"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "12.180",
+                "name": "specialization.180"
+            },
+            {
+                "title": "Исследования рынка",
+                "id": "12.97",
+                "name": "specialization.97"
+            },
+            {
+                "title": "PR Consulting",
+                "id": "12.7",
+                "name": "specialization.7"
+            }
+        ],
+        "id": 12,
+        "name": "professional_area.12"
+    },
+    {
+        "title": "Медицина, фармацевтика",
+        "children": [
+            {
+                "title": "Врач-эксперт",
+                "id": "13.587",
+                "name": "specialization.587"
+            },
+            {
+                "title": "Ветеринария",
+                "id": "13.49",
+                "name": "specialization.49"
+            },
+            {
+                "title": "Клинические исследования",
+                "id": "13.398",
+                "name": "specialization.398"
+            },
+            {
+                "title": "Медицинский советник",
+                "id": "13.537",
+                "name": "specialization.537"
+            },
+            {
+                "title": "Лечащий врач",
+                "id": "13.131",
+                "name": "specialization.131"
+            },
+            {
+                "title": "Медицинский представитель",
+                "id": "13.489",
+                "name": "specialization.489"
+            },
+            {
+                "title": "Маркетинг",
+                "id": "13.138",
+                "name": "specialization.138"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "13.185",
+                "name": "specialization.185"
+            },
+            {
+                "title": "Лаборант",
+                "id": "13.128",
+                "name": "specialization.128"
+            },
+            {
+                "title": "Оптика",
+                "id": "13.438",
+                "name": "specialization.438"
+            },
+            {
+                "title": "Провизор",
+                "id": "13.220",
+                "name": "specialization.220"
+            },
+            {
+                "title": "Младший и средний медперсонал",
+                "id": "13.155",
+                "name": "specialization.155"
+            },
+            {
+                "title": "Медицинское оборудование",
+                "id": "13.229",
+                "name": "specialization.229"
+            },
+            {
+                "title": "Лекарственные препараты",
+                "id": "13.228",
+                "name": "specialization.228"
+            },
+            {
+                "title": "Продажи",
+                "id": "13.227",
+                "name": "specialization.227"
+            },
+            {
+                "title": "Регистратура",
+                "id": "13.433",
+                "name": "specialization.433"
+            },
+            {
+                "title": "Дефектолог, Логопед",
+                "id": "13.567",
+                "name": "specialization.567"
+            },
+            {
+                "title": "Производство",
+                "id": "13.432",
+                "name": "specialization.432"
+            },
+            {
+                "title": "Фармацевт",
+                "id": "13.578",
+                "name": "specialization.578"
+            },
+            {
+                "title": "Сертификация",
+                "id": "13.268",
+                "name": "specialization.268"
+            },
+            {
+                "title": "Психология",
+                "id": "13.447",
+                "name": "specialization.447"
+            }
+        ],
+        "id": 13,
+        "name": "professional_area.13"
+    },
+    {
+        "title": "Наука, образование",
+        "children": [
+            {
+                "title": "Экономика, Менеджмент",
+                "id": "14.355",
+                "name": "specialization.355"
+            },
+            {
+                "title": "Инженерные науки",
+                "id": "14.87",
+                "name": "specialization.87"
+            },
+            {
+                "title": "Химия",
+                "id": "14.349",
+                "name": "specialization.349"
+            },
+            {
+                "title": "Науки о Земле",
+                "id": "14.169",
+                "name": "specialization.169"
+            },
+            {
+                "title": "Физика",
+                "id": "14.340",
+                "name": "specialization.340"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "14.178",
+                "name": "specialization.178"
+            },
+            {
+                "title": "Математика",
+                "id": "14.141",
+                "name": "specialization.141"
+            },
+            {
+                "title": "Биотехнологии",
+                "id": "14.37",
+                "name": "specialization.37"
+            },
+            {
+                "title": "Информатика, Информационные системы",
+                "id": "14.91",
+                "name": "specialization.91"
+            },
+            {
+                "title": "Языки",
+                "id": "14.364",
+                "name": "specialization.364"
+            },
+            {
+                "title": "Преподавание",
+                "id": "14.217",
+                "name": "specialization.217"
+            },
+            {
+                "title": "Гуманитарные науки",
+                "id": "14.60",
+                "name": "specialization.60"
+            }
+        ],
+        "id": 14,
+        "name": "professional_area.14"
+    },
+    {
+        "title": "Государственная служба, некоммерческие организации",
+        "children": [
+            {
+                "title": "НИИ",
+                "id": "16.435",
+                "name": "specialization.435"
+            },
+            {
+                "title": "Библиотекарь",
+                "id": "16.571",
+                "name": "specialization.571"
+            },
+            {
+                "title": "Общественные организации",
+                "id": "16.194",
+                "name": "specialization.194"
+            },
+            {
+                "title": "Благотворительность",
+                "id": "16.38",
+                "name": "specialization.38"
+            },
+            {
+                "title": "Атташе",
+                "id": "16.570",
+                "name": "specialization.570"
+            },
+            {
+                "title": "Архивариус",
+                "id": "16.569",
+                "name": "specialization.569"
+            },
+            {
+                "title": "Муниципалитет",
+                "id": "16.658",
+                "name": "specialization.658"
+            },
+            {
+                "title": "Правительство",
+                "id": "16.216",
+                "name": "specialization.216"
+            }
+        ],
+        "id": 16,
+        "name": "professional_area.16"
+    },
+    {
+        "title": "Продажи",
+        "children": [
+            {
+                "title": "Управление продажами",
+                "id": "17.324",
+                "name": "specialization.324"
+            },
+            {
+                "title": "Оптовая торговля",
+                "id": "17.196",
+                "name": "specialization.196"
+            },
+            {
+                "title": "Бытовая техника",
+                "id": "17.487",
+                "name": "specialization.487"
+            },
+            {
+                "title": "Сантехника",
+                "id": "17.486",
+                "name": "specialization.486"
+            },
+            {
+                "title": "Дилерские сети",
+                "id": "17.65",
+                "name": "specialization.65"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "17.183",
+                "name": "specialization.183"
+            },
+            {
+                "title": "Дистрибуция",
+                "id": "17.66",
+                "name": "specialization.66"
+            },
+            {
+                "title": "Торговля биржевыми товарами",
+                "id": "17.303",
+                "name": "specialization.303"
+            },
+            {
+                "title": "Торговый представитель",
+                "id": "17.306",
+                "name": "specialization.306"
+            },
+            {
+                "title": "FMCG, Товары народного потребления",
+                "id": "17.302",
+                "name": "specialization.302"
+            },
+            {
+                "title": "ГСМ, нефть, бензин",
+                "id": "17.59",
+                "name": "specialization.59"
+            },
+            {
+                "title": "Товары для бизнеса",
+                "id": "17.301",
+                "name": "specialization.301"
+            },
+            {
+                "title": "Алкоголь",
+                "id": "17.24",
+                "name": "specialization.24"
+            },
+            {
+                "title": "Решения по автоматизации процессов",
+                "id": "17.625",
+                "name": "specialization.625"
+            },
+            {
+                "title": "Финансовые услуги",
+                "id": "17.623",
+                "name": "specialization.623"
+            },
+            {
+                "title": "Многоуровневый маркетинг",
+                "id": "17.156",
+                "name": "specialization.156"
+            },
+            {
+                "title": "Автомобили, Запчасти",
+                "id": "17.15",
+                "name": "specialization.15"
+            },
+            {
+                "title": "Продавец в магазине",
+                "id": "17.520",
+                "name": "specialization.520"
+            },
+            {
+                "title": "Медицина, Фармацевтика",
+                "id": "17.144",
+                "name": "specialization.144"
+            },
+            {
+                "title": "Станки, тяжелое оборудование",
+                "id": "17.279",
+                "name": "specialization.279"
+            },
+            {
+                "title": "Металлопрокат",
+                "id": "17.152",
+                "name": "specialization.152"
+            },
+            {
+                "title": "Менеджер по работе с клиентами",
+                "id": "17.149",
+                "name": "specialization.149"
+            },
+            {
+                "title": "Телекоммуникации, Сетевые решения",
+                "id": "17.269",
+                "name": "specialization.269"
+            },
+            {
+                "title": "Сертификация",
+                "id": "17.405",
+                "name": "specialization.405"
+            },
+            {
+                "title": "Розничная торговля",
+                "id": "17.256",
+                "name": "specialization.256"
+            },
+            {
+                "title": "Электротехническое оборудование, Светотехника",
+                "id": "17.397",
+                "name": "specialization.397"
+            },
+            {
+                "title": "Торговые сети",
+                "id": "17.535",
+                "name": "specialization.535"
+            },
+            {
+                "title": "Компьютерные программы",
+                "id": "17.112",
+                "name": "specialization.112"
+            },
+            {
+                "title": "Продажи по телефону, Телемаркетинг",
+                "id": "17.538",
+                "name": "specialization.538"
+            },
+            {
+                "title": "Химическая продукция",
+                "id": "17.401",
+                "name": "specialization.401"
+            },
+            {
+                "title": "Компьютерная техника",
+                "id": "17.111",
+                "name": "specialization.111"
+            },
+            {
+                "title": "Прямые продажи",
+                "id": "17.242",
+                "name": "specialization.242"
+            },
+            {
+                "title": "Сельское хозяйство",
+                "id": "17.418",
+                "name": "specialization.418"
+            },
+            {
+                "title": "Строительные материалы",
+                "id": "17.417",
+                "name": "specialization.417"
+            },
+            {
+                "title": "Электроника, фото, видео",
+                "id": "17.358",
+                "name": "specialization.358"
+            },
+            {
+                "title": "Франчайзинг",
+                "id": "17.441",
+                "name": "specialization.441"
+            },
+            {
+                "title": "Текстиль, Одежда, Обувь",
+                "id": "17.440",
+                "name": "specialization.440"
+            },
+            {
+                "title": "Цветные металлы",
+                "id": "17.350",
+                "name": "specialization.350"
+            },
+            {
+                "title": "Продукты питания",
+                "id": "17.231",
+                "name": "specialization.231"
+            },
+            {
+                "title": "Тендеры",
+                "id": "17.572",
+                "name": "specialization.572"
+            },
+            {
+                "title": "Услуги для населения",
+                "id": "17.334",
+                "name": "specialization.334"
+            },
+            {
+                "title": "Системы безопасности",
+                "id": "17.446",
+                "name": "specialization.446"
+            },
+            {
+                "title": "Услуги для бизнеса",
+                "id": "17.333",
+                "name": "specialization.333"
+            },
+            {
+                "title": "Мебель",
+                "id": "17.443",
+                "name": "specialization.443"
+            },
+            {
+                "title": "Клининговые услуги",
+                "id": "17.580",
+                "name": "specialization.580"
+            }
+        ],
+        "id": 17,
+        "name": "professional_area.17"
+    },
+    {
+        "title": "Производство",
+        "children": [
+            {
+                "title": "Главный инженер",
+                "id": "18.57",
+                "name": "specialization.57"
+            },
+            {
+                "title": "Главный агроном",
+                "id": "18.56",
+                "name": "specialization.56"
+            },
+            {
+                "title": "Управление цехом",
+                "id": "18.330",
+                "name": "specialization.330"
+            },
+            {
+                "title": "Нефтепереработка",
+                "id": "18.190",
+                "name": "specialization.190"
+            },
+            {
+                "title": "Охрана труда",
+                "id": "18.201",
+                "name": "specialization.201"
+            },
+            {
+                "title": "Метролог",
+                "id": "18.488",
+                "name": "specialization.488"
+            },
+            {
+                "title": "Закупки и снабжение",
+                "id": "18.73",
+                "name": "specialization.73"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "18.174",
+                "name": "specialization.174"
+            },
+            {
+                "title": "Технолог, Производство сахара",
+                "id": "18.300",
+                "name": "specialization.300"
+            },
+            {
+                "title": "Технолог, Производство и переработка зерновых",
+                "id": "18.299",
+                "name": "specialization.299"
+            },
+            {
+                "title": "Технолог",
+                "id": "18.297",
+                "name": "specialization.297"
+            },
+            {
+                "title": "Технолог, Мясо- и птицепереработка",
+                "id": "18.298",
+                "name": "specialization.298"
+            },
+            {
+                "title": "Табачная промышленность",
+                "id": "18.291",
+                "name": "specialization.291"
+            },
+            {
+                "title": "Автомобильная промышленность",
+                "id": "18.16",
+                "name": "specialization.16"
+            },
+            {
+                "title": "Стройматериалы",
+                "id": "18.290",
+                "name": "specialization.290"
+            },
+            {
+                "title": "Авиационная промышленность",
+                "id": "18.13",
+                "name": "specialization.13"
+            },
+            {
+                "title": "Мебельное производство",
+                "id": "18.143",
+                "name": "specialization.143"
+            },
+            {
+                "title": "Машиностроение",
+                "id": "18.142",
+                "name": "specialization.142"
+            },
+            {
+                "title": "Металлургия",
+                "id": "18.153",
+                "name": "specialization.153"
+            },
+            {
+                "title": "Контроль качества",
+                "id": "18.118",
+                "name": "specialization.118"
+            },
+            {
+                "title": "Сертификация",
+                "id": "18.404",
+                "name": "specialization.404"
+            },
+            {
+                "title": "Руководство предприятием",
+                "id": "18.263",
+                "name": "specialization.263"
+            },
+            {
+                "title": "Сельхозпроизводство",
+                "id": "18.265",
+                "name": "specialization.265"
+            },
+            {
+                "title": "Судостроение",
+                "id": "18.373",
+                "name": "specialization.373"
+            },
+            {
+                "title": "Радиоэлектронная промышленность",
+                "id": "18.245",
+                "name": "specialization.245"
+            },
+            {
+                "title": "Легкая промышленность",
+                "id": "18.129",
+                "name": "specialization.129"
+            },
+            {
+                "title": "Деревообработка, Лесная промышленность",
+                "id": "18.130",
+                "name": "specialization.130"
+            },
+            {
+                "title": "Инженер, Мясо- и птицепереработка",
+                "id": "18.84",
+                "name": "specialization.84"
+            },
+            {
+                "title": "Инженер, Производство сахара",
+                "id": "18.86",
+                "name": "specialization.86"
+            },
+            {
+                "title": "Инженер, Производство и переработка зерновых",
+                "id": "18.85",
+                "name": "specialization.85"
+            },
+            {
+                "title": "Энергетик производства",
+                "id": "18.361",
+                "name": "specialization.361"
+            },
+            {
+                "title": "Электроэнергетика",
+                "id": "18.360",
+                "name": "specialization.360"
+            },
+            {
+                "title": "Зоотехник",
+                "id": "18.75",
+                "name": "specialization.75"
+            },
+            {
+                "title": "Химическая промышленность",
+                "id": "18.348",
+                "name": "specialization.348"
+            },
+            {
+                "title": "Эколог",
+                "id": "18.354",
+                "name": "specialization.354"
+            },
+            {
+                "title": "Главный механик",
+                "id": "18.431",
+                "name": "specialization.431"
+            },
+            {
+                "title": "Конструктор",
+                "id": "18.568",
+                "name": "specialization.568"
+            },
+            {
+                "title": "Инженер",
+                "id": "18.81",
+                "name": "specialization.81"
+            },
+            {
+                "title": "Ювелирная промышленность",
+                "id": "18.453",
+                "name": "specialization.453"
+            },
+            {
+                "title": "Фармацевтическая промышленность",
+                "id": "18.339",
+                "name": "specialization.339"
+            },
+            {
+                "title": "Управление проектами",
+                "id": "18.451",
+                "name": "specialization.451"
+            },
+            {
+                "title": "Пищевая промышленность",
+                "id": "18.208",
+                "name": "specialization.208"
+            },
+            {
+                "title": "Полиграфия",
+                "id": "18.212",
+                "name": "specialization.212"
+            },
+            {
+                "title": "Атомная энергетика",
+                "id": "18.585",
+                "name": "specialization.585"
+            }
+        ],
+        "id": 18,
+        "name": "professional_area.18"
+    },
+    {
+        "title": "Страхование",
+        "children": [
+            {
+                "title": "Эксперт-оценщик",
+                "id": "19.357",
+                "name": "specialization.357"
+            },
+            {
+                "title": "Агент",
+                "id": "19.19",
+                "name": "specialization.19"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "19.170",
+                "name": "specialization.170"
+            },
+            {
+                "title": "Урегулирование убытков",
+                "id": "19.430",
+                "name": "specialization.430"
+            },
+            {
+                "title": "Руководитель направления",
+                "id": "19.259",
+                "name": "specialization.259"
+            },
+            {
+                "title": "Комплексное страхование юридических лиц",
+                "id": "19.109",
+                "name": "specialization.109"
+            },
+            {
+                "title": "Автострахование",
+                "id": "19.18",
+                "name": "specialization.18"
+            },
+            {
+                "title": "Комплексное страхование физических лиц",
+                "id": "19.108",
+                "name": "specialization.108"
+            },
+            {
+                "title": "Страхование ответственности",
+                "id": "19.285",
+                "name": "specialization.285"
+            },
+            {
+                "title": "Страхование жизни",
+                "id": "19.283",
+                "name": "specialization.283"
+            },
+            {
+                "title": "Страхование недвижимости",
+                "id": "19.284",
+                "name": "specialization.284"
+            },
+            {
+                "title": "Страхование бизнеса",
+                "id": "19.282",
+                "name": "specialization.282"
+            },
+            {
+                "title": "Актуарий",
+                "id": "19.421",
+                "name": "specialization.421"
+            },
+            {
+                "title": "Перестрахование",
+                "id": "19.483",
+                "name": "specialization.483"
+            },
+            {
+                "title": "Андеррайтер",
+                "id": "19.28",
+                "name": "specialization.28"
+            },
+            {
+                "title": "Врач-эксперт",
+                "id": "19.586",
+                "name": "specialization.586"
+            },
+            {
+                "title": "Медицинское страхование",
+                "id": "19.147",
+                "name": "specialization.147"
+            }
+        ],
+        "id": 19,
+        "name": "professional_area.19"
+    },
+    {
+        "title": "Строительство, недвижимость",
+        "children": [
+            {
+                "title": "Прораб",
+                "id": "20.387",
+                "name": "specialization.387"
+            },
+            {
+                "title": "Гостиницы, Магазины",
+                "id": "20.58",
+                "name": "specialization.58"
+            },
+            {
+                "title": "Оценка",
+                "id": "20.526",
+                "name": "specialization.526"
+            },
+            {
+                "title": "Землеустройство",
+                "id": "20.525",
+                "name": "specialization.525"
+            },
+            {
+                "title": "Водоснабжение и канализация",
+                "id": "20.528",
+                "name": "specialization.528"
+            },
+            {
+                "title": "Отопление, вентиляция и кондиционирование",
+                "id": "20.527",
+                "name": "specialization.527"
+            },
+            {
+                "title": "Управление проектами",
+                "id": "20.325",
+                "name": "specialization.325"
+            },
+            {
+                "title": "Нежилые помещения",
+                "id": "20.189",
+                "name": "specialization.189"
+            },
+            {
+                "title": "Эксплуатация",
+                "id": "20.396",
+                "name": "specialization.396"
+            },
+            {
+                "title": "Рабочие строительных специальностей",
+                "id": "20.490",
+                "name": "specialization.490"
+            },
+            {
+                "title": "Геодезия и картография",
+                "id": "20.484",
+                "name": "specialization.484"
+            },
+            {
+                "title": "Девелопер",
+                "id": "20.375",
+                "name": "specialization.375"
+            },
+            {
+                "title": "Жилье",
+                "id": "20.70",
+                "name": "specialization.70"
+            },
+            {
+                "title": "Дизайн/Оформление",
+                "id": "20.63",
+                "name": "specialization.63"
+            },
+            {
+                "title": "Начальный уровень/Мало опыта",
+                "id": "20.186",
+                "name": "specialization.186"
+            },
+            {
+                "title": "Инженер",
+                "id": "20.83",
+                "name": "specialization.83"
+            },
+            {
+                "title": "Агент",
+                "id": "20.20",
+                "name": "specialization.20"
+            },
+            {
+                "title": "Строительство",
+                "id": "20.287",
+                "name": "specialization.287"
+            },
+            {
+                "title": "Проектирование, Архитектура",
+                "id": "20.233",
+                "name": "specialization.233"
+            },
+            {
+                "title": "Тендеры",
+                "id": "20.573",
+                "name": "specialization.573"
+            },
+            {
+                "title": "ЖКХ",
+                "id": "20.445",
+                "name": "specialization.445"
+            }
+        ],
+        "id": 20,
+        "name": "professional_area.20"
+    },
+    {
+        "title": "Транспорт, логистика",
+        "children": [
+            {
+                "title": "Бизнес-авиация",
+                "id": "21.403",
+                "name": "specialization.403"
+            },
+            {
+                "title": "ВЭД",
+                "id": "21.53",
+                "name": "specialization.53"
+            },
+            {
+                "title": "Гражданская авиация",
+                "id": "21.402",
+                "name": "specialization.402"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "21.176",
+                "name": "specialization.176"
+            },
+            {
+                "title": "Закупки, Снабжение",
+                "id": "21.74",
+                "name": "specialization.74"
+            },
+            {
+                "title": "Железнодорожные перевозки",
+                "id": "21.69",
+                "name": "specialization.69"
+            },
+            {
+                "title": "Трубопроводы",
+                "id": "21.310",
+                "name": "specialization.310"
+            },
+            {
+                "title": "Логистика",
+                "id": "21.136",
+                "name": "specialization.136"
+            },
+            {
+                "title": "Контейнерные перевозки",
+                "id": "21.480",
+                "name": "specialization.480"
+            },
+            {
+                "title": "Водитель",
+                "id": "21.482",
+                "name": "specialization.482"
+            },
+            {
+                "title": "Диспетчер",
+                "id": "21.481",
+                "name": "specialization.481"
+            },
+            {
+                "title": "Экспедитор",
+                "id": "21.506",
+                "name": "specialization.506"
+            },
+            {
+                "title": "Морские/Речные перевозки",
+                "id": "21.158",
+                "name": "specialization.158"
+            },
+            {
+                "title": "Таможенное оформление",
+                "id": "21.292",
+                "name": "specialization.292"
+            },
+            {
+                "title": "Рабочий склада",
+                "id": "21.564",
+                "name": "specialization.564"
+            },
+            {
+                "title": "Автоперевозки",
+                "id": "21.17",
+                "name": "specialization.17"
+            },
+            {
+                "title": "Кладовщик",
+                "id": "21.563",
+                "name": "specialization.563"
+            },
+            {
+                "title": "Авиаперевозки",
+                "id": "21.12",
+                "name": "specialization.12"
+            },
+            {
+                "title": "Складское хозяйство",
+                "id": "21.275",
+                "name": "specialization.275"
+            }
+        ],
+        "id": 21,
+        "name": "professional_area.21"
+    },
+    {
+        "title": "Туризм, гостиницы, рестораны",
+        "children": [
+            {
+                "title": "Управление ресторанами, Барами",
+                "id": "22.329",
+                "name": "specialization.329"
+            },
+            {
+                "title": "Официант, Бармен",
+                "id": "22.193",
+                "name": "specialization.193"
+            },
+            {
+                "title": "Гид, Экскурсовод",
+                "id": "22.55",
+                "name": "specialization.55"
+            },
+            {
+                "title": "Оформление виз",
+                "id": "22.530",
+                "name": "specialization.530"
+            },
+            {
+                "title": "Анимация",
+                "id": "22.529",
+                "name": "specialization.529"
+            },
+            {
+                "title": "Организация туристических продуктов",
+                "id": "22.199",
+                "name": "specialization.199"
+            },
+            {
+                "title": "Управление туристическим бизнесом",
+                "id": "22.531",
+                "name": "specialization.531"
+            },
+            {
+                "title": "Управление гостиницами",
+                "id": "22.316",
+                "name": "specialization.316"
+            },
+            {
+                "title": "Организация встреч, Конференций",
+                "id": "22.198",
+                "name": "specialization.198"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "22.175",
+                "name": "specialization.175"
+            },
+            {
+                "title": "Размещение, Обслуживание гостей",
+                "id": "22.248",
+                "name": "specialization.248"
+            },
+            {
+                "title": "Швейцар",
+                "id": "22.505",
+                "name": "specialization.505"
+            },
+            {
+                "title": "Хостес",
+                "id": "22.504",
+                "name": "specialization.504"
+            },
+            {
+                "title": "Продажа туристических услуг",
+                "id": "22.223",
+                "name": "specialization.223"
+            },
+            {
+                "title": "Шеф-повар",
+                "id": "22.353",
+                "name": "specialization.353"
+            },
+            {
+                "title": "Авиабилеты",
+                "id": "22.11",
+                "name": "specialization.11"
+            },
+            {
+                "title": "Повар",
+                "id": "22.491",
+                "name": "specialization.491"
+            },
+            {
+                "title": "Бронирование",
+                "id": "22.39",
+                "name": "specialization.39"
+            },
+            {
+                "title": "Персонал кухни",
+                "id": "22.204",
+                "name": "specialization.204"
+            },
+            {
+                "title": "Банкеты",
+                "id": "22.35",
+                "name": "specialization.35"
+            },
+            {
+                "title": "Сомелье",
+                "id": "22.518",
+                "name": "specialization.518"
+            },
+            {
+                "title": "Кейтеринг",
+                "id": "22.104",
+                "name": "specialization.104"
+            }
+        ],
+        "id": 22,
+        "name": "professional_area.22"
+    },
+    {
+        "title": "Юристы",
+        "children": [
+            {
+                "title": "Недропользование",
+                "id": "23.188",
+                "name": "specialization.188"
+            },
+            {
+                "title": "Недвижимость",
+                "id": "23.187",
+                "name": "specialization.187"
+            },
+            {
+                "title": "Корпоративное право",
+                "id": "23.120",
+                "name": "specialization.120"
+            },
+            {
+                "title": "Семейное право",
+                "id": "23.266",
+                "name": "specialization.266"
+            },
+            {
+                "title": "Антимонопольное право",
+                "id": "23.539",
+                "name": "specialization.539"
+            },
+            {
+                "title": "Трудовое право",
+                "id": "23.311",
+                "name": "specialization.311"
+            },
+            {
+                "title": "Авторское право",
+                "id": "23.422",
+                "name": "specialization.422"
+            },
+            {
+                "title": "Уголовное право",
+                "id": "23.314",
+                "name": "specialization.314"
+            },
+            {
+                "title": "Законотворчество",
+                "id": "23.72",
+                "name": "specialization.72"
+            },
+            {
+                "title": "Compliance",
+                "id": "23.2",
+                "name": "specialization.2"
+            },
+            {
+                "title": "Взыскание задолженности, Коллекторская деятельность",
+                "id": "23.479",
+                "name": "specialization.479"
+            },
+            {
+                "title": "Земельное право",
+                "id": "23.476",
+                "name": "specialization.476"
+            },
+            {
+                "title": "Регистрация юридических лиц",
+                "id": "23.478",
+                "name": "specialization.478"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "23.182",
+                "name": "specialization.182"
+            },
+            {
+                "title": "Договорное право",
+                "id": "23.477",
+                "name": "specialization.477"
+            },
+            {
+                "title": "Морское право",
+                "id": "23.159",
+                "name": "specialization.159"
+            },
+            {
+                "title": "Интеллектуальная собственность",
+                "id": "23.88",
+                "name": "specialization.88"
+            },
+            {
+                "title": "Юрисконсульт",
+                "id": "23.362",
+                "name": "specialization.362"
+            },
+            {
+                "title": "Международное право",
+                "id": "23.442",
+                "name": "specialization.442"
+            },
+            {
+                "title": "Адвокат",
+                "id": "23.21",
+                "name": "specialization.21"
+            },
+            {
+                "title": "Страховое право",
+                "id": "23.286",
+                "name": "specialization.286"
+            },
+            {
+                "title": "Налоговое право",
+                "id": "23.165",
+                "name": "specialization.165"
+            },
+            {
+                "title": "Ценные бумаги, Рынки капитала",
+                "id": "23.352",
+                "name": "specialization.352"
+            },
+            {
+                "title": "Банковское право",
+                "id": "23.36",
+                "name": "specialization.36"
+            },
+            {
+                "title": "Слияния и поглощения",
+                "id": "23.276",
+                "name": "specialization.276"
+            },
+            {
+                "title": "Помощник",
+                "id": "23.214",
+                "name": "specialization.214"
+            },
+            {
+                "title": "Арбитраж",
+                "id": "23.29",
+                "name": "specialization.29"
+            }
+        ],
+        "id": 23,
+        "name": "professional_area.23"
+    },
+    {
+        "title": "Спортивные клубы, фитнес, салоны красоты",
+        "children": [
+            {
+                "title": "Ногтевой сервис",
+                "id": "24.624",
+                "name": "specialization.624"
+            },
+            {
+                "title": "Тренерский состав",
+                "id": "24.378",
+                "name": "specialization.378"
+            },
+            {
+                "title": "Косметология",
+                "id": "24.377",
+                "name": "specialization.377"
+            },
+            {
+                "title": "Администрация",
+                "id": "24.379",
+                "name": "specialization.379"
+            },
+            {
+                "title": "Продажи",
+                "id": "24.380",
+                "name": "specialization.380"
+            },
+            {
+                "title": "Парикмахер",
+                "id": "24.493",
+                "name": "specialization.493"
+            },
+            {
+                "title": "Массажист",
+                "id": "24.492",
+                "name": "specialization.492"
+            }
+        ],
+        "id": 24,
+        "name": "professional_area.24"
+    },
+    {
+        "title": "Инсталляция и сервис",
+        "children": [
+            {
+                "title": "Сервисный инженер",
+                "id": "25.381",
+                "name": "specialization.381"
+            },
+            {
+                "title": "Руководитель сервисного центра",
+                "id": "25.382",
+                "name": "specialization.382"
+            },
+            {
+                "title": "Менеджер по сервису - сетевые и телекоммуникационные технологии",
+                "id": "25.383",
+                "name": "specialization.383"
+            },
+            {
+                "title": "Менеджер по сервису - промышленное оборудование",
+                "id": "25.384",
+                "name": "specialization.384"
+            },
+            {
+                "title": "Менеджер по сервису - транспорт",
+                "id": "25.385",
+                "name": "specialization.385"
+            },
+            {
+                "title": "Инсталляция и настройка оборудования",
+                "id": "25.386",
+                "name": "specialization.386"
+            }
+        ],
+        "id": 25,
+        "name": "professional_area.25"
+    },
+    {
+        "title": "Закупки",
+        "children": [
+            {
+                "title": "Управление закупками",
+                "id": "26.437",
+                "name": "specialization.437"
+            },
+            {
+                "title": "Станки, Тяжелое оборудование",
+                "id": "26.473",
+                "name": "specialization.473"
+            },
+            {
+                "title": "Сертификация",
+                "id": "26.406",
+                "name": "specialization.406"
+            },
+            {
+                "title": "Автомобили, Запчасти",
+                "id": "26.407",
+                "name": "specialization.407"
+            },
+            {
+                "title": "Алкоголь",
+                "id": "26.408",
+                "name": "specialization.408"
+            },
+            {
+                "title": "Строительные материалы",
+                "id": "26.439",
+                "name": "specialization.439"
+            },
+            {
+                "title": "ГСМ, нефть, бензин",
+                "id": "26.409",
+                "name": "specialization.409"
+            },
+            {
+                "title": "Компьютерная техника",
+                "id": "26.410",
+                "name": "specialization.410"
+            },
+            {
+                "title": "Металлопрокат",
+                "id": "26.427",
+                "name": "specialization.427"
+            },
+            {
+                "title": "Тендеры",
+                "id": "26.574",
+                "name": "specialization.574"
+            },
+            {
+                "title": "Начальный уровень, Мало опыта",
+                "id": "26.419",
+                "name": "specialization.419"
+            },
+            {
+                "title": "Продукты питания",
+                "id": "26.412",
+                "name": "specialization.412"
+            },
+            {
+                "title": "Фармацевтика",
+                "id": "26.411",
+                "name": "specialization.411"
+            },
+            {
+                "title": "Электроника, фото, видео",
+                "id": "26.414",
+                "name": "specialization.414"
+            },
+            {
+                "title": "Товары для бизнеса",
+                "id": "26.413",
+                "name": "specialization.413"
+            },
+            {
+                "title": "FMCG, Товары народного потребления",
+                "id": "26.416",
+                "name": "specialization.416"
+            },
+            {
+                "title": "Электротехническое оборудование/светотехника",
+                "id": "26.449",
+                "name": "specialization.449"
+            },
+            {
+                "title": "Химическая продукция",
+                "id": "26.415",
+                "name": "specialization.415"
+            }
+        ],
+        "id": 26,
+        "name": "professional_area.26"
+    },
+    {
+        "title": "Начало карьеры, студенты",
+        "children": [
+            {
+                "title": "Административный персонал",
+                "id": "15.388",
+                "name": "specialization.388"
+            },
+            {
+                "title": "Продажи",
+                "id": "15.389",
+                "name": "specialization.389"
+            },
+            {
+                "title": "Автомобильный бизнес",
+                "id": "15.390",
+                "name": "specialization.390"
+            },
+            {
+                "title": "Консультирование",
+                "id": "15.391",
+                "name": "specialization.391"
+            },
+            {
+                "title": "Управление персоналом",
+                "id": "15.320",
+                "name": "specialization.320"
+            },
+            {
+                "title": "Наука, Образование",
+                "id": "15.167",
+                "name": "specialization.167"
+            },
+            {
+                "title": "Строительство, Архитектура",
+                "id": "15.288",
+                "name": "specialization.288"
+            },
+            {
+                "title": "Медицина, Фармацевтика",
+                "id": "15.146",
+                "name": "specialization.146"
+            },
+            {
+                "title": "Страхование",
+                "id": "15.281",
+                "name": "specialization.281"
+            },
+            {
+                "title": "Производство, Технологии",
+                "id": "15.237",
+                "name": "specialization.237"
+            },
+            {
+                "title": "Туризм, Гостиницы, Рестораны",
+                "id": "15.313",
+                "name": "specialization.313"
+            },
+            {
+                "title": "Финансы, Банки, Инвестиции",
+                "id": "15.346",
+                "name": "specialization.346"
+            },
+            {
+                "title": "Транспорт, Логистика",
+                "id": "15.308",
+                "name": "specialization.308"
+            },
+            {
+                "title": "Маркетинг, Реклама, PR",
+                "id": "15.140",
+                "name": "specialization.140"
+            },
+            {
+                "title": "Добыча сырья",
+                "id": "15.68",
+                "name": "specialization.68"
+            },
+            {
+                "title": "Юристы",
+                "id": "15.363",
+                "name": "specialization.363"
+            },
+            {
+                "title": "Информационные технологии, Интернет, Мультимедиа",
+                "id": "15.93",
+                "name": "specialization.93"
+            },
+            {
+                "title": "Искусство, Развлечения, Масс-медиа",
+                "id": "15.96",
+                "name": "specialization.96"
+            }
+        ],
+        "id": 15,
+        "name": "professional_area.15"
+    },
+    {
+        "title": "Домашний персонал",
+        "children": [
+            {
+                "title": "Сиделка",
+                "id": "27.501",
+                "name": "specialization.501"
+            },
+            {
+                "title": "Садовник",
+                "id": "27.499",
+                "name": "specialization.499"
+            },
+            {
+                "title": "Повар",
+                "id": "27.500",
+                "name": "specialization.500"
+            },
+            {
+                "title": "домработница\\домработник, Горничная",
+                "id": "27.497",
+                "name": "specialization.497"
+            },
+            {
+                "title": "Персональный водитель",
+                "id": "27.498",
+                "name": "specialization.498"
+            },
+            {
+                "title": "Помощник по хозяйству, Управляющий",
+                "id": "27.533",
+                "name": "specialization.533"
+            },
+            {
+                "title": "Воспитатель, Гувернантка, Няня",
+                "id": "27.496",
+                "name": "specialization.496"
+            },
+            {
+                "title": "Репетитор",
+                "id": "27.584",
+                "name": "specialization.584"
+            }
+        ],
+        "id": 27,
+        "name": "professional_area.27"
+    },
+    {
+        "title": "Рабочий персонал",
+        "children": [
+            {
+                "title": "Другое",
+                "id": "29.588",
+                "name": "specialization.588"
+            },
+            {
+                "title": "Гардеробщик",
+                "id": "29.540",
+                "name": "specialization.540"
+            },
+            {
+                "title": "Дворник, Уборщик",
+                "id": "29.541",
+                "name": "specialization.541"
+            },
+            {
+                "title": "Дорожные рабочие",
+                "id": "29.542",
+                "name": "specialization.542"
+            },
+            {
+                "title": "Жестянщик",
+                "id": "29.543",
+                "name": "specialization.543"
+            },
+            {
+                "title": "Заправщик картриджей",
+                "id": "29.544",
+                "name": "specialization.544"
+            },
+            {
+                "title": "Комплектовщик, Укладчик-упаковщик",
+                "id": "29.545",
+                "name": "specialization.545"
+            },
+            {
+                "title": "Краснодеревщик",
+                "id": "29.546",
+                "name": "specialization.546"
+            },
+            {
+                "title": "Кузнец",
+                "id": "29.547",
+                "name": "specialization.547"
+            },
+            {
+                "title": "Лифтер",
+                "id": "29.548",
+                "name": "specialization.548"
+            },
+            {
+                "title": "Машинист производства",
+                "id": "29.549",
+                "name": "specialization.549"
+            },
+            {
+                "title": "Машинист сцены",
+                "id": "29.550",
+                "name": "specialization.550"
+            },
+            {
+                "title": "Машинист экскаватора",
+                "id": "29.551",
+                "name": "specialization.551"
+            },
+            {
+                "title": "Механик",
+                "id": "29.552",
+                "name": "specialization.552"
+            },
+            {
+                "title": "Оператор станков",
+                "id": "29.553",
+                "name": "specialization.553"
+            },
+            {
+                "title": "Пастух, Чабан",
+                "id": "29.554",
+                "name": "specialization.554"
+            },
+            {
+                "title": "Наладчик",
+                "id": "29.162",
+                "name": "specialization.162"
+            },
+            {
+                "title": "Шлифовщик",
+                "id": "29.558",
+                "name": "specialization.558"
+            },
+            {
+                "title": "Сантехник",
+                "id": "29.557",
+                "name": "specialization.557"
+            },
+            {
+                "title": "Разнорабочий",
+                "id": "29.556",
+                "name": "specialization.556"
+            },
+            {
+                "title": "Перемотчик",
+                "id": "29.555",
+                "name": "specialization.555"
+            },
+            {
+                "title": "Ювелир",
+                "id": "29.561",
+                "name": "specialization.561"
+            },
+            {
+                "title": "Электромонтер, Кабельщик",
+                "id": "29.560",
+                "name": "specialization.560"
+            },
+            {
+                "title": "Штукатур",
+                "id": "29.559",
+                "name": "specialization.559"
+            },
+            {
+                "title": "Грузчик",
+                "id": "29.495",
+                "name": "specialization.495"
+            },
+            {
+                "title": "Сборщик",
+                "id": "29.517",
+                "name": "specialization.517"
+            },
+            {
+                "title": "Швея",
+                "id": "29.516",
+                "name": "specialization.516"
+            },
+            {
+                "title": "Электрик",
+                "id": "29.515",
+                "name": "specialization.515"
+            },
+            {
+                "title": "Монтажник",
+                "id": "29.581",
+                "name": "specialization.581"
+            },
+            {
+                "title": "Сварщик",
+                "id": "29.514",
+                "name": "specialization.514"
+            },
+            {
+                "title": "Проводник",
+                "id": "29.582",
+                "name": "specialization.582"
+            },
+            {
+                "title": "Столяр",
+                "id": "29.513",
+                "name": "specialization.513"
+            },
+            {
+                "title": "Фасовщик",
+                "id": "29.512",
+                "name": "specialization.512"
+            },
+            {
+                "title": "Токарь, Фрезеровщик",
+                "id": "29.511",
+                "name": "specialization.511"
+            },
+            {
+                "title": "Слесарь",
+                "id": "29.510",
+                "name": "specialization.510"
+            },
+            {
+                "title": "Маляр",
+                "id": "29.583",
+                "name": "specialization.583"
+            }
+        ],
+        "id": 29,
+        "name": "professional_area.29"
+    }
+]

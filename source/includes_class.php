@@ -2,6 +2,7 @@
 	__DIR__ . '/Engine/FrontController/',
 	__DIR__ . '/Engine/SessionController/',
 	__DIR__ . '/Engine/Model/',
+	__DIR__ . '/vendor/MyLib/',
 	__DIR__ . '/Engine/View/',
 	'mvc/Controllers/',
 	'mvc/Models/',
