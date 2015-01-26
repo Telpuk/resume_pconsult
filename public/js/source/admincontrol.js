@@ -50,6 +50,10 @@
 
     AdminControl.prototype.addEventListenerBody = function(){
         this.$html.on('click',{self:this},function(event){
+            var $elem = $(event.target);
+            if($elem.hasClass('exampleClick')){
+                $( 'input[type=search]',$elem.parents('.search')).val($elem.text());
+            }
             event.data.self.conclusionClose($(event.target));
             event.data.self.$download_content.hide();
             event.data.self.resetChecked();

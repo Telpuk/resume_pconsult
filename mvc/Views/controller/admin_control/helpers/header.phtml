@@ -7,8 +7,12 @@
 </div>
 <form  action='<?=BASE_URL."/admincontrol/index/search/"?>' method="get">
 	<div class="search">
-		<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
-		<input type="submit" value="найти">
+		<div class="exampleSearch">Например, <span class="exampleClick">менеджер по продажам</span></div>
+		<div class="extendedSearch"><a href="<?=BASE_URL.'/admincontrol/advanced' ?>">Расширенный поиск</a></div>
+		<div class="clear">
+			<input type="search" name="search" value="<?=$this->data['data']['search']?>" placeholder="введите текст для поиска">
+			<input type="submit" value="найти">
+		</div>
 		<div class="clear"></div>
 	</div>
 </form>

@@ -428,6 +428,59 @@ class AdminControlController extends IController{
 
 	}
 
+	public function advancedAction(){
+
+//		print_r($_POST);
+
+		return $this->_view->render(array(
+				'view'=>'admin_control/advanced',
+				'js' => $this->_jsAdvanced(),
+				'styles'=>$this->_sryleAdvanced(),
+				'data' => array(
+					'admin'=>$this->getSessionUserID('admin'),
+					'admin_info'=>array(
+						'name_first'=>$this->getSessionParamsId('name_first'),
+						'name_second'=>$this->getSessionParamsId('name_second'),
+						'patronymic'=>$this->getSessionParamsId('patronymic'),
+						'login'=>$this->getSessionParamsId('login'),
+						'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+					),
+					'helpers' => array(
+						'header'=> 'admin_control/helpers/header',
+						'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
+						'widget_admin' => 'admin_control/helpers/widget'
+					),
+					'users_count' =>$this->getSessionParamsId('count_users'),
+					'users_count_search'=>$this->getSessionParamsId('count_users_search'),
+					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume')
+				)
+			)
+		);
+	}
+
+	private function _sryleAdvanced(){
+		return array(
+			'styleLinks'=>array(
+				BASE_URL.'/public/css/advanced.min.css'
+			)
+		);
+	}
+
+	public function _jsAdvanced( $data = null ){
+		return array(
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
+					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
+					BASE_URL . "/public/js/vendor/highlight.min.js",
+					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
+					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
+					BASE_URL . "/public/js/min/admincontrol.min.js",
+					BASE_URL . "/public/js/min/advanced.min.js",
+				),
+			)
+		);
+	}
 
 	private function _jsAdminControl( $data = null )
 	{
@@ -438,7 +491,7 @@ class AdminControlController extends IController{
 					BASE_URL . "/public/js/vendor/handlebars-v2.min.js",
 					BASE_URL . "/public/js/vendor/highlight.min.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
-					BASE_URL . "/public/js/min/admincontrol.min.js",
+					BASE_URL . "/public/js/min/admincontrol.min.js"
 				),
 				'js_c' => is_null( $data ) || !$data ? null : '<script type="text/javascript">(function($){$(".person_inform,.conclusion").highlight("' . $data . '");})(jQuery)</script>'
 			)

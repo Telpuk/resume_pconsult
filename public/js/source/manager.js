@@ -1,5 +1,8 @@
 (function($, window){
     function Manager(){
+
+        this.$html = $('html');
+
         this.$add_manager = $('#add_manager');
         this.$form_manager = $('.form_manager');
 
@@ -268,11 +271,21 @@
 
         });
     };
+    Manager.prototype.addEventListenerBody = function(){
+        this.$html.on('click',{self:this},function(event){
+            var $elem = $(event.target);
+            if($elem.hasClass('exampleClick')){
+                $( 'input[type=search]',$elem.parents('.search')).val($elem.text());
+            }
+        });
+    };
+
 
     Manager.prototype.init = function(){
         this.createPassword();
         this.addEventListenerWidgetRight();
         this.addEventListenerFIOContent();
+        this.addEventListenerBody();
         this.addEventListenerManager();
         this.validateForm();
     };

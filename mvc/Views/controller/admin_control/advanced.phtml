@@ -1,0 +1,181 @@
+<main class="admin_control advanced">
+	<div class="header">
+		<?=$this->data['helpers']['header']?>
+	</div>
+	<div class="left_admin_control">
+		<?=$this->data['helpers']['widget_admin']?>
+	</div>
+	<div class="right_admin_control">
+		<header>
+			<h1>Поиск&#160;резюме</h1>
+		</header>
+		<form action="#" class="advancedForm" method="post">
+			<table>
+				<tbody>
+				<tr>
+					<td><label for="keywords">Ключевые слова</label></td>
+					<td>
+						<div class="inputKeywordsBlock">
+							<span><input type="text" name="keywords" id="keywords" value="" title="Ключевые&#160;слова"></span>
+							<span><input type="submit" class="prosper-button" name="advancedFormSubmit" value="Найти"></span>
+							<div>
+								<span id="targetRadio">
+									<span class="resumeSearchSort">Все&#160;слова</span>
+									<ul class="radioBlock">
+										<li><label><input type="radio" name="advancedForm[wordKey]" value="allWorlds" checked>Все&#160;слова</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey]" value="someWorlds">Любое&#160;из&#160;слов</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey]" value="exactWorlds">Точная&#160;фраза</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey]" value="noWorld">Не&#160;встречаются</label></li>
+									</ul>
+								</span>
+								<span id ="targetCheckbox">
+									<span class="resumeSearchSort">везде</span>
+									<ul class="checkboxBlock">
+										<li><label><input type="checkbox" id="placeSearchAll" name="advancedForm[placeSearch][all]" checked>везде</label></li>
+										<li><label><input type="checkbox" name="advancedForm[placeSearch][titleResume]">в&#160;названии&#160;резюме</label></li>
+										<li><label><input type="checkbox" name="advancedForm[placeSearch][education]">в&#160;образовании</label></li>
+										<li><label><input type="checkbox" name="advancedForm[placeSearch][skills]">в&#160;ключевых&#160;навыках</label></li>
+										<li>
+											<label><input type="checkbox" id="workExperience" name="">в&#160;опыте&#160;работы</label>
+											<ul class="childrenUl">
+												<li><label><input type="checkbox" class="work-experience" name="advancedForm[placeSearch][experience][companiesAndIndustries]">в&#160;компаниях&#160;и&#160;отраслях</label></li>
+												<li><label><input type="checkbox" class="work-experience" name="advancedForm[placeSearch][experience][posts]">в&#160;должностях</label></li>
+												<li><label><input type="checkbox" class="work-experience" name=advancedForm[placeSearch][experience][responsibilities]">в&#160;обязанностях</label></li>
+											</ul>
+										</li>
+										<li>
+											<span class="buttonCheckboxLi">OK</span>
+										</li>
+									</ul>
+								</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="professional_area">Профессиональная область</label></td>
+					<td>
+						<span class="professionalAreaLink">Любая<span class="link">Указать профобласти</span></span>
+						<div id="inputProfessionalAreaBlock">
+							<input type="text" name="professional_area[]" id="professional_area" value="">
+							<h1 id="addProfessionalAreaButton" class="prosper-button">Добавить</h1>
+							<h1 id="cancelProfessionalAreaButton" class="prosper-button">Отменить</h1>
+							<div class="professionalAreaList"></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="city">Регион</label></td>
+					<td id="containerCity">
+						<input type="text" name="city[]" id="city" value="">
+						<h1 id="addCityButton" class="prosper-button">Добавить регион</h1>
+						<div class="cityBlock"></div>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="salary">Зарплата</label></td>
+					<td>
+						<span class="salaryInput">
+							&#160;от&#160;<input type="text" name="salary[from]" value="">&#160;до&#160;
+							<input class="salaryInput" type="text" name="salary[before]" value="">
+							<select name="salary[currency]">
+								<option value="">бел. руб.</option>
+								<option value="">рос. руб.</option>
+								<option value="">EUR</option>
+								<option value="">USD</option>
+							</select>
+						</span>
+						<span class="salaryInputCheckbox">
+							<input type="checkbox" name="salary[show]" value="true">Не&#160;показывать&#160;резюме&#160;без&#160;зарплаты
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Требуемый&#160;опыт&#160;работы</td>
+					<td>
+						<ul class="experience">
+							<li><label><input type="checkbox" name="experience[]" value="false">Нет&#160;опыта</label></li>
+							<li><label><input type="checkbox" name="experience[]" value="1-3">От&#160;1&#160;года&#160;до&#160;3&#160;лет</label></li>
+							<li><label><input type="checkbox" name="experience[]" value="3-6">От&#160;3&#160;до&#160;6&#160;лет</label></li>
+							<li><label><input type="checkbox" name="experience[]" value="more6">Более&#160;6&#160;лет</label></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="education">Образование</label></td>
+					<td>
+						<select name="education" id="education">
+							<option value="Не имеет значения">Не&#160;имеет&#160;значения</option>
+							<option value="Высшее">Высшее</option>
+							<option value="Бакалавр">Бакалавр</option>
+							<option value="Магистр">Магистр</option>
+							<option value="Кандидат наук">Кандидат&#160;наук</option>
+							<option value="Доктор наук">Доктор&#160;наук</option>
+							<option value="Незаконченное высшее">Незаконченное&#160;высшее</option>
+							<option value="Среднее">Среднее</option>
+							<option value="Среднее специальное">Среднее&#160;специальное</option>
+						</select>
+						<div class="names_institutions">
+							<span>Указать названия учебных заведений</span>
+							<div>
+								<p>Добавить учебное заведение</p>
+								<input type="text" name="names_institutions" value="">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<!--				<tr>-->
+				<!--					<td>Гражданство</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Разрешение на работу</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Возраст и фотография</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Пол</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Тип занятости</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>График работы</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Сортировать</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Выводить</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Знание языков</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				<!--				<tr>-->
+				<!--					<td>Показывать на странице</td>-->
+				<!--					<td></td>-->
+				<!--				</tr>-->
+				</tbody>
+				<tfoot>
+				<tr>
+					<td></td>
+					<td>
+						<input type="submit"  class="prosper-button" name="advancedFormSubmit" value="Найти">
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+		</form>
+	</div>
+	<div class="clear"></div>
+	<?=$this->data['helpers']['admin_info_widget']?>
+</main>

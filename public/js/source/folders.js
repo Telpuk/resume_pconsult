@@ -60,6 +60,17 @@
 
     Folders.prototype.addEventListenerHtml = function(){
         this.$html.on('click',{self:this},function(event){
+
+            var $elem = $(event.target);
+            if($elem.hasClass('exampleClick')){
+                $( 'input[type=search]',$elem.parents('.search')).val($elem.text());
+            }
+
+            if ($elem.hasClass('exampleClick')) {
+                $('input[type=search]', $elem.parents('.search')).val($elem.text());
+            }
+
+
             event.data.self.$input_new_folder_block.hide();
             event.data.self.$addFolder.show();
             event.data.self.$inout_text.val('');
