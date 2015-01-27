@@ -17,7 +17,7 @@
 	<?php if($user['view_admin'] == 'yes'): ?>
 		<div class="user_id view_admin" id='<?= $user['id'] ?>'>
 			<?php else: ?>
-			<div class="user_id">
+			<div class="user_id" id='<?= $user['id'] ?>'>
 				<?php endif; ?>
 				<figure>
 					<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>

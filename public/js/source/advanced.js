@@ -18,6 +18,10 @@
         this.$city = $('#city');
         this.$cityBlock = $('.cityBlock');
 
+
+        this.$names_institutions = $('.names_institutions');
+        this.$institutionsBlock = $('.institutionsBlock');
+
         this.wordKeyRussianValue = {
             allWorlds:'Все слова',
             someWorlds:'Любое из слов',
@@ -174,6 +178,16 @@
         });
     };
 
+    Advanced.prototype.addEventListenerNamesInstitutions = function(){
+        this.$names_institutions.on('click',{self: this}, function(event) {
+            var $target = $(event.target);
+            if($target.hasClass('link')){
+                $('input',event.data.self.$institutionsBlock).prop('disabled', false);
+                event.data.self.$institutionsBlock.show();
+                $target.hide()
+            }
+        });
+    };
 
     Advanced.prototype.init = function(){
         this.addEventListenerTargetRadio();
@@ -182,6 +196,8 @@
         this.addEventListenerProfessionalBlock();
 
         this.addEventListenerCityBlock();
+
+        this.addEventListenerNamesInstitutions();
 
         this.getJsonProfessionalArea();
 

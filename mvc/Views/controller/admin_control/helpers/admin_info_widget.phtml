@@ -1,7 +1,5 @@
 <div id="widget_right">
-	<div id="icon_user">
-		<img src="<?=BASE_URL.'/public/img/edit_user.png'?>" title="пользователь">
-	</div>
+	<div id="icon_user"><img src="<?=BASE_URL.'/public/img/edit_user.png'?>" title="пользователь"></div>
 	<div id = 'admin_info'>
 		<h1>Вы вошли как <?=$this->data['data']['admin_info']['type_admin_widget']?></h1>
 		<p id="edit_admin">редактировать свои данные</p>
@@ -9,23 +7,19 @@
 			<div id="fio_content">
 				<p>
 					<span><label for="name_first">ИМЯ</label></span>
-					<span><input type="text" id="name_first" name="name_first"  placeholder="имя"
-					             value='<?=$this->data['data']['admin_info']['name_first']?>'></span>
+					<span><input type="text" id="name_first" name="name_first"  placeholder="имя" value='<?=$this->data['data']['admin_info']['name_first']?>'></span>
 				</p>
 				<p>
 					<span><label for="name_second">ФАМИЛИЯ</label></span>
-					<span><input type="text" id="name_second" name="name_second"  placeholder="фамилия"
-					             value='<?=$this->data['data']['admin_info']['name_second']?>'></span>
+					<span><input type="text" id="name_second" name="name_second"  placeholder="фамилия" value='<?=$this->data['data']['admin_info']['name_second']?>'></span>
 				</p>
 				<p>
 					<span><label for="patronymic">ОТЧЕСТВО</label></span>
-					<span><input type="text" id="patronymic" name="patronymic" placeholder="отчество"
-					             value='<?=$this->data['data']['admin_info']['patronymic']?>'></span>
+					<span><input type="text" id="patronymic" name="patronymic" placeholder="отчество" value='<?=$this->data['data']['admin_info']['patronymic']?>'></span>
 				</p>
 				<p>
 					<span><label for="login">ЛОГИН <strong>(email)</strong></label></span>
-					<span><input type="text" id="login" name="login" placeholder="email"
-					             value='<?=$this->data['data']['admin_info']['login']?>'></span>
+					<span><input type="text" id="login" name="login" placeholder="email" value='<?=$this->data['data']['admin_info']['login']?>'></span>
 				</p>
 			</div>
 			<p id="show_input_password">Изменить пароль</p>

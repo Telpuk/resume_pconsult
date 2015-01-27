@@ -428,9 +428,55 @@ class AdminControlController extends IController{
 
 	}
 
-	public function advancedAction(){
+	public function advancedresultAction(){
+		if(isset($_POST['advancedForm']) && isset($_POST['advancedForm']['advancedFormSubmit']) || $this->getSessionParamsId('advancedForm')) {
 
-//		print_r($_POST);
+			$this->writeCurrentUrlCookies($this->getCurrentUrl());
+
+			$page = $this->getParams('page');
+			$this->_page = empty($page)?null:$page;
+
+
+			if(isset($_POST['advancedForm']) && isset($_POST['advancedForm']['advancedFormSubmit'])){
+				$this->setSessionParams(array('advancedForm'=>$_POST['advancedForm']));
+			}
+
+
+			$users = $this->_db_admin->advancedQuery($this->getSessionParamsId('advancedForm'), $this->_count_view, $this->_page);
+			$users['count'] = $this->getSessionParamsId('count_advanced_result');
+
+			return $this->_view->render(array(
+				'view' => 'admin_control/index',
+				'js' => $this->_jsAdminControl(),
+				'data' => array(
+					'admin'=>$this->getSessionUserID('admin'),
+					'admin_info'=>array(
+						'name_first'=>$this->getSessionParamsId('name_first'),
+						'name_second'=>$this->getSessionParamsId('name_second'),
+						'patronymic'=>$this->getSessionParamsId('patronymic'),
+						'login'=>$this->getSessionParamsId('login'),
+						'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
+					),
+					'helpers' => array(
+						'header'=> 'admin_control/helpers/header',
+						'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
+						'widget_admin' => 'admin_control/helpers/widget'
+					),
+					'active_all_resume'=>true,
+					'users' => $users['users'] ? $users['users']  : '',
+					'users_count' =>$this->getSessionParamsId('count_users'),
+					'users_count_search'=>$this->getSessionParamsId('count_advanced_result'),
+					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
+					'search' => isset($search[0])?$search[0]:null,
+					'pagination' => $this->_db_admin->printPagination(
+						ceil($users['count'] / $this->_count_view), $this->_page, array(
+							'url'=>"advancedresult")),
+				)
+			));
+		}
+	}
+
+	public function advancedAction(){
 
 		return $this->_view->render(array(
 				'view'=>'admin_control/advanced',

@@ -9,38 +9,38 @@
 		<header>
 			<h1>Поиск&#160;резюме</h1>
 		</header>
-		<form action="#" class="advancedForm" method="post">
+		<form action="<?=BASE_URL.'/admincontrol/advancedresult'?>" class="advancedForm" method="post">
 			<table>
 				<tbody>
 				<tr>
 					<td><label for="keywords">Ключевые слова</label></td>
 					<td>
 						<div class="inputKeywordsBlock">
-							<span><input type="text" name="keywords" id="keywords" value="" title="Ключевые&#160;слова"></span>
-							<span><input type="submit" class="prosper-button" name="advancedFormSubmit" value="Найти"></span>
+							<span><input type="text" name="advancedForm[wordKey][input]" id="keywords" value="" title="Ключевые&#160;слова"></span>
+							<span><input type="submit" class="prosper-button" name="advancedForm[advancedFormSubmit]" value="Найти"></span>
 							<div>
 								<span id="targetRadio">
 									<span class="resumeSearchSort">Все&#160;слова</span>
 									<ul class="radioBlock">
-										<li><label><input type="radio" name="advancedForm[wordKey]" value="allWorlds" checked>Все&#160;слова</label></li>
-										<li><label><input type="radio" name="advancedForm[wordKey]" value="someWorlds">Любое&#160;из&#160;слов</label></li>
-										<li><label><input type="radio" name="advancedForm[wordKey]" value="exactWorlds">Точная&#160;фраза</label></li>
-										<li><label><input type="radio" name="advancedForm[wordKey]" value="noWorld">Не&#160;встречаются</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="allWorlds" checked>Все&#160;слова</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="someWorlds">Любое&#160;из&#160;слов</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="exactWorlds">Точная&#160;фраза</label></li>
+										<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="noWorld">Не&#160;встречаются</label></li>
 									</ul>
 								</span>
 								<span id ="targetCheckbox">
 									<span class="resumeSearchSort">везде</span>
 									<ul class="checkboxBlock">
-										<li><label><input type="checkbox" id="placeSearchAll" name="advancedForm[placeSearch][all]" checked>везде</label></li>
-										<li><label><input type="checkbox" name="advancedForm[placeSearch][titleResume]">в&#160;названии&#160;резюме</label></li>
-										<li><label><input type="checkbox" name="advancedForm[placeSearch][education]">в&#160;образовании</label></li>
-										<li><label><input type="checkbox" name="advancedForm[placeSearch][skills]">в&#160;ключевых&#160;навыках</label></li>
+										<li><label><input type="checkbox" id="placeSearchAll" name="advancedForm[wordKey][placeSearch][all]" checked>везде</label></li>
+										<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][titleResume]">в&#160;названии&#160;резюме</label></li>
+										<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][education]">в&#160;образовании</label></li>
+										<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][skills]">в&#160;ключевых&#160;навыках</label></li>
 										<li>
 											<label><input type="checkbox" id="workExperience" name="">в&#160;опыте&#160;работы</label>
 											<ul class="childrenUl">
-												<li><label><input type="checkbox" class="work-experience" name="advancedForm[placeSearch][experience][companiesAndIndustries]">в&#160;компаниях&#160;и&#160;отраслях</label></li>
-												<li><label><input type="checkbox" class="work-experience" name="advancedForm[placeSearch][experience][posts]">в&#160;должностях</label></li>
-												<li><label><input type="checkbox" class="work-experience" name=advancedForm[placeSearch][experience][responsibilities]">в&#160;обязанностях</label></li>
+												<li><label><input type="checkbox" class="work-experience" name="advancedForm[wordKey][placeSearch][experience][companiesAndIndustries]">в&#160;компаниях&#160;и&#160;отраслях</label></li>
+												<li><label><input type="checkbox" class="work-experience" name="advancedForm[wordKey][placeSearch][experience][posts]">в&#160;должностях</label></li>
+												<li><label><input type="checkbox" class="work-experience" name=advancedForm[wordKey][placeSearch][experience][responsibilities]">в&#160;обязанностях</label></li>
 											</ul>
 										</li>
 										<li>
@@ -104,7 +104,7 @@
 				<tr>
 					<td><label for="education">Образование</label></td>
 					<td>
-						<select name="education" id="education">
+						<select name="education[degree]" id="education">
 							<option value="Не имеет значения">Не&#160;имеет&#160;значения</option>
 							<option value="Высшее">Высшее</option>
 							<option value="Бакалавр">Бакалавр</option>
@@ -116,10 +116,10 @@
 							<option value="Среднее специальное">Среднее&#160;специальное</option>
 						</select>
 						<div class="names_institutions">
-							<span>Указать названия учебных заведений</span>
-							<div>
+							<span class="link">Указать названия учебных заведений</span>
+							<div class="institutionsBlock">
 								<p>Добавить учебное заведение</p>
-								<input type="text" name="names_institutions" value="">
+								<input type="text" name="education[name]" disabled value="">
 							</div>
 						</div>
 					</td>
@@ -169,7 +169,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<input type="submit"  class="prosper-button" name="advancedFormSubmit" value="Найти">
+						<input type="submit" class="prosper-button" name="advancedForm[advancedFormSubmit]" value="Найти">
 					</td>
 				</tr>
 				</tfoot>

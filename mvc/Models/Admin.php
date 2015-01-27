@@ -59,6 +59,31 @@ class Admin{
 		return $array_execute;
 	}
 
+	public function advancedQuery($advanced = null, $count_view,$page){
+		$query = new SqlQuestionSearch($advanced);
+		$query->analysis();
+		$query->getQuery();
+
+		try {
+			$stmt = $this->_dbc->prepare("CALL advanced(:likeString, :start, :count_view)");
+			$stmt->execute(array(
+				':likeString'=>$query->getQuery(),
+				':start' => $page,
+				':count_view'=>$count_view
+			));
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		if (is_null($page)) {
+			$_SESSION['params']['count_advanced_result'] = count($data);;
+			$data = array_slice($data, 0, $count_view);
+		}
+
+		return $this->_getResumeFormat($data);
+
+	}
+
 
 	public function updateFoldersUsers($folders,$id_user){
 		try {
@@ -82,12 +107,11 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$count_user = count($data);
-			$_SESSION['params']['count_users_folders'] = $count_user;
+			$_SESSION['params']['count_users_folders'] = count($data);;
 			$data = array_slice($data, 0, $count_view);
 		}
 
-		return $this->_getResumeFormat($data, $count_user);
+		return $this->_getResumeFormat($data);
 
 	}
 
@@ -105,12 +129,11 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$count_user = count($search_data);
-			$_SESSION['params']['count_users_folders_search'] = $count_user;
+			$_SESSION['params']['count_users_folders_search'] = count($search_data);;
 			$search_data = array_slice($search_data, 0, $count_view);
 		}
 
-		return $this->_getResumeFormat($search_data, $count_user);
+		return $this->_getResumeFormat($search_data);
 
 	}
 
@@ -251,8 +274,6 @@ class Admin{
 
 	public function selectResumeNoView( $count_view, $page, $admin_id )
 	{
-		$count_user = 0;
-
 		try {
 			$stmt = $this->_dbc->prepare( "CALL noViewAdmin(:start,:count_view,:admin_id)" );
 			$stmt->execute( array( ':start' => $page, ':count_view' => $count_view, ':admin_id' => $admin_id ) );
@@ -262,12 +283,11 @@ class Admin{
 		}
 
 		if (is_null($page)) {
-			$count_user = count($data);
-			$_SESSION['params']['count_view_admin_resume'] = $count_user;
+			$_SESSION['params']['count_view_admin_resume'] = count($data);
 			$data = array_slice($data, 0, $count_view);
 		}
 
-		return $this->_getResumeFormat($data, $count_user);
+		return $this->_getResumeFormat($data);
 	}
 
 	public function selectAllResume( $count_view, $page, $id_admin )
@@ -297,7 +317,7 @@ class Admin{
 			$_SESSION['params']['count_users'] = $count_user;
 			$_SESSION['params']['count_view_admin_resume'] = $count_view_admin_resume;
 		}
-		return $this->_getResumeFormat($search_data, $count_user);
+		return $this->_getResumeFormat($search_data);
 	}
 
 	public function search($search, $count_view, $page){
@@ -313,17 +333,15 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$count_user = count($search_data);
-			$_SESSION['params']['count_users_search'] = $count_user;
-
+			$_SESSION['params']['count_users_search'] = count($search_data);
 			$search_data = array_slice($search_data, 0, $count_view);
 		}
 
-		return $this->_getResumeFormat($search_data, $count_user);
+		return $this->_getResumeFormat($search_data);
 
 	}
 
-	private function _getResumeFormat($search_data, $count_user){
+	private function _getResumeFormat($search_data){
 		foreach($search_data as $key =>$data){
 			$experience_count[$key] = $this->_user_object->getExperienceCount(
 				array(
@@ -351,7 +369,7 @@ class Admin{
 			));
 		}
 
-		return array('users'=>$search_data, 'count'=>$count_user);
+		return array('users'=>$search_data);
 	}
 
 	private function _getYearsUser($date){
