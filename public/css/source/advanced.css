@@ -4,6 +4,7 @@
     margin: 10px 0 0 10px;
 }
 .admin_control .right_admin_control .advancedForm table td{
+    /*border: 1px #000000 solid;*/
     padding: 10px 0 10px 0;
 }
 
@@ -11,7 +12,8 @@
 .admin_control .right_admin_control .advancedForm table td:nth-child(even){
     width: 700px;
 }
-.admin_control .right_admin_control .advancedForm .professionalAreaLink{
+.admin_control .right_admin_control .advancedForm .professionalAreaLink,
+.admin_control .right_admin_control .advancedForm span.linkSpan{
     color: #000000;
     margin-left: 40px;
     font-weight: bold;
@@ -41,6 +43,27 @@
     height: 25px;
 }
 
+.admin_control .right_admin_control .ageInputCheckbox span{
+    display: block;
+}
+.admin_control .right_admin_control .ageInput input[type=text]{
+    width: 100px;
+}
+.admin_control .right_admin_control ul.sex{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+.admin_control .right_admin_control ul.sex li,
+.admin_control .right_admin_control ul.sort li,
+.admin_control .right_admin_control ul.deduce_count li,
+.admin_control .right_admin_control ul.deduce li{
+    margin: 0;
+    padding-left: 0;
+    padding-bottom: 5px;
+}
+
 .admin_control .right_admin_control .advancedForm #addCityButton,
 .admin_control .right_admin_control .advancedForm #addProfessionalAreaButton,
 .admin_control .right_admin_control .advancedForm #cancelProfessionalAreaButton{
@@ -50,7 +73,9 @@
 }
 
 .admin_control .right_admin_control .professionalAreaLink > span,
-.admin_control .right_admin_control .names_institutions  > span{
+.admin_control .right_admin_control .names_institutions  > span,
+.admin_control .right_admin_control #linkLanguage,
+.admin_control .right_admin_control .linkSpan span:nth-child(1){
     color: #009CD5;
     margin-left: 20px;
     display: inline-block;
@@ -59,9 +84,14 @@
     border-bottom: 1px #009CD5 dotted;
 }
 
-.admin_control .right_admin_control .institutionsBlock{
+.admin_control .right_admin_control .institutionsBlock,
+.admin_control .right_admin_control .hideDiv{
     color: #999;
     display: none;
+}
+.admin_control .right_admin_control .hideDiv input[type=text]{
+    width: 200px;
+    height: 30px;
 }
 .admin_control .right_admin_control .institutionsBlock p{
     line-height: 21px;
@@ -99,8 +129,16 @@
     display: block;
 }
 
-.admin_control .right_admin_control ul.experience{
+.admin_control .right_admin_control ul.experience,
+.admin_control .right_admin_control ul.sort,
+.admin_control .right_admin_control ul.deduce,
+.admin_control .right_admin_control ul.schedule,
+.admin_control .right_admin_control ul.employment,
+.admin_control .right_admin_control ul.deduce_count,
+.admin_control .right_admin_control ul#languages{
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .resumeSearchSort{
@@ -187,7 +225,7 @@
 .admin_control.advanced  input.prosper-button {
     line-height: 31px;
     vertical-align: baseline;
-    height: 33px;
+    height: 30px;
 }
 
 
@@ -202,7 +240,7 @@
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
-    height: 31px;
+    height: 30px;
     padding: 0 20px 0;
     border: 1px solid #d3d3d3;
     border-radius: 3px;
@@ -221,13 +259,12 @@
 
 .admin_control.advanced .inputKeywordsBlock input[type='text']{
     width: 70%;
-    height: 35px;
+    height: 30px;
     padding: 5px;
     margin-right: 10px;
 }
 
-.admin_control.advanced  input[type='text']{
-    width: 70%;
-    height: 35px;
+.admin_control .right_admin_control input[type=text]{
     padding: 5px;
 }
+

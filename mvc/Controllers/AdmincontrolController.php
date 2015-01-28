@@ -483,6 +483,7 @@ class AdminControlController extends IController{
 				'js' => $this->_jsAdvanced(),
 				'styles'=>$this->_sryleAdvanced(),
 				'data' => array(
+					'languages'=>$this->_db_user->_getLanguages(),
 					'admin'=>$this->getSessionUserID('admin'),
 					'admin_info'=>array(
 						'name_first'=>$this->getSessionParamsId('name_first'),
@@ -523,7 +524,28 @@ class AdminControlController extends IController{
 					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
 					BASE_URL . "/public/js/min/admincontrol.min.js",
 					BASE_URL . "/public/js/min/advanced.min.js",
-				),
+				)
+			),
+			'javascriptHeader' => array(
+				'js_c'=><<<HEAD
+<script id="template_advanced_language" type="text/x-handlebars-template">
+	<li>
+		<select name="advancedForm[languages][language_further][]">
+		{{#each languages}}
+			<option value="{{this}}" {{#ifCond this  'английский' }}selected{{/ifCond}} >{{this}}</option>
+		{{/each}}
+		</select>
+		<select name="advancedForm[languages][language_further_level][]">
+			<option value="не имеет значения">Не имеет значения</option>
+			<option value="базовые знания">Базовые знания</option>
+			<option value="читаю профессиональную литературу">Чтение проф. литературы</option>
+			<option value="могу проходить интервью">Может проходить интервью</option>
+			<option value="свободно владею">Свободное владение</option>
+			<option value="родной язык">Родной язык</option>
+		</select><span class="closeBlock">
+	</li>
+	</script>
+HEAD
 			)
 		);
 	}

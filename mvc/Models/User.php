@@ -856,6 +856,7 @@ employment = :employment,schedule = :schedule,salary = :salary,currency = :curre
 													patronymic = :patronymic,
 													birth = :birth,
 													sex = :sex,
+													age = :age,
 													city = :city,
 													move = :move,
 													trip = :trip,
@@ -871,6 +872,7 @@ employment = :employment,schedule = :schedule,salary = :salary,currency = :curre
 					':first_name'=>$inputs['first_name']['value'],
 					':patronymic'=>$inputs['patronymic']['value'],
 					':birth'=>"{$inputs['birth']['day_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['year_birth']}",
+					':age'=>$this->_getAge("{$inputs['birth']['year_birth']}-{$inputs['birth']['month_birth']}-{$inputs['birth']['day_birth']}"),
 					':sex'=>$inputs['sex']['value'],
 					':city'=>$inputs['city']['value'],
 					':move'=>$inputs['move']['value'],
@@ -885,6 +887,17 @@ employment = :employment,schedule = :schedule,salary = :salary,currency = :curre
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
+	}
+
+	private function _getAge($birth){
+		if(trim($birth)!=='--'){
+			$now = new DateTime(date("Y-m-d"));
+			$births = new DateTime($birth);
+
+			$interval = $now->diff($births);
+			return $interval->format('%y');
+		}
+		return 0;
 	}
 
 
@@ -1172,9 +1185,10 @@ icq,skype,free_lance,my_circle,linkedln,facebook,live_journal,other_site FROM pr
 													regions = :regions,
 													sites = :sites,
 													field_activities = :field_activities,
-													getting_starteds = :getting_starteds,
+													getting_starteds = :getting_started,
 													closing_works = :closing_works,
 													at_the_moments = :at_the_moments,
+													experience_sum = :experience_sum,
 													functions = :functions,
 													key_skills = :key_skills,
 													about_self = :about_self,
@@ -1192,9 +1206,14 @@ icq,skype,free_lance,my_circle,linkedln,facebook,live_journal,other_site FROM pr
 					':regions'=>implode('[@!-#-!@]',(array)$inputs['regions']['value']),
 					':sites'=>implode('[@!-#-!@]',(array)$inputs['sites']['value']),
 					':field_activities'=>implode('[@!-#-!@]',(array)$inputs['field_activities']['value']),
-					':getting_starteds'=>implode('[@!-#-!@]',(array)$getting_starteds),
+					':getting_started'=>implode('[@!-#-!@]',(array)$getting_starteds),
 					':closing_works'=>implode('[@!-#-!@]',(array)$closing_works),
 					':at_the_moments'=>implode('[@!-#-!@]',(array)$inputs['at_the_moments']['value']),
+					':experience_sum'=>$this->_getExperienceSum(array(
+						'experience_getting_starteds'=>(array)$getting_starteds,
+						'experience_closing_works'=>(array)$closing_works,
+						'experience_at_the_moments'=>(array)$inputs['at_the_moments']['value']
+					)),
 					':functions'=>implode('[@!-#-!@]',(array)$inputs['functions']['value']),
 					':key_skills'=>implode('[@!-#-!@]',(array)$inputs['key_skills']['value']),
 					':about_self'=>$inputs['about_self']['value'],
@@ -1208,6 +1227,50 @@ icq,skype,free_lance,my_circle,linkedln,facebook,live_journal,other_site FROM pr
 		}catch (PDOException $e){
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
+	}
+
+	private function _getExperienceSum($personal_data){
+		$date = array();
+		$year_sum = 0;
+		$month_sum = 0;
+
+		if(isset($personal_data['experience_getting_starteds'][0]) && $personal_data['experience_getting_starteds'][0]) {
+			foreach ($personal_data['experience_getting_starteds'] as $key => $data) {
+				$str_date = '';
+				$d1 = new DateTime($data . "-1");
+				if ($personal_data['experience_at_the_moments'][$key] === 'false') {
+					$d2 = new DateTime($personal_data['experience_closing_works'][$key] . '-1');
+				} elseif ($personal_data['experience_at_the_moments'][$key] === 'true') {
+					$d2 = new DateTime('NOW');
+				}
+
+				$year = (int)$d2->diff($d1)->format('%Y');
+
+				if ($year) {
+					$str_date .= $year . ' год(лет) ';
+				}
+
+				$month = (int)$d2->diff($d1)->format('%m');
+
+				if ($month) {
+					$str_date .= $month . ' месяц(ев)';
+				} elseif (!$year && !$month) {
+					$str_date .= 'около месяца';
+				}
+
+				$date[$key] = $str_date;
+				$year_sum += $year;
+				$month_sum += $month;
+			}
+
+			$year_sum += floor((int)$month_sum / 12);
+
+			$year_sum = (int)$year_sum ? $year_sum : 0;
+
+			return $year_sum;
+		}
+		return $year_sum;
+
 	}
 
 	public function selectExperience($id_user){
@@ -1306,6 +1369,113 @@ recommend_organization,recommend_phone FROM experience WHERE id_user = :id_user'
 				'value'=>explode('[@!-#-!@]',$experience_data['recommend_phone'])
 			),
 		);
+	}
+
+	public function _getLanguages(){
+		return array(
+			'абхазский',
+			'аварский',
+			'азербайджанский',
+			'албанский',
+			'амхарский',
+			'английский',
+			'арабский',
+			'армянский',
+			'африкаанс',
+			'баскский',
+			'башкирский',
+			'белорусский',
+			'бенгальский',
+			'болгарский',
+			'боснийский',
+			'бурятский',
+			'бенгерский',
+			'вьетнамский',
+			'голландский',
+			'греческий',
+			'грузинский',
+			'дагестанский',
+			'даргинский',
+			'дари',
+			'датский',
+			'езидский',
+			'иврит',
+			'ингушский',
+			'индонезийский',
+			'ирландский',
+			'исландский',
+			'испанский',
+			'итальянский',
+			'кабардино-черкесский',
+			'казахский',
+			'карачаево-балкарский',
+			'карельский',
+			'каталанский',
+			'кашмирский',
+			'китайский',
+			'коми',
+			'корейский',
+			'креольский (Сейшельские острова)',
+			'кумыкский',
+			'курдский',
+			'кхмерский (Камбоджийский)',
+			'кыргызский',
+			'лакский',
+			'лаосский',
+			'латинский',
+			'латышский',
+			'лезгинский',
+			'литовский',
+			'македонский',
+			'малазийский',
+			'мансийский',
+			'марийский',
+			'молдавский',
+			'монгольский',
+			'немецкий',
+			'непальский',
+			'ногайский',
+			'норвежский',
+			'осетинский',
+			'панджаби',
+			'персидский',
+			'польский',
+			'португальский',
+			'пушту',
+			'румынский',
+			'русский',
+			'санскрит',
+			'сербский',
+			'словацкий',
+			'словенский',
+			'сомалийский',
+			'суахили',
+			'тагальский',
+			'таджиксТалышский',
+			'тамильский',
+			'татарский',
+			'тибетский',
+			'тувинский',
+			'турецкий',
+			'туркменский',
+			'узбекский',
+			'уйгурский',
+			'украинский',
+			'урду',
+			'фарси',
+			'финский',
+			'фламандский',
+			'французский',
+			'хинди',
+			'хорватский',
+			'чеченский',
+			'чешский',
+			'чувашский',
+			'шведский',
+			'эсперанто',
+			'эстонский',
+			'якутский',
+			'японский');
 	}
 
 

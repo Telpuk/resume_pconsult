@@ -2609,9 +2609,7 @@ main.authorization .helpers_message_authorization{
     margin-top: 10px;
     border-top: 1.8px #000000 dashed;
 }
-.admin_control .right_admin_control .user_id:nth-last-child(2){
-    border-bottom: 1px #bababa dashed;
-}
+
 .admin_control .right_admin_control .user_id figure{
     display: block;
     float: left;

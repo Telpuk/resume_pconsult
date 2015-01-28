@@ -21,9 +21,9 @@
 		<div class="user_folders">
 			<?php foreach($this->data['data']['users'] as $key=>$user): ?>
 		<?php if($user['view_admin'] == 'yes'): ?>
-			<div class="user_id no_admin">
+			<div class="user_id no_admin" id='<?= $user['id'] ?>'>
 				<?php else: ?>
-				<div class="user_id">
+				<div class="user_id" id='<?= $user['id'] ?>'>
 					<?php endif; ?>
 					<figure>
 						<a href="<?=BASE_URL."/index/index/id/" .$user['id']?>"><img src='<?=BASE_URL."/files/photo/{$user['photo']}"?>'></a>

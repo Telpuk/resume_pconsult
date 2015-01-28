@@ -62,7 +62,6 @@ class Admin{
 	public function advancedQuery($advanced = null, $count_view,$page){
 		$query = new SqlQuestionSearch($advanced);
 		$query->analysis();
-		$query->getQuery();
 
 		try {
 			$stmt = $this->_dbc->prepare("CALL advanced(:likeString, :start, :count_view)");
@@ -76,8 +75,7 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$_SESSION['params']['count_advanced_result'] = count($data);;
-			$data = array_slice($data, 0, $count_view);
+			$_SESSION['params']['count_advanced_result'] = count($data);
 		}
 
 		return $this->_getResumeFormat($data);
@@ -107,8 +105,7 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$_SESSION['params']['count_users_folders'] = count($data);;
-			$data = array_slice($data, 0, $count_view);
+			$_SESSION['params']['count_users_folders'] = count($data);
 		}
 
 		return $this->_getResumeFormat($data);

@@ -6,6 +6,11 @@
         this.$targetRadio = $('#targetRadio');
         this.$radioBlock = $('.radioBlock');
 
+        this.$templateAdvancedLanguage = $("#template_advanced_language").html();
+
+        this.$blockLanguage = $("#blockLanguage");
+        this.$language = $("#languages");
+
         this.$targetCheckbox = $('#targetCheckbox');
         this.$checkboxBlock = $('.checkboxBlock');
 
@@ -22,12 +27,121 @@
         this.$names_institutions = $('.names_institutions');
         this.$institutionsBlock = $('.institutionsBlock');
 
+
+        this.$linkSpan = $('.linkSpan');
+
+
+
         this.wordKeyRussianValue = {
             allWorlds:'Все слова',
             someWorlds:'Любое из слов',
             exactWorlds:'Точная фраза',
             noWorld:'Не встречаются'
         }
+
+         this.languages = ['абхазский',
+            'аварский',
+            'азербайджанский',
+            'албанский',
+            'амхарский',
+            'английский',
+            'арабский',
+            'армянский',
+            'африкаанс',
+            'баскский',
+            'башкирский',
+            'белорусский',
+            'бенгальский',
+            'болгарский',
+            'боснийский',
+            'бурятский',
+            'бенгерский',
+            'вьетнамский',
+            'голландский',
+            'греческий',
+            'грузинский',
+            'дагестанский',
+            'даргинский',
+            'дари',
+            'датский',
+            'езидский',
+            'иврит',
+            'ингушский',
+            'индонезийский',
+            'ирландский',
+            'исландский',
+            'испанский',
+            'итальянский',
+            'кабардино-черкесский',
+            'казахский',
+            'карачаево-балкарский',
+            'карельский',
+            'каталанский',
+            'кашмирский',
+            'китайский',
+            'коми',
+            'корейский',
+            'креольский (Сейшельские острова)',
+            'кумыкский',
+            'курдский',
+            'кхмерский (Камбоджийский)',
+            'кыргызский',
+            'лакский',
+            'лаосский',
+            'латинский',
+            'латышский',
+            'лезгинский',
+            'литовский',
+            'македонский',
+            'малазийский',
+            'мансийский',
+            'марийский',
+            'молдавский',
+            'монгольский',
+            'немецкий',
+            'непальский',
+            'ногайский',
+            'норвежский',
+            'осетинский',
+            'панджаби',
+            'персидский',
+            'польский',
+            'португальский',
+            'пушту',
+            'румынский',
+            'русский',
+            'санскрит',
+            'сербский',
+            'словацкий',
+            'словенский',
+            'сомалийский',
+            'суахили',
+            'тагальский',
+            'таджиксТалышский',
+            'тамильский',
+            'татарский',
+            'тибетский',
+            'тувинский',
+            'турецкий',
+            'туркменский',
+            'узбекский',
+            'уйгурский',
+            'украинский',
+            'урду',
+            'фарси',
+            'финский',
+            'фламандский',
+            'французский',
+            'хинди',
+            'хорватский',
+            'чеченский',
+            'чешский',
+            'чувашский',
+            'шведский',
+            'эсперанто',
+            'эстонский',
+            'якутский',
+            'японский'];
     };
 
     Advanced.prototype.addEventListenerTargetRadio = function(){
@@ -138,6 +252,26 @@
         });
     };
 
+    Advanced.prototype.addEventListenerTempateLanguage = function(){
+        this.$blockLanguage.on('click',{self: this}, function(event){
+            if(event.target.id === 'linkLanguage'){
+                HBS.registerHelper('ifCond', function(v1, v2, options) {
+
+                    if (v1 === v2) {
+                        return options.fn(this);
+                    }
+                    return options.inverse(this);
+                });
+                var template = HBS.compile(event.data.self.$templateAdvancedLanguage);
+                var html = template({'languages':event.data.self.languages});
+                event.data.self.$language.append(html);
+            }else if($(event.target).hasClass('closeBlock')){
+                $(event.target).parent('li').remove();
+            }
+        });
+
+    };
+
     Advanced.prototype.addEventListenerProfessionalBlock = function(){
         this.$inputProfessionalAreaBlock.on('click',{self: this}, function(event){
             var $target = $(event.target);
@@ -148,7 +282,7 @@
 
             }else if($target.attr('id') === 'addProfessionalAreaButton' && $.trim(event.data.self.$professional_area.val())){
                 event.data.self.$professionalAreaList.append('<span><span class="closeBlock" title="удалить">' +
-                '<input type="hidden" name="professional_area[]" value="' +
+                '<input type="hidden" name="advancedForm[professional_area][]" value="' +
                 $.trim(event.data.self.$professional_area.val())+'"></span>' +
                 $.trim(event.data.self.$professional_area.val()) +
                 '</span>');
@@ -165,7 +299,7 @@
             var $target = $(event.target);
             if($target.attr('id') === 'addCityButton' && $.trim(event.data.self.$city.val())){
                 event.data.self.$cityBlock.append('<span><span class="closeBlock" title="удалить">' +
-                '<input type="hidden" name="city[]" value="' +
+                '<input type="hidden" name="advancedForm[city][]" value="' +
                 $.trim(event.data.self.$city.val())+'"></span>' +
                 $.trim(event.data.self.$city.val()) +
                 '</span>');
@@ -188,6 +322,18 @@
             }
         });
     };
+    Advanced.prototype.addEventListenerLinkSpan = function(){
+        this.$linkSpan.on('click',{self: this}, function(event) {
+            var $target = $(event.target);
+            if($target.hasClass('link')){
+                var $parent = $target.parent('.linkSpan');
+                var $hideElement = $parent.siblings('.hideDiv');
+                $('input[type=text]', $hideElement).prop('disabled', false);
+                $hideElement.show()
+                $parent.hide();
+            }
+        });
+    };
 
     Advanced.prototype.init = function(){
         this.addEventListenerTargetRadio();
@@ -196,6 +342,10 @@
         this.addEventListenerProfessionalBlock();
 
         this.addEventListenerCityBlock();
+
+        this.addEventListenerLinkSpan();
+
+        this.addEventListenerTempateLanguage();
 
         this.addEventListenerNamesInstitutions();
 
