@@ -63,10 +63,12 @@ class Admin{
 		$query = new SqlQuestionSearch($advanced);
 		$query->analysis();
 
+		$count_view = !is_null($query->getQuery('view_count'))?$query->getQuery('view_count'):$count_view;
+
 		try {
 			$stmt = $this->_dbc->prepare("CALL advanced(:likeString, :start, :count_view)");
 			$stmt->execute(array(
-				':likeString'=>$query->getQuery(),
+				':likeString'=>$query->getQuery('likeString'),
 				':start' => $page,
 				':count_view'=>$count_view
 			));
@@ -75,10 +77,11 @@ class Admin{
 			exit(print_r($e->errorInfo).$e->getFile());
 		}
 		if (is_null($page)) {
-			$_SESSION['params']['count_advanced_result'] = count($data);
+			$_SESSION['params']['count_advanced_result'] =  count($data);
+			$data = array_slice($data,0, $count_view);
 		}
 
-		return $this->_getResumeFormat($data);
+		return $this->_getResumeFormat($data, $count_view);
 
 	}
 
@@ -338,7 +341,7 @@ class Admin{
 
 	}
 
-	private function _getResumeFormat($search_data){
+	private function _getResumeFormat($search_data, $count_view=null){
 		foreach($search_data as $key =>$data){
 			$experience_count[$key] = $this->_user_object->getExperienceCount(
 				array(
@@ -366,7 +369,7 @@ class Admin{
 			));
 		}
 
-		return array('users'=>$search_data);
+		return array('users'=>$search_data, 'count_view'=>$count_view);
 	}
 
 	private function _getYearsUser($date){

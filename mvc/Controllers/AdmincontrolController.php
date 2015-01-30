@@ -412,7 +412,7 @@ class AdminControlController extends IController{
 				'helpers' => array(
 					'header'=> 'admin_control/helpers/header',
 					'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
-					'widget_admin' => 'admin_control/helpers/widget'
+					'widget_admin' => 'admin_control/helpers/widget',
 				),
 				'active_all_resume'=>true,
 				'users' => $users['users'] ? $users['users']  : '',
@@ -436,18 +436,21 @@ class AdminControlController extends IController{
 			$page = $this->getParams('page');
 			$this->_page = empty($page)?null:$page;
 
-
 			if(isset($_POST['advancedForm']) && isset($_POST['advancedForm']['advancedFormSubmit'])){
 				$this->setSessionParams(array('advancedForm'=>$_POST['advancedForm']));
 			}
 
-
 			$users = $this->_db_admin->advancedQuery($this->getSessionParamsId('advancedForm'), $this->_count_view, $this->_page);
 			$users['count'] = $this->getSessionParamsId('count_advanced_result');
 
+			$form = $this->getSessionParamsId('advancedForm');
+
+			$input =  empty($form['wordKey']['input'])?null:$form['wordKey']['input'];
+			$this->writeSearchCookies($input);
+
 			return $this->_view->render(array(
 				'view' => 'admin_control/index',
-				'js' => $this->_jsAdminControl(),
+				'js' => $this->_jsAdminControl($input),
 				'data' => array(
 					'admin'=>$this->getSessionUserID('admin'),
 					'admin_info'=>array(
@@ -460,7 +463,8 @@ class AdminControlController extends IController{
 					'helpers' => array(
 						'header'=> 'admin_control/helpers/header',
 						'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
-						'widget_admin' => 'admin_control/helpers/widget'
+						'widget_admin' => 'admin_control/helpers/widget',
+						'linkChangeAdvanced'=>'admin_control/helpers/linkChangeAdvanced'
 					),
 					'active_all_resume'=>true,
 					'users' => $users['users'] ? $users['users']  : '',
@@ -469,14 +473,65 @@ class AdminControlController extends IController{
 					'count_view_admin_resume'=>$this->getSessionParamsId('count_view_admin_resume'),
 					'search' => isset($search[0])?$search[0]:null,
 					'pagination' => $this->_db_admin->printPagination(
-						ceil($users['count'] / $this->_count_view), $this->_page, array(
+						ceil($users['count'] / $users['count_view']), $this->_page, array(
 							'url'=>"advancedresult")),
 				)
 			));
 		}
 	}
 
+	public function autocompleteAction(){
+		if($_POST['autocomplete']==='autocomplete'){
+			echo($this->_db_user->selectAutocompletePersonal());
+		}else {
+			$this->headerLocation('index');
+		}
+	}
+
+	public function treatmentProfessionalArea($data=null){
+		$str = null;
+		if(!is_null($data)){
+			foreach($data as $val){
+				if($val) {
+					$str .= <<<HED
+<span><span class='closeBlock'<input type="hidden" name="advancedForm[professional_area][]" value="{$val}"></span>{$val}</span>
+HED;
+				}
+			}
+		}
+		return $str;
+	}
+
+	public function treatmentCity($data=null){
+		$str = null;
+		if(!is_null($data)){
+			foreach($data as $val){
+				if($val) {
+					$str .= <<<HED
+	<span>
+		<span class="closeBlock" title="удалить">
+		<input type="hidden" name="advancedForm[city][]" value="{$val}">
+		</span>
+		{$val}
+	</span>
+HED;
+				}
+			}
+		}
+		return $str;
+	}
+
 	public function advancedAction(){
+		$form = array();
+
+		if(!is_null($this->getParams('change'))){
+			$form = $this->getSessionParamsId('advancedForm')?$this->getSessionParamsId('advancedForm'):array();
+		}
+		$form['professional_area'] = $this->treatmentProfessionalArea(isset($form['professional_area'])?$form['professional_area']:null);
+		$form['city'] = $this->treatmentCity(isset($form['city']) ?$form['city']:null);
+
+//		print_r($form);
+
 
 		return $this->_view->render(array(
 				'view'=>'admin_control/advanced',
@@ -492,6 +547,7 @@ class AdminControlController extends IController{
 						'login'=>$this->getSessionParamsId('login'),
 						'type_admin_widget'=>$this->getSessionParamsId('type_admin_widget')
 					),
+					'form'=>$form,
 					'helpers' => array(
 						'header'=> 'admin_control/helpers/header',
 						'admin_info_widget'=> 'admin_control/helpers/admin_info_widget',
@@ -508,7 +564,8 @@ class AdminControlController extends IController{
 	private function _sryleAdvanced(){
 		return array(
 			'styleLinks'=>array(
-				BASE_URL.'/public/css/advanced.min.css'
+				BASE_URL.'/public/css/advanced.min.css',
+				BASE_URL.'/public/css/datetimepicker.min.css'
 			)
 		);
 	}
@@ -522,6 +579,7 @@ class AdminControlController extends IController{
 					BASE_URL . "/public/js/vendor/highlight.min.js",
 					BASE_URL . "/public/js/vendor/jquery.easing.1.3.min.js",
 					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
+					BASE_URL . "/public/js/vendor/datetimepicker.min.js",
 					BASE_URL . "/public/js/min/admincontrol.min.js",
 					BASE_URL . "/public/js/min/advanced.min.js",
 				)

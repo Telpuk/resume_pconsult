@@ -38,6 +38,8 @@ HEAD;
 	 */
 	private $_query = null;
 
+	private $_queryArray = null;
+
 	/**
 	 * post Question
 	 */
@@ -125,7 +127,7 @@ HEAD;
 			$salary = array_diff($this->_postSearch['salary'],array(''));
 
 
-			$likeWordKeyQuery = $this->_placeSearch($wordKey['placeSearch'],$this->_parseWordKey($wordKey['parse'], trim($wordKey['input'])));
+			$likeWordKeyQuery = $this->_placeSearch(isset($wordKey['placeSearch'])?$wordKey['placeSearch']:array('all'=>'on'), $this->_parseWordKey($wordKey['parse'], trim($wordKey['input'])));
 			$likeProfessionalAreaQuery = $this->_parseProfessionalArea(count($professional_area)?$professional_area:null);
 			$likeCityQuery = $this->_parseCity(count($city)?$city:null);
 			$likeSalary = $this->_parseSalary(count($salary)?$salary:null);
@@ -138,6 +140,8 @@ HEAD;
 			$employment = $this->_parseEmployment(isset($this->_postSearch['employment'])?$this->_postSearch['employment']:null);
 			$schedule = $this->_parseSchedule(isset($this->_postSearch['schedule'])?$this->_postSearch['schedule']:null);
 			$languages = $this->_parseLanguages(isset($this->_postSearch['languages']) ?$this->_postSearch['languages']:null);
+			$deduce = $this->_parseDeduce(isset($this->_postSearch['deduce']) ?$this->_postSearch['deduce']:null);
+			$view_count = isset($this->_postSearch['view_count'])?$this->_postSearch['view_count']:null;
 
 			$this->setQuery(
 				$likeWordKeyQuery,
@@ -152,10 +156,56 @@ HEAD;
 				$sex,
 				$employment,
 				$schedule,
-				$languages);
+				$languages,
+				$deduce,
+				$view_count);
 
 		}
 	}
+
+	private function _parseDeduce($deduce = null){
+		$queryLike = null;
+		if(!is_null($deduce)){
+			switch($deduce['type']){
+				case 1:{
+					$queryLike .="( (TO_DAYS(NOW()) -  TO_DAYS(prof.date)) <= 1 )";
+					break;
+				}
+				case 2:{
+					$queryLike .="( (TO_DAYS(NOW()) -  TO_DAYS(prof.date)) <= 3 )";
+					break;
+				}
+				case 3:{
+					$queryLike .="( (TO_DAYS(NOW()) -  TO_DAYS(prof.date)) <= 7 )";
+					break;
+				}
+				case 4:{
+					$queryLike .="( (TO_DAYS(NOW()) -  TO_DAYS(prof.date)) <= 24 )";
+					break;
+				}
+				case 5:{
+					$queryLike .="( (TO_DAYS(NOW()) -  TO_DAYS(prof.date)) <= 366 )";
+					break;
+				}
+				case 6:{
+					if(isset($deduce['interval']) && is_array($deduce['interval'])){
+						if(isset($deduce['interval']['from']) && (isset($deduce['interval']['before']) && !$deduce['interval']['before'])){
+							$queryLike .=" (   ( TO_DAYS(prof.date) - TO_DAYS('{$deduce['interval']['from']}') ) >= 0 )";
+						}elseif(isset($deduce['interval']['before']) && (isset($deduce['interval']['from']) && !$deduce['interval']['from'])){
+							$queryLike .=" (   (TO_DAYS('{$deduce['interval']['before']}') - TO_DAYS(prof.date)) >= 0 )";
+						}elseif(isset($deduce['interval']['before']) && isset($deduce['interval']['from']) && $deduce['interval']['from'] && $deduce['interval']['before']){
+							$queryLike .="( ( TO_DAYS(prof.date) - TO_DAYS('{$deduce['interval']['from']}') ) >= 0 AND  (TO_DAYS('{$deduce['interval']['before']}') - TO_DAYS(prof.date)) >= 0 )";
+						}
+
+					}
+					break;
+				}
+			}
+			return trim($queryLike);
+		}
+		return $queryLike;
+	}
+
 
 	private  function _parseLanguages($languages = null){
 		$queryLike = null;
@@ -193,8 +243,6 @@ HEAD;
 				$queryLike .="(educ.language_further LIKE '%{$value}%' AND educ.language_further_level LIKE '%{{$languages['language_further_level'][$key]}}%' )AND";
 
 			}
-
-			echo $queryLike;
 			return trim($queryLike,'AND');
 		}
 		return $queryLike;
@@ -461,7 +509,9 @@ HEAD;
 							 $sex=null,
 							 $employment=null,
 							 $schedule=null,
-							 $languages=null){
+							 $languages=null,
+							 $deduce=null,
+							 $deduce_count=null){
 		$this->_query .= $likeWordKeyQuery?' AND ( '.$likeWordKeyQuery.' )':null;
 		$this->_query .= $likeProfessionalAreaQuery?' AND ( '.$likeProfessionalAreaQuery.' )':null;
 		$this->_query .= $likeCityQuery?' AND ( '.$likeCityQuery.' )':null;
@@ -475,11 +525,15 @@ HEAD;
 		$this->_query .= $employment?' AND ( '.$employment.' )':null;
 		$this->_query .= $schedule?' AND ( '.$schedule.' )':null;
 		$this->_query .= $languages?' AND ( '.$languages.' )':null;
+		$this->_query .= $deduce?' AND ( '.$deduce.' )':null;
+
+		$this->_queryArray['likeString'] = $this->_query;
+		$this->_queryArray['view_count'] = $deduce_count;
 //		echo $likeProfessionalAreaQuery,'<br>';
 	}
 
-	public function getQuery(){
-		return $this->_query;
+	public function getQuery($index){
+		return isset($this->_queryArray[$index])?$this->_queryArray[$index]:null;
 	}
 
 

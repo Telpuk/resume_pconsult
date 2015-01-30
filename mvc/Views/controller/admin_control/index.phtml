@@ -10,6 +10,9 @@
 	<?php if($this->data['data']['users_count_search']): ?>
 		<p class="found">Найденных анкет: <?=$this->data['data']['users_count_search']?></p>
 	<?php endif; ?>
+	<?php if(isset($this->data['helpers']['linkChangeAdvanced'])):?>
+		<?=$this->data['helpers']['linkChangeAdvanced']?>
+	<?php endif; ?>
 		<nav>
 			<?=$this->data['data']['pagination']?>
 		</nav>
@@ -106,6 +109,9 @@
 			</nav>
 			<?php else: ?>
 				<p class="no_resume">По этому запросу у вас ничего нет</p>
+				<?php if(isset($this->data['helpers']['linkChangeAdvanced'])):?>
+					<?=$this->data['helpers']['linkChangeAdvanced']?>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 		<div class="clear"></div>

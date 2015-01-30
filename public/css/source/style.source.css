@@ -3283,6 +3283,10 @@ span.highlight {
     text-decoration: none;
 }
 
+.admin_control  .changeAdvanced{
+    text-align: right;
+}
+
 .ui-state-hover, .ui-state-active {
     color: #ffffff;
     text-decoration: none;

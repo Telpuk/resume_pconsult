@@ -11,6 +11,9 @@
         this.$blockLanguage = $("#blockLanguage");
         this.$language = $("#languages");
 
+        this.$deduce = $(".deduce");
+        this.$interval = $("#interval");
+
         this.$targetCheckbox = $('#targetCheckbox');
         this.$checkboxBlock = $('.checkboxBlock');
 
@@ -39,7 +42,7 @@
             noWorld:'Не встречаются'
         }
 
-         this.languages = ['абхазский',
+        this.languages = ['абхазский',
             'аварский',
             'азербайджанский',
             'албанский',
@@ -207,7 +210,7 @@
                         $listCheckbox.filter("#placeSearchAll").prop('checked',false);
                     }
                 }
-                var text = ''
+                var text = '';
                 $listCheckbox.filter(':checked').parent('label').each(function(index, value){
                     if(index > 0)
                         text += ', '+$(value).text();
@@ -250,6 +253,31 @@
                 source: dataArray
             });
         });
+    };
+
+    Advanced.prototype.autocompltiteInput = function(data){
+        this.$city.autocomplete({
+            source: data
+        });
+        $('#nationality').autocomplete({
+            source: data
+        });
+        $('#work_permit').autocomplete({
+            source: data
+        });
+    };
+
+
+    Advanced.prototype.autocompletePost = function(){
+        var self = this;
+        $.post( BASE_URL+"/admincontrol/autocomplete",
+            { autocomplete: "autocomplete"})
+            .done(function( data ) {
+                data = JSON.parse(data);
+                self.autocompltiteInput(data);
+                self.autocompltiteInput(data);
+                self.autocompltiteInput(data);
+            });
     };
 
     Advanced.prototype.addEventListenerTempateLanguage = function(){
@@ -334,6 +362,43 @@
             }
         });
     };
+    Advanced.prototype.addEventListenerDatetimepicker = function(){
+        $('#datetimepickerFrom,#datetimepickerBefore').datetimepicker({
+                lang:'ru',
+                i18n:{
+                    de:{
+                        months:[
+                            'Январь','Февраль','Март','Апрель',
+                            'Май','Июнь','Июль','Август',
+                            'Сентябрь','Октябрь','Ноябрь','Сентябрь',
+                        ],
+                        dayOfWeek:[
+                            "Вск.", "Пнд", "Втр", "Срд",
+                            "Чтв", "Птн", "Сбт",
+                        ]
+                    }
+                },
+                datepicker: true,
+                timepicker:false,
+                inline:false,
+                format:'Y-m-d'}
+        );
+
+        this.$deduce.on('change',{self:this} ,function(event){
+
+           if($('#showInterval').prop('checked')){
+               $('input[type=text]',event.data.self.$interval).prop('disabled',false);
+               event.data.self.$interval.show();
+           }else{
+               $('input[type=text]',event.data.self.$interval).prop('disabled',true);
+               event.data.self.$interval.hide();
+           }
+
+
+        });
+
+    };
+
 
     Advanced.prototype.init = function(){
         this.addEventListenerTargetRadio();
@@ -345,12 +410,15 @@
 
         this.addEventListenerLinkSpan();
 
+        this.autocompletePost();
+
         this.addEventListenerTempateLanguage();
 
         this.addEventListenerNamesInstitutions();
 
-        this.getJsonProfessionalArea();
+        this.addEventListenerDatetimepicker();
 
+        this.getJsonProfessionalArea();
     };
 
     var advanced = new Advanced();

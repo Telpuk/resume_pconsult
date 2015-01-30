@@ -7,7 +7,7 @@
 </div>
 <div class="right_admin_control">
 <header>
-	<h1>Поиск&#160;резюме <span style="color:red">*Данный раздел еще дорабатывается</span></h1>
+	<h1>Поиск&#160;резюме</h1>
 </header>
 <form action="<?=BASE_URL.'/admincontrol/advancedresult'?>" class="advancedForm" method="post">
 <table>
@@ -16,29 +16,29 @@
 	<td><label for="keywords">Ключевые слова</label></td>
 	<td>
 		<div class="inputKeywordsBlock">
-			<span><input type="text" name="advancedForm[wordKey][input]" id="keywords" value="" title="Ключевые&#160;слова"></span>
+			<span><input type="text" name="advancedForm[wordKey][input]" id="keywords" value="<?=$this->data['data']['form']['wordKey']['input']?>" title="Ключевые&#160;слова"></span>
 			<span><input type="submit" class="prosper-button" name="advancedForm[advancedFormSubmit]" value="Найти"></span>
 			<div>
 				<span id="targetRadio">
 					<span class="resumeSearchSort">Все&#160;слова</span>
 					<ul class="radioBlock">
-						<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="allWorlds" checked>Все&#160;слова</label></li>
-						<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="someWorlds">Любое&#160;из&#160;слов</label></li>
-						<li><label><input type="radio" name="advancedForm[wordKey][parse]" value="exactWorlds">Точная&#160;фраза</label></li>
+						<li><label><input type="radio" name="advancedForm[wordKey][parse]" <?php if($this->data['data']['form']['wordKey']['parse']==='allWorlds')echo"checked"?> value="allWorlds" checked>Все&#160;слова</label></li>
+						<li><label><input type="radio" name="advancedForm[wordKey][parse]" <?php if($this->data['data']['form']['wordKey']['parse']==='someWorlds')echo"checked"?> value="someWorlds">Любое&#160;из&#160;слов</label></li>
+						<li><label><input type="radio" name="advancedForm[wordKey][parse]" <?php if($this->data['data']['form']['wordKey']['parse']==='exactWorlds')echo"checked"?> value="exactWorlds">Точная&#160;фраза</label></li>
 					</ul>
 				</span>
 				<span id ="targetCheckbox">
 					<span class="resumeSearchSort">везде</span>
 					<ul class="checkboxBlock">
-						<li><label><input type="checkbox" id="placeSearchAll" name="advancedForm[wordKey][placeSearch][all]" checked>везде</label></li>
-						<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][education]">в&#160;образовании</label></li>
-						<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][skills]">в&#160;ключевых&#160;навыках</label></li>
+						<li><label><input type="checkbox" id="placeSearchAll" name="advancedForm[wordKey][placeSearch][all]"<?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['all']))echo"checked"?>>везде</label></li>
+						<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][education]"<?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['education']))echo"checked"?>>в&#160;образовании</label></li>
+						<li><label><input type="checkbox" name="advancedForm[wordKey][placeSearch][skills]" <?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['skills']))echo"checked"?> >в&#160;ключевых&#160;навыках</label></li>
 						<li>
-							<label><input type="checkbox" id="workExperience" name="">в&#160;опыте&#160;работы</label>
+							<label><input type="checkbox" id="workExperience" <?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['experience']))echo"checked"?> name="">в&#160;опыте&#160;работы</label>
 							<ul class="childrenUl">
-								<li><label><input type="checkbox" class="work-experience" name="advancedForm[wordKey][placeSearch][experience][field_activities]">в&#160;компаниях&#160;и&#160;отраслях</label></li>
-								<li><label><input type="checkbox" class="work-experience" name="advancedForm[wordKey][placeSearch][experience][positions]">в&#160;должностях</label></li>
-								<li><label><input type="checkbox" class="work-experience" name=advancedForm[wordKey][placeSearch][experience][functions]">в&#160;обязанностях</label></li>
+								<li><label><input type="checkbox"<?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['experience']['field_activities']))echo"checked"?> class="work-experience" name="advancedForm[wordKey][placeSearch][experience][field_activities]">в&#160;компаниях&#160;и&#160;отраслях</label></li>
+								<li><label><input type="checkbox"<?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['experience']['positions']))echo"checked"?> class="work-experience" name="advancedForm[wordKey][placeSearch][experience][positions]">в&#160;должностях</label></li>
+								<li><label><input type="checkbox"<?php if(isset($this->data['data']['form']['wordKey']['placeSearch']['experience']['functions']))echo"checked"?> class="work-experience" name=advancedForm[wordKey][placeSearch][experience][functions]">в&#160;обязанностях</label></li>
 							</ul>
 						</li>
 						<li>
@@ -53,12 +53,12 @@
 <tr>
 	<td><label for="professional_area">Профессиональная область</label></td>
 	<td>
-		<span class="professionalAreaLink">Любая<span class="link">Указать профобласти</span></span>
-		<div id="inputProfessionalAreaBlock">
+		<span <?php if($this->data['data']['form']['professional_area']) echo"style='display:none'"?> class="professionalAreaLink">Любая<span class="link">Указать профобласти</span></span>
+		<div <?php if($this->data['data']['form']['professional_area']) echo"style='display:block'"?> id="inputProfessionalAreaBlock">
 			<input type="text" name="advancedForm[professional_area][]" id="professional_area" value="">
 			<h1 id="addProfessionalAreaButton" class="prosper-button">Добавить</h1>
 			<h1 id="cancelProfessionalAreaButton" class="prosper-button">Отменить</h1>
-			<div class="professionalAreaList"></div>
+			<div class="professionalAreaList"><?=$this->data['data']['form']['professional_area']?></div>
 		</div>
 	</td>
 </tr>
@@ -67,24 +67,24 @@
 	<td id="containerCity">
 		<input type="text" name="advancedForm[city][]" id="city" value="">
 		<h1 id="addCityButton" class="prosper-button">Добавить регион</h1>
-		<div class="cityBlock"></div>
+		<div class="cityBlock"><?=$this->data['data']['form']['city']?></div>
 	</td>
 </tr>
 <tr>
 	<td><label for="salary">Зарплата</label></td>
 	<td>
 		<span class="salaryInput">
-			&#160;от&#160;<input type="text" name="advancedForm[salary][from]" value="">&#160;до&#160;
-			<input class="salaryInput" type="text" name="advancedForm[salary][before]" value="">
+			&#160;от&#160;<input type="text" name="advancedForm[salary][from]" value="<?=$this->data['data']['form']['salary']['from']?>">&#160;до&#160;
+			<input class="salaryInput" type="text" name="advancedForm[salary][before]" value="<?=$this->data['data']['form']['salary']['before']?>">
 			<select name="advancedForm[salary][currency]">
-				<option value="бел. руб.">бел. руб.</option>
-				<option value="рос. руб.">рос. руб.</option>
-				<option value="EUR">EUR</option>
-				<option value="USD">USD</option>
+				<option <?php if($this->data['data']['form']['salary']['currency']==='бел. руб.') echo"selected"?> value="бел. руб.">бел. руб.</option>
+				<option <?php if($this->data['data']['form']['salary']['currency']==='рос. руб.') echo"selected"?> value="рос. руб.">рос. руб.</option>
+				<option <?php if($this->data['data']['form']['salary']['currency']==='EUR') echo"selected"?> value="EUR">EUR</option>
+				<option <?php if($this->data['data']['form']['salary']['currency']==='USD') echo"selected"?> value="USD">USD</option>
 			</select>
 		</span>
 		<span class="salaryInputCheckbox">
-			<label><input type="checkbox" name="advancedForm[salary][show_empty]" value="false">Не&#160;показывать&#160;резюме&#160;без&#160;зарплаты</label>
+			<label><input type="checkbox"  <?php if(isset($this->data['data']['form']['salary']['show_empty']))echo"checked"?> name="advancedForm[salary][show_empty]" value="false">Не&#160;показывать&#160;резюме&#160;без&#160;зарплаты</label>
 		</span>
 	</td>
 </tr>
@@ -92,10 +92,10 @@
 	<td>Требуемый&#160;опыт&#160;работы</td>
 	<td>
 		<ul class="experience">
-			<li><label><input type="checkbox" name="advancedForm[experience][no]" value="">Нет&#160;опыта</label></li>
-			<li><label><input type="checkbox" name="advancedForm[experience][one-three]" value="">От&#160;1&#160;года&#160;до&#160;3&#160;лет</label></li>
-			<li><label><input type="checkbox" name="advancedForm[experience][three-six]" value="">От&#160;3&#160;до&#160;6&#160;лет</label></li>
-			<li><label><input type="checkbox" name="advancedForm[experience][six-more]" value="">Более&#160;6&#160;лет</label></li>
+			<li><label><input type="checkbox" <?php if(isset($this->data['data']['form']['experience']['no'])) echo"checked"?> name="advancedForm[experience][no]" value="">Нет&#160;опыта</label></li>
+			<li><label><input type="checkbox" <?php if(isset($this->data['data']['form']['experience']['one-three'])) echo"checked"?> name="advancedForm[experience][one-three]" value="">От&#160;1&#160;года&#160;до&#160;3&#160;лет</label></li>
+			<li><label><input type="checkbox" <?php if(isset($this->data['data']['form']['experience']['three-six'])) echo"checked"?> name="advancedForm[experience][three-six]" value="">От&#160;3&#160;до&#160;6&#160;лет</label></li>
+			<li><label><input type="checkbox" <?php if(isset($this->data['data']['form']['experience']['six-more'])) echo"checked"?> name="advancedForm[experience][six-more]" value="">Более&#160;6&#160;лет</label></li>
 		</ul>
 	</td>
 </tr>
@@ -104,20 +104,20 @@
 	<td>
 		<select name="advancedForm[education][degree]" id="education">
 			<option value="">Не&#160;имеет&#160;значения</option>
-			<option value="Высшее">Высшее</option>
-			<option value="Бакалавр">Бакалавр</option>
-			<option value="Магистр">Магистр</option>
-			<option value="Кандидат наук">Кандидат&#160;наук</option>
-			<option value="Доктор наук">Доктор&#160;наук</option>
-			<option value="Незаконченное высшее">Незаконченное&#160;высшее</option>
-			<option value="Среднее">Среднее</option>
-			<option value="Среднее специальное">Среднее&#160;специальное</option>
+			<option value="Высшее" <?php if($this->data['data']['form']['education']['degree']==='Высшее') echo"selected"?>>Высшее</option>
+			<option value="Бакалавр" <?php if($this->data['data']['form']['education']['degree']==='Бакалавр') echo"selected"?> >Бакалавр</option>
+			<option value="Магистр" <?php if($this->data['data']['form']['education']['degree']==='Магистр') echo"selected"?> >Магистр</option>
+			<option value="Кандидат наук" <?php if($this->data['data']['form']['education']['degree']==='Кандидат наук') echo"selected"?> >Кандидат&#160;наук</option>
+			<option value="Доктор наук" <?php if($this->data['data']['form']['education']['degree']==='Доктор наук') echo"selected"?> >Доктор&#160;наук</option>
+			<option value="Незаконченное высшее" <?php if($this->data['data']['form']['education']['degree']==='Незаконченное высшее') echo"selected"?>  >Незаконченное&#160;высшее</option>
+			<option value="Среднее" <?php if($this->data['data']['form']['salary']['education']==='Среднее') echo"selected"?> >Среднее</option>
+			<option value="Среднее специальное" <?php if ($this->data['data']['form']['education']['degree']==='Среднее специальное') echo"selected"?> >Среднее&#160;специальное</option>
 		</select>
 		<div class="names_institutions">
-			<span class="link">Указать названия учебных заведений</span>
-			<div class="institutionsBlock">
+			<span class="link" <?php if(isset($this->data['data']['form']['education']['name']))echo"style='display:none' "?>>Указать названия учебных заведений</span>
+			<div class="institutionsBlock" <?php if(isset($this->data['data']['form']['education']['name']))echo"style='display:block' "?>>
 				<p>Добавить учебное заведение</p>
-				<input type="text" name="advancedForm[education][name]" disabled value="">
+				<input type="text" name="advancedForm[education][name]" <?php if(!isset($this->data['data']['form']['education']['name']))echo" disabled "?> value="<?=$this->data['data']['form']['education']['name']?>">
 			</div>
 		</div>
 	</td>
@@ -125,33 +125,31 @@
 <tr>
 	<td><label for="nationality">Гражданство</label></td>
 	<td>
-		<span class="linkSpan">Любая<span class="link">Указать&#160;страну</span></span>
-		<div class="hideDiv">
+		<span class="linkSpan" <?php if(isset($this->data['data']['form']['nationality']['name']))echo"style='display:none' "?> >Любая<span class="link">Указать&#160;страну</span></span>
+		<div class="hideDiv" <?php if(isset($this->data['data']['form']['nationality']['name']))echo" style='display:block' "?> >
 			<p>Добавить&#160;страну</p>
-			<input type="text" name="advancedForm[nationality][name]" id="nationality" disabled value="">
+			<input type="text" name="advancedForm[nationality][name]" id="nationality" <?php if(!isset($this->data['data']['form']['nationality']['name']))echo" disabled "?>  value="<?=$this->data['data']['form']['nationality']['name']?>">
 		</div>
 	</td>
 </tr>
 <tr>
-	<td><label for="work_permit">Разрешение на работу</label></td>
+	<td><label for="work_permit">Разрешение&#160;на&#160;работу</label></td>
 	<td>
-		<span class="linkSpan">Любая<span class="link">Указать&#160;страну</span></span>
-		<div class="hideDiv">
+		<span class="linkSpan" <?php if(isset($this->data['data']['form']['work_permit']['name']))echo"style='display:none' "?>  >Любая<span class="link">Указать&#160;страну</span></span>
+		<div class="hideDiv" <?php if(isset($this->data['data']['form']['work_permit']['name']))echo" style='display:block' "?>>
 			<p>Добавить&#160;страну</p>
-			<input type="text" name="advancedForm[work_permit][name]" id="work_permit" disabled value="">
+			<input type="text" name="advancedForm[work_permit][name]" id="work_permit" <?php if(!isset($this->data['data']['form']['work_permit']['name']))echo" disabled "?>  value="<?=$this->data['data']['form']['work_permit']['name']?>">
 		</div>
 	</td>
 </tr>
 <tr>
 	<td><label>Возраст&#160;и&#160;фотография</label></td>
 	<td>
-		<div class="ageInput">
-			&#160;от&#160;<input type="text" name="advancedForm[age][from]" value="">&#160;до&#160;
-			<input class="salaryInput" type="text" name="advancedForm[age][before]" value="">
+		<div class="ageInput">&#160;от&#160;<input type="text" name="advancedForm[age][from]" value="<?=$this->data['data']['form']['age']['from']?>">&#160;до&#160;<input class="salaryInput" type="text" name="advancedForm[age][before]" value="<?=$this->data['data']['form']['age']['before']?>">
 		</div>
 		<div class="ageInputCheckbox">
-			<span><label><input type="checkbox" name="advancedForm[age][show_empty]" value="false">Не&#160;показывать&#160;резюме&#160;без&#160;указания&#160;возраста</label></span>
-			<span><label><input type="checkbox" name="advancedForm[age][show_photo]" value="false">Только&#160;с&#160;фотографией</label></span>
+			<span><label><input type="checkbox" <?php if(isset($this->data['data']['form']['age']['show_empty']))echo"checked"?>  name="advancedForm[age][show_empty]" value="false">Не&#160;показывать&#160;резюме&#160;без&#160;указания&#160;возраста</label></span>
+			<span><label><input type="checkbox" <?php if(isset($this->data['data']['form']['age']['show_photo']))echo"checked"?> name="advancedForm[age][show_photo]" value="false">Только&#160;с&#160;фотографией</label></span>
 		</div>
 	</td>
 </tr>
@@ -159,9 +157,9 @@
 	<td>Пол</td>
 	<td>
 		<ul class="sex">
-			<li><label><input type="radio" name="advancedForm[sex]" value="" checked>Не&#160;имеет&#160;значения</label></li>
-			<li><label><input type="radio" name="advancedForm[sex]" value="Мужской">Мужской</label></li>
-			<li><label><input type="radio" name="advancedForm[sex]" value="Женский">Женский</label></li>
+			<li><label><input type="radio" name="advancedForm[sex]" <?php if(empty($this->data['data']['form']['sex']))echo"checked"?> value="">Не&#160;имеет&#160;значения</label></li>
+			<li><label><input type="radio" name="advancedForm[sex]" <?php if($this->data['data']['form']['sex']==='Мужской')echo"checked"?> value="Мужской">Мужской</label></li>
+			<li><label><input type="radio" name="advancedForm[sex]" <?php if($this->data['data']['form']['sex']==='Женский')echo"checked"?> value="Женский">Женский</label></li>
 		</ul>
 	</td>
 </tr>
@@ -169,11 +167,11 @@
 	<td>Тип занятости</td>
 	<td>
 		<ul class="employment">
-			<li><label><input type="checkbox" name="advancedForm[employment][]" value="Полная занятость">Полная&#160;занятость</label></li>
-			<li><label><input type="checkbox" name="advancedForm[employment][]" value="Частичная занятость">Частичная&#160;занятость</label></li>
-			<li><label><input type="checkbox" name="advancedForm[employment][]" value="Проектная/Временная работа">Проектная/Временная&#160;работа</label></li>
-			<li><label><input type="checkbox" name="advancedForm[employment][]" value="Волонтерство">Волонтерство</label></li>
-			<li><label><input type="checkbox" name="advancedForm[employment][]" value="Стажировка">Стажировка</label></li>
+			<li><label><input type="checkbox" name="advancedForm[employment][]"<?php if(is_array($this->data['data']['form']['employment'])&&in_array('Полная занятость', $this->data['data']['form']['employment'] ) )echo"checked"?> value="Полная занятость">Полная&#160;занятость</label></li>
+			<li><label><input type="checkbox" name="advancedForm[employment][]"<?php if(is_array($this->data['data']['form']['employment'])&&in_array('Частичная занятость', $this->data['data']['form']['employment'] ) )echo"checked"?>  value="Частичная занятость">Частичная&#160;занятость</label></li>
+			<li><label><input type="checkbox" name="advancedForm[employment][]"<?php if(is_array($this->data['data']['form']['employment'])&&in_array('Проектная/Временная работа', $this->data['data']['form']['employment'] ) )echo"checked"?>  value="Проектная/Временная работа">Проектная/Временная&#160;работа</label></li>
+			<li><label><input type="checkbox" name="advancedForm[employment][]"<?php if(is_array($this->data['data']['form']['employment'])&&in_array('Волонтерство', $this->data['data']['form']['employment'] ) )echo"checked"?>  value="Волонтерство">Волонтерство</label></li>
+			<li><label><input type="checkbox" name="advancedForm[employment][]"<?php if(is_array($this->data['data']['form']['employment'])&&in_array('Стажировка', $this->data['data']['form']['employment'] ) )echo"checked"?>  value="Стажировка">Стажировка</label></li>
 		</ul>
 	</td>
 </tr>
@@ -181,11 +179,11 @@
 	<td>График работы</td>
 	<td>
 		<ul class="schedule">
-			<li><label><input type="checkbox" name="advancedForm[schedule][]" value="Полный день">Полный&#160;день</label></li>
-			<li><label><input type="checkbox" name="advancedForm[schedule][]" value="Сменныйграфик">Сменный&#160;график</label></li>
-			<li><label><input type="checkbox" name="advancedForm[schedule][]" value="Гибкий график">Гибкий&#160;график</label></li>
-			<li><label><input type="checkbox" name="advancedForm[schedule][]" value="Удаленная работа">Удаленная&#160;работа</label></li>
-			<li><label><input type="checkbox" name="advancedForm[schedule][]" value="Вахтовый метод">Вахтовый&#160;метод</label></li>
+			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Полный день', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Полный день">Полный&#160;день</label></li>
+			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Сменныйграфик', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Сменныйграфик">Сменный&#160;график</label></li>
+			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Гибкий график', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Гибкий график">Гибкий&#160;график</label></li>
+			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Удаленная работа', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Удаленная работа">Удаленная&#160;работа</label></li>
+			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Вахтовый метод', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Вахтовый метод">Вахтовый&#160;метод</label></li>
 		</ul>
 	</td>
 </tr>
@@ -199,35 +197,30 @@
 	</td>
 </tr>
 <tr>
-	<td>Сортировать</td>
-	<td>
-		<ul class="sort">
-			<li><label><input type="radio" name="advancedForm[sort]"  checked value="decrease">По&#160;убыванию&#160;зарплат</label></li>
-			<li><label><input type="radio" name="advancedForm[sort]" value="increase">По&#160;возрастанию&#160;зарплаты</label></li>
-		</ul>
-	</td>
-</tr>
-<tr>
 	<td>Выводить</td>
 	<td>
 		<ul class="deduce">
-			<li><label><input type="radio" name="advancedForm[deduce]" checked value="0">За весь период</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="1">За сутки</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="2">За последние три дня</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="3">За неделю</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="4">За месяц</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="5">За год</label></li>
-			<li><label><input type="radio" name="advancedForm[deduce]" value="6">За интервал</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if(!$this->data['data']['form']['deduce']['type'])echo"checked"?> value="0">За&#160;весь&#160;период</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if($this->data['data']['form']['deduce']['type']==1)echo"checked"?> value="1">За&#160;сутки</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if($this->data['data']['form']['deduce']['type']==2)echo"checked"?> value="2">За&#160;последние&#160;три&#160;дня</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if($this->data['data']['form']['deduce']['type']==3)echo"checked"?> value="3">За&#160;неделю</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if($this->data['data']['form']['deduce']['type']==4)echo"checked"?> value="4">За&#160;месяц</label></li>
+			<li><label><input type="radio" name="advancedForm[deduce][type]"<?php if($this->data['data']['form']['deduce']['type']==5)echo"checked"?> value="5">За&#160;год</label></li>
+			<li><label><input type="radio" id="showInterval" name="advancedForm[deduce][type]"<?php if ($this->data['data']['form']['deduce']['type']==6)echo"checked"?> value="6">За&#160;интервал</label></li>
+			<?php if ($this->data['data']['form']['deduce']['type']==6):?>
+				<?php $style = "style='display:block'"; $styleInput=''?>
+			<?php endif; ?>
+			<li <?=$style?> id="interval">от&#160;<input id="datetimepickerFrom" value="<?=$this->data['data']['form']['deduce']['interval']['from']?>" name="advancedForm[deduce][interval][from]" <?php if ($this->data['data']['form']['deduce']['type']!=6)echo"disabled"?> type="text" >&#160;до&#160;<input id="datetimepickerBefore" value="<?=$this->data['data']['form']['deduce']['interval']['before']?>" name="advancedForm[deduce][interval][before]" type="text" <?php if ($this->data['data']['form']['deduce']['type']!=6)echo"disabled"?> ></li>
 		</ul>
 	</td>
 </tr>
 <tr>
 	<td>Показывать на странице</td>
 	<td>
-		<ul class="deduce_count">
-			<li><label><input type="radio" name="advancedForm[view_count]" checked value="20">20 резюме</label></li>
-			<li><label><input type="radio" name="advancedForm[view_count]" value="50">50 резюме</label></li>
-			<li><label><input type="radio" name="advancedForm[view_count]" value="100">100 резюме</label></li>
+		<ul class="view_count">
+			<li><label><input type="radio" name="advancedForm[view_count]" <?php if($this->data['data']['form']['view_count']==20 || !$this->data['data']['form']['view_count']) echo"checked"?> value="20">20&#160;резюме</label></li>
+			<li><label><input type="radio" name="advancedForm[view_count]"<?php if($this->data['data']['form']['view_count']==50)echo"checked"?> value="50">50&#160;резюме</label></li>
+			<li><label><input type="radio" name="advancedForm[view_count]"<?php if($this->data['data']['form']['view_count']==100)echo"checked"?> value="100">100&#160;резюме</label></li>
 		</ul>
 	</td>
 </tr>

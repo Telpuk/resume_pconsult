@@ -46,6 +46,10 @@
 .admin_control .right_admin_control .ageInputCheckbox span{
     display: block;
 }
+.admin_control .right_admin_control #interval{
+    display: none;
+}
+
 .admin_control .right_admin_control .ageInput input[type=text]{
     width: 100px;
 }
@@ -57,7 +61,7 @@
 }
 .admin_control .right_admin_control ul.sex li,
 .admin_control .right_admin_control ul.sort li,
-.admin_control .right_admin_control ul.deduce_count li,
+.admin_control .right_admin_control ul.view_count li,
 .admin_control .right_admin_control ul.deduce li{
     margin: 0;
     padding-left: 0;
@@ -129,12 +133,14 @@
     display: block;
 }
 
+
+
 .admin_control .right_admin_control ul.experience,
 .admin_control .right_admin_control ul.sort,
 .admin_control .right_admin_control ul.deduce,
 .admin_control .right_admin_control ul.schedule,
 .admin_control .right_admin_control ul.employment,
-.admin_control .right_admin_control ul.deduce_count,
+.admin_control .right_admin_control ul.view_count,
 .admin_control .right_admin_control ul#languages{
     list-style-type: none;
     margin: 0;
