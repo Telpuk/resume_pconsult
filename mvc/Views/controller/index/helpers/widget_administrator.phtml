@@ -1,6 +1,6 @@
 <p class="header_comments">Комментарии</p>
 <div id="comments_add">
-	<p><img src="<?=BASE_URL.'/public/img/comment-add.png'?>"> Добавить комментарий</p>
+	<p><img src="<?=BASE_URL.'/public/img/comment-add.png'?>">&nbsp;Добавить&nbsp;комментарий</p>
 	<div class="form_comment">
 		<form action='<?=BASE_URL."/index/comment"?>' method="post">
 			<textarea name="comment" placeholder="введите свой комментарий"></textarea>
@@ -8,17 +8,27 @@
 		</form>
 	</div>
 </div>
+
 <?php foreach($this->data['data']['comments'] as $value): ?>
-	<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'> <?=$value['name']?></p>
-	<fieldset>
-		<legend>
-			<?php if((int)$this->data['data']['id_admin'] === 1): ?>
-				<a href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'>
-					<img src='<?=BASE_URL."/public/img/comment-delete.png"?>'></a>
-			<?php endif; ?>
-			<?=$this->data['data']['type_admin_rus'][$value['type_user']]?>&#8212;<?=$value['date']?>
-		</legend>
-		<p><?=$value['comment']?></p>
-	</fieldset>
+	<div class="commentUser">
+		<p class="admin_comments"><img src='<?=BASE_URL."/public/img/face.png"?>'>&nbsp;<?=$value['name']?></p>
+		<fieldset>
+			<legend>
+				<?php if((int)$this->data['data']['id_admin'] === (int)$value['id_admin'] || (int)$this->data['data']['id_admin'] === 1): ?>
+					<a class="closeBlock" title="удалить" href='<?=BASE_URL."/index/dcomment/comment_id/{$value['id']}"?>'></a>
+				<?php endif; ?>
+				<?=$this->data['data']['type_admin_rus'][$value['type_user']]?>&nbsp;&#8212;&nbsp;<?=$value['date']?>
+			</legend>
+			<p><?=$value['comment']?></p>
+		</fieldset>
+		<?php if((int)$this->data['data']['id_admin'] === (int)$value['id_admin'] || (int)$this->data['data']['id_admin'] === 1): ?>
+			<div class="changeCommentBlock">
+				<textarea class="changeArea"></textarea>
+			</div>
+			<span style="display: none; color:green" class="addCommentChange" data-id-comment="<?=$value['id']?>">СОХРАНИТЬ</span>
+			<span class="changeComment">ИЗМЕНИТЬ</span>
+			<div class="clear"></div>
+		<?php endif; ?>
+	</div>
 <?php endforeach; ?>
 

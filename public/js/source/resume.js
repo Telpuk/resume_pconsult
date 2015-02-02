@@ -15,7 +15,52 @@
         this.$comments_add = $('#comments_add > p');
         this.$form_comment = $('.form_comment');
 
+        this.$commentUser = $('.commentUser');
+
     }
+
+    Resume.prototype.addEventListenerChangeComment = function(){
+        this.$commentUser.on('click', {self:this}, function(event){
+            var  $eventTarget = $(event.target);
+            var $commentOld = $('p',$eventTarget.siblings('fieldset'));
+            var $changeCommentBlock = $eventTarget.siblings('.changeCommentBlock');
+            var $textArea = $( 'textarea.changeArea',$changeCommentBlock);
+
+
+            if($eventTarget.hasClass('changeComment') &&  $eventTarget.text() !== 'ОТМЕНИТЬ'){
+                $eventTarget.siblings('.changeCommentBlock').show(100,function(){
+                    $changeCommentBlock.show();
+                    $eventTarget.siblings('.addCommentChange').show();
+                    $textArea.text($commentOld.text());
+                });
+                $eventTarget.text('ОТМЕНИТЬ').css({'color':'red'});
+            }else if($eventTarget.hasClass('addCommentChange')){
+
+                $textArea.css({
+                    'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif)  100% 100% no-repeat',
+                    'background-position': 'center'
+                });
+
+                if($textArea.val()){
+                    $.post(BASE_URL+'/index/updatecomment',{'content':$textArea.val(),'id_com':$eventTarget.data('idComment')},function($data){
+                        if($data === 'true'){
+                            $commentOld.text($textArea.val());
+                            $changeCommentBlock.hide();
+                            $eventTarget.siblings('.changeComment').text('ИЗМЕНИТЬ').css({color:'#0050a3'});
+                            $textArea.css({
+                                'background': 'none'
+                            });
+                            $eventTarget.hide();
+                        }
+                    });
+                }
+            }else if($eventTarget.hasClass('changeComment') &&  $eventTarget.text() === 'ОТМЕНИТЬ'){
+                $changeCommentBlock.hide(200);
+                $eventTarget.siblings('.addCommentChange').hide();
+                $eventTarget.text('ИЗМЕНИТЬ').css({color:'#0050a3'});
+            }
+        });
+    };
 
 
     Resume.prototype.addEventListenerEdit = function(){
@@ -152,7 +197,7 @@
         this.$download.on('click', {self: this, id: this.$download_content.data('idUser')}, function (event) {
 
             var href_export = '/id/' + event.data.id;
-            
+
             if(!$('#download_content input[type=checkbox]').length){
                 location.href = BASE_URL + "/excel/index" + href_export;
                 event.data.self.$download_content.hide();
@@ -180,6 +225,7 @@
         this.addEventListenerFavoriteFolds();
         this.addEventListenerFavorite();
         this.addEventListenerInputText();
+        this.addEventListenerChangeComment();
     };
 
     var resume = new Resume();

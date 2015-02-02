@@ -364,7 +364,7 @@
 
 
             $container.css({
-                'background': 'white'
+                'background': 'none'
             });
 
             self.removeWithoutComments($container.parents('.user_id'));
@@ -397,6 +397,7 @@
         this.$commentBlock.on('click', {self:this} ,function(event){
 
             var $element =  $(event.target);
+
             $('.inputComment',$element.parent('.commentBlock').siblings('.addComment')).hide();
 
             if($element.hasClass('closeBlock') && $element.data('idComment')){
@@ -413,9 +414,34 @@
                     event.data.self.removeWithoutComments($block.parent('.user_id'));
 
                     $block.css({
-                        'background': 'white'
+                        'background': 'none'
                     });
                 });
+            }else if($element.hasClass('closeBlockEdit') && $element.data('idComment')){
+                var $commentBlockOld = $element.parent('legend').siblings('.commentBlockOld');
+                $commentBlockOld.append('<div class="editCommentEdit">' +
+                '<textarea>'+$commentBlockOld.text()+'</textarea>' +
+                '<span class="backEditComment" style="color: red">ОТМЕНИТЬ</span>' +
+                '<span class="saveEditComment" data-id-comment="'+$element.data('idComment')+'" style="color: green">СОХРАНИТЬ</span>' +
+                '</div>');
+            }else if($element.hasClass('backEditComment')){
+                $element.parent('.editCommentEdit').remove();
+            }else if($element.hasClass('saveEditComment') && $element.data('idComment')){
+                var $textarea = $element.siblings('textarea');
+                var $commentBlockOld = $element.parents('.commentBlockOld');
+
+                $textarea.css({
+                    'background': 'url('+BASE_URL+'/public/img/ajax-loader.gif)  100% 100% no-repeat',
+                    'background-position': 'center'
+                });
+
+                if($textarea.val()){
+                    $.post(BASE_URL+'/admincontrol/updatecomment',{'content':$textarea.val(),'id_com':$element.data('idComment')},function($data){
+                        if($data === 'true'){
+                            $commentBlockOld.text($textarea.val());
+                        }
+                    });
+                }
             }
 
         });

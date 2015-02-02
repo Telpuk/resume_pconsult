@@ -17,6 +17,16 @@ class AdminControlController extends IController{
 		}
 	}
 
+	public function updatecommentAction(){
+		if(isset($_POST['content'])&&isset($_POST['id_com'])&&!empty($_POST['id_com'])&&!empty($_POST['content'])) {
+			if($this->_db_user->updateComment($_POST['id_com'], $_POST['content']))
+				echo'true';
+			else
+				echo'false';
+		}
+		exit;
+	}
+
 	public function delmanagerAction(){
 		$id = $this->getParams('delete');
 		if($id){

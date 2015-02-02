@@ -9,6 +9,16 @@ class User{
 		$this->_dbc = Model::getInstance()->getDbh();
 	}
 
+	public function updateComment($id=null, $content=null){
+		try {
+			$stmt = $this->_dbc->prepare ("UPDATE comments SET comment = :comment WHERE id = :id");
+			$stmt->execute(array(':comment'=>$content,':id'=>$id));
+		}catch (PDOException $e){
+			exit(print_r($e->errorInfo).$e->getFile());
+		}
+		return true;
+	}
+
 	public function viewAdmin( $id_user, $id_admin )
 	{
 		try {
@@ -270,8 +280,7 @@ class User{
 			)
 		);
 
-		$personal['auto'] = "Наличие авто: <b>{$personal_data['auto']}</b>. Наличие
-		водительского удостоверения: <b>{$personal_data['certificate_auto']}</b>";
+		$personal['auto'] = "Наличие&nbsp;авто:&nbsp;<b>{$personal_data['auto']}</b>. Наличие&nbsp;водительского&nbsp;удостоверения:&nbsp;<b>{$personal_data['certificate_auto']}</b>";
 
 
 		$experience_count = $this->getExperienceCount(
@@ -322,8 +331,8 @@ class User{
 
 		$personal['professional_area'] = $this->_getHtmlProfessionalArea($personal_data['professional_area']);
 
-		$personal['employment'] = sprintf('Занятость: %s', $personal_data['employment']);
-		$personal['schedule'] = sprintf('График работы: %s', $personal_data['schedule']);
+		$personal['employment'] = sprintf('Занятость:&nbsp;%s', $personal_data['employment']);
+		$personal['schedule'] = sprintf('График&nbsp;работы:&nbsp;%s', $personal_data['schedule']);
 
 		$personal['nationality_work_permit'] = $this->_getNationalityWorkPermit(
 			array(

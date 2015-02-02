@@ -60,6 +60,7 @@ class ProfileController extends IController{
 
 		return $this->_view->render(array(
 			'view' => 'profile/photo',
+			'js'=> $this->_jsPhoto(),
 			'data'=> array_merge( array(
 					'admin'=>$this->_admin,
 					'src'=>"/files/photo/{$photo_name}",
@@ -406,6 +407,16 @@ class ProfileController extends IController{
 					BASE_URL . "/public/js/vendor/jquery.validate.min.js",
 					BASE_URL . "/public/js/vendor/jquery-ui.min.js",
 					BASE_URL . "/public/js/min/personal.min.js"
+				),
+			)
+		);
+
+	}
+	private function _jsPhoto(){
+		return array(
+			'javascriptFooter' => array(
+				'src' => array(
+					BASE_URL . "/public/js/vendor/jquery-2.1.1.min.js",
 				),
 			)
 		);
