@@ -53,8 +53,8 @@ ExpiresByType application/javascript A2592000
 
 IndexOptions FancyIndexing
 
-php_value upload_max_filesize 10M
-php_value post_max_size 20M
+php_value upload_max_filesize 300M
+php_value post_max_size 300M
 
 php_value session.auto_start 1
 

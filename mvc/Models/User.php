@@ -280,6 +280,9 @@ class User{
 			)
 		);
 
+		$personal['yandex_movie'] = empty($personal_data['yandex_movie'])?null:$personal_data['yandex_movie'];
+		$personal['yandex_audio'] = empty($personal_data['yandex_audio'])?null:$personal_data['yandex_audio'];
+
 		$personal['auto'] = "Наличие&nbsp;авто:&nbsp;<b>{$personal_data['auto']}</b>. Наличие&nbsp;водительского&nbsp;удостоверения:&nbsp;<b>{$personal_data['certificate_auto']}</b>";
 
 

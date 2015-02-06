@@ -3339,5 +3339,62 @@ span.highlight {
     background-image: none;
 }
 
+.uploadFileYandex{
+    font-size: 0.2em !important;
+    margin-top: 10px;
+}
+
+.uploadFileYandex ul{
+    list-style-type: none;
+    margin: 0px;
+}
+
+.uploadFileYandex ul li{
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+}
+
+.uploadFileYandex .movie > span{
+    background-image: url(../img/filmyandex.png);
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding: 5px;
+    padding-left: 30px;
+}
+.uploadFileYandex .audio > span{
+    padding: 5px;
+    background-image: url(../img/microphone.png);
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding-left: 30px;
+}
+
+.uploadFileYandex .movie ul li:first-child{
+    background-image: url(../img/filmyandex.png);
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding-left: 30px;
+}
+.uploadFileYandex .audio ul li:first-child{
+    background-image: url(../img/microphone.png);
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding-left: 30px;
+}
+
+
+.uploadFileYandex .movie,
+.uploadFileYandex .audio{
+    float: left;
+    /*border: 1px #000000 solid;*/
+}
+
+.uploadFileYandex input[type=submit]{
+
+}
+.uploadFileYandex input[type=file]{
+
+}
 
 #scrollUp{bottom:20px;right:20px;width:38px;height:38px;background:url(../img/top.png) no-repeat}

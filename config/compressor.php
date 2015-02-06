@@ -1,4 +1,4 @@
 <?php
 return array(
-	'html' => false,
+	'html' => true,
 );

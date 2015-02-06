@@ -11,6 +11,62 @@ class Admin{
 		$this->_user_object = new User();
 	}
 
+	public function insertMovieNameFileYandex($movie = null, $id_user=null){
+		if($movie && $id_user) {
+			try {
+				$stmt = $this->_dbc->prepare("UPDATE profile SET yandex_files_movie = :movie WHERE id = :id_user" );
+				$stmt->execute( array(
+					':movie' => $movie,
+					':id_user' => $id_user,
+				) );
+			} catch ( PDOException $e ) {
+				exit( print_r( $e->errorInfo ) . $e->getFile() );
+			}
+			return true;
+		}
+	}
+	public function insertAudioNameFileYandex($audio= null, $id_user=null){
+		if($audio && $id_user) {
+			try {
+				$stmt = $this->_dbc->prepare("UPDATE profile SET yandex_files_audio = :audio WHERE id = :id_user");
+				$stmt->execute( array(
+					':audio' => $audio,
+					':id_user' => $id_user
+				) );
+			} catch ( PDOException $e ) {
+				exit( print_r( $e->errorInfo ) . $e->getFile() );
+			}
+			return true;
+		}
+	}
+
+	public function deleteMovieNameFileYandex($id_user=null){
+		if($id_user) {
+			try {
+				$stmt = $this->_dbc->prepare("UPDATE profile SET yandex_files_movie = null WHERE id = :id_user");
+				$stmt->execute( array(
+					':id_user' => $id_user
+				) );
+			} catch ( PDOException $e ) {
+				exit( print_r( $e->errorInfo ) . $e->getFile() );
+			}
+			return true;
+		}
+	}
+	public function deleteAudioNameFileYandex($id_user=null){
+		if($id_user) {
+			try {
+				$stmt = $this->_dbc->prepare("UPDATE profile SET yandex_files_audio = null WHERE id = :id_user");
+				$stmt->execute( array(
+					':id_user' => $id_user
+				) );
+			} catch ( PDOException $e ) {
+				exit( print_r( $e->errorInfo ) . $e->getFile() );
+			}
+			return true;
+		}
+	}
+
 	public function conclusionAction(){
 		if(isset($_POST['updateConclusion'])){
 			$this->_db_user->updateConclusion($_POST['conclusion'],$this->_id_user);

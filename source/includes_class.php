@@ -11,6 +11,7 @@
 )));
 
 require_once realpath( __DIR__ . '/vendor/Word/PhpWord/Autoloader.php' );
+require_once realpath( __DIR__ . '/vendor/yandexDisk/autoload.php' );
 \PhpOffice\PhpWord\Autoloader::register();
 
 
@@ -24,3 +25,4 @@ spl_autoload_register(function ($class) {
 		exit;
 	}
 });
+

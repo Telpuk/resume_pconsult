@@ -88,12 +88,65 @@ class IndexController extends IController{
 		$this->headerLocation('index/#concl');
 	}
 
+	public function controlyandexdiskAction($type_file = null){
+		$diskClient = new YandexDisk('fd628ba2f3ea41f0aab456c8d5b64755');
+
+		if(isset($_POST['uploadFileYandex']['submit']['movie'])){
+			$diskClient->parseArrayMovieFILES();
+			$fileName = $diskClient->getFileNameUpload();
+			if($fileName)
+				$this->_db_admin->insertMovieNameFileYandex($fileName,$this->_id_user);
+		}
+
+		if(isset($_POST['uploadFileYandex']['submit']['audio'])){
+			$diskClient->parseArrayAudioFILES();
+			$fileName = $diskClient->getFileNameUpload();
+			if($fileName)
+				$this->_db_admin->insertAudioNameFileYandex($fileName, $this->_id_user);
+
+		}
+
+		$this->headerLocation('index');
+
+	}
+
+	public function uploadfileyandexAction(){
+		$diskClient = new YandexDisk('fd628ba2f3ea41f0aab456c8d5b64755');
+		if($this->getParams( 'dir' ) && $this->getParams( 'fileName' ) && $this->getParams( 'user_name' ) ) {
+			$diskClient->uploadfileyandex( $this->getParams( 'dir' ), $this->getParams( 'fileName' ), $this->getParams( 'user_name' ) );
+		}
+		$this->headerLocation('index');
+
+	}
+	public function deletefileyandexAction(){
+		$diskClient = new YandexDisk('fd628ba2f3ea41f0aab456c8d5b64755');
+		if($this->getParams( 'dir' ) && $this->getParams( 'fileName' )) {
+			if($diskClient->deletefileyandex( $this->getParams( 'dir' ), $this->getParams( 'fileName' ) )){
+
+				if($this->getParams( 'dir' ) === 'movie'){
+					$this->_db_admin->deleteMovieNameFileYandex($this->_id_user);
+				}
+
+				if($this->getParams( 'dir' ) === 'audio'){
+					$this->_db_admin->deleteAudioNameFileYandex($this->_id_user);
+
+				}
+			}
+		}
+		$this->headerLocation('index');
+
+	}
+
 	public  function indexAction(){
+
 		$widget = array('widget' => 'index/helpers/widget_personal');
 
 		if($this->_admin){
 			$this->_db_user->viewAdmin( (int)$this->_id_user, (int)$this->getSessionUserID( 'id_user_admin' ) );
-			$widget = array('widget'=>'index/helpers/widget_administrator');
+			$widget = array(
+				'widget'=>'index/helpers/widget_administrator',
+				'yandexUploadFile'=>'index/helpers/yandexUploadFile'
+			);
 		}
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
