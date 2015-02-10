@@ -49,10 +49,10 @@ class ExcelController extends IController{
 			$textrun->addText("www.proconsult.by",array('align'=>'center','size'=>8));
 			$textrun->addTextBreak();
 			$textrun->addText("+375 44 779 03 94",array('align'=>'center', 'size'=>8));
-			$table->addCell(8000)->addImage(
-				BASE_URL."/public/img/logo.jpg",
-				array('width' => 40, 'height' => 40, 'align' => 'right')
-			);
+//			$table->addCell(8000)->addImage(
+//				BASE_URL."/public/img/logo.png",
+//				array('width' => 70, 'height' => 40, 'align' => 'right')
+//			);
 			$header->addTextBreak();
 			$styleTable = array('borderSize' => 6, 'borderColor' => '999999');
 

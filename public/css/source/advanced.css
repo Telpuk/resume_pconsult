@@ -53,7 +53,8 @@
 .admin_control .right_admin_control .ageInput input[type=text]{
     width: 100px;
 }
-.admin_control .right_admin_control ul.sex{
+.admin_control .right_admin_control ul.sex,
+.admin_control .right_admin_control ul.fileYandex{
     list-style: none;
     margin: 0;
     padding: 0;
@@ -62,7 +63,8 @@
 .admin_control .right_admin_control ul.sex li,
 .admin_control .right_admin_control ul.sort li,
 .admin_control .right_admin_control ul.view_count li,
-.admin_control .right_admin_control ul.deduce li{
+.admin_control .right_admin_control ul.deduce li,
+.admin_control .right_admin_control ul.fileYandex li{
     margin: 0;
     padding-left: 0;
     padding-bottom: 5px;

@@ -3356,18 +3356,30 @@ span.highlight {
 }
 
 .uploadFileYandex .movie > span{
+    display: inline-block;
     background-image: url(../img/filmyandex.png);
     background-repeat: no-repeat;
     background-position: 0px center;
     padding: 5px;
     padding-left: 30px;
+    width: 200px;
 }
 .uploadFileYandex .audio > span{
     padding: 5px;
+    display: inline-block;
     background-image: url(../img/microphone.png);
     background-repeat: no-repeat;
     background-position: 0px center;
     padding-left: 30px;
+    width: 200px;
+}
+
+.uploadFileYandex .noPlace{
+    color: red;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 10px;
+    border: 1px red solid;
 }
 
 .uploadFileYandex .movie ul li:first-child{

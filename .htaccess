@@ -51,6 +51,9 @@ ExpiresByType text/javascript A2592000
 ExpiresByType application/javascript A2592000
 </IfModule>
 
+
+php_value memory_limit 500M
+
 IndexOptions FancyIndexing
 
 php_value upload_max_filesize 300M

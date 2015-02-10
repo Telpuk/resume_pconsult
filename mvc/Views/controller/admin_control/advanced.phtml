@@ -125,7 +125,7 @@
 <tr>
 	<td><label for="nationality">Гражданство</label></td>
 	<td>
-		<span class="linkSpan" <?php if(isset($this->data['data']['form']['nationality']['name']))echo"style='display:none' "?> >Любая<span class="link">Указать&#160;страну</span></span>
+		<span class="linkSpan" <?php if(isset($this->data['data']['form']['nationality']['name']))echo"style='display:none' "?> >Любое<span class="link">Указать&#160;страну</span></span>
 		<div class="hideDiv" <?php if(isset($this->data['data']['form']['nationality']['name']))echo" style='display:block' "?> >
 			<p>Добавить&#160;страну</p>
 			<input type="text" name="advancedForm[nationality][name]" id="nationality" <?php if(!isset($this->data['data']['form']['nationality']['name']))echo" disabled "?>  value="<?=$this->data['data']['form']['nationality']['name']?>">
@@ -135,7 +135,7 @@
 <tr>
 	<td><label for="work_permit">Разрешение&#160;на&#160;работу</label></td>
 	<td>
-		<span class="linkSpan" <?php if(isset($this->data['data']['form']['work_permit']['name']))echo"style='display:none' "?>  >Любая<span class="link">Указать&#160;страну</span></span>
+		<span class="linkSpan" <?php if(isset($this->data['data']['form']['work_permit']['name']))echo"style='display:none' "?>  >Любое<span class="link">Указать&#160;страну</span></span>
 		<div class="hideDiv" <?php if(isset($this->data['data']['form']['work_permit']['name']))echo" style='display:block' "?>>
 			<p>Добавить&#160;страну</p>
 			<input type="text" name="advancedForm[work_permit][name]" id="work_permit" <?php if(!isset($this->data['data']['form']['work_permit']['name']))echo" disabled "?>  value="<?=$this->data['data']['form']['work_permit']['name']?>">
@@ -184,6 +184,15 @@
 			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Гибкий график', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Гибкий график">Гибкий&#160;график</label></li>
 			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Удаленная работа', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Удаленная работа">Удаленная&#160;работа</label></li>
 			<li><label><input type="checkbox" name="advancedForm[schedule][]"<?php if(is_array($this->data['data']['form']['schedule'])&&in_array('Вахтовый метод', $this->data['data']['form']['schedule'] ) )echo"checked"?> value="Вахтовый метод">Вахтовый&#160;метод</label></li>
+		</ul>
+	</td>
+</tr>
+<tr>
+	<td>Прикрепеленные файлы</td>
+	<td>
+		<ul class="fileYandex">
+			<li><input type="checkbox"  <?php if(isset($this->data['data']['form']['file']['video']))echo"checked"?> name="advancedForm[file][video]">Показывать&#160;резюме&#160;только&#160;с&#160;прекрепленными&#160;видео&#160;файлами</li>
+			<li><input type="checkbox" <?php if(isset($this->data['data']['form']['file']['audio']))echo"checked"?> name="advancedForm[file][audio]">Показывать&#160;резюме&#160;только&#160;с&#160;прекрепленными&#160;аудио&#160;файлами</li>
 		</ul>
 	</td>
 </tr>

@@ -2,43 +2,89 @@
 use Yandex\Disk\DiskClient;
 
 class YandexDisk extends DiskClient {
-	private $_fileName = null;
+	private
+		$_fileName = null,
+		$_formatVideo = array('avi', 'mp4'),
+		$_formatAudio = array('mp3'),
+		$_sizeVideo = 200000000,
+		$_sizeAudio = 10000000;
 
 	public function __construct($token = null){
 		parent::__construct($token);
 	}
 
-	public function parseArrayMovieFILES(){
-		if(isset($_FILES['uploadFileYandex']) && is_uploaded_file($_FILES['uploadFileYandex']['tmp_name']['movie']) && !$_FILES['uploadFileYandex']['error']['movie']){
-			$this->_fileName = uniqid().'.'.$this->_getFormatFile($_FILES['uploadFileYandex']['name']['movie']);
-			$this->uploadFile(
-				'/movie/',
-				array(
-					'path' => $_FILES['uploadFileYandex']['tmp_name']['movie'],
-					'size' => $_FILES['uploadFileYandex']['size']['movie'],
-					'name' => $this->_fileName
-				)
-			);
-
-			return $this->_fileName;
-		}
-		return false;
+	public function validateFormatVideo($name=null){
+		return
+			in_array(mb_strtolower( substr( strrchr($name, '.' ), 1 ),'utf-8' ),$this->_formatVideo )?array('format'=>true):array('format'=> false);
 	}
-	public function parseArrayAudioFILES(){
-		if(isset($_FILES['uploadFileYandex']) && is_uploaded_file($_FILES['uploadFileYandex']['tmp_name']['audio']) && !$_FILES['uploadFileYandex']['error']['audio']){
+	public function validateFormatAudio($name=null){
+		return
+			in_array(mb_strtolower( substr( strrchr($name, '.' ), 1 ),'utf-8' ),$this->_formatAudio)?array('format'=>true):array('format'=> false);
+	}
 
-			$this->_fileName = uniqid().'.'.$this->_getFormatFile($_FILES['uploadFileYandex']['name']['audio']);
-			$this->uploadFile(
-				'/audio/',
-				array(
-					'path' => $_FILES['uploadFileYandex']['tmp_name']['audio'],
-					'size' => $_FILES['uploadFileYandex']['size']['audio'],
-					'name' => $this->_fileName
-				)
-			);
-			return $this->_fileName ;
+	public function validateSizeVideo($size = null){
+		return $size < $this->_sizeVideo?array('size'=>true):array('size'=>false);
+	}
+	public function validateSizeAudio($size){
+		return $size < $this->_sizeAudio?array('size'=>true):array('size'=>false);
+	}
+
+	public function validateYandexPlace($size = null){
+		$diskSpace = $this->diskSpaceInfo();
+		$free = round(($diskSpace['availableBytes'] - $diskSpace['usedBytes']), 2);
+		if($free >= $size){
+			return array('place'=>true);
 		}
-		return false;
+		$this->headerLocation('index/index/placeYandex/noPlace#noPlace');
+	}
+
+
+	public function parseArrayMovieFILES(){
+		if(isset($_FILES['uploadFileYandex']) && is_uploaded_file($_FILES['uploadFileYandex']['tmp_name']['movie']) && !$_FILES['uploadFileYandex']['error']['movie']) {
+			$this->_fileName = uniqid() . '.' . $this->_getFormatFile( $_FILES['uploadFileYandex']['name']['movie'] );
+
+			$valid = $this->validateFormatVideo( $this->_fileName ) +
+				$this->validateSizeVideo($_FILES['uploadFileYandex']['size']['movie'])+
+				$this->validateYandexPlace($_FILES['uploadFileYandex']['size']['movie']);
+
+			if ( $valid['format']  && $valid['size'] && $valid['place']) {
+				$this->uploadFile(
+					'/movie/',
+					array(
+						'path' => $_FILES['uploadFileYandex']['tmp_name']['movie'],
+						'size' => $_FILES['uploadFileYandex']['size']['movie'],
+						'name' => $this->_fileName
+					)
+				);
+				return $this->_fileName;
+			}
+			return false;
+		}
+	}
+
+
+	public function parseArrayAudioFILES()
+	{
+		if ( isset( $_FILES['uploadFileYandex'] ) && is_uploaded_file( $_FILES['uploadFileYandex']['tmp_name']['audio'] ) && !$_FILES['uploadFileYandex']['error']['audio'] ) {
+			$this->_fileName = uniqid() . '.' . $this->_getFormatFile( $_FILES['uploadFileYandex']['name']['audio'] );
+
+			$valid = $this->validateFormatAudio( $this->_fileName ) +
+				$this->validateSizeAudio( $_FILES['uploadFileYandex']['size']['audio'])+
+				$this->validateYandexPlace($_FILES['uploadFileYandex']['size']['audio']);
+
+			if ( $valid['format'] && $valid['size'] && $valid['place']) {
+				$this->uploadFile(
+					'/audio/',
+					array(
+						'path' => $_FILES['uploadFileYandex']['tmp_name']['audio'],
+						'size' => $_FILES['uploadFileYandex']['size']['audio'],
+						'name' => $this->_fileName
+					)
+				);
+				return $this->_fileName;
+			}
+			return false;
+		}
 	}
 
 	public function getFileNameUpload(){
@@ -73,24 +119,32 @@ class YandexDisk extends DiskClient {
 		if($dir && $file_name && $name_user){
 			try {
 				if ( $dir === 'movie' ) {
-					$file = $this->downloadFile( 'movie/' . $file_name );
+					$file = $this->downloadFile( 'movie/' . $file_name, DIR_PROJECT.'/temp_upload/', $file_name  );
 					$flxt = $this->_getFormatFile( $file_name );
 					$name_user .= ' (видео запись)';
 				}
 				if ( $dir === 'audio' ) {
-					$file = $this->downloadFile( 'audio/' . $file_name );
+					$file = $this->downloadFile( 'audio/' . $file_name, DIR_PROJECT.'/temp_upload/', $file_name  );
 					$flxt = $this->_getFormatFile( $file_name );
 					$name_user .= ' (аудио запись)';
 				}
+
+				if (ob_get_level()) {
+					ob_end_clean();
+				}
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
 				header( "Pragma: public" );
 				header( "Expires: 0" );
+				header('Cache-Control: must-revalidate');
 				header( "Cache-Control: must-revalidate, post-check=0, pre-check=0" );
 				header( "Cache-Control: private", false );
 				header( "Content-Type: " . $this->_getTypeContent( $flxt ) );
 				header( "Content-Disposition: attachment; filename='".$name_user.'.'.$flxt."';" );
 				header( "Content-Transfer-Encoding: binary" );
 				header( "Content-Length: " . filesize( $file ) );
-				readfile( $file );
+				readfile($file);
+				unlink($file);
 				exit();
 			}catch(ErrorException $e){
 				$e->getMessage('Произошла ошибка на сервере!!');
@@ -126,13 +180,4 @@ class YandexDisk extends DiskClient {
 
 		return $tpe;
 	}
-
-	private function _checkFilesFormatMovie($file){
-		if ( !isset( $this->_format_[mb_strtolower( substr( strrchr( $photo['name'], '.' ), 1 ), 'utf-8' )] ) ) {
-			return array('photo_format'=> true);
-		}
-		return true;
-	}
-
-
-} 
+}

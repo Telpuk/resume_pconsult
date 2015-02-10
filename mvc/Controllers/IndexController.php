@@ -92,22 +92,26 @@ class IndexController extends IController{
 		$diskClient = new YandexDisk('fd628ba2f3ea41f0aab456c8d5b64755');
 
 		if(isset($_POST['uploadFileYandex']['submit']['movie'])){
-			$diskClient->parseArrayMovieFILES();
-			$fileName = $diskClient->getFileNameUpload();
-			if($fileName)
-				$this->_db_admin->insertMovieNameFileYandex($fileName,$this->_id_user);
+
+			if($diskClient->parseArrayMovieFILES()) {
+				$fileName = $diskClient->getFileNameUpload();
+				if ( $fileName )
+					$this->_db_admin->insertMovieNameFileYandex( $fileName, $this->_id_user );
+			}else{
+				$this->headerLocation('index/index/video/noFormat#noFormatVideo');
+			}
 		}
 
 		if(isset($_POST['uploadFileYandex']['submit']['audio'])){
-			$diskClient->parseArrayAudioFILES();
-			$fileName = $diskClient->getFileNameUpload();
-			if($fileName)
-				$this->_db_admin->insertAudioNameFileYandex($fileName, $this->_id_user);
-
+			if($diskClient->parseArrayAudioFILES()) {
+				$fileName = $diskClient->getFileNameUpload();
+				if ( $fileName )
+					$this->_db_admin->insertAudioNameFileYandex( $fileName, $this->_id_user );
+			}else{
+				$this->headerLocation('index/index/audio/noFormat#noFormatAudio');
+			}
 		}
-
 		$this->headerLocation('index');
-
 	}
 
 	public function uploadfileyandexAction(){
@@ -138,6 +142,7 @@ class IndexController extends IController{
 	}
 
 	public  function indexAction(){
+		$noNoticeYandexDisk = array();
 
 		$widget = array('widget' => 'index/helpers/widget_personal');
 
@@ -147,6 +152,16 @@ class IndexController extends IController{
 				'widget'=>'index/helpers/widget_administrator',
 				'yandexUploadFile'=>'index/helpers/yandexUploadFile'
 			);
+			if($this->getParams('video') === 'noFormat'){
+				$noNoticeYandexDisk['video'] = true;
+			}
+			if($this->getParams('audio') === 'noFormat'){
+				$noNoticeYandexDisk['audio'] = true;
+			}
+
+			if($this->getParams('placeYandex') === 'noPlace'){
+				$noNoticeYandexDisk['noPlace'] = true;
+			}
 		}
 
 		$select_personal_data = $this->_db_user->selectPersonalData($this->_id_user);
@@ -159,11 +174,12 @@ class IndexController extends IController{
 			return $this->_view->render(array(
 				'view' => 'index/index',
 				'data' =>@array_merge(array(
-						'helpers'=> $widget,
+						'helpers'=>$widget,
 						'time_input_user'=>$this->getSessionParamsId('time_input_user'),
 						'id_user'=>$this->getSessionUserID('user'),
 						'currentUrlAdmin'=>$this->readCurrentUrlCookies(),
 						'id_admin'=>$this->getSessionUserID('id_user_admin'),
+						'noNoticeYandexDisk'=>$noNoticeYandexDisk,
 						'admin'=>$this->_admin,
 						'type_admin_rus'=>$this->_type_admin),
 					((array)$select_personal_data)

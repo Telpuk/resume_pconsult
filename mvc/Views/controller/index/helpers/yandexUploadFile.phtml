@@ -1,5 +1,17 @@
 <div class="uploadFileYandex">
+	<?php if($this->data['data']['noNoticeYandexDisk']['noPlace'] === true): ?>
+		<div class="noPlace" id="noPlace">
+			На диске закончелось место! Необходимо удалить файлы!
+		</div>
+	<?php endif; ?>
 	<div class="movie">
+		<?php if($this->data['data']['noNoticeYandexDisk']['video'] === true): ?>
+			<div class="error" id="noFormatVideo">
+				Не верный формат! Рекомендумый формат (mp4)!
+				<br>
+				Размер не должен превышать 150мб
+			</div>
+		<?php endif; ?>
 		<?php if(!$this->data['data']['yandex_movie']):?>
 			<form  action="<?=BASE_URL.'/index/controlyandexdisk' ?>" method="post" enctype="multipart/form-data">
 				<ul>
@@ -8,12 +20,20 @@
 				</ul>
 			</form>
 		<?php else: ?>
-			<span><a href="<?=BASE_URL.'/index/uploadfileyandex/dir/movie/fileName/'.$this->data['data']['yandex_movie']?>/user_name/<?=$this->data['data']['name']?>">скачать</a>&nbsp;&nbsp;
-				<a href="<?=BASE_URL.'/index/deletefileyandex/dir/movie/fileName/'.$this->data['data']['yandex_movie']?>">удалить</a></span></span>
+			<span>
+				<a href="<?=BASE_URL.'/index/uploadfileyandex/dir/movie/fileName/'.$this->data['data']['yandex_movie']?>/user_name/<?=$this->data['data']['name']?>">скачать</a>&nbsp;&nbsp;
+				<a href="<?=BASE_URL.'/index/deletefileyandex/dir/movie/fileName/'.$this->data['data']['yandex_movie']?>">удалить</a>
+			</span>
 		<?php endif; ?>
-		<!--		<div>Только видео формат!</div>-->
 	</div>
 	<div class="audio">
+		<?php if($this->data['data']['noNoticeYandexDisk']['audio'] === true): ?>
+			<div class="error" id="noFormatAudio">
+				Не верный формат! Рекомендуемые форматы (mp3)!
+				<br>
+				Размер не должен превышать 100мб
+			</div>
+		<?php endif; ?>
 		<?php if(!$this->data['data']['yandex_audio']):?>
 			<form  action="<?=BASE_URL."/index/controlyandexdisk" ?>" method="post" enctype="multipart/form-data">
 				<ul>
@@ -22,10 +42,11 @@
 				</ul>
 			</form>
 		<?php else: ?>
-			<span><a href="<?=BASE_URL.'/index/uploadfileyandex/dir/audio/fileName/'.$this->data['data']['yandex_audio']?>/user_name/<?=$this->data['data']['name']?>">скачать</a>&nbsp;&nbsp;
-				<a href="<?=BASE_URL.'/index/deletefileyandex/dir/audio/fileName/'.$this->data['data']['yandex_audio']?>">удалить</a></span>
+			<span>
+				<a href="<?=BASE_URL.'/index/uploadfileyandex/dir/audio/fileName/'.$this->data['data']['yandex_audio']?>/user_name/<?=$this->data['data']['name']?>">скачать</a>&nbsp;&nbsp;
+				<a href="<?=BASE_URL.'/index/deletefileyandex/dir/audio/fileName/'.$this->data['data']['yandex_audio']?>">удалить</a>
+			</span>
 		<?php endif; ?>
-		<!--		<div>Только аудио формат!</div>-->
 	</div>
 	<div class="clear"></div>
 </div>

@@ -141,6 +141,9 @@ HEAD;
 			$schedule = $this->_parseSchedule(isset($this->_postSearch['schedule'])?$this->_postSearch['schedule']:null);
 			$languages = $this->_parseLanguages(isset($this->_postSearch['languages']) ?$this->_postSearch['languages']:null);
 			$deduce = $this->_parseDeduce(isset($this->_postSearch['deduce']) ?$this->_postSearch['deduce']:null);
+
+			$attachFile = $this->_parseAttachFile(isset($this->_postSearch['file'])?$this->_postSearch['file']:null);
+
 			$view_count = isset($this->_postSearch['view_count'])?$this->_postSearch['view_count']:null;
 
 			$this->setQuery(
@@ -158,9 +161,26 @@ HEAD;
 				$schedule,
 				$languages,
 				$deduce,
-				$view_count);
+				$view_count,
+				$attachFile);
 
 		}
+	}
+
+	private function _parseAttachFile($file = null){
+		$queryLike = null;
+		if(!is_null($file)){
+			if(isset($file['video'])){
+				$queryLike .="( prof.yandex_files_movie IS NOT NULL )||";
+			}
+			if(isset($file['audio'])){
+				$queryLike .="( prof.yandex_files_audio IS NOT NULL )";
+			}
+
+			return trim($queryLike,'||');
+		}
+
+		return $queryLike;
 	}
 
 	private function _parseDeduce($deduce = null){
@@ -511,7 +531,8 @@ HEAD;
 							 $schedule=null,
 							 $languages=null,
 							 $deduce=null,
-							 $deduce_count=null){
+							 $deduce_count=null,
+							 $attachFile = null){
 		$this->_query .= $likeWordKeyQuery?' AND ( '.$likeWordKeyQuery.' )':null;
 		$this->_query .= $likeProfessionalAreaQuery?' AND ( '.$likeProfessionalAreaQuery.' )':null;
 		$this->_query .= $likeCityQuery?' AND ( '.$likeCityQuery.' )':null;
@@ -526,6 +547,7 @@ HEAD;
 		$this->_query .= $schedule?' AND ( '.$schedule.' )':null;
 		$this->_query .= $languages?' AND ( '.$languages.' )':null;
 		$this->_query .= $deduce?' AND ( '.$deduce.' )':null;
+		$this->_query .= $attachFile?' AND ( '.$attachFile.' )':null;
 
 		$this->_queryArray['likeString'] = $this->_query;
 		$this->_queryArray['view_count'] = $deduce_count;
